@@ -1,6 +1,7 @@
 name: Framework and database compatibility
 
 on:
+  push:
   pull_request:
     branches: [main]
   workflow_dispatch:

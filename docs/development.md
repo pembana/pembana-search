@@ -33,7 +33,7 @@ fails the PostgreSQL run; tests are not skipped or redirected to H2.
 
 ## CI and test identities
 
-Pull requests to `main` and manual workflow dispatch run Java 17/21/25 ×
+Pushes to any branch or tag, pull requests to `main`, and manual workflow dispatch run Java 17/21/25 ×
 H2/PostgreSQL. Every job runs the complete 148-method suite and coverage, then a
 Java caller against the packaged JAR in a separate JVM. Dependencies, effective
 POMs, environment/build logs, Surefire XML, and coverage reports are uploaded
