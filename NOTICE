@@ -19,3 +19,9 @@ this attribution notice, baseline documentation and Maven-based CI, replacement
 of test CI, and removal of the inherited publishing workflow. Production sources,
 grammar, Kotlin tests, fixtures, Maven dependencies, and database settings have
 not been changed. See docs/baseline/README.md for provenance and verification.
+
+Stage 1 translates inherited production Kotlin code to Java, adapts annotation
+construction in the retained Kotlin tests, confines Kotlin dependencies/tooling
+to the test harness, and adds Java caller/MVC verification. The grammar, original
+test scenarios/fixtures, and dependency versions are retained. See
+docs/stage1/README.md for mechanical language-boundary adaptations and evidence.

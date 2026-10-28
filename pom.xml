@@ -64,10 +64,12 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.module</groupId>
 			<artifactId>jackson-module-kotlin</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jetbrains.kotlin</groupId>
 			<artifactId>kotlin-reflect</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -85,6 +87,7 @@
 			<groupId>org.jetbrains.kotlin</groupId>
 			<artifactId>kotlin-stdlib-jdk8</artifactId>
 			<version>${kotlin.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jetbrains.kotlin</groupId>
@@ -95,8 +98,6 @@
 	</dependencies>
 
 	<build>
-		<sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
-		<testSourceDirectory>src/test/kotlin</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.antlr</groupId>
@@ -124,31 +125,18 @@
 				<groupId>org.jetbrains.kotlin</groupId>
 				<artifactId>kotlin-maven-plugin</artifactId>
 				<version>${kotlin.version}</version>
+				<!-- Production is Java. Compile only the retained Kotlin fixtures/tests. -->
 				<executions>
 					<execution>
-						<id>compile</id>
-						<phase>process-sources</phase>
-						<goals>
-							<goal>compile</goal>
-						</goals>
-						<configuration>
-							<sourceDirs>
-								<source>src/main/kotlin</source>
-								<source>target/generated-sources/antlr4</source>
-							</sourceDirs>
-						</configuration>
-					</execution>
-					<execution>
 						<id>test-compile</id>
-						<phase>test-compile</phase>
+						<phase>process-test-sources</phase>
 						<goals>
 							<goal>test-compile</goal>
 						</goals>
 						<configuration>
 							<sourceDirs>
-								<source>src/main/kotlin</source>
 								<source>src/test/kotlin</source>
-								<source>target/generated-sources/antlr4</source>
+								<source>src/test/java</source>
 							</sourceDirs>
 						</configuration>
 					</execution>
@@ -161,10 +149,6 @@
 						<plugin>spring</plugin>
 						<plugin>jpa</plugin>
 					</compilerPlugins>
-					<sourceDirs>
-						<sourceDir>src/main/kotlin</sourceDir>
-						<sourceDir>target/generated-sources/antlr4</sourceDir>
-					</sourceDirs>
 					<jvmTarget>17</jvmTarget>
 				</configuration>
 				<dependencies>
@@ -237,7 +221,6 @@
 				<configuration>
 					<excludes>
 						<exclude>${grammar.directory}/**/*</exclude>
-						<exclude>com/sipios/springsearch/configuration/**/*</exclude>
 					</excludes>
 				</configuration>
 				<executions>
@@ -296,22 +279,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
-				<executions>
-					<execution>
-						<id>compile</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>compile</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>testCompile</id>
-						<phase>test-compile</phase>
-						<goals>
-							<goal>testCompile</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>

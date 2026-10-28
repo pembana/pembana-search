@@ -1,7 +1,8 @@
 # Stage 0: upstream compatibility baseline
 
-Status: **passed locally on 2026-10-28**. The Java production-code port has not
-started. This milestone establishes AC-01; it does not establish the later Java,
+Status: **passed locally on 2026-10-28**. This is the historical record captured
+before the Java port; see the [Stage 1 report](../stage1/README.md) for current
+implementation and verification. This milestone establishes AC-01; it does not establish the later Java,
 framework, PostgreSQL, or matching-policy acceptance criteria.
 
 ## Provenance and unchanged inputs
@@ -111,7 +112,7 @@ separately for the pinned upstream and imported revisions.
 
 Select JDK 17 in `JAVA_HOME` and put its `bin` directory first on `PATH`.
 Maven Central access is needed for uncached dependencies. Run the unchanged build
-directly in this checkout:
+in a checkout of the pre-port commit `ee9b60c` to reproduce this historical result:
 
 ```sh
 ./mvnw --batch-mode -Dgpg.skip=true -Ddependency-check.skip=true clean verify

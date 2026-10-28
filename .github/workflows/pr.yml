@@ -57,6 +57,12 @@ jobs:
         run: |
           ./mvnw --batch-mode org.apache.maven.plugins:maven-help-plugin:3.2.0:effective-pom -Doutput=build/baseline/effective-pom.xml 2>&1 | tee build/baseline/effective-pom.log
 
+      - name: Run Java caller against the JAR without Kotlin dependencies
+        if: matrix.source == 'imported'
+        run: |
+          ./mvnw --batch-mode org.apache.maven.plugins:maven-dependency-plugin:3.6.1:build-classpath -DincludeScope=test -DexcludeGroupIds=org.jetbrains.kotlin -DexcludeArtifactIds=jackson-module-kotlin -Dmdep.outputFile=build/baseline/java-caller-classpath.txt 2>&1 | tee build/baseline/classpath.log
+          java -cp "target/test-classes:target/spring-search-0.3.0.jar:$(cat build/baseline/java-caller-classpath.txt)" com.sipios.springsearch.JavaCallerSmokeTest 2>&1 | tee build/baseline/java-caller-no-kotlin.log
+
       - name: Preserve baseline evidence even on failure
         if: always()
         uses: actions/upload-artifact@v4
