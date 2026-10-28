@@ -26,23 +26,50 @@ import com.sipios.springsearch.listeners.SyntaxErrorListener;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 
 /** Parses expressions using the unchanged lexer, parser and visitor sequence. */
 public final class CriteriaParser<T> {
     private final QueryVisitorImpl<T> visitor;
+    private final SearchSpec settings;
     public CriteriaParser(SearchSpec searchSpecAnnotation) {
+        if (searchSpecAnnotation.maxQueryLength() < 0 || searchSpecAnnotation.maxNestingDepth() < 0) {
+            throw new IllegalArgumentException("Search query limits must be non-negative");
+        }
         visitor = new QueryVisitorImpl<>(searchSpecAnnotation);
+        settings = searchSpecAnnotation;
     }
     public Specification<T> parse(String searchParam) {
+        if (settings.maxQueryLength() > 0 && searchParam.length() > settings.maxQueryLength()) {
+            throw new InvalidSearchQueryException(QueryErrorCode.QUERY_LIMIT_EXCEEDED, null,
+                    "Search query exceeds maximum length of " + settings.maxQueryLength());
+        }
         QueryLexer lexer = new QueryLexer(CharStreams.fromString(searchParam));
-        QueryParser parser = new QueryParser(new CommonTokenStream(lexer));
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
         SyntaxErrorListener listener = new SyntaxErrorListener();
+        if (settings.strictValidation()) {
+            lexer.removeErrorListeners();
+            lexer.addErrorListener(listener);
+        }
+        if (settings.maxNestingDepth() > 0) {
+            tokens.fill();
+            int depth = 0;
+            for (var token : tokens.getTokens()) {
+                if (token.getType() == QueryLexer.LPAREN && ++depth > settings.maxNestingDepth()) {
+                    throw new InvalidSearchQueryException(QueryErrorCode.QUERY_LIMIT_EXCEEDED, null,
+                            "Search query exceeds maximum nesting depth of " + settings.maxNestingDepth());
+                }
+                if (token.getType() == QueryLexer.RPAREN) { depth--; }
+            }
+        }
+        QueryParser parser = new QueryParser(tokens);
+        parser.removeErrorListeners();
         parser.addErrorListener(listener);
         QueryParser.InputContext input = parser.input();
-        if (parser.getNumberOfSyntaxErrors() > 0) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid search query: " + listener);
+        if (parser.getNumberOfSyntaxErrors() > 0 || (settings.strictValidation() && listener.hasErrors())) {
+            var error = new InvalidSearchQueryException(QueryErrorCode.SYNTAX_ERROR, null, "Invalid search query: " + listener);
+            error.getBody().setProperty("line", listener.getFirstLine());
+            error.getBody().setProperty("column", listener.getFirstColumn());
+            throw error;
         }
         return visitor.visit(input);
     }

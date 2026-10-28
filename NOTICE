@@ -35,3 +35,9 @@ auto-configuration discovery, and adds PostgreSQL and Java 17/21/25 compatibilit
 verification. Query implementation, grammar, and original scenarios/fixtures
 remain unchanged. New test classes carry 2026 Apache License 2.0 headers. See
 docs/stage3/README.md for dependency changes, results, and scope.
+
+Stage 4 adds query-behavior documentation, cross-database characterization tests,
+opt-in validation/field restrictions/limits, and structured query diagnostics.
+Compatibility defaults and inherited matching strategies remain unchanged. New
+classes carry 2026 Apache License 2.0 headers and author/Javadoc documentation.
+See docs/stage4/README.md for scope, intentional opt-in rejections, and evidence.

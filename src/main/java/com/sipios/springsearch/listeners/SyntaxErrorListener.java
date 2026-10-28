@@ -28,12 +28,27 @@ import org.antlr.v4.runtime.Recognizer;
 /** Collects parser diagnostics in the original format. */
 public class SyntaxErrorListener extends BaseErrorListener {
     private final List<String> messages = new ArrayList<>();
+    private int firstLine = -1;
+    private int firstColumn = -1;
 
     @Override
     public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line,
             int charPositionInLine, String msg, RecognitionException e) {
+        if (messages.isEmpty()) {
+            firstLine = line;
+            firstColumn = charPositionInLine;
+        }
         messages.add("line " + line + ":" + charPositionInLine + " " + msg);
     }
+    /** @return the first diagnostic's one-based line, or -1 if absent */
+    public int getFirstLine() { return firstLine; }
+
+    /** @return the first diagnostic's zero-based column, or -1 if absent */
+    public int getFirstColumn() { return firstColumn; }
+
+    /** @return whether any lexer or parser diagnostic was collected */
+    public boolean hasErrors() { return !messages.isEmpty(); }
+
     @Override
     public String toString() { return messages.toString(); }
 }

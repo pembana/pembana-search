@@ -27,8 +27,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 
 public final class QueryVisitorImpl<T> extends QueryBaseVisitor<Specification<T>> {
     private final SearchSpec searchSpecAnnotation;
@@ -82,13 +80,24 @@ public final class QueryVisitorImpl<T> extends QueryBaseVisitor<Specification<T>
         Matcher match = valueRegExp.matcher(value);
         SearchOperation op = SearchOperation.getSimpleOperation(ctx.op().getText());
         if (op == null) { throw new IllegalArgumentException("Invalid operation"); }
-        if (!match.find()) { throw new NullPointerException(); }
+        if (!match.find()) {
+            if (searchSpecAnnotation.strictValidation()) {
+                throw new InvalidSearchQueryException(QueryErrorCode.INVALID_VALUE, key,
+                        "Empty scalar values are not supported for field " + key);
+            }
+            throw new NullPointerException();
+        }
         return new SpecificationImpl<>(new SearchCriteria(key, op, match.group("prefix"),
                 match.group("value"), match.group("suffix")), searchSpecAnnotation);
     }
     private void verifyBlackList(String key) {
         if (Arrays.asList(searchSpecAnnotation.blackListedFields()).contains(key)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Field " + key + " is blacklisted");
+            throw new InvalidSearchQueryException(QueryErrorCode.FIELD_NOT_ALLOWED, key, "Field " + key + " is blacklisted");
+        }
+        String[] allowed = searchSpecAnnotation.allowedFields();
+        if (allowed.length > 0 && !Arrays.asList(allowed).contains(key)) {
+            throw new InvalidSearchQueryException(QueryErrorCode.FIELD_NOT_ALLOWED, key,
+                    "Field " + key + " is not in the allowed fields");
         }
     }
     private String clearString(String value) {

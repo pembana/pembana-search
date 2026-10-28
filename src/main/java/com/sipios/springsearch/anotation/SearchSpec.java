@@ -31,4 +31,12 @@ public @interface SearchSpec {
     String searchParam() default "search";
     boolean caseSensitiveFlag() default true;
     String[] blackListedFields() default {};
+    /** @return whether to reject lexical errors, unknown fields and unsupported typed operations */
+    boolean strictValidation() default false;
+    /** @return exact searchable paths; an empty list preserves unrestricted legacy access */
+    String[] allowedFields() default {};
+    /** @return maximum expression characters, or zero for the legacy unlimited behavior */
+    int maxQueryLength() default 0;
+    /** @return maximum parenthesis depth, or zero for the legacy unlimited behavior */
+    int maxNestingDepth() default 0;
 }

@@ -41,16 +41,30 @@ final class SearchTestFixtures {
             @Override public String searchParam() { return searchParam; }
             @Override public boolean caseSensitiveFlag() { return caseSensitiveFlag; }
             @Override public String[] blackListedFields() { return fields.clone(); }
+            /** {@inheritDoc} */
+            @Override public boolean strictValidation() { return false; }
+            /** {@inheritDoc} */
+            @Override public String[] allowedFields() { return new String[0]; }
+            /** {@inheritDoc} */
+            @Override public int maxQueryLength() { return 0; }
+            /** {@inheritDoc} */
+            @Override public int maxNestingDepth() { return 0; }
             @Override public Class<? extends Annotation> annotationType() { return SearchSpec.class; }
             @Override public boolean equals(Object other) {
                 return other instanceof SearchSpec spec && searchParam.equals(spec.searchParam())
                         && caseSensitiveFlag == spec.caseSensitiveFlag()
-                        && Arrays.equals(fields, spec.blackListedFields());
+                        && Arrays.equals(fields, spec.blackListedFields())
+                        && !spec.strictValidation() && spec.allowedFields().length == 0
+                        && spec.maxQueryLength() == 0 && spec.maxNestingDepth() == 0;
             }
             @Override public int hashCode() {
                 return ((127 * "searchParam".hashCode()) ^ searchParam.hashCode())
                         + ((127 * "caseSensitiveFlag".hashCode()) ^ Boolean.hashCode(caseSensitiveFlag))
-                        + ((127 * "blackListedFields".hashCode()) ^ Arrays.hashCode(fields));
+                        + ((127 * "blackListedFields".hashCode()) ^ Arrays.hashCode(fields))
+                        + ((127 * "strictValidation".hashCode()) ^ Boolean.hashCode(false))
+                        + ((127 * "allowedFields".hashCode()) ^ Arrays.hashCode(new String[0]))
+                        + (127 * "maxQueryLength".hashCode())
+                        + (127 * "maxNestingDepth".hashCode());
             }
             @Override public String toString() {
                 return "@" + SearchSpec.class.getName() + "(searchParam=" + searchParam

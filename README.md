@@ -2,6 +2,9 @@
 
 Production code and tests are Java. Spring Boot 4.1.1 is verified on Java 17, 21,
 and 25 against H2 and PostgreSQL, retaining all 113 original scenarios.
+Query behavior is documented in the [Stage 4 query guide](docs/stage4/query-behavior.md),
+including opt-in validation, field restrictions, limits, and structured errors.
+See the [Stage 4 verification report](docs/stage4/README.md) for new coverage.
 PostgreSQL testing uses Testcontainers locally and in CI; select the `postgresql`
 profile with a running Docker-compatible engine. H2 remains the default and
 does not require Docker. See the [Testcontainers report](docs/testcontainers/README.md),

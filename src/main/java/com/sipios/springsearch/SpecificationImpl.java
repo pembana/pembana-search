@@ -29,8 +29,6 @@ import jakarta.persistence.criteria.Root;
 import java.util.Collection;
 import java.util.List;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 
 /** Original JPA specification, using Java reflection instead of Kotlin reflection. */
 public final class SpecificationImpl<T> implements Specification<T> {
@@ -44,12 +42,23 @@ public final class SpecificationImpl<T> implements Specification<T> {
     public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
         String[] nestedKey = criteria.getKey().split("\\.", -1);
         Path<?> nestedRoot = root;
-        for (int i = 0; i < nestedKey.length - 1; i++) {
-            nestedRoot = nestedRoot.get(nestedKey[i]);
-        }
         String criteriaKey = nestedKey[nestedKey.length - 1];
-        Class<?> fieldClass = nestedRoot.get(criteriaKey).getJavaType();
+        Class<?> fieldClass;
+        try {
+            for (int i = 0; i < nestedKey.length - 1; i++) {
+                nestedRoot = nestedRoot.get(nestedKey[i]);
+            }
+            fieldClass = nestedRoot.get(criteriaKey).getJavaType();
+        } catch (IllegalArgumentException | IllegalStateException exception) {
+            if (!searchSpecAnnotation.strictValidation()) { throw exception; }
+            throw new InvalidSearchQueryException(QueryErrorCode.UNKNOWN_FIELD, criteria.getKey(),
+                    "Unknown field " + criteria.getKey());
+        }
         boolean isCollectionField = isCollectionType(nestedRoot.getJavaType(), criteriaKey);
+        if (searchSpecAnnotation.strictValidation()) {
+            StrictQueryValidation.validate(fieldClass, isCollectionField, criteria.getKey(),
+                    criteria.getOperation(), criteria.getValue());
+        }
         ParsingStrategy strategy = ParsingStrategy.getStrategy(fieldClass, searchSpecAnnotation, isCollectionField);
         Object value = parseValue(strategy, fieldClass, criteriaKey, criteria.getValue());
         return strategy.buildPredicate(builder, nestedRoot, criteriaKey, criteria.getOperation(), value);
@@ -72,7 +81,7 @@ public final class SpecificationImpl<T> implements Specification<T> {
                     : fieldClass == boolean.class ? "Boolean"
                     : fieldClass == double.class ? "Double"
                     : fieldClass == float.class ? "Float" : fieldClass.getSimpleName();
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+            throw new InvalidSearchQueryException(QueryErrorCode.INVALID_VALUE, criteria.getKey(),
                     "Could not parse input for the field " + criteriaKey + " as a " + typeName);
         }
     }
