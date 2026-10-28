@@ -1,5 +1,10 @@
 # Stage 3: Spring Boot 4 and database compatibility
 
+Historical report for revision `15eec77`: native PostgreSQL and the CI service
+container described here have since been replaced by
+[Testcontainers testing](../testcontainers/README.md). Use that report's commands
+with the current checkout.
+
 Status: **passed locally on 2026-10-28**. Spring Boot 4.1.1 passes the unchanged
 113-scenario corpus on Java 17, 21, and 25 against both H2 and PostgreSQL.
 The pre-upgrade comparison is signed revision

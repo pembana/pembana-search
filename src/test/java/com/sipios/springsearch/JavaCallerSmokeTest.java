@@ -21,6 +21,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import java.util.Properties;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -55,13 +56,23 @@ public class JavaCallerSmokeTest {
         }
         // Match the selected corpus database while keeping bootstrap independent of Spring.
         boolean postgres = "postgresql".equals(System.getProperty("spring.profiles.active"));
+        Properties database = new Properties();
+        if (postgres) {
+            try (var resource = JavaCallerSmokeTest.class.getResourceAsStream("/application-postgresql.properties")) {
+                if (resource == null) {
+                    throw new IllegalStateException("Missing PostgreSQL test configuration");
+                }
+                database.load(resource);
+            }
+        }
         Configuration configuration = new Configuration().addAnnotatedClass(Sample.class)
-                .setProperty("hibernate.connection.driver_class", postgres ? "org.postgresql.Driver" : "org.h2.Driver")
+                .setProperty("hibernate.connection.driver_class", postgres
+                        ? database.getProperty("spring.datasource.driver-class-name") : "org.h2.Driver")
                 .setProperty("hibernate.connection.url", postgres
-                        ? environment("POSTGRES_URL", "jdbc:postgresql://localhost:5432/search_tests")
+                        ? database.getProperty("spring.datasource.url")
                         : "jdbc:h2:mem:java-caller;DB_CLOSE_DELAY=-1")
-                .setProperty("hibernate.connection.username", postgres ? environment("POSTGRES_USER", "search_tests") : "sa")
-                .setProperty("hibernate.connection.password", postgres ? environment("POSTGRES_PASSWORD", "search_tests") : "")
+                .setProperty("hibernate.connection.username", postgres ? database.getProperty("spring.datasource.username") : "sa")
+                .setProperty("hibernate.connection.password", postgres ? database.getProperty("spring.datasource.password") : "")
                 .setProperty("hibernate.hbm2ddl.auto", "create-drop");
         try (SessionFactory factory = configuration.buildSessionFactory(); Session session = factory.openSession()) {
             session.beginTransaction();
@@ -84,10 +95,5 @@ public class JavaCallerSmokeTest {
             session.getTransaction().rollback();
         }
         System.out.println("Java caller smoke check passed");
-    }
-
-    private static String environment(String name, String fallback) {
-        String value = System.getenv(name);
-        return value == null ? fallback : value;
     }
 }

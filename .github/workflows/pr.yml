@@ -18,24 +18,6 @@ jobs:
       matrix:
         java: ['17', '21', '25']
         database: [h2, postgresql]
-    services:
-      postgres:
-        image: postgres:18.1
-        env:
-          POSTGRES_DB: search_tests
-          POSTGRES_USER: search_tests
-          POSTGRES_PASSWORD: search_tests
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd "pg_isready -U search_tests -d search_tests"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-    env:
-      POSTGRES_URL: jdbc:postgresql://localhost:5432/search_tests
-      POSTGRES_USER: search_tests
-      POSTGRES_PASSWORD: search_tests
     defaults:
       run:
         shell: bash

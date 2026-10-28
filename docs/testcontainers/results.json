@@ -1,0 +1,565 @@
+{
+  "verified_on": "2026-10-28",
+  "base_revision": "15eec77a1d647678631b36b29f6e16045e86d29a",
+  "testcontainers": "2.0.5",
+  "postgresql_image": "postgres:18.1",
+  "docker_environment": "Docker 29.4.0 / OrbStack / aarch64",
+  "matrix": {
+    "java17-h2": {
+      "environment": [
+        "Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)",
+        "Maven home: /Users/hillert/.m2/wrapper/dists/apache-maven-3.10.0/dae9a06d",
+        "Java version: 17.0.20, vendor: BellSoft, runtime: /Users/hillert/.sdkman/candidates/java/17.0.20-librca",
+        "Default locale: en_US, platform encoding: UTF-8, time zone: Pacific/Honolulu",
+        "OS name: \"mac os x\", version: \"27.0.1\", arch: \"aarch64\", family: \"mac\""
+      ],
+      "counts": {
+        "original_discovered": 113,
+        "original_executed": 113,
+        "original_passed": 113,
+        "total_discovered": 121,
+        "total_executed": 121,
+        "failed": 0,
+        "errored": 0,
+        "skipped": 0
+      },
+      "original_outcomes_equal_stage3": true,
+      "supplemental_outcomes": {
+        "com.sipios.springsearch.DatabaseAdapterTest#connectsToTheSelectedDatabaseEngine": "passed",
+        "com.sipios.springsearch.JavaCallerSmokeTest#javaCallerConstructsAndExecutesSpecification": "passed",
+        "com.sipios.springsearch.JavaResolverTest#bindsConfiguredParameterAndPreservesDiagnostics": "passed",
+        "com.sipios.springsearch.JavaResolverTest#registersResolverAndSelectsOnlyAnnotatedSpecifications": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#bootImportsDiscoverTheResolverConfiguration": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#directJpaConsumersDoNotRequireAWebContext": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#missingMvcClassesDoNotPreventStartup": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#servletConsumersReceiveTheArgumentResolver": "passed"
+      },
+      "testcontainers_postgresql_started_in_suite_and_caller": false,
+      "h2_avoids_docker_startup": true,
+      "exit_codes": {
+        "build-exit-code.txt": 0,
+        "classpath-exit-code.txt": 0,
+        "dependencies-exit-code.txt": 0,
+        "effective-pom-exit-code.txt": 0,
+        "java-caller-exit-code.txt": 0
+      },
+      "bytecode_major_version": 61,
+      "coverage": {
+        "instruction": {
+          "covered": 1750,
+          "missed": 358
+        },
+        "branch": {
+          "covered": 218,
+          "missed": 65
+        },
+        "line": {
+          "covered": 279,
+          "missed": 46
+        },
+        "complexity": {
+          "covered": 194,
+          "missed": 77
+        },
+        "method": {
+          "covered": 84,
+          "missed": 20
+        },
+        "class": {
+          "covered": 25,
+          "missed": 3
+        }
+      },
+      "evidence_sha256": {
+        "build.log": "31c0bc7e871101f943e1cb230ee93f4f7d9a43e78fb51b904e7ec59fb760f5fe",
+        "bytecode-version.txt": "f94c3cdbd3bfef226de90764be17715794bf2c482c9aa332c6793524dec3b9dd",
+        "classpath.log": "6248191349e51958f96eb0b0074bdbf768258c593dba50a0c67f293245f53440",
+        "dependencies.log": "f3d2d17fb53e6b1529bd7975159e632d1ce31ae7c2261d0d2278f9ed6dec3165",
+        "dependencies.txt": "0c104378e8c0311806ad5ca01e4f71e54458e3219fdebff3608a2eada3034afd",
+        "effective-pom.log": "95e5f65405630971186c83ab8f7a01a70bcacc3e920f141224f20b5310bed39c",
+        "effective-pom.xml": "2c5a62bf699aac5d03206577d9599823f81412e51037943a6f4611e4b17deee1",
+        "environment.log": "f5958b5f114caa8899de4a650543484d1f48ecb5e2d164960bd13d3dc57915e9",
+        "java-caller.log": "32432c58bd415f2897adeaef0d09e584a9b7712b15feafdb021f2bea60a153dd",
+        "surefire-reports/TEST-com.sipios.springsearch.DatabaseAdapterTest.xml": "c025808679c72e3815a9b4c506054ee10c606819e7db5baf38b6a6a80c46e8a1",
+        "surefire-reports/TEST-com.sipios.springsearch.JavaCallerSmokeTest.xml": "d6d357551f33fd19eba096e3e2fa448f79bd42cc52654304661ab6ad5d25e61f",
+        "surefire-reports/TEST-com.sipios.springsearch.JavaResolverTest.xml": "b1a085a2282b6cc29d450f66a72fc2637871d09f0f9f53abf6ab4cc1ff9c4ea4",
+        "surefire-reports/TEST-com.sipios.springsearch.ResolverAutoConfigurationTest.xml": "3369c79e7059e7b2771e91ffad0a369841a719fbbde20968721908baed45bc26",
+        "surefire-reports/TEST-com.sipios.springsearch.SpringSearchApplicationTest.xml": "01134b190bcd385bed0f84bfceaed83b779a048cbceebe7bfa58ac0a0151959a",
+        "test-results/coverage/jacoco/jacoco.xml": "7a3abe728a72f474f9889457ae363284af586cbeb0a32d2bb7e800c4c2baafc8"
+      }
+    },
+    "java17-postgresql": {
+      "environment": [
+        "Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)",
+        "Maven home: /Users/hillert/.m2/wrapper/dists/apache-maven-3.10.0/dae9a06d",
+        "Java version: 17.0.20, vendor: BellSoft, runtime: /Users/hillert/.sdkman/candidates/java/17.0.20-librca",
+        "Default locale: en_US, platform encoding: UTF-8, time zone: Pacific/Honolulu",
+        "OS name: \"mac os x\", version: \"27.0.1\", arch: \"aarch64\", family: \"mac\""
+      ],
+      "counts": {
+        "original_discovered": 113,
+        "original_executed": 113,
+        "original_passed": 113,
+        "total_discovered": 121,
+        "total_executed": 121,
+        "failed": 0,
+        "errored": 0,
+        "skipped": 0
+      },
+      "original_outcomes_equal_stage3": true,
+      "supplemental_outcomes": {
+        "com.sipios.springsearch.DatabaseAdapterTest#connectsToTheSelectedDatabaseEngine": "passed",
+        "com.sipios.springsearch.JavaCallerSmokeTest#javaCallerConstructsAndExecutesSpecification": "passed",
+        "com.sipios.springsearch.JavaResolverTest#bindsConfiguredParameterAndPreservesDiagnostics": "passed",
+        "com.sipios.springsearch.JavaResolverTest#registersResolverAndSelectsOnlyAnnotatedSpecifications": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#bootImportsDiscoverTheResolverConfiguration": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#directJpaConsumersDoNotRequireAWebContext": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#missingMvcClassesDoNotPreventStartup": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#servletConsumersReceiveTheArgumentResolver": "passed"
+      },
+      "testcontainers_postgresql_started_in_suite_and_caller": true,
+      "h2_avoids_docker_startup": false,
+      "exit_codes": {
+        "build-exit-code.txt": 0,
+        "classpath-exit-code.txt": 0,
+        "dependencies-exit-code.txt": 0,
+        "effective-pom-exit-code.txt": 0,
+        "java-caller-exit-code.txt": 0
+      },
+      "bytecode_major_version": 61,
+      "coverage": {
+        "instruction": {
+          "covered": 1750,
+          "missed": 358
+        },
+        "branch": {
+          "covered": 218,
+          "missed": 65
+        },
+        "line": {
+          "covered": 279,
+          "missed": 46
+        },
+        "complexity": {
+          "covered": 194,
+          "missed": 77
+        },
+        "method": {
+          "covered": 84,
+          "missed": 20
+        },
+        "class": {
+          "covered": 25,
+          "missed": 3
+        }
+      },
+      "evidence_sha256": {
+        "build.log": "9e9d44493e226e7e0a173218de6b96bb5c11e115343fcc042ad7135f76a1d809",
+        "bytecode-version.txt": "f94c3cdbd3bfef226de90764be17715794bf2c482c9aa332c6793524dec3b9dd",
+        "classpath.log": "a58d992a9392f60e9f3e9edeb8e950135bf22d3c9a6ef70710a497e0e1b7b339",
+        "dependencies.log": "3fa44d04a6b593a1d5ffc57c4906402e9c9b96aa6642c62a1dc36a3719518cfc",
+        "dependencies.txt": "0c104378e8c0311806ad5ca01e4f71e54458e3219fdebff3608a2eada3034afd",
+        "effective-pom.log": "51b7542346651db21e8fde4ceac6a7c194cb7d26cd3f2ea740bcb19b41f38211",
+        "effective-pom.xml": "b6f0786b4761f7cb04da9233991b7b4ce8723df711200f14d187f8f57464b16b",
+        "environment.log": "f5958b5f114caa8899de4a650543484d1f48ecb5e2d164960bd13d3dc57915e9",
+        "java-caller.log": "81e1375f71dc90925a4782074e3402058facc8c572a0b6754aab6aeb53315c73",
+        "surefire-reports/TEST-com.sipios.springsearch.DatabaseAdapterTest.xml": "e7cea7db057066b745ffabecb8d7a33bc02ca263c6b0626aec0ec93bf31b9bf8",
+        "surefire-reports/TEST-com.sipios.springsearch.JavaCallerSmokeTest.xml": "9f606cb6330b9f590bc3d90963cfaba6ecaf7631b94ee7f256f1bfed720e809f",
+        "surefire-reports/TEST-com.sipios.springsearch.JavaResolverTest.xml": "219e34887e53c36062bfd5d9abc6a2c5ea96bbb5e6f2c0ed721d21dcf6d40367",
+        "surefire-reports/TEST-com.sipios.springsearch.ResolverAutoConfigurationTest.xml": "541c26a1120a036205bc88e7263336ad14ce6cd4fabcb73db8f0e7f2537d4173",
+        "surefire-reports/TEST-com.sipios.springsearch.SpringSearchApplicationTest.xml": "9bf46c02d37ea76feedcf0ecc81789f18f22448fca2a916f07d17b8cc7752c60",
+        "test-results/coverage/jacoco/jacoco.xml": "e0c52518113536be6960b1eae8887a5815fa88714615650d2b47dbfbac4f7f2d"
+      }
+    },
+    "java21-h2": {
+      "environment": [
+        "Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)",
+        "Maven home: /Users/hillert/.m2/wrapper/dists/apache-maven-3.10.0/dae9a06d",
+        "Java version: 21.0.10, vendor: Eclipse Adoptium, runtime: /Users/hillert/.sdkman/candidates/java/21.0.10-tem",
+        "Default locale: en_US, platform encoding: UTF-8, time zone: Pacific/Honolulu",
+        "OS name: \"mac os x\", version: \"27.0.1\", arch: \"aarch64\", family: \"mac\""
+      ],
+      "counts": {
+        "original_discovered": 113,
+        "original_executed": 113,
+        "original_passed": 113,
+        "total_discovered": 121,
+        "total_executed": 121,
+        "failed": 0,
+        "errored": 0,
+        "skipped": 0
+      },
+      "original_outcomes_equal_stage3": true,
+      "supplemental_outcomes": {
+        "com.sipios.springsearch.DatabaseAdapterTest#connectsToTheSelectedDatabaseEngine": "passed",
+        "com.sipios.springsearch.JavaCallerSmokeTest#javaCallerConstructsAndExecutesSpecification": "passed",
+        "com.sipios.springsearch.JavaResolverTest#bindsConfiguredParameterAndPreservesDiagnostics": "passed",
+        "com.sipios.springsearch.JavaResolverTest#registersResolverAndSelectsOnlyAnnotatedSpecifications": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#bootImportsDiscoverTheResolverConfiguration": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#directJpaConsumersDoNotRequireAWebContext": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#missingMvcClassesDoNotPreventStartup": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#servletConsumersReceiveTheArgumentResolver": "passed"
+      },
+      "testcontainers_postgresql_started_in_suite_and_caller": false,
+      "h2_avoids_docker_startup": true,
+      "exit_codes": {
+        "build-exit-code.txt": 0,
+        "classpath-exit-code.txt": 0,
+        "dependencies-exit-code.txt": 0,
+        "effective-pom-exit-code.txt": 0,
+        "java-caller-exit-code.txt": 0
+      },
+      "bytecode_major_version": 61,
+      "coverage": {
+        "instruction": {
+          "covered": 1750,
+          "missed": 358
+        },
+        "branch": {
+          "covered": 218,
+          "missed": 65
+        },
+        "line": {
+          "covered": 279,
+          "missed": 46
+        },
+        "complexity": {
+          "covered": 194,
+          "missed": 77
+        },
+        "method": {
+          "covered": 84,
+          "missed": 20
+        },
+        "class": {
+          "covered": 25,
+          "missed": 3
+        }
+      },
+      "evidence_sha256": {
+        "build.log": "f538d3d3d820d6e040d58afd8dd0db9683f00a1b040b347d10f9f3389770b2ae",
+        "bytecode-version.txt": "f94c3cdbd3bfef226de90764be17715794bf2c482c9aa332c6793524dec3b9dd",
+        "classpath.log": "65a16deacfaef9fcff3d6360aacb4d0c5db125362dbbfd717733c3da8d211d8c",
+        "dependencies.log": "c552d1beeed0a5487647b141ae0a236345e27980fc0db069ef3135749f3b7a8e",
+        "dependencies.txt": "0c104378e8c0311806ad5ca01e4f71e54458e3219fdebff3608a2eada3034afd",
+        "effective-pom.log": "037c063c9fe6908a6a0c58af35315672038a113a41f9e1e5c5ae3c1d4eb8b6aa",
+        "effective-pom.xml": "315ba7082c999a122fbe93081a193657b495aa575080e5132a901293f92d7cd8",
+        "environment.log": "1cf7c5d2861ba29561457b3ccb80c09b9219a5821c51e0ec98504bc53d10df78",
+        "java-caller.log": "4889824ea0dbf1ad0e1ac9aced5c1b34eac141d5cd932e20c0cbf462180e04f4",
+        "surefire-reports/TEST-com.sipios.springsearch.DatabaseAdapterTest.xml": "35a19388c46dd7b1cfdd7ba063500166a1e995d7238ade189cf6b60a18592434",
+        "surefire-reports/TEST-com.sipios.springsearch.JavaCallerSmokeTest.xml": "c156d41e438c65ce9e1a1ddfc25a5deee7ad4efb6b6b4722924b1e5ffa6af8e8",
+        "surefire-reports/TEST-com.sipios.springsearch.JavaResolverTest.xml": "a1880cb1a12c61ad1e29bb6d76b2e4c84e891683948a179b9571d81995d4d8a0",
+        "surefire-reports/TEST-com.sipios.springsearch.ResolverAutoConfigurationTest.xml": "ef063b092d6dcb9d0b8d2450a0702494a9e368f0e72c3f8b1878608d2c14c68d",
+        "surefire-reports/TEST-com.sipios.springsearch.SpringSearchApplicationTest.xml": "5081d4d2043a0e349ac8ee9d273bbdd71e73d4759d1ff82a5e55b17f4313f80e",
+        "test-results/coverage/jacoco/jacoco.xml": "944365a493ab6f30b3240670af87754d1cef29f8683e3a157398e84eeef49c22"
+      }
+    },
+    "java21-postgresql": {
+      "environment": [
+        "Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)",
+        "Maven home: /Users/hillert/.m2/wrapper/dists/apache-maven-3.10.0/dae9a06d",
+        "Java version: 21.0.10, vendor: Eclipse Adoptium, runtime: /Users/hillert/.sdkman/candidates/java/21.0.10-tem",
+        "Default locale: en_US, platform encoding: UTF-8, time zone: Pacific/Honolulu",
+        "OS name: \"mac os x\", version: \"27.0.1\", arch: \"aarch64\", family: \"mac\""
+      ],
+      "counts": {
+        "original_discovered": 113,
+        "original_executed": 113,
+        "original_passed": 113,
+        "total_discovered": 121,
+        "total_executed": 121,
+        "failed": 0,
+        "errored": 0,
+        "skipped": 0
+      },
+      "original_outcomes_equal_stage3": true,
+      "supplemental_outcomes": {
+        "com.sipios.springsearch.DatabaseAdapterTest#connectsToTheSelectedDatabaseEngine": "passed",
+        "com.sipios.springsearch.JavaCallerSmokeTest#javaCallerConstructsAndExecutesSpecification": "passed",
+        "com.sipios.springsearch.JavaResolverTest#bindsConfiguredParameterAndPreservesDiagnostics": "passed",
+        "com.sipios.springsearch.JavaResolverTest#registersResolverAndSelectsOnlyAnnotatedSpecifications": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#bootImportsDiscoverTheResolverConfiguration": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#directJpaConsumersDoNotRequireAWebContext": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#missingMvcClassesDoNotPreventStartup": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#servletConsumersReceiveTheArgumentResolver": "passed"
+      },
+      "testcontainers_postgresql_started_in_suite_and_caller": true,
+      "h2_avoids_docker_startup": false,
+      "exit_codes": {
+        "build-exit-code.txt": 0,
+        "classpath-exit-code.txt": 0,
+        "dependencies-exit-code.txt": 0,
+        "effective-pom-exit-code.txt": 0,
+        "java-caller-exit-code.txt": 0
+      },
+      "bytecode_major_version": 61,
+      "coverage": {
+        "instruction": {
+          "covered": 1750,
+          "missed": 358
+        },
+        "branch": {
+          "covered": 218,
+          "missed": 65
+        },
+        "line": {
+          "covered": 279,
+          "missed": 46
+        },
+        "complexity": {
+          "covered": 194,
+          "missed": 77
+        },
+        "method": {
+          "covered": 84,
+          "missed": 20
+        },
+        "class": {
+          "covered": 25,
+          "missed": 3
+        }
+      },
+      "evidence_sha256": {
+        "build.log": "e60366d4608640202f3466cafc073067e19909f19fdd4f2459b6cec28b95f3e6",
+        "bytecode-version.txt": "f94c3cdbd3bfef226de90764be17715794bf2c482c9aa332c6793524dec3b9dd",
+        "classpath.log": "78d213f9b808185d0baed6da0bd67f042e51a350782edf7a60a5e9c1013c1b61",
+        "dependencies.log": "29886919b82ff5739e6f94dd9f8c412fa3ed6f97a8c2c773d3a22f74fa1acdfa",
+        "dependencies.txt": "0c104378e8c0311806ad5ca01e4f71e54458e3219fdebff3608a2eada3034afd",
+        "effective-pom.log": "ee4fa2416260f4a44865c4971491e4203089f7f869151c14be6cea744b71bdd6",
+        "effective-pom.xml": "adf0ad47fe195194870220b2bae7fd82cb3d16f3a4b2d3b5d6e9f6c7dcb66e55",
+        "environment.log": "1cf7c5d2861ba29561457b3ccb80c09b9219a5821c51e0ec98504bc53d10df78",
+        "java-caller.log": "5ad1f3231af01127f9d6496c35a3a9c4f4d88289892689216f52e05aedba98d2",
+        "surefire-reports/TEST-com.sipios.springsearch.DatabaseAdapterTest.xml": "bfdf8b6ac8679b06831114568a7fb26ccf0cc3df9e305145ff8f34e36f6ab886",
+        "surefire-reports/TEST-com.sipios.springsearch.JavaCallerSmokeTest.xml": "f1d46f55c343387db7da4d657db09370fb0d62f95818f50287f615c5425088b0",
+        "surefire-reports/TEST-com.sipios.springsearch.JavaResolverTest.xml": "933ac11eb41f12961480cfa730c8b0d155322153a41ac3e72d168facb920960f",
+        "surefire-reports/TEST-com.sipios.springsearch.ResolverAutoConfigurationTest.xml": "6b327fcc0bc97e9d7d098733e52902881c8bba22ebf7d83bc3c09c7c1f1c8207",
+        "surefire-reports/TEST-com.sipios.springsearch.SpringSearchApplicationTest.xml": "393261d0b66751857b2c4d7616dfafa0a6d1d2fa83cd50e8c09fc604d2b4e037",
+        "test-results/coverage/jacoco/jacoco.xml": "55fe4140b9cc583dad89e600a2cd117377d6a47bcc49cebeec7b62955329f824"
+      }
+    },
+    "java25-h2": {
+      "environment": [
+        "Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)",
+        "Maven home: /Users/hillert/.m2/wrapper/dists/apache-maven-3.10.0/dae9a06d",
+        "Java version: 25.0.3, vendor: Eclipse Adoptium, runtime: /Users/hillert/.sdkman/candidates/java/25.0.3-tem",
+        "Default locale: en_US, platform encoding: UTF-8, time zone: Pacific/Honolulu",
+        "OS name: \"mac os x\", version: \"27.0.1\", arch: \"aarch64\", family: \"mac\""
+      ],
+      "counts": {
+        "original_discovered": 113,
+        "original_executed": 113,
+        "original_passed": 113,
+        "total_discovered": 121,
+        "total_executed": 121,
+        "failed": 0,
+        "errored": 0,
+        "skipped": 0
+      },
+      "original_outcomes_equal_stage3": true,
+      "supplemental_outcomes": {
+        "com.sipios.springsearch.DatabaseAdapterTest#connectsToTheSelectedDatabaseEngine": "passed",
+        "com.sipios.springsearch.JavaCallerSmokeTest#javaCallerConstructsAndExecutesSpecification": "passed",
+        "com.sipios.springsearch.JavaResolverTest#bindsConfiguredParameterAndPreservesDiagnostics": "passed",
+        "com.sipios.springsearch.JavaResolverTest#registersResolverAndSelectsOnlyAnnotatedSpecifications": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#bootImportsDiscoverTheResolverConfiguration": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#directJpaConsumersDoNotRequireAWebContext": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#missingMvcClassesDoNotPreventStartup": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#servletConsumersReceiveTheArgumentResolver": "passed"
+      },
+      "testcontainers_postgresql_started_in_suite_and_caller": false,
+      "h2_avoids_docker_startup": true,
+      "exit_codes": {
+        "build-exit-code.txt": 0,
+        "classpath-exit-code.txt": 0,
+        "dependencies-exit-code.txt": 0,
+        "effective-pom-exit-code.txt": 0,
+        "java-caller-exit-code.txt": 0
+      },
+      "bytecode_major_version": 61,
+      "coverage": {
+        "instruction": {
+          "covered": 1750,
+          "missed": 358
+        },
+        "branch": {
+          "covered": 218,
+          "missed": 65
+        },
+        "line": {
+          "covered": 279,
+          "missed": 46
+        },
+        "complexity": {
+          "covered": 194,
+          "missed": 77
+        },
+        "method": {
+          "covered": 84,
+          "missed": 20
+        },
+        "class": {
+          "covered": 25,
+          "missed": 3
+        }
+      },
+      "evidence_sha256": {
+        "build.log": "13246bb33dabe71e579670e9532be0a87b6b6032746c7fc26e9e4047e734d1f7",
+        "bytecode-version.txt": "f94c3cdbd3bfef226de90764be17715794bf2c482c9aa332c6793524dec3b9dd",
+        "classpath.log": "32d25c8f765874395d84da8e1f676c0d302b67bdc3cf0532a54ecbb5760fb022",
+        "dependencies.log": "908e2d8f41e73b2efc885674b001ac9239bb117b8fce6f5a1b3eefaf144c6a76",
+        "dependencies.txt": "0c104378e8c0311806ad5ca01e4f71e54458e3219fdebff3608a2eada3034afd",
+        "effective-pom.log": "d7b85d9e8b454eac3fde6f539eef4aeb21a8f00b8063602f5f40728ce0af5e72",
+        "effective-pom.xml": "dd229e0ff1e19e1445b7b4f7727e531b56e2d01e913e69c1099fa3e1d447d6fc",
+        "environment.log": "0614e76e798c8ca7b8feb0bb74df47ec17e4ba94503872daf0451efd0b3584fd",
+        "java-caller.log": "89ebb2647a9d95718148fc309bd8c797e15b78fcd2e577c7fb3257627b159adb",
+        "surefire-reports/TEST-com.sipios.springsearch.DatabaseAdapterTest.xml": "aa4668817edd8eebef2071d3beac728e716d35a7e4634ac5aee68905f2b78756",
+        "surefire-reports/TEST-com.sipios.springsearch.JavaCallerSmokeTest.xml": "35dee8358d0ab9ed964efd8439c0d145cd74d78d1596397ddf0a68d8f16c9cf9",
+        "surefire-reports/TEST-com.sipios.springsearch.JavaResolverTest.xml": "6bde3a3e1e2716a891d58218ca63f7b5428c0d77710f2f095b58a370fca1d5f0",
+        "surefire-reports/TEST-com.sipios.springsearch.ResolverAutoConfigurationTest.xml": "b2444e2cb9474b0d29929011b0dd39044337224364826ff95ae66f7c806f21e9",
+        "surefire-reports/TEST-com.sipios.springsearch.SpringSearchApplicationTest.xml": "ee00d740ba2ee1aff37bb4b7913b7ea3b42548921ba817eaa2ad252549691a51",
+        "test-results/coverage/jacoco/jacoco.xml": "604f57272f40599927030d057c6a22ecc92448efb916717df867a364f9ab2312"
+      }
+    },
+    "java25-postgresql": {
+      "environment": [
+        "Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)",
+        "Maven home: /Users/hillert/.m2/wrapper/dists/apache-maven-3.10.0/dae9a06d",
+        "Java version: 25.0.3, vendor: Eclipse Adoptium, runtime: /Users/hillert/.sdkman/candidates/java/25.0.3-tem",
+        "Default locale: en_US, platform encoding: UTF-8, time zone: Pacific/Honolulu",
+        "OS name: \"mac os x\", version: \"27.0.1\", arch: \"aarch64\", family: \"mac\""
+      ],
+      "counts": {
+        "original_discovered": 113,
+        "original_executed": 113,
+        "original_passed": 113,
+        "total_discovered": 121,
+        "total_executed": 121,
+        "failed": 0,
+        "errored": 0,
+        "skipped": 0
+      },
+      "original_outcomes_equal_stage3": true,
+      "supplemental_outcomes": {
+        "com.sipios.springsearch.DatabaseAdapterTest#connectsToTheSelectedDatabaseEngine": "passed",
+        "com.sipios.springsearch.JavaCallerSmokeTest#javaCallerConstructsAndExecutesSpecification": "passed",
+        "com.sipios.springsearch.JavaResolverTest#bindsConfiguredParameterAndPreservesDiagnostics": "passed",
+        "com.sipios.springsearch.JavaResolverTest#registersResolverAndSelectsOnlyAnnotatedSpecifications": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#bootImportsDiscoverTheResolverConfiguration": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#directJpaConsumersDoNotRequireAWebContext": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#missingMvcClassesDoNotPreventStartup": "passed",
+        "com.sipios.springsearch.ResolverAutoConfigurationTest#servletConsumersReceiveTheArgumentResolver": "passed"
+      },
+      "testcontainers_postgresql_started_in_suite_and_caller": true,
+      "h2_avoids_docker_startup": false,
+      "exit_codes": {
+        "build-exit-code.txt": 0,
+        "classpath-exit-code.txt": 0,
+        "dependencies-exit-code.txt": 0,
+        "effective-pom-exit-code.txt": 0,
+        "java-caller-exit-code.txt": 0
+      },
+      "bytecode_major_version": 61,
+      "coverage": {
+        "instruction": {
+          "covered": 1750,
+          "missed": 358
+        },
+        "branch": {
+          "covered": 218,
+          "missed": 65
+        },
+        "line": {
+          "covered": 279,
+          "missed": 46
+        },
+        "complexity": {
+          "covered": 194,
+          "missed": 77
+        },
+        "method": {
+          "covered": 84,
+          "missed": 20
+        },
+        "class": {
+          "covered": 25,
+          "missed": 3
+        }
+      },
+      "evidence_sha256": {
+        "build.log": "c0d38533f10f5e86b67e33bf9a68e6ff48f1faa1ac739c0a47ef90191fa99c7b",
+        "bytecode-version.txt": "f94c3cdbd3bfef226de90764be17715794bf2c482c9aa332c6793524dec3b9dd",
+        "classpath.log": "bdf65dc7926f1d0a592b5000bd2f7daa28065ad6904309365633a77b50d917e3",
+        "dependencies.log": "9998c30fd08b002a1f757b59c68341aaef891c33d8232b66e755a556ca7cecc4",
+        "dependencies.txt": "0c104378e8c0311806ad5ca01e4f71e54458e3219fdebff3608a2eada3034afd",
+        "effective-pom.log": "797b3c6ca1de6da31803df7a4bfec58fa5688250d701e66866884386549dbcd8",
+        "effective-pom.xml": "3551699c82c8467e021b0f3c812ee7a7ffa8c6453cfd66238e48496675509d4f",
+        "environment.log": "0614e76e798c8ca7b8feb0bb74df47ec17e4ba94503872daf0451efd0b3584fd",
+        "java-caller.log": "55dcab2791e86361446a9b858f45db58f46d84547bf18f05bb09a87cf1e36017",
+        "surefire-reports/TEST-com.sipios.springsearch.DatabaseAdapterTest.xml": "2ebc0b733bd74ae59a17a0d73657aec207c7668b280df87cbebe4b508fe4fc91",
+        "surefire-reports/TEST-com.sipios.springsearch.JavaCallerSmokeTest.xml": "ffe9145d89c1250b1d03faea9cf50150e9495a8f4663c3b52f2f83704e513203",
+        "surefire-reports/TEST-com.sipios.springsearch.JavaResolverTest.xml": "2ede490d0b51df31812b782ef649f5c569d14d05aea6f29f34423888a5bf13e0",
+        "surefire-reports/TEST-com.sipios.springsearch.ResolverAutoConfigurationTest.xml": "d8840f80d41f5722309edf21ee00087631a0f9e0c188a2c44ce00b450673da06",
+        "surefire-reports/TEST-com.sipios.springsearch.SpringSearchApplicationTest.xml": "03306113e8b295548f64d3449af3dd9b5de428f4e1c6c7e42456dbcd504a2662",
+        "test-results/coverage/jacoco/jacoco.xml": "3ba0640337778d12a03bf50a32d257a7b03cb3d323330b4d86853b7dee7a91ff"
+      }
+    }
+  },
+  "unchanged_input_sha256": {
+    ".mvn/wrapper/maven-wrapper.properties": "e475c49e0cb54793fef372f979672f56bfe7d272b981ad6f5ebd5e50e08ee1dd",
+    "docs/baseline/scenarios.json": "f19babd458ec58648bf4593e9bd547874734b38acd31ebe2285b90cfc792dd91",
+    "mvnw": "cae96cef89ebea3531221f4ae17c23cf8edf67d00eae8306d4186ae1bbed4d02",
+    "mvnw.cmd": "46eedb8419bd14fe70d5bb2916d7b6f51806e51b39d5b76a42610384ca929c1c",
+    "src/main/antlr4/Query.g4": "024988cce0bf3f3faf8b7f1f3e0ab806c6ddd883dfd1b9ba5707b4eee1dd545e",
+    "src/main/java/SyntaxErrorListener.java": "b16b2c4fc266f2d38caf52c51d9df6860fbb0f48023e802891fa449b8f4d22b7",
+    "src/main/java/com/sipios/springsearch/CriteriaParser.java": "5513a4063c12b03b5f4920177b6757e46a931c7d9d28bd1d298763afddc29cb5",
+    "src/main/java/com/sipios/springsearch/NullSpecification.java": "a269c872071150a8809858a6cfaadd1a7a81baddd2ec7ef068c2035933958a64",
+    "src/main/java/com/sipios/springsearch/QueryVisitorImpl.java": "02aed06e736bb027a07e9f376f911b3f9d1564062b8ee106f2de4412913daa89",
+    "src/main/java/com/sipios/springsearch/SearchCriteria.java": "3a2570264785ac05c40318be244eb4af8a4c72b0ae02e722b16f8adc1dae2478",
+    "src/main/java/com/sipios/springsearch/SearchOperation.java": "9fc8f5e77ed4071ff3f33643e6ee43a96804dea1200c58efa162992912cf8f3c",
+    "src/main/java/com/sipios/springsearch/SpecificationImpl.java": "c6d218b8f1d49e567b8fdc3d5c086a02c2623db3b4fc596551840e07bad25434",
+    "src/main/java/com/sipios/springsearch/SpecificationsBuilder.java": "c601fe30e6acb3b8045eb2b1b8f579bb629f7714fb7d9b4cd42cfd6b4b1040bf",
+    "src/main/java/com/sipios/springsearch/anotation/SearchSpec.java": "499c20377a3175bc9d41b133fce0ca6771c589174d7d28a16e0f595adb714a10",
+    "src/main/java/com/sipios/springsearch/configuration/ResolverConf.java": "1ad24e6a20ba7b1c29856a263f23e466badf509dff801b20a523c63479dd2e39",
+    "src/main/java/com/sipios/springsearch/configuration/SearchSpecificationResolver.java": "b01eb4ad7960e5683f561bbc636b09ea219fabc0b45d4da74ee3695b72d93ed3",
+    "src/main/java/com/sipios/springsearch/listeners/SyntaxErrorListener.java": "37e5d008e2b7813d152a2ceb6e4acb2f0b95cc078e0f300963508bcbd749322d",
+    "src/main/java/com/sipios/springsearch/strategies/BooleanStrategy.java": "b68c2f01ea4d3dc9670260dd1b06e5a51b1a67426c3aea56bb3025c9a8c4fb05",
+    "src/main/java/com/sipios/springsearch/strategies/CollectionStrategy.java": "040b13e4198a346a15eaea64afb25b74cf6222f42faabdeb3b1249247c53e3ec",
+    "src/main/java/com/sipios/springsearch/strategies/DateStrategy.java": "37950b3cda0b207bd60971e32d7e3e97d346e8b22ef650ecebd0f472991d731f",
+    "src/main/java/com/sipios/springsearch/strategies/DoubleStrategy.java": "0f88d76a7ca55b874f0b5a6dc22cb190453d2fe64df403e1666447005a0a3934",
+    "src/main/java/com/sipios/springsearch/strategies/DurationStrategy.java": "169a89600ec814d2d8e006abec54662e0fb5e62e09e9c3888bbd591eb2840919",
+    "src/main/java/com/sipios/springsearch/strategies/EnumStrategy.java": "8b47037dc2307d28833cf279b36cb8de957dfd74ef43a52be7a38cd6820260f9",
+    "src/main/java/com/sipios/springsearch/strategies/FloatStrategy.java": "6711ad7586a46154b095236026c0338b56229b8ce8cd8a1a329139d4e2c9ddd4",
+    "src/main/java/com/sipios/springsearch/strategies/InstantStrategy.java": "7f20b7493009534707adedf47199c2abdea41c2ba16796f3261c55d86c712689",
+    "src/main/java/com/sipios/springsearch/strategies/IntStrategy.java": "0e0179fc2c26292833580eab326a0d9a17c39572884949ca847e459d9aa14123",
+    "src/main/java/com/sipios/springsearch/strategies/LocalDateStrategy.java": "c58cc374bf7fc28f8c2bee760823003edb7008d94def1db73777c5b88736afdc",
+    "src/main/java/com/sipios/springsearch/strategies/LocalDateTimeStrategy.java": "58dc596dec3bdadeec4f505ead155eec0a6580b2b0bf6aacc96c74b6dd218b91",
+    "src/main/java/com/sipios/springsearch/strategies/LocalTimeStrategy.java": "153dd9002e344d4ec5bbd2c8ac700c172bcef7c6180e17f9a23c704797d17e88",
+    "src/main/java/com/sipios/springsearch/strategies/ParsingStrategy.java": "1ebf255d9df413b6eec85df57e79655a17102d89a7ee19ac1f6f5d228b2e68d3",
+    "src/main/java/com/sipios/springsearch/strategies/StringStrategy.java": "d1506b35dcab9fba481ba1d32015b34c2855cab1aacb3db0d93d5d0868389e32",
+    "src/main/java/com/sipios/springsearch/strategies/UUIDStrategy.java": "7a7e79bc8f9f191e8fdb5427675cb3b7548d7960fbbc149b49a6b2e601073241",
+    "src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports": "0b255150b00f52aa1a2be793968eb10986b46c044673cf3753d4547720d0eecd",
+    "src/main/resources/application.properties": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/test/java/com/sipios/springsearch/Author.java": "35227dc032bea2abf42207ab3e367fc04d95a9b7df5b7d6d29534794cd92d800",
+    "src/test/java/com/sipios/springsearch/AuthorRepository.java": "15b5de1a5c3dbadb7403bd9992b17ec1005a1e2f3a7ae908f2038f4c7242f869",
+    "src/test/java/com/sipios/springsearch/Book.java": "112b261c37fb5c538cf3d8d1d1cc96ed6e9d5099096dd55e3b6c7255d00117c8",
+    "src/test/java/com/sipios/springsearch/DatabaseAdapterTest.java": "d306bd3fe7f49074436de2b3740cf60b3ceaaace9fc8d1bc7b5e7264d68ccff6",
+    "src/test/java/com/sipios/springsearch/JavaResolverTest.java": "c8db2f226a6669860846e3d204a1a42f74b75847a28557234e84a5bff9bedc50",
+    "src/test/java/com/sipios/springsearch/ResolverAutoConfigurationTest.java": "e0515ebee9a290292f3dab9e0bcb5d8d920c260557e01e792985e0a12761ea0f",
+    "src/test/java/com/sipios/springsearch/SearchTestFixtures.java": "bc80595ed909708145533e65324bb11cbcd81c2ba6dd49f0b6e9c35b4c33ed77",
+    "src/test/java/com/sipios/springsearch/SpringSearchApplication.java": "69003a22ec2e91dbb9eb8f362d790add73543febac5cc3a6790820735d79f99c",
+    "src/test/java/com/sipios/springsearch/SpringSearchApplicationTest.java": "03fa95033667e0330a5dff6043a911d5b90aaa518e6f9fc73200b1508a4e9174",
+    "src/test/java/com/sipios/springsearch/UserType.java": "3182714e9d9b2b691ae69b511bb6feee23130a89a3bb8dca00d86dc2ce1e88ff",
+    "src/test/java/com/sipios/springsearch/Users.java": "d13d43b4d074a1dc72aee35a6227bf54a76f7c279a63ac3c74a1d03cc8803697",
+    "src/test/java/com/sipios/springsearch/UsersRepository.java": "ba19663fa06fb511d3e8c8e8379bd9727eb9a97ea62fa2d95949a2a42e18d89b",
+    "src/test/resources/application.properties": "e8b3fabf8b780fc18664363b1efab8c1200443a4af0df9d1e42d9dab5b6962e3"
+  },
+  "original_inventory": "docs/baseline/scenarios.json",
+  "testcontainers_containers_remaining_after_matrix": 0,
+  "workflow_yaml_and_bash_syntax": "passed",
+  "raw_evidence_directory": "build/testcontainers",
+  "ci_execution": "Configured; not run on GitHub during local implementation",
+  "skipped_checks": [
+    "Maven artifact signing",
+    "Dependency-Check vulnerability scan"
+  ]
+}
