@@ -1,3 +1,12 @@
+# Pembana Search — compatibility baseline
+
+This repository is at Stage 0 of the Pembana Search migration. See the
+[baseline report and reproduction instructions](docs/baseline/README.md).
+New contributions and the overall distribution use [Apache License 2.0](LICENSE);
+inherited Spring Search material retains its [MIT notice](LICENSE.txt). See
+[NOTICE](NOTICE) for upstream provenance. The original upstream README follows;
+its published coordinates and API describe the compatibility baseline.
+
 <!-- PROJECT SHIELDS -->
 <!--
 *** I'm using markdown "reference style" links for readability.

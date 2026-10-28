@@ -1,0 +1,39 @@
+{
+  "artifact": "com.sipios:spring-search:0.3.0",
+  "central_base_url": "https://repo.maven.apache.org/maven2/com/sipios/spring-search/0.3.0/",
+  "handwritten_production_sources_match": {
+    "com/sipios/springsearch/CriteriaParser.kt": true,
+    "com/sipios/springsearch/QueryVisitorImpl.kt": true,
+    "com/sipios/springsearch/SearchCriteria.kt": true,
+    "com/sipios/springsearch/SearchOperation.kt": true,
+    "com/sipios/springsearch/SpecificationImpl.kt": true,
+    "com/sipios/springsearch/SpecificationsBuilder.kt": true,
+    "com/sipios/springsearch/anotation/SearchSpec.kt": true,
+    "com/sipios/springsearch/configuration/ResolverConf.kt": true,
+    "com/sipios/springsearch/configuration/SearchSpecificationResolver.kt": true,
+    "com/sipios/springsearch/listeners/SyntaxErrorListener.kt": true,
+    "com/sipios/springsearch/strategies/BooleanStrategy.kt": true,
+    "com/sipios/springsearch/strategies/CollectionStrategy.kt": true,
+    "com/sipios/springsearch/strategies/DateStrategy.kt": true,
+    "com/sipios/springsearch/strategies/DoubleStrategy.kt": true,
+    "com/sipios/springsearch/strategies/DurationStrategy.kt": true,
+    "com/sipios/springsearch/strategies/EnumStrategy.kt": true,
+    "com/sipios/springsearch/strategies/FloatStrategy.kt": true,
+    "com/sipios/springsearch/strategies/InstantStrategy.kt": true,
+    "com/sipios/springsearch/strategies/IntStrategy.kt": true,
+    "com/sipios/springsearch/strategies/LocalDateStrategy.kt": true,
+    "com/sipios/springsearch/strategies/LocalDateTimeStrategy.kt": true,
+    "com/sipios/springsearch/strategies/LocalTimeStrategy.kt": true,
+    "com/sipios/springsearch/strategies/ParsingStrategy.kt": true,
+    "com/sipios/springsearch/strategies/StringStrategy.kt": true,
+    "com/sipios/springsearch/strategies/UUIDStrategy.kt": true
+  },
+  "limitations": "Cached artifact origin is recorded, not independently signature-verified. Binary reproducibility is not asserted.",
+  "sha256": {
+    "spring-search-0.3.0-sources.jar": "e8a899ba558efb2e8aff07013ab240214638cfa2db7c68f557e4a1b9aa1c0321",
+    "spring-search-0.3.0.jar": "9428943e98254adf4e3b66b5c42434c3af738c6b79b8c3cc74199b165d08053a",
+    "spring-search-0.3.0.pom": "45d99ee50bb5919034afe005414d757502f877c98e2699bf77993cf0617e70cf"
+  },
+  "source_of_artifacts": "Existing local Maven cache; Maven Resolver metadata identifies central",
+  "upstream_revision": "c4b404dc6cf22b540d3e7f6211e557f5d83b6c61"
+}

@@ -1,0 +1,21 @@
+Pembana Search
+
+New contributions and the overall distribution use Apache License 2.0; see LICENSE.
+
+This project includes code and other material derived from Spring Search:
+https://github.com/theodo-fintech/spring-search
+Upstream revision: c4b404dc6cf22b540d3e7f6211e557f5d83b6c61
+Upstream artifact: com.sipios:spring-search:0.3.0
+
+Copyright (c) 2019-present Woody Rousseau and other contributors
+
+Inherited material remains subject to the MIT copyright and permission notice
+retained in LICENSE.txt. Translating inherited code into Java will not remove
+that attribution. The Apache contributor patent grant is not a new grant from
+authors who contributed solely under MIT.
+
+At Stage 0, modifications comprise import housekeeping, the added Apache license,
+this attribution notice, baseline documentation and evidence tooling, replacement
+of test CI, and removal of the inherited publishing workflow. Production sources,
+grammar, Kotlin tests, fixtures, Maven dependencies, and database settings have
+not been changed. See docs/baseline/README.md for provenance and verification.

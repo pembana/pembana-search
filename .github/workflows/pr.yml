@@ -1,40 +1,46 @@
-name: Test & Coverage
+name: Compatibility baseline
+
 on:
   pull_request:
-    branches:
-      - '*'
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  test-and-coverage:
-    runs-on: ubuntu-latest
-
+  upstream-baseline:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
-          distribution: 'temurin'
+          distribution: temurin
+          cache: maven
 
-      - name: Set up the Maven dependencies caching
-        uses: actions/cache@v3
+      - name: Set up baseline evidence runner
+        uses: actions/setup-python@v5
         with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
+          python-version: '3.12'
 
-      - name: Run tests
-        run: mvn --batch-mode --update-snapshots verify -Dgpg.skip=true -Ddependency-check.skip=true
+      - name: Run pinned upstream and imported suites
+        run: python3 scripts/compatibility-baseline.py
 
-      - name: Add coverage
-        uses: madrapps/jacoco-report@v1.6.1
+      - name: Check evidence integrity tooling
+        if: always()
+        run: python3 -m unittest discover -s scripts -p 'test_compatibility_baseline.py' -v
+
+      - name: Preserve baseline evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
-          paths: |
-            ${{ github.workspace }}/target/test-results/coverage/jacoco/jacoco.xml
-          token: ${{ secrets.GITHUB_TOKEN }}
-          title: '### :zap: Coverage report'
-          update-comment: true
-          min-coverage-overall: 80
-          min-coverage-changed-files: 75
-          continue-on-error: false
+          name: compatibility-baseline-${{ github.run_id }}-${{ github.run_attempt }}
+          path: build/baseline/
+          if-no-files-found: error
+          retention-days: 30

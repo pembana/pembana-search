@@ -1,0 +1,454 @@
+[
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "run"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canAddUsers"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithId"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithName"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithFirstNameAndLastName"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithFrenchName"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithChineseName"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithChineseNameNoEncoding"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithSpecialCharactersName"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithSpaceInNameWithString"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithPartialStartingName"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithPartialEndingName"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithPartialNameAndSpecialCharacter"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithPartialNameContaining"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithPartialNameContainingWithSpecialCharacter"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithPartialNameContainingSpecialCharacterUsingSimpleString"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithPartialNameContainingWithSpecialCharacterUsingDoubleString"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersNotContaining"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersNotStartingWith"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersNotEndingWith"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithBigFamily"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithSmallFamily"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithChildrenEquals"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithChildrenNotEquals"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithSmallerSalary"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithHigherFloatSalary"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithMedianSalary"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithAgeHigher"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithAgeLower"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithAgeEqual"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithParentheses"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithInterlinkedConditions"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithInterlinkedConditionsNoSpaces"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersByBoolean"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersEarlierThanDate"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersAfterDate"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersAfterEqualDate"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersEarlierEqualDate"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersAtPreciseDate"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersAtPreciseDateNotEqual"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithCaseInsensitiveLowerCaseSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithCaseInsensitiveUpperCaseSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithCaseInsensitiveContainsSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithCaseInsensitiveDoesntContainSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithCaseInsensitiveDoesntStartSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithCaseInsensitiveDoesntEndSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUserTypeEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUserTypeNotEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedAtGreaterSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdateInstantAtGreaterSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdateInstantAtGreaterThanEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdateInstantAtLessThanEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedAtLessSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedAtEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedAtNotEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedAtGreaterThanEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedAtLessThanEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedDateAtGreaterSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedDateAtLessSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedDateAtEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedDateAtNotEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedDateAtLessThanEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedDateAtGreaterThanEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedTimeAtGreaterSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedTimeAtLessSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedTimeAtEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedTimeAtLessThanEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedTimeAtGreaterThanEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedTimeAtNotEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithDurationGreaterSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithDurationLessSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithDurationEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithDurationNotEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUUIDEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUUIDNotEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithNumberOfChildrenLessOrEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithNumberOfChildrenGreaterOrEqualSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithNumberOfChildrenLessSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithNameIn"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithNameInEmptyList"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithNameNotIn"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithChildrenNumberNotIn"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithChildrenNumberIn"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithTypeIn"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithIn"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetAuthorsWithEmptyBook"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "cantSearchForEmptyWithNonFieldProperties"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetAuthorsWithEmptyBookWithResult"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetAuthorsWithBooksNotEmpty"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetAuthorsWithBooksNotEmptyAllResult"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetAuthorsWithBooksNotEmptyNoResult"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "cantGetAuthorsWithBooksNull"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithNumberOfChildrenBetween"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedDateBetween"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedDateNotBetween"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedDateBetweenAndIdIn"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUserFirstNameBetween"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUserFirstNameNotBetween"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUserFirstNameGt"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUserFirstNameLt"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUserFirstNameCaseSensitive"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "badRequestWithWrongSearch"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithNullColumn"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithNotNullColumn"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithNotNullFirstName"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUserWithNullSalary"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canNotSearchABlackListedField"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUUIDNull"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedDateAtNull"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUpdatedDateTimeAtNotNull"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithActiveNull"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithUserChildrenNumberNull"
+  },
+  {
+    "class": "com.sipios.springsearch.SpringSearchApplicationTest",
+    "method": "canGetUsersWithCreatedAtNull"
+  }
+]
