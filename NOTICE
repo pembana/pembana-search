@@ -15,7 +15,7 @@ that attribution. The Apache contributor patent grant is not a new grant from
 authors who contributed solely under MIT.
 
 At Stage 0, modifications comprise import housekeeping, the added Apache license,
-this attribution notice, baseline documentation and evidence tooling, replacement
+this attribution notice, baseline documentation and Maven-based CI, replacement
 of test CI, and removal of the inherited publishing workflow. Production sources,
 grammar, Kotlin tests, fixtures, Maven dependencies, and database settings have
 not been changed. See docs/baseline/README.md for provenance and verification.

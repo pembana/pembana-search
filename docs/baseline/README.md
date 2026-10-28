@@ -17,10 +17,10 @@ Import commit `bbbb8572fbec180dda14bb1f69c3f4f6e7b2f781` differs from upstream o
 adding the Apache `LICENSE`, adding ignore rules, and removing
 `.jpb/jpb-settings.xml`. The imported production sources, grammar, tests, fixtures,
 Maven configuration and wrapper, Java-version file, and Makefile are unchanged.
-The runner compares SHA-256 manifests of those inputs before running and checks
-them again after each build. The committed inventory identifies all 113 tests by
-fully qualified class and method name; the runtime reports must match those
-identities, not merely their count.
+The recorded baseline compared SHA-256 manifests of those inputs before and
+after each build. The committed inventory identifies all 113 tests by fully
+qualified class and method name. Compare subsequent Surefire reports against
+that inventory when reviewing compatibility; test counts alone are insufficient.
 
 The local Maven cache contains the binary, source JAR, and POM retrieved from
 Maven Central. Their SHA-256 fingerprints are recorded in
@@ -47,7 +47,7 @@ run used the working checkout. Neither run installed or deployed an artifact.
 | Database URL / driver / user | `jdbc:h2:mem:testdb` / `org.h2.Driver` / `sa` |
 | Test context | Spring Boot without a web server; transactional Kotlin tests |
 | Test engine / reports | JUnit Jupiter, Maven Surefire 3.0.0 |
-| Evidence runner | Python standard library; Python 3.14.3 locally |
+| Original evidence capture | Python 3.14.3; subsequently replaced by direct Maven CI steps |
 
 The original lifecycle command is:
 
@@ -79,7 +79,10 @@ complete equivalence. No production code changes were introduced in Stage 0.
 
 [results.json](results.json) retains the run metadata, counts, scenario outcomes,
 coverage counters, input fingerprints, and raw-evidence fingerprints. Full local
-evidence is in `build/baseline-final/`; CI uploads its own `build/baseline/`.
+evidence is in `build/baseline-final/`. These files are historical evidence from
+the initial capture, including the fingerprint of the now-removed Python runner.
+They are retained unchanged. Current CI uploads native Maven reports and logs
+separately for the pinned upstream and imported revisions.
 
 ### Findings and coverage gaps
 
@@ -100,43 +103,47 @@ evidence is in `build/baseline-final/`; CI uploads its own `build/baseline/`.
 - Initial sandbox execution could not write the Maven cache. It did not execute
   tests. An initial evidence pass also selected help-plugin 3.4.0, which requires
   Maven 3.6.3; only effective-POM capture failed. Both original suites passed in
-  that pass. The runner now pins reporting-only help-plugin 3.2.0, compatible
+  that pass. Reporting-only help-plugin 3.2.0 was selected, compatible
   with Maven 3.6.0, and the complete evidence pass succeeds. Neither issue was an
   upstream test failure; neither required changing the original build.
 
 ## Reproduce and retain evidence
 
-Select JDK 17 in `JAVA_HOME` and put its `bin` directory first on `PATH`. Use
-Python 3.12 or newer and a full Git checkout containing the pinned upstream
-commit. Maven Central access is needed for uncached dependencies.
+Select JDK 17 in `JAVA_HOME` and put its `bin` directory first on `PATH`.
+Maven Central access is needed for uncached dependencies. Run the unchanged build
+directly in this checkout:
 
 ```sh
-python3 -m unittest discover -s scripts -p 'test_compatibility_baseline.py' -v
-python3 scripts/compatibility-baseline.py
+./mvnw --batch-mode -Dgpg.skip=true -Ddependency-check.skip=true clean verify
 ```
 
-The default output directory is `build/baseline/`. A nonempty output directory
-is rejected to preserve earlier evidence; select a fresh directory for a repeat:
+For a comparison, run the same command in a separate checkout of the pinned
+upstream revision. The GitHub Actions workflow performs these builds as two
+matrix jobs using the same Ubuntu image and JDK 17 distribution. Failure of one
+job does not cancel the other. Each job records the actual revision and Maven/JDK
+versions, and captures the resolved dependency tree and effective POM:
 
 ```sh
-python3 scripts/compatibility-baseline.py --output build/baseline-repeat
+mkdir -p build/baseline
+./mvnw --batch-mode org.apache.maven.plugins:maven-dependency-plugin:3.6.1:tree -Dverbose -DoutputFile=build/baseline/dependencies.txt
+./mvnw --batch-mode org.apache.maven.plugins:maven-help-plugin:3.2.0:effective-pom -Doutput=build/baseline/effective-pom.xml
 ```
 
-Each run retains environment and Maven version logs, source manifests, original
-build logs, Surefire XML/text, JaCoCo XML/HTML/execution data, a verbose dependency
-tree, the effective POM, per-scenario results, and the combined gate result.
-Reporting-only dependency-plugin 3.6.1 and help-plugin 3.2.0 are invoked explicitly;
-they do not change project dependencies or lifecycle plugin versions.
+Each CI job retains environment and Maven version logs, the original build log,
+Surefire XML/text, JaCoCo XML/HTML/execution data, the dependency tree, and the
+effective POM. The reporting-only plugin invocations do not change project
+dependencies or lifecycle plugin versions. Explicit Bash execution preserves
+Maven failure statuses through the log-capture pipelines.
 
-A failed build still produces available evidence and a nonzero runner exit code.
-Failure categories distinguish test, compilation, infrastructure/dependency,
-coverage-check, and other build failures. A missing, replaced, duplicated, or
-skipped test; differing dependency tree; changed protected input; missing coverage
-report; or failed evidence command also fails the gate. Do not weaken assertions
-or remove scenarios to obtain a passing gate.
+Maven enforces its existing test and coverage checks. Comparing scenario identities,
+outcomes, dependencies, and protected source inputs is a review task; CI no longer
+provides a custom comparison gate or generated JSON summaries. Review failures in
+the native build and Surefire reports, distinguishing test failures from compiler,
+infrastructure, and coverage-check failures. Preserve findings rather than
+weakening assertions or removing scenarios.
 
 The pull-request workflow targets `main` and also supports manual execution. It
-uses JDK 17, runs both suites, and uploads evidence with `if: always()` for 30 days
+uses JDK 17, runs both suites, and uploads each job's evidence with `if: always()` for 30 days
 (subject to repository retention limits). Download and archive a baseline artifact
 before it expires if it will be needed for a later stage. CI has not been run by
 the local implementation; the recorded execution above is local evidence.
