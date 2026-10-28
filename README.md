@@ -1,7 +1,8 @@
-# Pembana Search — Java production port
+# Pembana Search — Java implementation and tests
 
-Production code is now Java, with the original Kotlin compatibility tests retained.
-See the [Stage 1 verification report](docs/stage1/README.md) and the
+Production code and tests are now Java, with all 113 original scenarios retained.
+See the [Stage 2 verification report](docs/stage2/README.md), the
+[Stage 1 report](docs/stage1/README.md), and the
 [original baseline report](docs/baseline/README.md).
 New contributions and the overall distribution use [Apache License 2.0](LICENSE);
 inherited Spring Search material retains its [MIT notice](LICENSE.txt). See

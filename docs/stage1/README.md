@@ -1,5 +1,8 @@
 # Stage 1: Java production code, original Kotlin tests
 
+This is the historical Stage 1 record. The [Stage 2 report](../stage2/README.md)
+documents the subsequent Java test port and removal of Kotlin tooling.
+
 Status: **passed locally on 2026-10-28** with JDK 17. No framework upgrade,
 package rename, module split, new matching policy, or artifact publication is part
 of this change. Stage 0 evidence remains in [the baseline report](../baseline/README.md).

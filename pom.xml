@@ -15,7 +15,6 @@
 
 	<properties>
 		<java.version>17</java.version>
-		<kotlin.version>1.9.22</kotlin.version>
 		<jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
 		<h2.version>2.2.220</h2.version>
 		<jackson-databind.version>2.16.0</jackson-databind.version>
@@ -61,16 +60,6 @@
 			<version>${snakeyaml.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.module</groupId>
-			<artifactId>jackson-module-kotlin</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jetbrains.kotlin</groupId>
-			<artifactId>kotlin-reflect</artifactId>
-			<scope>test</scope>
-		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -82,18 +71,6 @@
 			<groupId>org.antlr</groupId>
 			<artifactId>antlr4-runtime</artifactId>
 			<version>${antl4.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jetbrains.kotlin</groupId>
-			<artifactId>kotlin-stdlib-jdk8</artifactId>
-			<version>${kotlin.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jetbrains.kotlin</groupId>
-			<artifactId>kotlin-test</artifactId>
-			<version>${kotlin.version}</version>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
@@ -122,49 +99,6 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.jetbrains.kotlin</groupId>
-				<artifactId>kotlin-maven-plugin</artifactId>
-				<version>${kotlin.version}</version>
-				<!-- Production is Java. Compile only the retained Kotlin fixtures/tests. -->
-				<executions>
-					<execution>
-						<id>test-compile</id>
-						<phase>process-test-sources</phase>
-						<goals>
-							<goal>test-compile</goal>
-						</goals>
-						<configuration>
-							<sourceDirs>
-								<source>src/test/kotlin</source>
-								<source>src/test/java</source>
-							</sourceDirs>
-						</configuration>
-					</execution>
-				</executions>
-				<configuration>
-					<args>
-						<arg>-Xjsr305=strict</arg>
-					</args>
-					<compilerPlugins>
-						<plugin>spring</plugin>
-						<plugin>jpa</plugin>
-					</compilerPlugins>
-					<jvmTarget>17</jvmTarget>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.jetbrains.kotlin</groupId>
-						<artifactId>kotlin-maven-allopen</artifactId>
-						<version>${kotlin.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.jetbrains.kotlin</groupId>
-						<artifactId>kotlin-maven-noarg</artifactId>
-						<version>${kotlin.version}</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-			<plugin>
 				<artifactId>maven-release-plugin</artifactId>
 				<version>2.5.3</version>
 				<configuration>
@@ -172,47 +106,6 @@
 					<releaseProfiles>release</releaseProfiles>
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.8</version>
-				<executions>
-					<execution>
-						<id>ktlint</id>
-						<phase>compile</phase>
-						<configuration>
-							<target name="ktlint">
-								<java taskname="ktlint" dir="${basedir}" fork="true" failonerror="true"
-									  classpathref="maven.plugin.classpath" classname="com.pinterest.ktlint.Main">
-									<arg value="src/**/*.kt"/>
-								</java>
-							</target>
-						</configuration>
-						<goals><goal>run</goal></goals>
-					</execution>
-					<execution>
-						<id>ktlint-format</id>
-						<configuration>
-							<target name="ktlint">
-								<java taskname="ktlint" dir="${basedir}" fork="true" failonerror="true"
-									  classpathref="maven.plugin.classpath" classname="com.pinterest.ktlint.Main">
-									<arg value="-F"/>
-									<arg value="src/**/*.kt"/>
-								</java>
-							</target>
-						</configuration>
-						<goals><goal>run</goal></goals>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>com.pinterest</groupId>
-						<artifactId>ktlint</artifactId>
-						<version>0.34.2</version>
-					</dependency>
-					<!-- additional 3rd party ruleset(s) can be specified here -->
-				</dependencies>
 			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>

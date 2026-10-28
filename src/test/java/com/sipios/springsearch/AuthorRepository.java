@@ -13,10 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sipios.springsearch
+/*
+ * Derived from Spring Search, copyright (c) 2019-present Woody Rousseau
+ * and other contributors, under the MIT license. See LICENSE.txt and NOTICE.
+ */
+package com.sipios.springsearch;
 
-import com.sipios.springsearch.anotation.SearchSpec
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-// Java annotations have no Kotlin reflection constructor; preserve the original argument values.
-fun searchSpec(searchParam: String, caseSensitiveFlag: Boolean, blackListedFields: Array<String>): SearchSpec =
-    SearchSpec(searchParam = searchParam, caseSensitiveFlag = caseSensitiveFlag, blackListedFields = blackListedFields)
+@RepositoryRestResource(path = "author")
+public interface AuthorRepository extends CrudRepository<Author, Long>, JpaSpecificationExecutor<Author> { }

@@ -1,0 +1,1136 @@
+[
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#badRequestWithWrongSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#badRequestWithWrongSearch",
+    "assertions": {
+      "assertThrows": 6
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "daea6db1692dd859962e80b164f57d3e7d5579e9baf678ef23b470927aa15c4c",
+    "java_method_sha256": "d4fc2f870bcd162acd0dafda5d83c84ca57431153e586fe1f52e2d774443d090"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canAddUsers",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canAddUsers",
+    "assertions": {
+      "assertEquals": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "63f44849cefcf481d940a3a5eab83126ff175f4484ed69a9316a8be018664976",
+    "java_method_sha256": "eb831724f036e11056878d5f74a9f8fa46a13af66197c2a9b6686464000ff18c"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetAuthorsWithBooksNotEmpty",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetAuthorsWithBooksNotEmpty",
+    "assertions": {
+      "assertTrue": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "1c6582aacd21ef83cc32ebd6abbc38fbd6a9341361348a792649a7939e0fbddf",
+    "java_method_sha256": "8d9d97b4422d83cb6e60a7b0cffa4cebfc69de9e95e61b551cba2c79c0440386"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetAuthorsWithBooksNotEmptyAllResult",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetAuthorsWithBooksNotEmptyAllResult",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "7504b9ee0d0473d101a9369f522896954219a0956189d6656dccefb190a64601",
+    "java_method_sha256": "6cf32de5cb5081c30334817df41dd4641d853f2dc4a17c1694a68e07282550c5"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetAuthorsWithBooksNotEmptyNoResult",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetAuthorsWithBooksNotEmptyNoResult",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "47ebe2fe03c8d035ea090e6e72d1f929be7aaa42a4c2e07d133597d5cb5c8a74",
+    "java_method_sha256": "14202c0bb644b3fbde88651b47b3bb167295e4cc075598aeadc0a76154798df9"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetAuthorsWithEmptyBook",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetAuthorsWithEmptyBook",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "85bcf7b5e482d76a35c7936b4f5c1f0f6f012515318a88d380118128eda40d33",
+    "java_method_sha256": "76ade2ce80005af4da38a1e53a6ca24026faac99a27b74350b2ea93f0d72a8c8"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetAuthorsWithEmptyBookWithResult",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetAuthorsWithEmptyBookWithResult",
+    "assertions": {
+      "assertTrue": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "cc40d634cf5e905f1d483533d57255b370a797bc13b5ec6c686a98cb040846a0",
+    "java_method_sha256": "690a2943e5ccf3b0453b99331a40c714fd2b7595c932e1448228d9629665587f"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithBigFamily",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithBigFamily",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "79fd1db0b171afb027b1cb41c64f6a0fefcb03f820f433c49f03ff8b5c8a464c",
+    "java_method_sha256": "9421f5a4f86b262bd13099cf27db3274b578b13721bfa1fa7a06d7b57ff3ea75"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithChildrenEquals",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithChildrenEquals",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "840ba9b4cfbcc1f4aecac771223ff2909eb2bc9836c2ee53f3c519b93f222d46",
+    "java_method_sha256": "7c29d70b7a45748e9d7d70248ac11acad430d0d37e40bf57fd443fe48fb99ebb"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithChildrenNotEquals",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithChildrenNotEquals",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "f428c0bf6534117f6438f6fb7e358013954edbc058dfb649eec827938b961564",
+    "java_method_sha256": "b91e5c72f0f6dc6b0cca0e79b33855813cb11c0643456918ce2b7f4b7288c31a"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithChildrenNumberIn",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithChildrenNumberIn",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "7f79a3b69c9b75741048952f9e94c3c73966ebd45290a34fe8c85d2d726b8886",
+    "java_method_sha256": "ab48bbcda7164fdde349dd79a276a94df4f3038507384772530ebd554b5a4af6"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithChildrenNumberNotIn",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithChildrenNumberNotIn",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "fdaf0939ed5c3666915e9f7a21ca09789675a7dea0358c827d640f1264fed540",
+    "java_method_sha256": "0284003cf0a0ca2948040d7fc88fe6d76832d8523566ec297decd2d4f652ccfc"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithChineseName",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithChineseName",
+    "assertions": {
+      "assertEquals": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "781a166df662e949b4f2e927eb1ef7b2b4a22c1b48e6d84020290c616f0485e6",
+    "java_method_sha256": "4ab0f24f2d41bcdc1f7185a923e489e23fa25f9344e1abd641548a1523b8dbcc"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithChineseNameNoEncoding",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithChineseNameNoEncoding",
+    "assertions": {
+      "assertEquals": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "f172b4ec9240257eaabb745ee752d9d702509005f4eb127d08568e5dd51c338c",
+    "java_method_sha256": "81b562d3c521fa25cc9eac3fedbaac4e11342f86f1a9726daf8faa10358e1549"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithFirstNameAndLastName",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithFirstNameAndLastName",
+    "assertions": {
+      "assertEquals": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "861f0350d3a50dd12ba796b4b96d222d52d64222b2771e6600ba25080a97db98",
+    "java_method_sha256": "479480700dbb4b49aca184cb666468f95367fd259d739e854594c784b2d50238"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithFrenchName",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithFrenchName",
+    "assertions": {
+      "assertEquals": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "503662e8246d21a204b479b36b92c1869f5e0fa087a2b211d01883353382a119",
+    "java_method_sha256": "f0e6adc0deb4a30da6b116266d801ce430d8c257e0b4b7ea6005ee78d40ded13"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithHigherFloatSalary",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithHigherFloatSalary",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "f141695835ecdac17a8b15bb38521e24c630bc8479b86899575faa0de57ffa57",
+    "java_method_sha256": "d774e07882e320639bc1ed68c1a095f7eb61ee5a275c4a98e97b307b33f8d2a7"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithId",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithId",
+    "assertions": {
+      "assertEquals": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "0a09a7afc4aa2871ce2322056248ec2c063ce20c8d4e40c8e346c42c4b2bc88c",
+    "java_method_sha256": "6b4ab398a8cea1972c738da4dbe62800c92c3b506f40a356b4ad003c7752fa51"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithIn",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithIn",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "66c8f7ba3deba33986518d406d2780d0509899728950cb85be3c5973d3b20e10",
+    "java_method_sha256": "163437ec7c5c9d961f2fae67868c0ad8591b4ed2f8714c51e15d188cc9bdaf00"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithMedianSalary",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithMedianSalary",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "89d6a3694f20f4087e000375438a7229b77829f888262a6bc77a2e8348a0510d",
+    "java_method_sha256": "5b8b79528c1356b11ce8d3ef0e7dfc05188cee1ab98d24f8903258bac5b1c09d"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithName",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithName",
+    "assertions": {
+      "assertEquals": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "52a9d10f5c1bbbeed8e4e930c0ef1f8c2598599da844f832531c00cf10b57d2f",
+    "java_method_sha256": "4f0ab857d8ebb2a20b3b095ca70cb54addd49b3a8bcb33553bc6851b0d080f7a"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithNameIn",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithNameIn",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "f8586433f11a720a05830c63dbd6269023ed076dd19bed53b7d02e58f57016e4",
+    "java_method_sha256": "d9be04ecd2c7c5325184ccd0e966bdf89d5ae369cbe4f4f932483003bb30158e"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithNameInEmptyList",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithNameInEmptyList",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "c7e4e8e2f6872c3229d2fdd752cdb8214204f5c3faebaa6d7faae39e2da63c92",
+    "java_method_sha256": "4e00ac7ab4345e6b57eb7437181a3efef4a92edd9820fa3cee51ddd6f42e887a"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithNameNotIn",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithNameNotIn",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "77c4ad4cd04793191c21c4776707025be73aaf4cddedfe6ebbb7e7be52624222",
+    "java_method_sha256": "7e8b6d1ba621808707f482522f6a50ff9f83927520cd88a63640d26cd43bc4e0"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithNullSalary",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithNullSalary",
+    "assertions": {
+      "assertEquals": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "3bb77b8b83d9c0ba2f42ea68bf78afeba0f8ee64bf8647a8ddd099d4429035af",
+    "java_method_sha256": "fab676f393856c8fc5afea65d7bae1d132a3d42b0f8d17a557e5afb62b951856"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithParentheses",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithParentheses",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "2b185f89a3acfcde0ba7ce818514e9bf8a3f7d49b81eacd98d7e1a38fbe1e77a",
+    "java_method_sha256": "1151be2c052f8dcfff9d240802d1375ce22e883e786197815e14fe2c2a18a39f"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithSmallFamily",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithSmallFamily",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "98630b1afcdbbaccd23471f62ebdcedc5d57af4729afd3946104b850cbf40952",
+    "java_method_sha256": "f47fac7dfcc007a8b16cb890b56e58058b1fbbd99181a7ec3446544c0bb65727"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithSmallerSalary",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithSmallerSalary",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "74892dbc948fb84bf900e8a85e20cc06df7016d6b208331f4210ccd612ac3a1e",
+    "java_method_sha256": "c278ec15dffa3beaddb81c698837c7338e5097f5a4a84ad8565b419c8673b811"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithSpaceInNameWithString",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithSpaceInNameWithString",
+    "assertions": {
+      "assertEquals": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "a6c43b9463415d2206dc95a234cf88753fe006e21e4d68f3c524cf72a47b688d",
+    "java_method_sha256": "6bb02a8df4386db40d601617106d26521a879516f547e8ffc5a93bc98f8c9941"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithSpecialCharactersName",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithSpecialCharactersName",
+    "assertions": {
+      "assertEquals": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "2e74b6760cb89e70f245c75e12fb886791b06f7ae45b73096290c10a91794af9",
+    "java_method_sha256": "6d58c0d66273ee4e48e18cfe704eda991f5eab37769eaa18395a47f17e0675e8"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithTypeIn",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUserWithTypeIn",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "b9f97b1f7fff63f7e1167ee96b43e772231f103d7459a6ae850171a65c3f8de7",
+    "java_method_sha256": "bd74b6055e88d59e5a9232dd35381b647ce49597a691d58cca14db63cc254950"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersAfterDate",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersAfterDate",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "b13a7a609fd19dc44845b09c917dd29efd1419324e84723ff281b43577d7835c",
+    "java_method_sha256": "0fc75cd3dd3401ca43719df5b4a68d760e921e518e74c480278db45db475974a"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersAfterEqualDate",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersAfterEqualDate",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "36777e6979af9e939b8ee3ff6b8395faf26341c94d07f68bf63c52c8de683e76",
+    "java_method_sha256": "5a5f1de3f7c0d8726a94280c5e9a7d401a2fc933ab20cc91549b632bb3b19378"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersAtPreciseDate",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersAtPreciseDate",
+    "assertions": {
+      "assertEquals": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "a50d6f5b1bd511676d2caffafab8e15a3fa8898760ce0d84bc085ea530420b99",
+    "java_method_sha256": "db5ab3033078e6e5996ca8183327659449d2ccefecbe598894a02af7655d6070"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersAtPreciseDateNotEqual",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersAtPreciseDateNotEqual",
+    "assertions": {
+      "assertEquals": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "10015701580a9386cf23244efa3bb3b31012cd2f91e524e733b331b720cebe90",
+    "java_method_sha256": "22cb8528538e220897afbe4f03e85f4555a586fdc903dbe6854cb5489b465885"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersByBoolean",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersByBoolean",
+    "assertions": {
+      "assertEquals": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "3f6762f5e074d548b36992ef997f0574b65d2f8e57fa9d0d3094a86cf13a6d7b",
+    "java_method_sha256": "a01a3d18f8ccfd06323e4a5ee43cfd1c364af966f9faa8b089115f2631217e84"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersEarlierEqualDate",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersEarlierEqualDate",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "096a463d4ff86494cce882513ae3c4347d85117c286a19400e6e0aa85eb74f42",
+    "java_method_sha256": "978ca644e3c07c9a99158486f533e2da898c5a51089a6df883fb6f9749ffb07f"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersEarlierThanDate",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersEarlierThanDate",
+    "assertions": {
+      "assertEquals": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "f4126bdec4513c568f92373fa9e3e671c395c805ec754c34f0dc00eb06797005",
+    "java_method_sha256": "727062adca43fd63b37fae62667f8c2515d6ab329d24e8065a1de9f9671725ba"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersNotContaining",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersNotContaining",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "f9746ecd0c896624bf59086692b3654ceffea739285bd50bceb04e0a31c1e63f",
+    "java_method_sha256": "8fe901bf0e2ca3da52d16a22f38255b5f1753fb0e78a2e862c8309f578d30ab7"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersNotEndingWith",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersNotEndingWith",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "ee940341f8fa55495f94abeec531cc633d80503bef76a30377c101763fad973a",
+    "java_method_sha256": "e09942d1394278a8e2ad6199f28f47a94da9ee393f9a79f0e32076d8a0cbbf4e"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersNotStartingWith",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersNotStartingWith",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "279692539a256ae9b3ea5a45da3ce6c8f412e0c995c724a0f47012d69159af6b",
+    "java_method_sha256": "fb20c114835c3408a0418b4b07c7132947063d091f95728e4dac68f52ee9f6be"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithActiveNull",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithActiveNull",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "0a535ba9490cd245f03b0562dc9311743bfc2c700429fa22eae7b96d2b1cb236",
+    "java_method_sha256": "7ecf7232d8dcb8925ffc3371f962131332da482404efd4322e29ebec96714fd3"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithAgeEqual",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithAgeEqual",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "85d33fbf610fdaadb887c28fb3ccbce41ff9ec91ecf844343372166a6ae2f756",
+    "java_method_sha256": "8647b066a176af8c171b2721803b10d75db5f7595b06ac421c039a895d072c3d"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithAgeHigher",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithAgeHigher",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "74b0af06981c0f67442b64ff05e759cb0428d1735f76afd54e6921b8ec7fdf48",
+    "java_method_sha256": "d03f1792230f9ae865c384b1d1f97b85e2aa5cbadd7ad22513cef0b798111de5"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithAgeLower",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithAgeLower",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "c9dadc635b7c454d1c5d93b53096428005c883e02b93ceac749a9fca456d79aa",
+    "java_method_sha256": "105c5fafbe66edc6ef156a874f7b5bd9c83c0f04f2e6b79ccf608cce3b950c64"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithCaseInsensitiveContainsSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithCaseInsensitiveContainsSearch",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "f82c077a3a0071f37c55563b542fed4dfd36d30dd093ff00821c3f1ef17dc63a",
+    "java_method_sha256": "d3659a6c245d2307b5f04826b0f9654084af9d2f2becf41914656467c1729545"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithCaseInsensitiveDoesntContainSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithCaseInsensitiveDoesntContainSearch",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "61128b3868a455168af8c1bf32c8dd87189086a6e6f8e59f162227ea73c020f1",
+    "java_method_sha256": "f343308b08142588d309f167654a06d0fd8c1dd310f2f69defb0a1cc5d55c605"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithCaseInsensitiveDoesntEndSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithCaseInsensitiveDoesntEndSearch",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "e64637d1de275173fd87e84f57d3050abdeffb5504f17435bfdf2af40998c080",
+    "java_method_sha256": "ed54ef76ea62a4afe3527f05d5e351e6b6005d07e26728e4eb41e4e2a7667ad8"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithCaseInsensitiveDoesntStartSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithCaseInsensitiveDoesntStartSearch",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "9697e3b4c6b6b88e64b9d1ed195803ebb5c74f69e2bd3229886b0d82e7355cbc",
+    "java_method_sha256": "f701e2302a692f2797b8a9f46206b3e94752d269558250bcb4dac1c38c484ede"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithCaseInsensitiveLowerCaseSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithCaseInsensitiveLowerCaseSearch",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "8a46522f2e37a9de96190fa6ea4384cedfb2c802dc5cd7ed0a4d46f5e9eb7222",
+    "java_method_sha256": "9baccc0b3fcdc2af6f62848ce08d704d88e6b46a659786e951149ac42d74d5b6"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithCaseInsensitiveUpperCaseSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithCaseInsensitiveUpperCaseSearch",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "847e8fe475fb5c51a7b455258d2b9a866cbbbefbb39f2080369a2fcf6b8bb041",
+    "java_method_sha256": "8057147820a3195e438071735d69fec9809e36543a8f78540db44b6a7e73ddcc"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithCreatedAtNull",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithCreatedAtNull",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "b5fdf2b9ec367012ef1a666ade237f160772d29587f3119d956c7ca391982262",
+    "java_method_sha256": "305400fcce0d97a4663c284af32e95d375744afa972004374cb63535f957f288"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithDurationEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithDurationEqualSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "762278cdc8b886c2a2d67ad4c6470e4e8078f1c211ae1ee975161c34ef640195",
+    "java_method_sha256": "ef1534965dddecdecdaa169d5b4c356d6745b6c341aebb89a97eed919446aa39"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithDurationGreaterSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithDurationGreaterSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "9a7057590cf3ec7bcfb820666c2e180373fbe2dbe77fd1b77036f2d37607e99a",
+    "java_method_sha256": "b87bee19c3a32254615ad05841ffabe36e28ebac3e94e26457d8fbd9bc223466"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithDurationLessSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithDurationLessSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "cd511c95f75d49f7eea9048004ac6576bf0f330a2e309b946bf99962acea8d95",
+    "java_method_sha256": "77759820f748afe36f0a7ad0fdaa30cd993824d64118a73cb6f85a94e94e2513"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithDurationNotEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithDurationNotEqualSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "5ae049f57bd1f4ba93e86d9efe5484339560d352f20d28fb48e1e426d943bff1",
+    "java_method_sha256": "0f46f63e96f0741b0788e0d03643fc43d4162d820acedf944d41367a76cb63fd"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithInterlinkedConditions",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithInterlinkedConditions",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "f44de3caa8a44c9c664ff892ae044069b2976585da80c73806a416c8807a4b46",
+    "java_method_sha256": "7718f81d45ed5e315ca65f6bc234a0e1ee5184209de8c6832c9d6f0baf656b25"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithInterlinkedConditionsNoSpaces",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithInterlinkedConditionsNoSpaces",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "f91a59b2c8fd284da410115359b34c102edb649c51ae8dcdb4a74e8b3e88ae3f",
+    "java_method_sha256": "306f65bb145033f0afe0e38e8ce88477e81902cb9bc07ca45a21391b1bfb5aec"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithNotNullColumn",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithNotNullColumn",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "2a845015c2bbcc74fd2b692013f0bf5fac033037da9385c2bd70e870288304e2",
+    "java_method_sha256": "acf824a3e555049ef9c8d5e15c25ad22be0c2704d7b2d3cfe7180982b1920b90"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithNotNullFirstName",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithNotNullFirstName",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "c4374f69a93b2913077ada8f208762e88affa80da7eeb4af2ddc2bc93b0941e4",
+    "java_method_sha256": "ddda2162bb73d99375f8488f5e851d9a378c921f12b0290fa1b701d024726e98"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithNullColumn",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithNullColumn",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "b0b4baf030b734476795492d6398238c376bd8db3b3841f68a567298f4412b26",
+    "java_method_sha256": "b09f4caf59d30c6abaaa8c48fe0fa2916a67085016cec8049521a74a38cdf725"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithNumberOfChildrenBetween",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithNumberOfChildrenBetween",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "c7cd99816f94540b6e70723d90dc5dc5ad2a18ababbe4efe350c4e0bcde0839e",
+    "java_method_sha256": "ea25bd834ee402722daee7331e826757b8e2175dc37bf1c2e2c63ca737c3f1cd"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithNumberOfChildrenGreaterOrEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithNumberOfChildrenGreaterOrEqualSearch",
+    "assertions": {
+      "assertEquals": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "5f149b05ca20dd9dbf2dee2425cd487beaf7e418ff71c6f1efe55f065487c9e6",
+    "java_method_sha256": "5290cc647c70eab5389e772ee67f971eb60e8bf94005889a5f4254a789ffc75a"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithNumberOfChildrenLessOrEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithNumberOfChildrenLessOrEqualSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "40a199394eac194e74c931dd0ec52788f02c585ac77dc3bfc1e7fc6fcf1de849",
+    "java_method_sha256": "753c66fa6451e42534f63b75c52e96f08193487a7cfc429b905370700b6a8a70"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithNumberOfChildrenLessSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithNumberOfChildrenLessSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "cf0e43fbde4caa48ec37e48bbd5fc75a2bdf5b628ae7ccccbb0c24d0ecc6b77f",
+    "java_method_sha256": "e98cea55381352f1fc112f189ac0d25e2efbf28384f1192b1d9bebaf53d9f6ab"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithPartialEndingName",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithPartialEndingName",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "34e0346d3371575b2705474d515442096171da8f1dd0112a15913d5c3e2c45a5",
+    "java_method_sha256": "3e4369c5eb9d237941393f228d33714e5c6f9595bb72f9ed4467356df2d0231f"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithPartialNameAndSpecialCharacter",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithPartialNameAndSpecialCharacter",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "d7468643eede3aabc567b402ee331aa3ed0977b4fcd9a4c3379139022e2cce1c",
+    "java_method_sha256": "705243d9c6b828916f6107b3a1fe20facb8ba1957fedbc0c4099f0cfd6228639"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithPartialNameContaining",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithPartialNameContaining",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "e4f7513bb1c5dff24774efe0ac4159613db2f329d3e3e0a5435c424d5a27437d",
+    "java_method_sha256": "9627fff95feac2d0cf6244fd713a5ec58d2606c1fdaaf9902d9082eb3a88633c"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithPartialNameContainingSpecialCharacterUsingSimpleString",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithPartialNameContainingSpecialCharacterUsingSimpleString",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "545e6423881beef4a79112e1b311376a93b439e4f9989875ad360882738730d8",
+    "java_method_sha256": "c216ad14775e4a782ebbbe6b82ca70f6ff34c01c93740e3dad9dcb16c0c1eae5"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithPartialNameContainingWithSpecialCharacter",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithPartialNameContainingWithSpecialCharacter",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "3f6a67803bcf45ff9323ae73d62620b7c778d86696b93e7e2625e348367b2925",
+    "java_method_sha256": "f562f0e0c65c8a8dced61ebf087dc2a5b3d0e98aa437a982d370ab25864c330e"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithPartialNameContainingWithSpecialCharacterUsingDoubleString",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithPartialNameContainingWithSpecialCharacterUsingDoubleString",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "9a10abe8705f6f4ff8cdcae4e9e0940a59daf19c150de1b39674a8908c39b9b7",
+    "java_method_sha256": "b3a007f34cdd2e36354cbfaa40a753e7a6cb4c30de52e83ee8830d6198cd2e7d"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithPartialStartingName",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithPartialStartingName",
+    "assertions": {
+      "assertTrue": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "27271fb73d2f39d74864ebe802db176624ebc127dfa31ae698c238c674efbd3f",
+    "java_method_sha256": "0025fbabe6f018f18a413721446e2c160077570251c63395fa15c2d95dbd6d8d"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUUIDEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUUIDEqualSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "fdb9f5be9cbd857c36ce878de17057bd5f99aea8f86c34421e24dd925a1a7137",
+    "java_method_sha256": "9f22cb81d1e96b3cae2bd2d2addcc79bd80e58f9017b102a61a42c7764fdf3a5"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUUIDNotEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUUIDNotEqualSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "fd6729d5e742a299af5f21dc5c384d640c31494c732a561b72ce0df8a5ec9bcd",
+    "java_method_sha256": "4c465fd8251b7bd797e5b1f3346bebc2fed7020ddd24660f911b7cf8585a01a9"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUUIDNull",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUUIDNull",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "dbb257943c6baf34cc3447a4e889dbe210a22ca501433f68b7c736507e042a0c",
+    "java_method_sha256": "2b6442ea1773ad08fa2419516c4627bcc15c3879dd8dc56fa151882ed272cd4d"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdateInstantAtGreaterSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdateInstantAtGreaterSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "cd49d439e6d1eb84b0f7e7c09937b0d1a0522398009f431ec4ad131c145e5ff5",
+    "java_method_sha256": "6e4a124b1cc9c5dd88e22b6af1412b2ce3dbebb63b8bbe418e40267ae56fa68e"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdateInstantAtGreaterThanEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdateInstantAtGreaterThanEqualSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "a5fce22c44b506790913687effb76de31a72cf1a5ad1b9b93e90d94123535138",
+    "java_method_sha256": "ee09fa1eaa99480505283a9c25f1863b2014af72aa58f60a4f62a11641e6c99b"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdateInstantAtLessThanEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdateInstantAtLessThanEqualSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "2f7f1e48343cd0051c0a34808ee3066485efae110306ed50cb812eb6deff8e52",
+    "java_method_sha256": "81633c95f1291119e6adc1e68ad9031ca76b65ee5ae85dd83824ff1e52405369"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedAtEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedAtEqualSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "ccaca057e8e73cc1fe975d04522016d1ef4ec1afe7d748440e5bc196ab53be6d",
+    "java_method_sha256": "d34f783407c1f23fe121b1714f43ba9b03fb6c7fcd45a2612b6ec398b8f35da2"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedAtGreaterSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedAtGreaterSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "cc8c1781f7aea6760645f77f8d1f70af2e557fad9c3d72768e50df1ff16dd54e",
+    "java_method_sha256": "38cef4d79f7f1a435e140beecd55e97f8971b5c5d66c5057e902e98222af320b"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedAtGreaterThanEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedAtGreaterThanEqualSearch",
+    "assertions": {
+      "assertEquals": 1,
+      "assertFalse": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "8f3a06a6a59eb0bdc3a4eb36cbc5ab373805bed9c1d58fbaf103ab7c71382c5e",
+    "java_method_sha256": "fff15b2e59820133e3fdc6c23d000e4714a24285a0e3c3b454b55a6c51a05378"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedAtLessSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedAtLessSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "a4b57bf4825867496c68e3049e023ce98cef91d9f07474aae45cdc9eca7f61cc",
+    "java_method_sha256": "6709d95f2fcec93e337df2e14e0df744178601265284d1f2043de353b7016f31"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedAtLessThanEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedAtLessThanEqualSearch",
+    "assertions": {
+      "assertEquals": 1,
+      "assertFalse": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "ce7e6c0e34d4c9c18ea2e93b34f9868b498a4a79a993a8a7dd57cfd88a043e0e",
+    "java_method_sha256": "28122b6bc8b3267b210e6292cdb6ad55d2a30c386f462ff53197c01f6064589a"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedAtNotEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedAtNotEqualSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "9c5b3c4b36981bf77dc50827cfd1c44af517e9230f35b2f01d54c61d46b53b70",
+    "java_method_sha256": "1a28d62e95d022531cffae186f6fe33714ecb5f1942f7dcd467addf451b1f743"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateAtEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateAtEqualSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "0c8e1eab30ee8d5389d071382df839c5daba0c2df1d1b20aec6d072cccca0ed8",
+    "java_method_sha256": "1f7046b2883138ff9304250b093c4a7dde0f52aa69a6cbe8cec882d76cc90963"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateAtGreaterSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateAtGreaterSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "3f8b9b473ea3dd85bd23a28b7fae537b83ca9622fd4728a35ff83bb4b98ce5b0",
+    "java_method_sha256": "bef616743c3e1f246864b16b82929dd271a25746401e924f2897bbd2911c9761"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateAtGreaterThanEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateAtGreaterThanEqualSearch",
+    "assertions": {
+      "assertEquals": 1,
+      "assertFalse": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "715f61f8b0861995bfa19ed34efc2e7a3d2ea8cc87c566331e3aebed61a98f2a",
+    "java_method_sha256": "88c5ff9542103e13989638942b8ef791b91df4be0c1122e6f89691f015da08ee"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateAtLessSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateAtLessSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "e3bb24439acef2617955c420d0c6f3c17e6bc9e0000f362d306e4462451d33c4",
+    "java_method_sha256": "5479d49465f0d5669728bff34c4f88feca40cf69804cee958a4cb76bd91d9fdb"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateAtLessThanEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateAtLessThanEqualSearch",
+    "assertions": {
+      "assertEquals": 1,
+      "assertFalse": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "f338d232233726a8182e378a59a656b0681e6b4b94a338a2887b32d962dd91f8",
+    "java_method_sha256": "06ad3c5fd176d7f1d87e92726e9a5e5a0619a51ba6bc7c142d76f8c57d52d119"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateAtNotEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateAtNotEqualSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "6ecf25e9392f98291675c027432e9b4669ab7ad4fdd50e0d0ebd1a3f2874d7e4",
+    "java_method_sha256": "ad9486fdcc9ed739735bc0cf655d3c76748dde524916b9f66aba1333a6cc02e7"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateAtNull",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateAtNull",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "ac701ebffe78601ee79af1ba8acdf8ad1dfeeeb7bf2ae13378b8ed59ea812f61",
+    "java_method_sha256": "20fd25ce065cfa8817ab4b65eb0372d3930ee614554984f57aa8e2ab20716388"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateBetween",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateBetween",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "d50f4676ff63f66881da58a0c4b7af53754736b5c67da94e2e6affa5f83a0135",
+    "java_method_sha256": "5b3dcd43b130cb19230e9fbe0fe02ad9033ca2544a5acfff84c7ef1c641313b8"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateBetweenAndIdIn",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateBetweenAndIdIn",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "ddd0eaf54cf094550585871f868364b334765a7cee8b6148a36b725e2f868b71",
+    "java_method_sha256": "fc91960f24206316f93436e4f1da0223d21ddc2827832a33a68fb6c4fe3baf47"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateNotBetween",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateNotBetween",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "27a5087054ca2c3836525aaa9f9790d73a994d1616549de6a9907348f960b5e6",
+    "java_method_sha256": "dd768a0de32914885521369396864b5f6521a751f51c0b0596ce2aae4671dd65"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateTimeAtNotNull",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedDateTimeAtNotNull",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "372c8593bea1a04ac57c7d971496eaa3696d6473766987d4a1929414692c13ce",
+    "java_method_sha256": "4ee994e07af1f9ada1d74a670f7ac9a9dab60e7a67eabde1086d6267812c1f49"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedTimeAtEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedTimeAtEqualSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "c2939432ff07cdce5596a7583ef1ba0d7d7964ab08abde6f901c2a5f62f8bcc4",
+    "java_method_sha256": "15baa06b0d52cc8341530940c1065b13163226dddef8a3be26ed373f31dc34a9"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedTimeAtGreaterSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedTimeAtGreaterSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "1fa64356679aa863372d165345b0511996c7a0282ba95eb414f23e8c3db89f29",
+    "java_method_sha256": "d775275bc15ccdfb56d96aaacacfbc3b92d05fff5381a42a0d187eeda8140644"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedTimeAtGreaterThanEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedTimeAtGreaterThanEqualSearch",
+    "assertions": {
+      "assertEquals": 1,
+      "assertFalse": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "4efc4379792ffe4092b357b9a53ecd40ff7ec64944da387b13c0080b2f54b961",
+    "java_method_sha256": "13c39c284f1a34f7436d3119f1a7b00d0f43dea67045ce2319f8a431533fd244"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedTimeAtLessSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedTimeAtLessSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "00cdab5f4501e0f22454886be950ac26e2cbd0c1cb7c848b01025e5de447b89d",
+    "java_method_sha256": "0950f7f516a758e227d449ca4670ab69caa9192dbe12a15a72d30ecf93e43652"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedTimeAtLessThanEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedTimeAtLessThanEqualSearch",
+    "assertions": {
+      "assertEquals": 1,
+      "assertFalse": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "9d6ac049d8d2090e48d09dd46bad26c3e12d9e6d4214078cc133acd78b8aa704",
+    "java_method_sha256": "3849c94f9a69099cfabd988ab22a768c93a4145689536bb106dee5ebe441ebf2"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedTimeAtNotEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUpdatedTimeAtNotEqualSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "d4d83e726f4f3a1182875458ff372b05e192a718e8269f6c3be076b0bb7cb3bb",
+    "java_method_sha256": "d63fefb757dfe646fbf09a5e62b39f390a308adaafdc14204900bf85c8890612"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUserChildrenNumberNull",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUserChildrenNumberNull",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "459915bd1df493223677715b0f0e163fdca114a85c526cf89b80b37008f081a4",
+    "java_method_sha256": "cb725b01d7962d67f5dd97a0e92f0c613cd22a943797b59425672b0cae7cba0a"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUserFirstNameBetween",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUserFirstNameBetween",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "09a69dc511aebf3f8fb29e2bdf445aefe9359f8fc7dcf2f527ac25244d20e558",
+    "java_method_sha256": "a91a2f8baec50edbd95211b722b3b6b248f91c44cfdeb0069df4717e8d77195f"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUserFirstNameCaseSensitive",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUserFirstNameCaseSensitive",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "951e841055e3151d45ff82fd5916b788381195b07fe72414fcb12b2e2d148427",
+    "java_method_sha256": "b309d1ef36e89c212197eae5ef244b36533566cdb9743c9d0c200c4979d8353b"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUserFirstNameGt",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUserFirstNameGt",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "9bc708ec24bdf912ce494241288923fbfe0141fa6e057832a75a7a8df2faaae6",
+    "java_method_sha256": "1f9cc12258e6ef3145a9f6af625af8ad9260d82935733b98bddf099cf3789ebb"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUserFirstNameLt",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUserFirstNameLt",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "a6862b7a7f23f448f700c4840df9e48f08f03949b98317695676fcf86abf598c",
+    "java_method_sha256": "aa92eb171f4331b81b2a6a95dc92160b746a486c28a02b418f2c99a7680580de"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUserFirstNameNotBetween",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUserFirstNameNotBetween",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "730718b2e1aa89e3ed7d4689c50b249c8b193622a5b5d258ded4ad182651b2a1",
+    "java_method_sha256": "0108d9d9562921960c83e8d60cac9e1620306983c75dd274533a8f7387aaf470"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUserTypeEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUserTypeEqualSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "9660958c2e8ca4cae1a10862d171b264ce6a70484261e40d1d548aab31b6f49c",
+    "java_method_sha256": "759f9a91f02de4f4ef7cf4391814d5b74463875a7b5203b44c369dfe3e262fbf"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUserTypeNotEqualSearch",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canGetUsersWithUserTypeNotEqualSearch",
+    "assertions": {
+      "assertEquals": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "906493ffd144be0e6c107ec7d76a59fe6d36ff101b59ea34f9e562deba386e88",
+    "java_method_sha256": "a7ff208382cecded869c29ebfb65477e51a77e5f6e121028ebb1d4c0fa6e9322"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#canNotSearchABlackListedField",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#canNotSearchABlackListedField",
+    "assertions": {
+      "assertThrows": 1
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "c5e8aa86541a5e5c64ce68fe8a4da7ac83931534b7b0edb2909679f0cd1e586a",
+    "java_method_sha256": "3c366f87ebf7a8aeb50f87d06b70324f7cdf40c664c122418181d0f8112ed027"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#cantGetAuthorsWithBooksNull",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#cantGetAuthorsWithBooksNull",
+    "assertions": {
+      "assertThrows": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "2c80405f775f1693c9e38261b811aa1e82f2f316a8a81f3c31cb32dd4b152518",
+    "java_method_sha256": "15f9c6e3116d4dfbf69bae162ffbc5ca99d2a3da59b8465954dd40063811eb37"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#cantSearchForEmptyWithNonFieldProperties",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#cantSearchForEmptyWithNonFieldProperties",
+    "assertions": {
+      "assertThrows": 2
+    },
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "5bb669998eedd46719110767ad9820cac3d4e73cfe765fa51f88018775b091bc",
+    "java_method_sha256": "d7198a70cb1df9d3944f0c1657257da8450674ac862f4f7927da451447fecd09"
+  },
+  {
+    "kotlin": "com.sipios.springsearch.SpringSearchApplicationTest#run",
+    "java": "com.sipios.springsearch.SpringSearchApplicationTest#run",
+    "assertions": {},
+    "same_string_and_numeric_literals": true,
+    "kotlin_method_sha256": "038696878cb35c206d6f32475325e64f441afaea326f0ad79efe7f05adcb11bc",
+    "java_method_sha256": "c461747f0254a9a6f0dfc6e7dbdb17fdb69af8c38d7451f251c242840a62ac9e"
+  }
+]
