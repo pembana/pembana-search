@@ -1,287 +1,115 @@
-# Pembana Search — Spring Boot 4 compatibility
+# Pembana Search
 
-Production code and tests are Java. Spring Boot 4.1.1 is verified on Java 17, 21,
-and 25 against H2 and PostgreSQL, retaining all 113 original scenarios.
-Query behavior is documented in the [Stage 4 query guide](docs/stage4/query-behavior.md),
-including opt-in validation, field restrictions, limits, and structured errors.
-See the [Stage 4 verification report](docs/stage4/README.md) for new coverage.
-PostgreSQL testing uses Testcontainers locally and in CI; select the `postgresql`
-profile with a running Docker-compatible engine. H2 remains the default and
-does not require Docker. See the [Testcontainers report](docs/testcontainers/README.md),
-the [Stage 3 compatibility report](docs/stage3/README.md), the
-[Stage 2 verification report](docs/stage2/README.md), the
-[Stage 1 report](docs/stage1/README.md), and the
-[original baseline report](docs/baseline/README.md).
-New contributions and the overall distribution use [Apache License 2.0](LICENSE);
-inherited Spring Search material retains its [MIT notice](LICENSE.txt). See
-[NOTICE](NOTICE) for upstream provenance. The original upstream README follows;
-its published coordinates, Kotlin examples, and Java 8 requirement describe the
-historical upstream baseline. The current build requires Java 17 or later and
-targets Java 17 bytecode; this milestone does not publish a new artifact.
+Advanced search expressions for Spring Data JPA, with optional Spring MVC query
+binding, field restrictions, input limits, and structured validation errors.
 
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+**Development snapshot:** `com.pembana:pembana-search:1.0.0-SNAPSHOT`.
+No Pembana Search artifact has been published. Build and install locally before
+using the dependency below. The API is evolving toward 1.0; this single artifact
+currently includes parsing, JPA integration, and MVC binding.
 
-[![codecov][coverage-shield]][coverage-url]
+## Compatibility
 
-<!-- PROJECT LOGO -->
-<br />
-<p align="center">
-  <a href="https://github.com/sipios/spring-search">
-    <img src="https://i.imgur.com/ZmuY8gw.png" alt="Logo" width="80" height="80">
-  </a>
+| Component | Verified baseline |
+| --- | --- |
+| Spring Boot | 4.1.1 |
+| Java | 17, 21, 25; Java 17 bytecode |
+| H2 | 2.4.240; default test database, no Docker required |
+| PostgreSQL | 18.1 through Testcontainers 2.0.5; Docker required for that profile |
 
-  <h3 align="center">Spring Search</h3>
+Boot 3 and other framework/database combinations are not currently advertised
+as supported. Production and tests use Java; Kotlin tooling is not required.
 
-  <p align="center">
-    Spring Search provides advanced search capabilities to a JPA entity
-    <br />
-    <a href="https://github.com/sipios/spring-search#installation"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/sipios/spring-search#usage">View Demo</a>
-    ·
-    <a href="https://github.com/sipios/spring-search/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/sipios/spring-search/issues">Request Feature</a>
-  </p>
-</p>
+## Build locally
 
+Select JDK 17, 21, or 25 in `JAVA_HOME` and `PATH`:
 
+```sh
+# H2 by default; artifact signing and the network vulnerability scan are skipped.
+./mvnw -Dgpg.skip=true -Ddependency-check.skip=true clean install
 
-<!-- TABLE OF CONTENTS -->
-## Table of Contents
+# Optional PostgreSQL verification; start a Docker-compatible engine first.
+./mvnw -Dgpg.skip=true -Ddependency-check.skip=true -Dspring.profiles.active=postgresql clean verify
+```
 
-* [About the Project](#about-the-project)
-  * [Built With](#built-with)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-* [Usage](#usage)
-* [Roadmap](#roadmap)
-* [Contributing](#contributing)
-* [License](#license)
-* [Contact](#contact)
-* [Acknowledgements](#acknowledgements)
+The wrapper supplies Maven 3.10.0. Tests and coverage remain enabled in these
+commands. Git commit signing is separate from Maven artifact signing.
 
+## Add to a Spring Boot application
 
+After installing this development snapshot locally:
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
-
-[![Spring-search screenshot][product-screenshot]](./docs/images/complex-example)
-
-Spring Search provides a simple query language to perform advanced searches for your JPA entities.
-
-Let's say you manage cars, and you want to allow API consumers to search for:
-* Cars that are blue **and** that were created after year 2006 **or** whose model name contains "Vanquish"
-* Cars whose brand is "Aston Martin" **or** whose price is more than 10000$
-
-You could either create custom repository methods for both these operations, which works well if you know in advance which fields users might want to perform searches on. You could also use spring-search that allows searching on all fields, combining logical operators and much more.
-
-Please note that providing such a feature on your API does not come without risks such as performance issues and less clear capabilities for your API. [This article](http://www.bizcoder.com/don-t-design-a-query-string-you-will-one-day-regret) summarizes these risks well.
-
-### Built With
-
-* [Kotlin](https://kotlinlang.org/)
-* [Spring Boot](https://spring.io/projects/spring-boot)
-* [ANTLR](https://www.antlr.org/)
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-**Requirements** : JDK 8 or more.  
-To get a local copy up and running follow these simple steps.
-
-### Installation
-##### Maven
-
-Add the repo to your project inside your `pom.xml` file
 ```xml
 <dependency>
-    <groupId>com.sipios</groupId>
-    <artifactId>spring-search</artifactId>
-    <version>0.2.6</version>
+    <groupId>com.pembana</groupId>
+    <artifactId>pembana-search</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
 
-##### Gradle
-Add the repo to your project by adding `implementation 'com.sipios:spring-search:0.2.0'` in your `build.gradle` file.
+Your application supplies Spring Data JPA, a JDBC driver, and, for HTTP binding,
+Spring MVC. For Boot 4 use `spring-boot-starter-data-jpa` and
+`spring-boot-starter-webmvc`. Extend `JpaSpecificationExecutor` on your repository:
 
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Your repository should be annotated as a `RepositoryRestResource` and should extend `JpaSpecificationExecutor`
-```kotlin
-import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor
-import org.springframework.data.rest.core.annotation.RepositoryRestResource
-
-@RepositoryRestResource
-interface YourRepository : JpaRepository<YourModel, Int>, JpaSpecificationExecutor<YourModel>
-```
-
-Import the library in your controller
-```kotlin
-import com.sipios.springsearch.anotation.SearchSpec
-```
-
-Use it in your controller
-```kotlin
-@GetMapping("searchUrl")
-fun yourFunctionNameHere(@SearchSpec specs: Specification<YourModel>): ResponseEntity<List<YourResponse>> {
-    return ResponseEntity(yourRepository.findAll(Specification.where(specs)), HttpStatus.OK)
-}
-```
-
-## Operators
-<!-- table of operators -->
-| Operator       | Description                     | Example                                            |
-|----------------|---------------------------------|----------------------------------------------------|
-| `:`            | Equal                           | `color:Red`                                        |
-| `!`            | Not equal                       | `color!Red`                                        |
-| `>`            | Greater than                    | `creationyear>2017`                                |
-| `>:`           | Greater than eq                 | `creationyear>2017`                                |
-| `<`            | Less than                       | `price<100000`                                     |
-| `<:`           | Less than eq                    | `price<100000`                                     |
-| `*`            | Starts with                     | `brand:*Martin`                                    |
-| `*`            | Ends with                       | `brand:Aston*`                                     |
-| `*`            | Contains                        | `brand:*Martin*`                                   |
-| `OR`           | Logical OR                      | `color:Red OR color:Blue`                          |
-| `AND`          | Logical AND                     | `brand:Aston* AND price<300000`                    |
-| `IN`           | Value is in list                | `color IN ['Red', 'Blue']`                         |
-| `NOT IN`       | Value is not in list            | `color NOT IN ['Red', 'Blue']`                     |
-| `IS EMPTY`     | Collection field is empty       | `cars IS EMPTY`                                    |
-| `IS NOT EMPTY` | Collection field is not empty   | `cars IS NOT EMPTY`                                |
-| `IS NULL`      | Field is null                   | `brand IS NULL`                                    |
-| `IS NOT NULL`  | Field is not null               | `brand IS NOT NULL`                                |
-| `()`           | Parenthesis                     | `brand:Nissan OR (brand:Chevrolet AND color:Blue)` |
-| `BETWEEN`      | Value is between two values     | `creationyear BETWEEN 2017 AND 2019`               |
-| `NOT BETWEEN`  | Value is not between two values | `creationyear NOT BETWEEN 2017 AND 2019`           |
-
-
-## Examples
-
-1. Using parenthesis  
-Request : `/cars?search=( brand:Nissan OR brand:Chevrolet ) AND color:Blue`  
-*Note: Spaces inside the parenthesis are not necessary*
-![parenthesis example](./docs/images/parenthesis-example.gif)
-2. Using space in nouns  
-Request : `/cars?search=model:'Spacetourer Business Lounge'`  
-![space example](./docs/images/space-example.gif)
-3. Using special characters  
-Request: `/cars?search=model:中华V7`
-![special characters example](./docs/images/special-characters-example.gif)
-4. Using deep fields  
-Request : `/cars?search=options.transmission:Auto`
-![deep field example](./docs/images/deep-field-example.gif)
-5. Complex example  
-Request : `/cars?search=creationyear:2018 AND price<300000 AND (color:Yellow OR color:Blue) AND options.transmission:Auto`
-![complex example](./docs/images/complex-example.gif)
-15. Using the BETWEEN operator
-Request : `/cars?search=creationyear BETWEEN 2017 AND 2019`
-
-## Blocking the search on a field
 ```java
-@GetMapping
-public List<User> getUsers(@SearchSpec(blackListedFields = {"password"}) Specification<User> specs) {
-  return userRepository.findAll(Specification.where(specs));
+public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
 }
 ```
 
-<!-- TROUBLESHOOTING -->
-## Troubleshooting
+Bind an advanced query with the correctly spelled `annotation` package:
 
-If you get the following error ⬇️
-
-> No primary or default constructor found for interface org.springframework.data.jpa.domain.Specification
-
-You are free to opt for either of the two following solutions :
-1. Add a `@Configuration` class to add our argument resolver to your project
-```kotlin
-// Kotlin
-@Configuration
-class SpringSearchResolverConf : WebMvcConfigurer {
-  override fun addArgumentResolvers(argumentResolvers: MutableList<HandlerMethodArgumentResolver>) {
-    argumentResolvers.add(SearchSpecificationResolver())
-  }
-}
-```
 ```java
-// Java
-@Configuration
-public class SpringSearchResolverConf implements WebMvcConfigurer {
-    @Override
-    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(new SearchSpecificationResolver());
-    }
+import com.pembana.search.annotation.SearchSpec;
+import org.springframework.data.jpa.domain.Specification;
+
+@GetMapping("/users")
+public List<User> findUsers(@SearchSpec Specification<User> search) {
+    return search == null ? repository.findAll() : repository.findAll(search);
 }
 ```
 
-2. Add a `@ComponentScan` annotation to your project configuration class
+For example, the `search` parameter can contain
+`name:Ada* AND active:true`. URL-encode expressions when sending HTTP requests.
+Boot discovers the resolver automatically; scanning the library package is not
+required. Consumer authorization/tenant restrictions must be composed outside
+user-controlled Boolean expressions.
+
+Default matching preserves the upstream advanced-expression behavior. Opt in to
+stricter validation explicitly:
+
 ```java
-@ComponentScan(basePackages = {"com.your-application", "com.sipios.springsearch"})
+@SearchSpec(strictValidation = true,
+            allowedFields = {"name", "active"},
+            maxQueryLength = 4096,
+            maxNestingDepth = 16)
+Specification<User> search
 ```
 
-<!-- ROADMAP -->
-## Roadmap
+The [query reference](docs/reference/query-language.md) documents important legacy
+limits, including case-operator asymmetry, SQL LIKE metacharacters, and implicit
+association joins. Strict validation does not silently change matching semantics.
 
-See the [open issues](https://github.com/sipios/spring-search/issues) for a list of proposed features (and known issues).
+## Documentation
 
-Please note that boolean parameter types are yet to be supported.
+- [Getting started and direct JPA usage](docs/getting-started.md)
+- [Query language, matching, validation, and errors](docs/reference/query-language.md)
+- [Configuration and public entry points](docs/reference/configuration.md)
+- [Architecture and dependency boundaries](docs/architecture.md)
+- [Migration from Spring Search and earlier imported snapshots](docs/migration.md)
+- [Building, testing, NVD configuration, and troubleshooting](docs/development.md)
+- [Release/versioning checklist](docs/releasing.md)
+- [Contributing](CONTRIBUTING.md), [changelog](CHANGELOG.md), [documentation index](docs/README.md)
 
+`./mvnw -Dgpg.skip=true -Ddependency-check.skip=true package` produces binary,
+source, and Javadoc JARs. Generated API documentation is in
+`target/reports/apidocs/` with the current Maven Javadoc plugin.
 
-<!-- CONTRIBUTING -->
-## Contributing
+## License and provenance
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-
-
-<!-- CONTACT -->
-## Contact
-
-[@sipios_fintech](https://twitter.com/sipios_fintech) - contact@sipios.com
-
-Project Link: [https://github.com/sipios/spring-search](https://github.com/sipios/spring-search)
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/sipios/spring-search.svg?style=flat-square
-[contributors-url]: https://github.com/sipios/spring-search/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/sipios/spring-search.svg?style=flat-square
-[forks-url]: https://github.com/sipios/spring-search/network/members
-[stars-shield]: https://img.shields.io/github/stars/sipios/spring-search.svg?style=flat-square
-[stars-url]: https://github.com/sipios/spring-search/stargazers
-[issues-shield]: https://img.shields.io/github/issues/sipios/spring-search.svg?style=flat-square
-[issues-url]: https://github.com/sipios/spring-search/issues
-[license-shield]: https://img.shields.io/github/license/sipios/spring-search.svg?style=flat-square
-[license-url]: https://github.com/sipios/spring-search/blob/master/LICENSE.txt
-[product-screenshot]: docs/images/complex-example.gif
-[coverage-shield]: https://codecov.io/gh/sipios/spring-search/branch/master/graph/badge.svg
-[coverage-url]: https://codecov.io/gh/sipios/spring-search
+Pembana Search contributions and distribution use [Apache License 2.0](LICENSE).
+Inherited Spring Search material retains its [MIT license](LICENSE.txt) and
+[NOTICE](NOTICE). This fork derives from
+[theodo-fintech/spring-search](https://github.com/theodo-fintech/spring-search)
+revision `c4b404dc6cf22b540d3e7f6211e557f5d83b6c61`.
+Historical evidence and archived upstream documentation retain their original
+names and coordinates; they are not current installation instructions.

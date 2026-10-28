@@ -1,42 +1,17 @@
-## PR Checklist
-Please check if your PR fulfills the following requirements:
+## Change
 
-- [ ] The commit message follows our guidelines: https://github.com/sipios/spring-search//blob/main/CONTRIBUTING.md##Commit-messages
-- [ ] Tests for the changes have been added (for bug fixes / features)
-- [ ] Docs have been added / updated (for bug fixes / features)
+Describe the concrete problem and resulting behavior.
 
+## Verification
 
-## PR Type
-What kind of change does this PR introduce?
+List relevant Maven checks and any remaining gaps. Identify H2/PostgreSQL and JDKs tested.
 
-<!-- Please check the one that applies to this PR using "x". -->
+## Compatibility and documentation
 
-- [ ] Bugfix
-- [ ] Feature
-- [ ] Code style update (formatting, local variables)
-- [ ] Refactoring (no functional changes, no api changes)
-- [ ] Build related changes
-- [ ] CI related changes
-- [ ] Documentation content changes
-- [ ] Other... Please describe:
+Describe API/import changes, intentional matching changes, and migration steps.
 
-
-## What is the current behavior?
-<!-- Please describe the current behavior that you are modifying, or link to a relevant issue. -->
-
-Issue Number: N/A
-
-
-## What is the new behavior?
-
-
-## Does this PR introduce a breaking change?
-
-- [ ] Yes
-- [ ] No
-
-
-<!-- If this PR contains a breaking change, please describe the impact and migration path for existing applications below. -->
-
-
-## Other information
+- [ ] Relevant regression tests pass; original scenarios are retained.
+- [ ] Documentation/changelog match the implementation.
+- [ ] New Java files have Apache 2 headers, class author tags, and class/method Javadoc.
+- [ ] Commits are signed and signatures verified.
+- [ ] No publishing or release automation is enabled by this change.

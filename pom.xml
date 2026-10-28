@@ -5,21 +5,41 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>4.1.1</version>
-		<relativePath /> <!-- lookup parent from repository --> <!-- lookup parent from repository -->
+		<relativePath />
 	</parent>
-	<groupId>com.sipios</groupId>
-	<artifactId>spring-search</artifactId>
-	<version>0.3.0</version>
-	<name>spring-search</name>
-	<description>API for generating spring boot database queries</description>
+	<groupId>com.pembana</groupId>
+	<artifactId>pembana-search</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>Pembana Search</name>
+	<description>Advanced search expressions and opt-in validation for Spring Data JPA and Spring MVC.</description>
+	<url>https://github.com/pembana/pembana-search</url>
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+		<license>
+			<name>MIT License (inherited Spring Search material)</name>
+			<url>https://github.com/pembana/pembana-search/blob/main/LICENSE.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/pembana/pembana-search/issues</url>
+	</issueManagement>
 
 	<properties>
 		<java.version>17</java.version>
+		<!-- Publishing awaits Pembana release configuration. -->
+		<maven.deploy.skip>true</maven.deploy.skip>
 		<jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
 		<dependency-check-maven.version>13.0.0</dependency-check-maven.version>
 		<antl4.version>4.13.1</antl4.version>
-		<grammar.package>com.sipios.springsearch.grammar</grammar.package>
-		<grammar.directory>com/sipios/springsearch/grammar</grammar.directory>
+		<grammar.package>com.pembana.search.grammar</grammar.package>
+		<grammar.directory>com/pembana/search/grammar</grammar.directory>
+		<documentation.outputDirectory>${project.build.directory}/reports</documentation.outputDirectory>
 		<project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
 	</properties>
 
@@ -80,7 +100,44 @@
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>${project.basedir}</directory>
+				<targetPath>META-INF</targetPath>
+				<includes>
+					<include>LICENSE</include>
+					<include>LICENSE.txt</include>
+					<include>NOTICE</include>
+				</includes>
+			</resource>
+		</resources>
 		<plugins>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>prepare-javadoc-notices</id>
+						<phase>prepare-package</phase>
+						<goals><goal>copy-resources</goal></goals>
+						<configuration>
+							<outputDirectory>${documentation.outputDirectory}/apidocs/META-INF</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${project.basedir}</directory>
+									<includes>
+										<include>LICENSE</include>
+										<include>LICENSE.txt</include>
+										<include>NOTICE</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.antlr</groupId>
 				<artifactId>antlr4-maven-plugin</artifactId>
@@ -101,15 +158,6 @@
 						<argument>${grammar.package}</argument>
 					</arguments>
 					<outputDirectory>${project.build.directory}/generated-sources/antlr4/${grammar.directory}</outputDirectory>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-release-plugin</artifactId>
-				<version>2.5.3</version>
-				<configuration>
-					<useReleaseProfile>false</useReleaseProfile>
-					<releaseProfiles>release</releaseProfiles>
-					<autoVersionSubmodules>true</autoVersionSubmodules>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -201,21 +249,23 @@
 					</execution>
 				</executions>
 				<configuration>
-					<failOnError>false</failOnError>
+					<failOnError>true</failOnError>
+					<failOnWarnings>true</failOnWarnings>
+					<outputDirectory>${documentation.outputDirectory}</outputDirectory>
+					<author>true</author>
+					<doctitle>Pembana Search ${project.version}</doctitle>
+					<windowtitle>Pembana Search ${project.version}</windowtitle>
+					<excludePackageNames>com.pembana.search.grammar</excludePackageNames>
+					<sourcepath>${project.build.sourceDirectory}${path.separator}${project.build.directory}/generated-sources/antlr4</sourcepath>
+					<sourceFileExcludes>
+						<sourceFileExclude>**/QueryLexer.java</sourceFileExclude>
+						<sourceFileExclude>**/QueryParser.java</sourceFileExclude>
+						<sourceFileExclude>**/QueryBaseListener.java</sourceFileExclude>
+						<sourceFileExclude>**/QueryBaseVisitor.java</sourceFileExclude>
+						<sourceFileExclude>**/QueryListener.java</sourceFileExclude>
+						<sourceFileExclude>**/QueryVisitor.java</sourceFileExclude>
+					</sourceFileExcludes>
 				</configuration>
-			</plugin>
-			<plugin>
-				<!-- explicitly define maven-deploy-plugin after other to force exec order -->
-				<artifactId>maven-deploy-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>deploy</id>
-						<phase>deploy</phase>
-						<goals>
-							<goal>deploy</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -255,16 +305,10 @@
 		</plugins>
 	</build>
 	<scm>
-		<connection>scm:git:https://github.com/sipios/spring-search.git</connection>
-		<developerConnection>scm:git:git@github.com:sipios/spring-search.git</developerConnection>
-		<url>https://github.com/sipios/spring-search</url>
+		<connection>scm:git:https://github.com/pembana/pembana-search.git</connection>
+		<developerConnection>scm:git:git@github.com:pembana/pembana-search.git</developerConnection>
+		<url>https://github.com/pembana/pembana-search</url>
 		<tag>HEAD</tag>
 	</scm>
 
-	<distributionManagement>
-		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-		</repository>
-	</distributionManagement>
 </project>

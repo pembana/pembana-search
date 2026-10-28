@@ -41,3 +41,12 @@ opt-in validation/field restrictions/limits, and structured query diagnostics.
 Compatibility defaults and inherited matching strategies remain unchanged. New
 classes carry 2026 Apache License 2.0 headers and author/Javadoc documentation.
 See docs/stage4/README.md for scope, intentional opt-in rejections, and evidence.
+
+The identity housekeeping milestone renames the project to Pembana Search under
+com.pembana:pembana-search:1.0.0-SNAPSHOT and Java packages com.pembana.search.
+The annotation package spelling is corrected; the unused deprecated default-package
+listener alias is removed. Current documentation and Maven metadata now describe
+Pembana Search, and packaged binary/source/Javadoc artifacts retain these notices.
+Historical reports and upstream notices keep their original names and identities.
+Query behavior, grammar, framework dependencies and tests remain equivalent under
+the documented class-name mapping. No publication is configured or performed.

@@ -1,0 +1,807 @@
+{
+  "verified_on": "2026-10-28",
+  "base_revision": "88a5d3d8123048178e1774ddc17d59e26f3f270a",
+  "coordinates": "com.pembana:pembana-search:1.0.0-SNAPSHOT",
+  "package": "com.pembana.search",
+  "original_test_class_mapping": {
+    "com.sipios.springsearch.SpringSearchApplicationTest": "com.pembana.search.PembanaSearchCompatibilityTest"
+  },
+  "matrix": {
+    "java17-h2": {
+      "environment": [
+        "Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)",
+        "Maven home: /Users/hillert/.m2/wrapper/dists/apache-maven-3.10.0/dae9a06d",
+        "Java version: 17.0.20, vendor: BellSoft, runtime: /Users/hillert/.sdkman/candidates/java/17.0.20-librca",
+        "Default locale: en_US, platform encoding: UTF-8, time zone: Pacific/Honolulu",
+        "OS name: \"mac os x\", version: \"27.0.1\", arch: \"aarch64\", family: \"mac\""
+      ],
+      "counts": {
+        "original_discovered": 113,
+        "original_executed": 113,
+        "original_passed": 113,
+        "supplemental_passed": 35,
+        "total_discovered": 148,
+        "total_executed": 148,
+        "failed": 0,
+        "errored": 0,
+        "skipped": 0
+      },
+      "same_outcomes_after_identity_mapping": true,
+      "same_resolved_dependencies": true,
+      "exit_codes": {
+        "build-exit-code.txt": 0,
+        "classpath-exit-code.txt": 0,
+        "dependencies-exit-code.txt": 0,
+        "effective-pom-exit-code.txt": 0,
+        "java-caller-exit-code.txt": 0
+      },
+      "coverage": {
+        "instruction": {
+          "covered": 2291,
+          "missed": 308
+        },
+        "branch": {
+          "covered": 310,
+          "missed": 61
+        },
+        "line": {
+          "covered": 391,
+          "missed": 36
+        },
+        "complexity": {
+          "covered": 248,
+          "missed": 77
+        },
+        "method": {
+          "covered": 94,
+          "missed": 19
+        },
+        "class": {
+          "covered": 28,
+          "missed": 2
+        }
+      },
+      "artifact_sha256": {
+        "pembana-search-1.0.0-SNAPSHOT-javadoc.jar": "7bc32c94de29687d066dd253a63d7cf537a02ac3796aa6959a76ea46ffc0408f",
+        "pembana-search-1.0.0-SNAPSHOT-sources.jar": "50507bddd2fd1114cb864650213a897cebd223ebf741edc7190ecae4aa711091",
+        "pembana-search-1.0.0-SNAPSHOT.jar": "a62bebd296ef91602543bd849c26ea016f98e6f91bfe5ea4923daf4af9793d91"
+      },
+      "javadoc_warnings": 0,
+      "evidence_sha256": {
+        "build.log": "0ea52623e3d1f9913e3b0d05944f693b4dbc25ef179cba3f01a501e1200f213d",
+        "classpath.log": "ec93775d33f99a6c0f37649298267d352e520f9c1cd84c9f6c5cacdbf997a8e2",
+        "dependencies.log": "f1bf82d72de14d0e2c4f1c2b542ea36149dc69b69ebfa5cd7374f75e65870acd",
+        "dependencies.txt": "29ef4bdb9c3862e7977c437926d679ab1dd3c89892cd981a294c2163eedee58d",
+        "effective-pom.log": "14fb18b5a528a6e82efc7316df1eafd26e56f1217c8fc0667becdc68bfa52212",
+        "effective-pom.xml": "d009b647622a6885888506372afa0cc29ddd079a9f1a6f2fa13e6064f627551d",
+        "environment.log": "f5958b5f114caa8899de4a650543484d1f48ecb5e2d164960bd13d3dc57915e9",
+        "java-caller.log": "046283e94341f00cc752ddd0f867028dd66244f19c1161372f8008c3bc16d8f0",
+        "surefire-reports/TEST-com.pembana.search.DatabaseAdapterTest.xml": "703aeead64b2dd6310ed626ec748364b1590619ff1f14fe03ffcf6807a4cafc0",
+        "surefire-reports/TEST-com.pembana.search.JavaCallerSmokeTest.xml": "d95c273746aac811baf802d7c8f0a1f799dfeaf7c1c47969b39032af682c75d3",
+        "surefire-reports/TEST-com.pembana.search.JavaResolverTest.xml": "470c1aa998d741fb4cbfabc4c583188032b6139e467bd428840954da5ce21f70",
+        "surefire-reports/TEST-com.pembana.search.PembanaSearchCompatibilityTest.xml": "f57d70b247965164f96543ea86cb201f18c3f6fec5dcfce1f6315ea26fe735e6",
+        "surefire-reports/TEST-com.pembana.search.QueryBehaviorTest.xml": "95e9677888c3f0596245bbf4aba3a0941492774d214d25693c8af8064883d3e0",
+        "surefire-reports/TEST-com.pembana.search.ResolverAutoConfigurationTest.xml": "a7906763f8f68824dddf4f8916e70fdc9915b85405bd7b609655cfdb9386cf14",
+        "test-results/coverage/jacoco/jacoco.xml": "0f1ef1030607686b956e6819830e53f0f91627581d8c0ed552a01f1c76eefde3"
+      }
+    },
+    "java17-postgresql": {
+      "environment": [
+        "Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)",
+        "Maven home: /Users/hillert/.m2/wrapper/dists/apache-maven-3.10.0/dae9a06d",
+        "Java version: 17.0.20, vendor: BellSoft, runtime: /Users/hillert/.sdkman/candidates/java/17.0.20-librca",
+        "Default locale: en_US, platform encoding: UTF-8, time zone: Pacific/Honolulu",
+        "OS name: \"mac os x\", version: \"27.0.1\", arch: \"aarch64\", family: \"mac\""
+      ],
+      "counts": {
+        "original_discovered": 113,
+        "original_executed": 113,
+        "original_passed": 113,
+        "supplemental_passed": 35,
+        "total_discovered": 148,
+        "total_executed": 148,
+        "failed": 0,
+        "errored": 0,
+        "skipped": 0
+      },
+      "same_outcomes_after_identity_mapping": true,
+      "same_resolved_dependencies": true,
+      "exit_codes": {
+        "build-exit-code.txt": 0,
+        "classpath-exit-code.txt": 0,
+        "dependencies-exit-code.txt": 0,
+        "effective-pom-exit-code.txt": 0,
+        "java-caller-exit-code.txt": 0
+      },
+      "coverage": {
+        "instruction": {
+          "covered": 2291,
+          "missed": 308
+        },
+        "branch": {
+          "covered": 310,
+          "missed": 61
+        },
+        "line": {
+          "covered": 391,
+          "missed": 36
+        },
+        "complexity": {
+          "covered": 248,
+          "missed": 77
+        },
+        "method": {
+          "covered": 94,
+          "missed": 19
+        },
+        "class": {
+          "covered": 28,
+          "missed": 2
+        }
+      },
+      "artifact_sha256": {
+        "pembana-search-1.0.0-SNAPSHOT-javadoc.jar": "7bc32c94de29687d066dd253a63d7cf537a02ac3796aa6959a76ea46ffc0408f",
+        "pembana-search-1.0.0-SNAPSHOT-sources.jar": "50507bddd2fd1114cb864650213a897cebd223ebf741edc7190ecae4aa711091",
+        "pembana-search-1.0.0-SNAPSHOT.jar": "a62bebd296ef91602543bd849c26ea016f98e6f91bfe5ea4923daf4af9793d91"
+      },
+      "javadoc_warnings": 0,
+      "evidence_sha256": {
+        "build.log": "d918ed785c2980d7c85c8914172b46cc2681603172cf94d276fbe931b342f907",
+        "classpath.log": "0e9cd3ad7d1cbc7831370e8af788c785c9f98d1ac76b92f99fec968f18e31ad7",
+        "dependencies.log": "793293e9868e1906c78690ae518f1e54e7fc15c4ded0a21b3bca788e7400e9a1",
+        "dependencies.txt": "29ef4bdb9c3862e7977c437926d679ab1dd3c89892cd981a294c2163eedee58d",
+        "effective-pom.log": "b9ec8b2a2751aacc877de08a919c9e1c30c0146b073227609e5b0aad6a598048",
+        "effective-pom.xml": "8796dca8e34093dc3bc67fbd95f15cc9fec678cad5e971fea8972ff6b47a433e",
+        "environment.log": "f5958b5f114caa8899de4a650543484d1f48ecb5e2d164960bd13d3dc57915e9",
+        "java-caller.log": "466294be82a7fb53e5f75c1c3439a363f4a287baa2ab29734bf9acec0d3bc1b2",
+        "surefire-reports/TEST-com.pembana.search.DatabaseAdapterTest.xml": "9fc438bb02fb9e7095cf1df2e7ea1045d87581e2e2c06d5af8c05ebd7f17d7fd",
+        "surefire-reports/TEST-com.pembana.search.JavaCallerSmokeTest.xml": "8954f0958f892cf2ddc2496d41cfb58ae5d3608d23b85eb2f34c9fee93b1ec52",
+        "surefire-reports/TEST-com.pembana.search.JavaResolverTest.xml": "623ec37666eb02e16d72abf4b4e0699db62484658b29e2ef7dc4788233a152d6",
+        "surefire-reports/TEST-com.pembana.search.PembanaSearchCompatibilityTest.xml": "595ab2e866f54b015d43f9b10e8664c7c8703fc08f115ff349a46dd5b0f8d9c6",
+        "surefire-reports/TEST-com.pembana.search.QueryBehaviorTest.xml": "f2ace8187556238b1743d122f3fbebbce275405953768d08b7c74269a0adc2df",
+        "surefire-reports/TEST-com.pembana.search.ResolverAutoConfigurationTest.xml": "0cf98e73a39f1720661ead5f820b7fff3d9a52ff6491f587f8670aff5135d361",
+        "test-results/coverage/jacoco/jacoco.xml": "4b9a8bcf97f87d5b4133ed0d9e1ea0c51364f9dbab6018ed63bf8df2f115e9e1"
+      }
+    },
+    "java21-h2": {
+      "environment": [
+        "Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)",
+        "Maven home: /Users/hillert/.m2/wrapper/dists/apache-maven-3.10.0/dae9a06d",
+        "Java version: 21.0.10, vendor: Eclipse Adoptium, runtime: /Users/hillert/.sdkman/candidates/java/21.0.10-tem",
+        "Default locale: en_US, platform encoding: UTF-8, time zone: Pacific/Honolulu",
+        "OS name: \"mac os x\", version: \"27.0.1\", arch: \"aarch64\", family: \"mac\""
+      ],
+      "counts": {
+        "original_discovered": 113,
+        "original_executed": 113,
+        "original_passed": 113,
+        "supplemental_passed": 35,
+        "total_discovered": 148,
+        "total_executed": 148,
+        "failed": 0,
+        "errored": 0,
+        "skipped": 0
+      },
+      "same_outcomes_after_identity_mapping": true,
+      "same_resolved_dependencies": true,
+      "exit_codes": {
+        "build-exit-code.txt": 0,
+        "classpath-exit-code.txt": 0,
+        "dependencies-exit-code.txt": 0,
+        "effective-pom-exit-code.txt": 0,
+        "java-caller-exit-code.txt": 0
+      },
+      "coverage": {
+        "instruction": {
+          "covered": 2291,
+          "missed": 308
+        },
+        "branch": {
+          "covered": 310,
+          "missed": 61
+        },
+        "line": {
+          "covered": 391,
+          "missed": 36
+        },
+        "complexity": {
+          "covered": 248,
+          "missed": 77
+        },
+        "method": {
+          "covered": 94,
+          "missed": 19
+        },
+        "class": {
+          "covered": 28,
+          "missed": 2
+        }
+      },
+      "artifact_sha256": {
+        "pembana-search-1.0.0-SNAPSHOT-javadoc.jar": "7bb23009c1889bb8b1e286045af2acdada7d2915533787696bc7897f52fb7473",
+        "pembana-search-1.0.0-SNAPSHOT-sources.jar": "50507bddd2fd1114cb864650213a897cebd223ebf741edc7190ecae4aa711091",
+        "pembana-search-1.0.0-SNAPSHOT.jar": "9701cfeada3da88e0f4b82f6b32ddbf777c0454ffbdedaf15a27a4424c12c922"
+      },
+      "javadoc_warnings": 0,
+      "evidence_sha256": {
+        "build.log": "4f779435bf403ec9bf760a729f514b9555c57cf0d25e34d0829807b4cffec5b5",
+        "classpath.log": "6aaf3e3631ceed9918621bd925770f8a58742fe3463a5e9e31b77cb881774045",
+        "dependencies.log": "c85c0c0acdbdc47b18922f54bd374010d3fb9683ef69e7e0f4b5831a0438ba20",
+        "dependencies.txt": "29ef4bdb9c3862e7977c437926d679ab1dd3c89892cd981a294c2163eedee58d",
+        "effective-pom.log": "9d9b717428d3caa0573bfd5a95309f1c34958fa2b728e0d15dd4f77197f498ea",
+        "effective-pom.xml": "cd1d18d903801f172d26cded910e34f0f90a6a66c537f4837752e4b4c0857ea0",
+        "environment.log": "1cf7c5d2861ba29561457b3ccb80c09b9219a5821c51e0ec98504bc53d10df78",
+        "java-caller.log": "740c1d6e9891c4967f1e1b300fdc4c8b369abdf51c8cc170a155f320ff1fe6b6",
+        "surefire-reports/TEST-com.pembana.search.DatabaseAdapterTest.xml": "01d48b71a923c3061973000ec10933973583098cfdfc3d72c7d460adc800494e",
+        "surefire-reports/TEST-com.pembana.search.JavaCallerSmokeTest.xml": "6935a98cfddecc884f5d2a5b847c5098a0ebe148ba3f0d174b34786fad3f8313",
+        "surefire-reports/TEST-com.pembana.search.JavaResolverTest.xml": "b2d37eaa71d38f17781f9d0947ab702097b21129893f28285947d2d3b967589a",
+        "surefire-reports/TEST-com.pembana.search.PembanaSearchCompatibilityTest.xml": "85efa17e9dc96f9a9b5c116c280b4907b93335e28d950bb46cd4742023388673",
+        "surefire-reports/TEST-com.pembana.search.QueryBehaviorTest.xml": "5ed584763675ce4234d1a29b27c965edbc472b0f69287033b73a1903b17808f9",
+        "surefire-reports/TEST-com.pembana.search.ResolverAutoConfigurationTest.xml": "dc2f9d69c2eda59119b61a684567501b41af3ee87807d942fd2bee6024d1f124",
+        "test-results/coverage/jacoco/jacoco.xml": "65c064ece7ea1eb1ba128c5d4b2e5a6d4105cae781f308e6d4bcb41639214249"
+      }
+    },
+    "java21-postgresql": {
+      "environment": [
+        "Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)",
+        "Maven home: /Users/hillert/.m2/wrapper/dists/apache-maven-3.10.0/dae9a06d",
+        "Java version: 21.0.10, vendor: Eclipse Adoptium, runtime: /Users/hillert/.sdkman/candidates/java/21.0.10-tem",
+        "Default locale: en_US, platform encoding: UTF-8, time zone: Pacific/Honolulu",
+        "OS name: \"mac os x\", version: \"27.0.1\", arch: \"aarch64\", family: \"mac\""
+      ],
+      "counts": {
+        "original_discovered": 113,
+        "original_executed": 113,
+        "original_passed": 113,
+        "supplemental_passed": 35,
+        "total_discovered": 148,
+        "total_executed": 148,
+        "failed": 0,
+        "errored": 0,
+        "skipped": 0
+      },
+      "same_outcomes_after_identity_mapping": true,
+      "same_resolved_dependencies": true,
+      "exit_codes": {
+        "build-exit-code.txt": 0,
+        "classpath-exit-code.txt": 0,
+        "dependencies-exit-code.txt": 0,
+        "effective-pom-exit-code.txt": 0,
+        "java-caller-exit-code.txt": 0
+      },
+      "coverage": {
+        "instruction": {
+          "covered": 2291,
+          "missed": 308
+        },
+        "branch": {
+          "covered": 310,
+          "missed": 61
+        },
+        "line": {
+          "covered": 391,
+          "missed": 36
+        },
+        "complexity": {
+          "covered": 248,
+          "missed": 77
+        },
+        "method": {
+          "covered": 94,
+          "missed": 19
+        },
+        "class": {
+          "covered": 28,
+          "missed": 2
+        }
+      },
+      "artifact_sha256": {
+        "pembana-search-1.0.0-SNAPSHOT-javadoc.jar": "7bb23009c1889bb8b1e286045af2acdada7d2915533787696bc7897f52fb7473",
+        "pembana-search-1.0.0-SNAPSHOT-sources.jar": "50507bddd2fd1114cb864650213a897cebd223ebf741edc7190ecae4aa711091",
+        "pembana-search-1.0.0-SNAPSHOT.jar": "9701cfeada3da88e0f4b82f6b32ddbf777c0454ffbdedaf15a27a4424c12c922"
+      },
+      "javadoc_warnings": 0,
+      "evidence_sha256": {
+        "build.log": "8663a9a7c824154feff265181d2477fb85da8d79724eb08c165b66b145c87705",
+        "classpath.log": "6eec1cc418dfb9a88f5c66158ad71fe19616921320b3fa1006d586c74716de8b",
+        "dependencies.log": "5bb21c78fc56dcb767d4ef95b76918c7c43003a26689c19d04207c1885e986a6",
+        "dependencies.txt": "29ef4bdb9c3862e7977c437926d679ab1dd3c89892cd981a294c2163eedee58d",
+        "effective-pom.log": "4df292f82d51fcc5af4d0901ca77514d79cbaad36c16bb7c81bbe1dd233131d6",
+        "effective-pom.xml": "cd5db3c8676bdab2024ac4ed71aa02325f34919fc73ac66b8a6d8a0b4eeadf4a",
+        "environment.log": "1cf7c5d2861ba29561457b3ccb80c09b9219a5821c51e0ec98504bc53d10df78",
+        "java-caller.log": "a922744fd680f619e0aac0cff33355d73962c449cf6f0374b7c879c1897a8091",
+        "surefire-reports/TEST-com.pembana.search.DatabaseAdapterTest.xml": "2874dec5fd39e0d55365c10b3aa5b076f99c153a4670a830accbfbbc0e0fd4cc",
+        "surefire-reports/TEST-com.pembana.search.JavaCallerSmokeTest.xml": "e46904764f48232ac042d962a474322c21eb680f500e25aa425cd9eebbc3d7b3",
+        "surefire-reports/TEST-com.pembana.search.JavaResolverTest.xml": "e57d2a61269b05648b6e7080fa6adf4c9a9bf93c3511e946c0f0376f29a09a0d",
+        "surefire-reports/TEST-com.pembana.search.PembanaSearchCompatibilityTest.xml": "fbe37a02b9b177a597a0a8eb4efc9cd83d14ea35f0612eb9f71fa5362093abef",
+        "surefire-reports/TEST-com.pembana.search.QueryBehaviorTest.xml": "4a48589c8a73409f72f9b3b81a17d5e53f05b26867426c7f71d1972c12c2d71f",
+        "surefire-reports/TEST-com.pembana.search.ResolverAutoConfigurationTest.xml": "0b86906774c22652da56a41d9d0b3a2cb42824e47041eacbdc843904f08ed06a",
+        "test-results/coverage/jacoco/jacoco.xml": "b0b8af9e27565734766745227b8aba782d17261f2bf2f351cdc3e773c5b8140d"
+      }
+    },
+    "java25-h2": {
+      "environment": [
+        "Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)",
+        "Maven home: /Users/hillert/.m2/wrapper/dists/apache-maven-3.10.0/dae9a06d",
+        "Java version: 25.0.3, vendor: Eclipse Adoptium, runtime: /Users/hillert/.sdkman/candidates/java/25.0.3-tem",
+        "Default locale: en_US, platform encoding: UTF-8, time zone: Pacific/Honolulu",
+        "OS name: \"mac os x\", version: \"27.0.1\", arch: \"aarch64\", family: \"mac\""
+      ],
+      "counts": {
+        "original_discovered": 113,
+        "original_executed": 113,
+        "original_passed": 113,
+        "supplemental_passed": 35,
+        "total_discovered": 148,
+        "total_executed": 148,
+        "failed": 0,
+        "errored": 0,
+        "skipped": 0
+      },
+      "same_outcomes_after_identity_mapping": true,
+      "same_resolved_dependencies": true,
+      "exit_codes": {
+        "build-exit-code.txt": 0,
+        "classpath-exit-code.txt": 0,
+        "dependencies-exit-code.txt": 0,
+        "effective-pom-exit-code.txt": 0,
+        "java-caller-exit-code.txt": 0
+      },
+      "coverage": {
+        "instruction": {
+          "covered": 2291,
+          "missed": 308
+        },
+        "branch": {
+          "covered": 310,
+          "missed": 61
+        },
+        "line": {
+          "covered": 390,
+          "missed": 37
+        },
+        "complexity": {
+          "covered": 248,
+          "missed": 77
+        },
+        "method": {
+          "covered": 94,
+          "missed": 19
+        },
+        "class": {
+          "covered": 28,
+          "missed": 2
+        }
+      },
+      "artifact_sha256": {
+        "pembana-search-1.0.0-SNAPSHOT-javadoc.jar": "a6dc5c7e6776695411855ed0549f5eff9c4f95fcdc070a8a0eb1784e4bc98daf",
+        "pembana-search-1.0.0-SNAPSHOT-sources.jar": "50507bddd2fd1114cb864650213a897cebd223ebf741edc7190ecae4aa711091",
+        "pembana-search-1.0.0-SNAPSHOT.jar": "18f98062978e17ec24a061484622521e7965f97602226eaddcffe6d937d17c74"
+      },
+      "javadoc_warnings": 0,
+      "evidence_sha256": {
+        "build.log": "e4a337673d2a8e336ddf00f0f5e64b38b23a07cbbb7b568582b5e1badba39045",
+        "classpath.log": "f35d9a130f51d2a009742a1581ae1bf4e1e9e89412b985677e0afa422e8bbc36",
+        "dependencies.log": "1a5e45fe993d98dc13dab7f96e6aa622219a1cc079bd60e22ad431fcea649033",
+        "dependencies.txt": "29ef4bdb9c3862e7977c437926d679ab1dd3c89892cd981a294c2163eedee58d",
+        "effective-pom.log": "be68e807886836b7b6696d16bfc22a8aa77f483c6ddbeb2201aad27a3c6af71e",
+        "effective-pom.xml": "fb04ad81f9f528a467771dea7e5d0bfb03d7de2a44c532b158b7962a0e3b560f",
+        "environment.log": "0614e76e798c8ca7b8feb0bb74df47ec17e4ba94503872daf0451efd0b3584fd",
+        "java-caller.log": "ffd567c0c6e97fb0709c3582bd0a23577cb3d273b7a49a595b8d3cbd419440e7",
+        "surefire-reports/TEST-com.pembana.search.DatabaseAdapterTest.xml": "efd54a3aa0f1a7f0d20a3eb133059262313e46feb1588d4c8168f35f2cb4fa03",
+        "surefire-reports/TEST-com.pembana.search.JavaCallerSmokeTest.xml": "dad7b1514e526136fc605a4118f128b28b504d3dc391c7c8e2dbb9d62b64bcd3",
+        "surefire-reports/TEST-com.pembana.search.JavaResolverTest.xml": "5485e3131e3a06468d6bd477667b04e90313f415df4cf943ab35189951571620",
+        "surefire-reports/TEST-com.pembana.search.PembanaSearchCompatibilityTest.xml": "c9005d992c46985552bd843d4042a791532f3eaf74ee92ac0a8c222048842361",
+        "surefire-reports/TEST-com.pembana.search.QueryBehaviorTest.xml": "d854d604791d1ddfc5a2cc4bf5a280e99f2df70ec739aa9744efc84bbf861509",
+        "surefire-reports/TEST-com.pembana.search.ResolverAutoConfigurationTest.xml": "dc6d352db0c0b2e99769fc3dc39781e6e120db672a1bd5d9695ccfa62115ec1e",
+        "test-results/coverage/jacoco/jacoco.xml": "280d07e1a2e56e83c92f11989d4a38be4f5fe581f0363b9bc86eab3c0a4af1cd"
+      }
+    },
+    "java25-postgresql": {
+      "environment": [
+        "Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)",
+        "Maven home: /Users/hillert/.m2/wrapper/dists/apache-maven-3.10.0/dae9a06d",
+        "Java version: 25.0.3, vendor: Eclipse Adoptium, runtime: /Users/hillert/.sdkman/candidates/java/25.0.3-tem",
+        "Default locale: en_US, platform encoding: UTF-8, time zone: Pacific/Honolulu",
+        "OS name: \"mac os x\", version: \"27.0.1\", arch: \"aarch64\", family: \"mac\""
+      ],
+      "counts": {
+        "original_discovered": 113,
+        "original_executed": 113,
+        "original_passed": 113,
+        "supplemental_passed": 35,
+        "total_discovered": 148,
+        "total_executed": 148,
+        "failed": 0,
+        "errored": 0,
+        "skipped": 0
+      },
+      "same_outcomes_after_identity_mapping": true,
+      "same_resolved_dependencies": true,
+      "exit_codes": {
+        "build-exit-code.txt": 0,
+        "classpath-exit-code.txt": 0,
+        "dependencies-exit-code.txt": 0,
+        "effective-pom-exit-code.txt": 0,
+        "java-caller-exit-code.txt": 0
+      },
+      "coverage": {
+        "instruction": {
+          "covered": 2291,
+          "missed": 308
+        },
+        "branch": {
+          "covered": 310,
+          "missed": 61
+        },
+        "line": {
+          "covered": 390,
+          "missed": 37
+        },
+        "complexity": {
+          "covered": 248,
+          "missed": 77
+        },
+        "method": {
+          "covered": 94,
+          "missed": 19
+        },
+        "class": {
+          "covered": 28,
+          "missed": 2
+        }
+      },
+      "artifact_sha256": {
+        "pembana-search-1.0.0-SNAPSHOT-javadoc.jar": "a6dc5c7e6776695411855ed0549f5eff9c4f95fcdc070a8a0eb1784e4bc98daf",
+        "pembana-search-1.0.0-SNAPSHOT-sources.jar": "50507bddd2fd1114cb864650213a897cebd223ebf741edc7190ecae4aa711091",
+        "pembana-search-1.0.0-SNAPSHOT.jar": "18f98062978e17ec24a061484622521e7965f97602226eaddcffe6d937d17c74"
+      },
+      "javadoc_warnings": 0,
+      "evidence_sha256": {
+        "build.log": "3a499c60b55a6a309040f693a64fd5c135c98ccdc44a5782e6b45f1edaed0f90",
+        "classpath.log": "6607c92e56aafbe355dd0d98485a0aae9cc1876b32596d9fdff9564b66c1ab8d",
+        "dependencies.log": "a5fa88b035295d31ff5fb6233d3c3e2e4f0312638f25452e520f9c3724ceed50",
+        "dependencies.txt": "29ef4bdb9c3862e7977c437926d679ab1dd3c89892cd981a294c2163eedee58d",
+        "effective-pom.log": "351b2770f82e9781d3bf537144f4fa817fee41a40e0c02a053e3ef9242b6c5c8",
+        "effective-pom.xml": "5b3d9aeb51419d060e7480b9a56ad48cdbc93a0c855966d8ece9f12fc8900ffe",
+        "environment.log": "0614e76e798c8ca7b8feb0bb74df47ec17e4ba94503872daf0451efd0b3584fd",
+        "java-caller.log": "b876c5e6f8399ffca413e13173dbfe513aeecd09813a5d857aecd10dde454a82",
+        "surefire-reports/TEST-com.pembana.search.DatabaseAdapterTest.xml": "c853b50f722ab90d0d46b30ee3204bf8648af1211c0b446407198ef8bd9cf4bd",
+        "surefire-reports/TEST-com.pembana.search.JavaCallerSmokeTest.xml": "18f05df3660a38561b7f4ab6d002f8d0e572ef64e8db187204e18b236bc76ead",
+        "surefire-reports/TEST-com.pembana.search.JavaResolverTest.xml": "6303b374dc2b14343e9cf3e944aeaafd30ff46197f5c645e8ce85b8ea69276e9",
+        "surefire-reports/TEST-com.pembana.search.PembanaSearchCompatibilityTest.xml": "a4087d719416b4e7de5f68fe3ed0e5568ef9897eb36c1b35ebdff6db2f353219",
+        "surefire-reports/TEST-com.pembana.search.QueryBehaviorTest.xml": "c2f01243b05b53651ebfdc8ce0ebcf065a8482cdd4beb9ec077d4775f1c61517",
+        "surefire-reports/TEST-com.pembana.search.ResolverAutoConfigurationTest.xml": "5d5f33cbcdb5452baf4f29dd2a5f6b820eadeaeb8b8ebf6130e075e37ea81b20",
+        "test-results/coverage/jacoco/jacoco.xml": "ec0bd8ebe01990d41162f91f108d66886bc58794f6e42275c2d6c736ba2d99ae"
+      }
+    }
+  },
+  "source_identity_mapping": {
+    "src/main/java/com/sipios/springsearch/CriteriaParser.java": {
+      "current": "src/main/java/com/pembana/search/CriteriaParser.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "66fda8d21a04d7328665dc27346f0f7bef67f57c68789032afce8c5cc65de349"
+    },
+    "src/main/java/com/sipios/springsearch/InvalidSearchQueryException.java": {
+      "current": "src/main/java/com/pembana/search/InvalidSearchQueryException.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "766f958fd765387c82f60590ac843282b2cb1d2d64572913fdcfeaa6025ea295"
+    },
+    "src/main/java/com/sipios/springsearch/NullSpecification.java": {
+      "current": "src/main/java/com/pembana/search/NullSpecification.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": true,
+      "current_sha256": "ccf4f16de9a150999fe15361a48b024f212bfba51db1f1ae3dd919ffe47f5e41"
+    },
+    "src/main/java/com/sipios/springsearch/QueryErrorCode.java": {
+      "current": "src/main/java/com/pembana/search/QueryErrorCode.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "4288928ab6e8785b0c856904aa794b719f130a861fc96cb7db607384b2a2c242"
+    },
+    "src/main/java/com/sipios/springsearch/QueryVisitorImpl.java": {
+      "current": "src/main/java/com/pembana/search/QueryVisitorImpl.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "ed795273de74eb6364977e37cc5723d1f8266dd5820d996d7f67e9245e7ea532"
+    },
+    "src/main/java/com/sipios/springsearch/SearchCriteria.java": {
+      "current": "src/main/java/com/pembana/search/SearchCriteria.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "0774990b7225be1128083636c0a5f2afb1aec54699e2dd7609676422721c8396"
+    },
+    "src/main/java/com/sipios/springsearch/SearchOperation.java": {
+      "current": "src/main/java/com/pembana/search/SearchOperation.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "bc2e7cd5b07fb9aa2d50bdd8fe33d98f505f5f0f6796d5540af81995c98e774d"
+    },
+    "src/main/java/com/sipios/springsearch/SpecificationImpl.java": {
+      "current": "src/main/java/com/pembana/search/SpecificationImpl.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "d645cc1a12351f187a8acaaba82f909cf9a6f644a4c6dddd01913f36fae870ed"
+    },
+    "src/main/java/com/sipios/springsearch/SpecificationsBuilder.java": {
+      "current": "src/main/java/com/pembana/search/SpecificationsBuilder.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "4a59658baacd178702f88d71e315ac8a9942c372fb5ed8a890a43f72f7024ee4"
+    },
+    "src/main/java/com/sipios/springsearch/StrictQueryValidation.java": {
+      "current": "src/main/java/com/pembana/search/StrictQueryValidation.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "1982efa3d62cbb24f2a68970a391f7bf2e6c52a5b1218a1c12ecfec7a189ac19"
+    },
+    "src/main/java/com/sipios/springsearch/anotation/SearchSpec.java": {
+      "current": "src/main/java/com/pembana/search/annotation/SearchSpec.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "5734fd4605f0b818e7186b843fec02c477773ac4587dad7ec7cdfcfd9912c536"
+    },
+    "src/main/java/com/sipios/springsearch/configuration/ResolverConf.java": {
+      "current": "src/main/java/com/pembana/search/configuration/ResolverConf.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": true,
+      "current_sha256": "255259da3183bc7e2b3089ed365a6f04f1c03571a0da4c3dbf1e6e5a7fbb64f3"
+    },
+    "src/main/java/com/sipios/springsearch/configuration/SearchSpecificationResolver.java": {
+      "current": "src/main/java/com/pembana/search/configuration/SearchSpecificationResolver.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": true,
+      "current_sha256": "eef126bc598f448fdb7abbf9d645dfe2f6a672a62d9469259a4625c16bebfb15"
+    },
+    "src/main/java/com/sipios/springsearch/listeners/SyntaxErrorListener.java": {
+      "current": "src/main/java/com/pembana/search/listeners/SyntaxErrorListener.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": true,
+      "current_sha256": "c332fec048b6ffd47158301fe466ba2e326d9e46532f8c6bd6b14abb77237239"
+    },
+    "src/main/java/com/sipios/springsearch/strategies/BooleanStrategy.java": {
+      "current": "src/main/java/com/pembana/search/strategies/BooleanStrategy.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": true,
+      "current_sha256": "41fe795f6fc9edf61b5a041d4aba18891ec0a38ad68a1e1a501c7585246bc54e"
+    },
+    "src/main/java/com/sipios/springsearch/strategies/CollectionStrategy.java": {
+      "current": "src/main/java/com/pembana/search/strategies/CollectionStrategy.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": true,
+      "current_sha256": "40b2399e9365378e79fa09966959ab23967600b93c2b7bb7687bd3bd589069d3"
+    },
+    "src/main/java/com/sipios/springsearch/strategies/DateStrategy.java": {
+      "current": "src/main/java/com/pembana/search/strategies/DateStrategy.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": true,
+      "current_sha256": "993c579ea4d69f9e44de1603c54e15749e6ce1c90aa6d6421f532f9a480f9a67"
+    },
+    "src/main/java/com/sipios/springsearch/strategies/DoubleStrategy.java": {
+      "current": "src/main/java/com/pembana/search/strategies/DoubleStrategy.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": true,
+      "current_sha256": "09fc427ca2b33bb1de7aeb35281e30922fb838c2eb4150df1e0a7087c2795d0e"
+    },
+    "src/main/java/com/sipios/springsearch/strategies/DurationStrategy.java": {
+      "current": "src/main/java/com/pembana/search/strategies/DurationStrategy.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": true,
+      "current_sha256": "698257d05f63f35189dc54f865d80221a84845780e355fe56066fe3179fa456c"
+    },
+    "src/main/java/com/sipios/springsearch/strategies/EnumStrategy.java": {
+      "current": "src/main/java/com/pembana/search/strategies/EnumStrategy.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": true,
+      "current_sha256": "52d1959484ff0b90ad7b4b34e485e9d375f15b8eb5b2d405eb9a14b1d4813100"
+    },
+    "src/main/java/com/sipios/springsearch/strategies/FloatStrategy.java": {
+      "current": "src/main/java/com/pembana/search/strategies/FloatStrategy.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": true,
+      "current_sha256": "6f44d2d26a316d23137cbc5173637b7c52a765b46fbcd3d34522d4ae0f9887b5"
+    },
+    "src/main/java/com/sipios/springsearch/strategies/InstantStrategy.java": {
+      "current": "src/main/java/com/pembana/search/strategies/InstantStrategy.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": true,
+      "current_sha256": "6ddff94eb23d5f674322c9f3e9fe87c4c4b7e7f1e6bbc28b98fed292eda4d1d5"
+    },
+    "src/main/java/com/sipios/springsearch/strategies/IntStrategy.java": {
+      "current": "src/main/java/com/pembana/search/strategies/IntStrategy.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": true,
+      "current_sha256": "5e1a7093919eb1b66aa534ce1e8f40bc4fd14f40870d1fc1dfa0fcc9e347ee91"
+    },
+    "src/main/java/com/sipios/springsearch/strategies/LocalDateStrategy.java": {
+      "current": "src/main/java/com/pembana/search/strategies/LocalDateStrategy.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": true,
+      "current_sha256": "75dc7b84d7ca36a2bc2c9ff2a65a2c6e8dd0d84fe1e74f97cd28d020f2d0cf0f"
+    },
+    "src/main/java/com/sipios/springsearch/strategies/LocalDateTimeStrategy.java": {
+      "current": "src/main/java/com/pembana/search/strategies/LocalDateTimeStrategy.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": true,
+      "current_sha256": "0d3ce5b92c70e137ae51dec92922f818e2a35ab5cf6874b4c7d22f27ce6facfd"
+    },
+    "src/main/java/com/sipios/springsearch/strategies/LocalTimeStrategy.java": {
+      "current": "src/main/java/com/pembana/search/strategies/LocalTimeStrategy.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": true,
+      "current_sha256": "3a4a1d545228b82ce7ba39f89ce1d1e4697fd1c70834ce5069bc6aac06311f64"
+    },
+    "src/main/java/com/sipios/springsearch/strategies/ParsingStrategy.java": {
+      "current": "src/main/java/com/pembana/search/strategies/ParsingStrategy.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "f673f8c62066fa1e3dd1a8f012c96d6772b913cee126bf48a1c65d7054a2728d"
+    },
+    "src/main/java/com/sipios/springsearch/strategies/StringStrategy.java": {
+      "current": "src/main/java/com/pembana/search/strategies/StringStrategy.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "655952ee6d44e2164e5f647d7326ba7e0d962575f4d8e7239054aa233a759758"
+    },
+    "src/main/java/com/sipios/springsearch/strategies/UUIDStrategy.java": {
+      "current": "src/main/java/com/pembana/search/strategies/UUIDStrategy.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": true,
+      "current_sha256": "66e4248aee80af0007a3d0af97173d107c36ad665a7ed0f932446e9fdac2db44"
+    },
+    "src/test/java/com/sipios/springsearch/Author.java": {
+      "current": "src/test/java/com/pembana/search/Author.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "2052f166f89f125aa5fba9b94f5e6029e4c28c77d8f43fa502dfcc03c9e195f4"
+    },
+    "src/test/java/com/sipios/springsearch/AuthorRepository.java": {
+      "current": "src/test/java/com/pembana/search/AuthorRepository.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "32575775f276b88a9ff4c800f9a4a733813fae6869429992518dbba6ca4d8352"
+    },
+    "src/test/java/com/sipios/springsearch/Book.java": {
+      "current": "src/test/java/com/pembana/search/Book.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "694ba0d0c3aa02a30f4eccc64a969a20a01bc3d3e3d730872d700e99c8a7e30e"
+    },
+    "src/test/java/com/sipios/springsearch/DatabaseAdapterTest.java": {
+      "current": "src/test/java/com/pembana/search/DatabaseAdapterTest.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "b0d149b8069a73919d1a59364fe88ffcc8e5c8782f1e9d430086482d8f244509"
+    },
+    "src/test/java/com/sipios/springsearch/JavaCallerSmokeTest.java": {
+      "current": "src/test/java/com/pembana/search/JavaCallerSmokeTest.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "b2191b643da6df318d3d9cc78d3f792cc37b098ce855738387c5d8403259e94d"
+    },
+    "src/test/java/com/sipios/springsearch/JavaResolverTest.java": {
+      "current": "src/test/java/com/pembana/search/JavaResolverTest.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "e086d893d7e9294be23aa78a411b552a61a0c40c17e5a1d01f3b7023fdacb8af"
+    },
+    "src/test/java/com/sipios/springsearch/QueryBehaviorTest.java": {
+      "current": "src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "ce872e1a6fe67c57986ec4fbce91275cf21c9ec8bdb22af2ea2e52ff078d6be3"
+    },
+    "src/test/java/com/sipios/springsearch/ResolverAutoConfigurationTest.java": {
+      "current": "src/test/java/com/pembana/search/ResolverAutoConfigurationTest.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "4b842898a7b5d31ed12b86ace6c7bae56eb9d15b9dcfb541234ba97258fd2ed2"
+    },
+    "src/test/java/com/sipios/springsearch/SearchTestFixtures.java": {
+      "current": "src/test/java/com/pembana/search/SearchTestFixtures.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "fe9fc1da613d5a1fd585c0b3048f50232c57add6823284e1c18e8653cfb7176f"
+    },
+    "src/test/java/com/sipios/springsearch/SpringSearchApplication.java": {
+      "current": "src/test/java/com/pembana/search/PembanaSearchTestApplication.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "18e92b7960ce9cb1e56b2892a226a0c74bc0a15467fb4ff15a79aa479a524537"
+    },
+    "src/test/java/com/sipios/springsearch/SpringSearchApplicationTest.java": {
+      "current": "src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "dc95b847005a9dd62e99f19a482d18a758a0d1ad08f6170deebdd5bc4bf4d0e6"
+    },
+    "src/test/java/com/sipios/springsearch/UserType.java": {
+      "current": "src/test/java/com/pembana/search/UserType.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "53d3671cf99200d2ac03de1e358aa1b8e5a05b80a23a1e466c236c2f4e31a2a5"
+    },
+    "src/test/java/com/sipios/springsearch/Users.java": {
+      "current": "src/test/java/com/pembana/search/Users.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "a8b36bf2ed560675f79d9c1621d7ec3cf3e8d271e763ef3a1df984ec888f29c2"
+    },
+    "src/test/java/com/sipios/springsearch/UsersRepository.java": {
+      "current": "src/test/java/com/pembana/search/UsersRepository.java",
+      "mechanical_tokens_equal": true,
+      "documented_implicit_constructor": false,
+      "current_sha256": "d3c566f963465c202374ef94a4fa3a87ab7e3cc2b95b9b954183e0c3d48e94c4"
+    }
+  },
+  "unchanged_historical_and_query_input_sha256": {
+    "docs/baseline/README.md": "0b1118776fc2266bb633038763abc0c1887a48e826fe90e872f72b6ed8651d78",
+    "docs/baseline/artifact-provenance.json": "77c894aead6b5b0e013a7a4409fec6d01b8d0d435358e9f703b542d51d19c06b",
+    "docs/baseline/results.json": "4948052939716e50b6300144bb894d76ebf4a55c48d162b4f868064a7506fbad",
+    "docs/baseline/scenarios.json": "f19babd458ec58648bf4593e9bd547874734b38acd31ebe2285b90cfc792dd91",
+    "docs/images/and-example.gif": "9fa629ba4a0f69c7ec8e961ff006181042cfa98a37e8165f5940bb09c224ad92",
+    "docs/images/complex-example.gif": "147de6598510edda74b8f87b3709c879c23c2da0918c157b6e3f732883985ba3",
+    "docs/images/deep-field-example.gif": "fde0a4a2567bc4a2f1e30becdf245141fe186093e378e7eefdf873948fb3c1b1",
+    "docs/images/equal-example.gif": "40e4f1a8cee46a254bf1817432db04f7c0432dcbaee30d373928de50239424a4",
+    "docs/images/greater-than-example.gif": "03b1a147fb49aab97acff4f05125edccf2ea42c195aef9b21695c8d68bae5426",
+    "docs/images/less-than-example.gif": "8b19b5cedb734e7a72e1a5228d1e5bd99f882b830e12f7537d558a7ec6427da6",
+    "docs/images/not-equal-example.gif": "ef9d848982756ebbcc2fe596f600a0cf5687cc7a32bec1b83d92e91721785b87",
+    "docs/images/or-example.gif": "05cf06a94a3309bcaa172659599a2d1292b540cea3efbdb89edbc1e2976cdd4a",
+    "docs/images/parenthesis-example.gif": "2e58e228524dffd06b09c1ccbdfd8c76a5f650cfce40a7412ab8fe100a4d07d1",
+    "docs/images/space-example.gif": "969c6b834bdf0e188d7e1971d4a045fe7175717907d2c7fa1d2e8865e2b31634",
+    "docs/images/special-characters-example.gif": "0752f54fdaae57570a52e149f1818dcf4adfaf0d4d0760583fde6d9708bb3217",
+    "docs/images/starts-with-example.gif": "e1a90d6097e2a9d3a72d4b6b759c53c332030dac14cbe6a80507337646440dd3",
+    "docs/stage1/README.md": "cb84672ed27d2ab6554df7dfc717f5f7db14abf38cfae1d092fddc2214c2444f",
+    "docs/stage1/results.json": "f12017311ae28d1a232c7a3d07f2c083e2e93735432327857f8915dc05320586",
+    "docs/stage2/README.md": "11bc5edafe7bcf66cdff4f8dd535c4ca26988d607d8b80304c06dca62dc62ca9",
+    "docs/stage2/results.json": "f3a61910f63c393db88c8439384c4cdb63099fefc3c24047273469a258cb515d",
+    "docs/stage2/scenarios.json": "bb6a6bf49df45852c9217be5e7d14172bb0fc57304d8f9c98eb3345f7a81e44e",
+    "docs/stage3/README.md": "6743cb5cfe12e45aed309def671ed38f9b2dfd34acafe63687fe986b548cd7e5",
+    "docs/stage3/results.json": "c066c181c8dbe46cd2bd805cf6c2337eb010d0f68be65bb8f7f7b8bb0879bf14",
+    "docs/stage4/README.md": "caa982b8d7e20f59737c9149fb076c28e9fd916f209f49e95a453d5b8b851525",
+    "docs/stage4/query-behavior.md": "57a616c5c441d111ad567977d612cc6b6fc50d3ac66c87eefbc29781ecb4abc9",
+    "docs/stage4/results.json": "6bbae74dd6fc34846a3072c0144c984a8d12964ad232b94a7b7f954f923476d4",
+    "docs/testcontainers/README.md": "c7686d8634ebe4feeb0000db33d3a0cb70b391d08e115a8a0f5470c374756a78",
+    "docs/testcontainers/results.json": "db35e7fa3ef3054f8a35e04d5fb047d95f3ea3b0a1f67fa53d15cb6cc1cc3bed",
+    "src/main/antlr4/Query.g4": "024988cce0bf3f3faf8b7f1f3e0ab806c6ddd883dfd1b9ba5707b4eee1dd545e",
+    "src/test/resources/application.properties": "e8b3fabf8b780fc18664363b1efab8c1200443a4af0df9d1e42d9dab5b6962e3",
+    "src/test/resources/application-postgresql.properties": "f3f9fe3d70cb9a6c97a652bcd13f1dab90c8d1671965a815155cc58823f49fde",
+    "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "LICENSE.txt": "97a2ead6ebae80dff422d9692ec621fe8d9421f950c84d47f3d638f6b57dd4e3"
+  },
+  "local_documentation_links": "passed",
+  "workflow_yaml_and_bash_syntax": "passed",
+  "raw_evidence_directory": "build/identity",
+  "published": false,
+  "ci_execution": "Configured; not run on GitHub during local implementation",
+  "skipped_checks": [
+    "Maven artifact signing",
+    "Dependency-Check network vulnerability scan"
+  ],
+  "documentation_examples": {
+    "java_versions": [
+      17,
+      21,
+      25
+    ],
+    "compiled_controller_and_direct_jpa_examples": true,
+    "standalone_parser_smoke": "passed",
+    "evidence_sha256": {
+      "ExampleSmoke.java": "9bfa56057e11cc2784113a622d9254cd8b418728b2dc507aada49b6af3f9d298",
+      "User.java": "8a520e6332f6d2e7848d8054226a592dc62873ab4b9f91e46b347a97f2d4f309",
+      "UserController.java": "f79eac0a48fadd07858d40e80242363616aac119c32ca992a47cbe944259f59c",
+      "UserSearch.java": "7e4273739c10f329eff49b0470f383bf26f0d320e7e5457afa87471b6a4968d8",
+      "compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "java17-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "java17-run.log": "be7fa7f43b3e35069d62a4a58d9e0b04557e6a05cf1f3b7c5b6181cd2b60ade7",
+      "java21-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "java21-run.log": "be7fa7f43b3e35069d62a4a58d9e0b04557e6a05cf1f3b7c5b6181cd2b60ade7",
+      "java25-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "java25-run.log": "be7fa7f43b3e35069d62a4a58d9e0b04557e6a05cf1f3b7c5b6181cd2b60ade7",
+      "run.log": "be7fa7f43b3e35069d62a4a58d9e0b04557e6a05cf1f3b7c5b6181cd2b60ade7"
+    }
+  },
+  "testcontainers_containers_remaining": 0
+}

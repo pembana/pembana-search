@@ -1,55 +1,30 @@
-# Changelog
-All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
+# Pembana Search changelog
 
-## [Unreleased]
+This is Pembana Search's independent version history. No version is released yet.
+The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring Search.
 
-## [0.2.10] - 14 Mar 2024
+## 1.0.0-SNAPSHOT — unreleased
+
 ### Added
-- Add IsEmpty strategy
-- Add Between strategy
-- Add In strategy
 
-## [0.2.6] - 10 Jan 2024
-### Added
-- Bump Java, Kotlin and Spring versions
-- Bump various dependencies versions to avoid vulnerabilities
-- Various refactorings to leverage Java 17 features
-- Update README.md
-
-## [0.2.5] - 09 Jan 2024
-### Added
-- Add Instant strategy
-
-## [0.2.4] - 12 Mar 2021
-### Added 
-- Add UUID strategy 
-
-## [0.2.3] - 12 Mar 2021
-### Added 
-- Add Enum strategy 
-- Create Changelog
-
-## [0.2.2] - 3 Mar 2021
-### Added
-- Add case-sensitive flag for strings
-- Add tests to reach coverage threshold
+- Java implementation and tests preserving all 113 original scenarios.
+- H2 and Testcontainers PostgreSQL verification on Java 17, 21, and 25.
+- Opt-in strict validation, field allowlists, query limits, and structured errors.
+- Matching/association characterization tests and current Java documentation.
 
 ### Changed
-- Update Readme.md
-- Refactor parsingStrategies to have a file per Strategy
-- Format files 
 
-## [0.1.1] - 4 Sep 2019
-### Added
-- Add release process.
+- Spring Boot baseline is 4.1.1; Kotlin tooling has been removed.
+- Coordinates are `com.pembana:pembana-search:1.0.0-SNAPSHOT`.
+- Java packages use `com.pembana.search`, with `annotation` replacing `anotation`.
+- Test application/corpus names use Pembana Search; historical identities are mapped.
+- Upstream publishing defaults and obsolete release automation are removed;
+  deployment is disabled pending Pembana's release configuration.
 
-## [0.1.0] - 4 Sep 2019
-### Added
-- First commit with annotation search parameters.
+### Compatibility
 
-[Unreleased]: https://github.com/sipios/spring-search/compare/spring-search-0.2.4...HEAD
-[0.2.4]: https://github.com/sipios/spring-search/compare/spring-search-0.2.3...spring-search-0.2.4
-[0.2.3]: https://github.com/sipios/spring-search/compare/spring-search-0.2.2...spring-search-0.2.3
-[0.2.2]: https://github.com/sipios/spring-search/compare/spring-search-0.1.1...spring-search-0.2.2
-[0.1.1]: https://github.com/sipios/spring-search/compare/spring-search-0.1.0...spring-search-0.1.1
-[0.1.0]: https://github.com/sipios/spring-search/releases/tag/spring-search-0.1.0
+- Import and coordinate changes require consumer migration; there are no old-package shims.
+- Query matching defaults remain inherited. Stricter input rejection is opt-in.
+- The deprecated upstream default-package `SyntaxErrorListener` alias is removed;
+  use `com.pembana.search.listeners.SyntaxErrorListener` when needed.
+- This is a single artifact. The planned core/JPA/starter split is not implemented yet.

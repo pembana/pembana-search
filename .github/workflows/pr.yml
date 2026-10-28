@@ -47,6 +47,22 @@ jobs:
         run: |
           ./mvnw --batch-mode org.apache.maven.plugins:maven-dependency-plugin:3.6.1:tree -Dverbose -DoutputFile=build/compatibility/dependencies.txt 2>&1 | tee build/compatibility/dependency-tree.log
 
+      - name: Verify packaged identity and attribution
+        run: |
+          set -- target/pembana-search-*.jar
+          test "$#" -eq 3
+          for archive in "$@"; do
+            listing="build/compatibility/$(basename "$archive").contents.txt"
+            jar tf "$archive" > "$listing"
+            if grep -Eq '(^|/)com/sipios/|^SyntaxErrorListener.class$' "$listing"; then
+              echo "Unexpected upstream package in $archive"
+              exit 1
+            fi
+            for notice in LICENSE LICENSE.txt NOTICE; do
+              unzip -p "$archive" "META-INF/$notice" | cmp - "$notice"
+            done
+          done
+
       - name: Record effective build configuration
         if: always()
         run: |
@@ -55,7 +71,9 @@ jobs:
       - name: Run the Java caller against the packaged JAR and selected database
         run: |
           ./mvnw --batch-mode org.apache.maven.plugins:maven-dependency-plugin:3.6.1:build-classpath -DincludeScope=test -Dmdep.outputFile=build/compatibility/java-caller-classpath.txt 2>&1 | tee build/compatibility/classpath.log
-          java -Dspring.profiles.active=${{ matrix.database }} -cp "target/test-classes:target/spring-search-0.3.0.jar:$(cat build/compatibility/java-caller-classpath.txt)" com.sipios.springsearch.JavaCallerSmokeTest 2>&1 | tee build/compatibility/java-caller.log
+          artifact="$(find target -maxdepth 1 -name 'pembana-search-*.jar' ! -name '*-sources.jar' ! -name '*-javadoc.jar')"
+          test -f "$artifact"
+          java -Dspring.profiles.active=${{ matrix.database }} -cp "target/test-classes:${artifact}:$(cat build/compatibility/java-caller-classpath.txt)" com.pembana.search.JavaCallerSmokeTest 2>&1 | tee build/compatibility/java-caller.log
 
       - name: Preserve compatibility evidence even on failure
         if: always()
@@ -66,5 +84,6 @@ jobs:
             build/compatibility/
             target/surefire-reports/
             target/test-results/
+            target/reports/apidocs/
           if-no-files-found: error
           retention-days: 30
