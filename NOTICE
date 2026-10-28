@@ -29,3 +29,9 @@ docs/stage1/README.md for mechanical language-boundary adaptations and evidence.
 Stage 2 translates the inherited test corpus and fixtures to Java, retaining all
 113 scenarios and upstream attribution, and removes the Kotlin test toolchain.
 Production sources and behavior remain unchanged; see docs/stage2/README.md.
+
+Stage 3 upgrades framework integration to Spring Boot 4.1.1, updates resolver
+auto-configuration discovery, and adds PostgreSQL and Java 17/21/25 compatibility
+verification. Query implementation, grammar, and original scenarios/fixtures
+remain unchanged. New test classes carry 2026 Apache License 2.0 headers. See
+docs/stage3/README.md for dependency changes, results, and scope.

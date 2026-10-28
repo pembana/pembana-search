@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.7</version>
+		<version>4.1.1</version>
 		<relativePath /> <!-- lookup parent from repository --> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.sipios</groupId>
@@ -15,10 +15,7 @@
 
 	<properties>
 		<java.version>17</java.version>
-		<jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
-		<h2.version>2.2.220</h2.version>
-		<jackson-databind.version>2.16.0</jackson-databind.version>
-		<snakeyaml.version>2.0</snakeyaml.version>
+		<jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
 		<dependency-check-maven.version>13.0.0</dependency-check-maven.version>
 		<antl4.version>4.13.1</antl4.version>
 		<grammar.package>com.sipios.springsearch.grammar</grammar.package>
@@ -35,7 +32,6 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<version>${h2.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -45,25 +41,28 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-webmvc</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>${jackson-databind.version}</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.yaml</groupId>
 			<artifactId>snakeyaml</artifactId>
-			<version>${snakeyaml.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
+			<artifactId>spring-boot-starter-data-jpa-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
 			<scope>test</scope>
 		</dependency>
 
@@ -171,7 +170,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
 			</plugin>
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>

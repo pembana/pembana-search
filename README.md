@@ -1,13 +1,17 @@
-# Pembana Search — Java implementation and tests
+# Pembana Search — Spring Boot 4 compatibility
 
-Production code and tests are now Java, with all 113 original scenarios retained.
-See the [Stage 2 verification report](docs/stage2/README.md), the
+Production code and tests are Java. Spring Boot 4.1.1 is verified on Java 17, 21,
+and 25 against H2 and PostgreSQL, retaining all 113 original scenarios.
+See the [Stage 3 compatibility report](docs/stage3/README.md), the
+[Stage 2 verification report](docs/stage2/README.md), the
 [Stage 1 report](docs/stage1/README.md), and the
 [original baseline report](docs/baseline/README.md).
 New contributions and the overall distribution use [Apache License 2.0](LICENSE);
 inherited Spring Search material retains its [MIT notice](LICENSE.txt). See
 [NOTICE](NOTICE) for upstream provenance. The original upstream README follows;
-its published coordinates and API describe the compatibility baseline.
+its published coordinates, Kotlin examples, and Java 8 requirement describe the
+historical upstream baseline. The current build requires Java 17 or later and
+targets Java 17 bytecode; this milestone does not publish a new artifact.
 
 <!-- PROJECT SHIELDS -->
 <!--

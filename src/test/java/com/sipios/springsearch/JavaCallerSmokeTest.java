@@ -53,10 +53,15 @@ public class JavaCallerSmokeTest {
         if (!"search".equals(settings.searchParam()) || settings.caseSensitiveFlag()) {
             throw new AssertionError("Java annotation configuration was not preserved");
         }
+        // Match the selected corpus database while keeping bootstrap independent of Spring.
+        boolean postgres = "postgresql".equals(System.getProperty("spring.profiles.active"));
         Configuration configuration = new Configuration().addAnnotatedClass(Sample.class)
-                .setProperty("hibernate.connection.driver_class", "org.h2.Driver")
-                .setProperty("hibernate.connection.url", "jdbc:h2:mem:java-caller;DB_CLOSE_DELAY=-1")
-                .setProperty("hibernate.connection.username", "sa")
+                .setProperty("hibernate.connection.driver_class", postgres ? "org.postgresql.Driver" : "org.h2.Driver")
+                .setProperty("hibernate.connection.url", postgres
+                        ? environment("POSTGRES_URL", "jdbc:postgresql://localhost:5432/search_tests")
+                        : "jdbc:h2:mem:java-caller;DB_CLOSE_DELAY=-1")
+                .setProperty("hibernate.connection.username", postgres ? environment("POSTGRES_USER", "search_tests") : "sa")
+                .setProperty("hibernate.connection.password", postgres ? environment("POSTGRES_PASSWORD", "search_tests") : "")
                 .setProperty("hibernate.hbm2ddl.auto", "create-drop");
         try (SessionFactory factory = configuration.buildSessionFactory(); Session session = factory.openSession()) {
             session.beginTransaction();
@@ -79,5 +84,10 @@ public class JavaCallerSmokeTest {
             session.getTransaction().rollback();
         }
         System.out.println("Java caller smoke check passed");
+    }
+
+    private static String environment(String name, String fallback) {
+        String value = System.getenv(name);
+        return value == null ? fallback : value;
     }
 }

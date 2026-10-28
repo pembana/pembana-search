@@ -1,5 +1,8 @@
 # Stage 2: Java tests and fixtures
 
+Historical report: the pinned Kotlin comparison described below was the Stage 2
+CI gate. Stage 3 replaces it with the [framework/database matrix](../stage3/README.md).
+
 Status: **passed locally on 2026-10-28**. Production code, resources, grammar,
 framework integration, query behavior, and coverage thresholds are unchanged.
 This completes the test-language port; the Spring Boot upgrade remains Stage 3.
