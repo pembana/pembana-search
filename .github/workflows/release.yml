@@ -52,7 +52,7 @@ jobs:
 
       - name: Build, verify and stage the complete reactor locally
         run: |
-          ./mvnw --batch-mode --no-transfer-progress -Ppublication -Ddependency-check.skip=true clean deploy 2>&1 | tee build/publication/staging.log
+          ./mvnw --batch-mode --no-transfer-progress -Ppublication clean deploy 2>&1 | tee build/publication/staging.log
 
       - name: Sign and deploy staged artifacts
         env:

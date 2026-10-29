@@ -9,7 +9,7 @@ supplies Maven 3.10.0. Run `./mvnw --version` to confirm the active JDK; do not 
 a different JDK such as 27 to establish this compatibility matrix.
 
 ```sh
-./mvnw --batch-mode -Dgpg.skip=true -Ddependency-check.skip=true clean verify
+./mvnw --batch-mode -Dgpg.skip=true clean verify
 ```
 
 No profile means in-memory H2. Docker is not required. The same command with
@@ -24,7 +24,7 @@ To run tests on Java 17 or 25 while keeping Maven on Java 21, select a forked
 test executable (replace the example path with the installed runtime):
 
 ```sh
-./mvnw -Dgpg.skip=true -Ddependency-check.skip=true -Djvm=/path/to/jdk17/bin/java clean verify
+./mvnw -Dgpg.skip=true -Djvm=/path/to/jdk17/bin/java clean verify
 ```
 
 Checkstyle runs during `validate` before compilation; see the
@@ -100,7 +100,7 @@ through the existing Maven lifecycle and retains failures in its build logs.
 Start a Docker-compatible engine and run:
 
 ```sh
-./mvnw --batch-mode -Dgpg.skip=true -Ddependency-check.skip=true -Dspring.profiles.active=postgresql clean verify
+./mvnw --batch-mode -Dgpg.skip=true -Dspring.profiles.active=postgresql clean verify
 ```
 
 This is a **Spring profile**, not Maven `-Ppostgresql`. Its JDBC URL is
@@ -118,7 +118,8 @@ run Java 17/21/25 runtimes × H2/PostgreSQL, always building on JDK 21. Surefire
 complete 232-method suite and per-module coverage, then a Java caller against the packaged
 JAR using that same runtime in a separate JVM. Dependencies, effective
 POMs, environment/build logs, Surefire XML, and coverage reports are uploaded
-for 30 days, including evidence from failed jobs. No deployment is configured.
+for 30 days, including evidence from failed jobs. Publication uses the separate
+manual workflow documented in [Releasing](releasing.md).
 
 The original 113 methods now reside in `PembanaSearchCompatibilityTest`.
 The eight prior integration checks, 27 Stage 4 tests and five nullability contract
@@ -157,9 +158,31 @@ Do not rewrite the imported history.
 
 ## Dependency-Check and NVD
 
-The POM's Dependency-Check configuration looks up Maven server ID `nvd`. Keep
-credentials outside the repository. For example, put this in user settings
-(`~/.m2/settings.xml`) and supply `NVD_API_KEY` in the environment:
+Dependency-Check is opt-in through the Maven **`security` profile**. Ordinary
+builds, compatibility CI and publication staging do not load or run it, so no
+skip flag is needed. Selecting the profile binds one root-only **`aggregate`**
+scan to `verify`, covering the reactor's dependencies in one HTML/JSON report.
+The aggregate execution is not inherited by child modules. Run from the repository root
+without `-N` for the aggregate scan:
+
+```sh
+./mvnw -Psecurity -Dgpg.skip=true clean verify
+```
+
+Reports are `target/dependency-check-report.html` and
+`target/dependency-check-report.json`. Existing test-scope exclusions and the
+plugin's default CVSS threshold of **11** are retained: findings are reported,
+but do not fail the build solely on severity. Analysis/update errors fail the
+build. To enforce an explicit severity threshold for a particular run, supply
+`-DfailBuildOnCVSS=7`, for example. A successful report-only run is not a claim
+that no vulnerabilities exist; review the report before releasing.
+
+### API key and local cache
+
+The profile accepts **`NVD_API_KEY` directly from the environment**. Alternatively,
+it looks up Maven server ID `nvd` in private user settings. The environment value
+takes precedence. Never pass the key as `-DnvdApiKey=...` or commit credentials.
+For the Maven settings alternative (`~/.m2/settings.xml`):
 
 ```xml
 <settings xmlns="http://maven.apache.org/SETTINGS/1.2.0"
@@ -174,12 +197,63 @@ credentials outside the repository. For example, put this in user settings
 </settings>
 ```
 
-Run verification without `-Ddependency-check.skip=true` to include the scan.
-The key improves NVD access but first-time data initialization can still take
-substantial time. `-Dnvd.skip` is not this build's execution-skip property.
-Compatibility commands and CI deliberately skip the network scan; passing those
-checks is not evidence of a clean vulnerability scan. Never put keys or settings
-files into commits, logs, or uploaded artifacts.
+Dependency-Check retains its local database under the Maven local repository by
+default (`~/.m2/repository/org/owasp/dependency-check-data/`, with a schema-version
+subdirectory). `mvn clean` does not remove it. First-time initialization can take
+substantial time even with an API key; subsequent runs reuse it and fetch updates
+when needed. Avoid purging the cache during routine builds.
+
+To update data separately and then scan using the refreshed cache:
+
+```sh
+./mvnw -N -Psecurity dependency-check:update-only
+./mvnw -Psecurity -Dgpg.skip=true -DautoUpdate=false verify
+```
+
+Use `autoUpdate=false` only after a successful update or with a known fresh cache;
+it is not a permanent freshness policy. Some analyzers may still make network
+requests. For repeated local scans, `-DnvdValidForHours=24` instead keeps automatic
+updates enabled while extending the NVD check interval from four to 24 hours.
+Use `-DdataDirectory=/absolute/path/outside/target` consistently for both commands
+if selecting another database directory. Do not use a directory that `clean`
+will delete. `-Ddependency-check.skip=true` still skips an explicitly enabled
+security scan; `-Dnvd.skip` is not the execution-skip property.
+
+### Nightly/manual security workflow
+
+**Actions → Dependency security scan → Run workflow** starts a scan on demand.
+The same workflow runs daily at **10:23 UTC / 00:23 Hawaii Standard Time** on the
+default branch. Configure the repository Actions secret **`NVD_API_KEY`** first.
+The update step fails with an actionable message if it is absent rather than
+starting a slow unauthenticated download. The workflow uses Java 21 and H2 tests;
+it does not repeat the six-database/runtime compatibility matrix or publish
+artifacts.
+
+Each run restores the complete vulnerability data directory to
+`$RUNNER_TEMP/dependency-check-data`, separate from setup-java's Maven artifact
+cache. The cache key includes runner OS, the exact Dependency-Check version read
+from the POM, a manual cache epoch (`v1`), and the run ID/attempt. Restore prefixes
+stay within that OS/plugin-version/epoch; incompatible versions are never used as
+a fallback. Bump the epoch in the workflow if a cache must be discarded. GitHub
+caches are subject to branch access rules and eviction, so an initial or evicted
+cache still requires full initialization.
+
+Runs are serialized. Each run updates the database once with `update-only`, saves
+a new immutable cache entry after that update succeeds, then executes the single
+aggregate scan with `autoUpdate=false`. Saving before analysis retains refreshed
+data even if analysis/build subsequently fails; a failed update is never saved.
+A unique key allows refreshed data to persist instead of reusing an immutable
+old entry forever. No credentials or settings files belong in this data cache.
+
+HTML/JSON reports, update/scan logs, revision/plugin version and available build
+reports are uploaded for 30 days, including on failure. Cache failures or update
+failures must not be interpreted as a clean security result. Ordinary CI and
+publication staging do not activate this profile; inspect the separate security
+workflow/report for the intended release revision. Never upload secret keys or
+settings files in reports.
+
+See the upstream [aggregate goal](https://dependency-check.github.io/DependencyCheck/dependency-check-maven/aggregate-mojo.html)
+and [database caching guidance](https://dependency-check.github.io/DependencyCheck/data/cacheh2.html).
 
 ## Troubleshooting
 
@@ -196,7 +270,8 @@ files into commits, logs, or uploaded artifacts.
 - **Missing search:** the resolver returns null for an absent/empty parameter;
   branch explicitly before repository methods that reject null Specifications.
 - **NVD download/rate failure:** verify the `nvd` server ID/environment key, or
-  skip Dependency-Check explicitly for a compatibility-only run.
+  omit `-Psecurity` for an ordinary build; use the separate security workflow
+  for an updated vulnerability report.
 - **Artifact GPG failure:** configure artifact signing or use `-Dgpg.skip=true`
   for local verification. Continue signing Git commits.
 - **Repository certificate warning:** inherited metadata resolution has produced

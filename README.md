@@ -40,15 +40,17 @@ Java 21. See the [nullability checks](docs/development.md#nullability-checks)
 for compiler requirements and annotation conventions.
 
 ```sh
-# H2 by default; artifact signing and the network vulnerability scan are skipped.
-./mvnw -Dgpg.skip=true -Ddependency-check.skip=true clean install
+# H2 by default; skip artifact signing for local development.
+./mvnw -Dgpg.skip=true clean install
 
 # Optional PostgreSQL verification; start a Docker-compatible engine first.
-./mvnw -Dgpg.skip=true -Ddependency-check.skip=true -Dspring.profiles.active=postgresql clean verify
+./mvnw -Dgpg.skip=true -Dspring.profiles.active=postgresql clean verify
 ```
 
 The wrapper supplies Maven 3.10.0. Tests and coverage remain enabled in these
 commands. Git commit signing is separate from Maven artifact signing.
+Dependency-Check runs only with `-Psecurity`: see the [security scan and cache
+guide](docs/development.md#dependency-check-and-nvd) for local use and nightly CI.
 
 ## Add to a Spring Boot application
 
@@ -157,7 +159,7 @@ See [architecture](docs/architecture.md) and [module verification](docs/modules/
 - [Release/versioning checklist](docs/releasing.md)
 - [Contributing](CONTRIBUTING.md), [changelog](CHANGELOG.md), [documentation index](docs/README.md)
 
-`./mvnw -Dgpg.skip=true -Ddependency-check.skip=true package` produces binary,
+`./mvnw -Dgpg.skip=true package` produces binary,
 source, and Javadoc JARs. Generated API documentation is in
 each module’s `target/reports/apidocs/` directory.
 

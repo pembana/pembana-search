@@ -52,7 +52,7 @@ jobs:
 
       - name: Run the full corpus and coverage checks
         run: |
-          ./mvnw --batch-mode -Dgpg.skip=true -Ddependency-check.skip=true -Djvm="$TEST_JAVA_HOME/bin/java" -Dspring.profiles.active=${{ matrix.database }} clean verify 2>&1 | tee build/compatibility/build.log
+          ./mvnw --batch-mode -Dgpg.skip=true -Djvm="$TEST_JAVA_HOME/bin/java" -Dspring.profiles.active=${{ matrix.database }} clean verify 2>&1 | tee build/compatibility/build.log
 
       - name: Verify core dependency boundary
         run: |

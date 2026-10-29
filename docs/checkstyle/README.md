@@ -14,10 +14,10 @@ Compilation therefore checks Java 17 APIs and emits Java 17 class files.
 
 ```sh
 ./mvnw validate
-./mvnw -Dgpg.skip=true -Ddependency-check.skip=true clean verify
+./mvnw -Dgpg.skip=true clean verify
 
 # Maven/Checkstyle/compiler stay on JDK 21; Surefire forks the selected runtime.
-./mvnw -Dgpg.skip=true -Ddependency-check.skip=true -Djvm=/path/to/jdk17/bin/java clean verify
+./mvnw -Dgpg.skip=true -Djvm=/path/to/jdk17/bin/java clean verify
 ```
 
 CI installs the selected runtime, saves its path, then selects build JDK 21.

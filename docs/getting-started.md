@@ -11,7 +11,7 @@ No artifact is published yet. Select build JDK 21 and install from this
 repository using its Maven wrapper:
 
 ```sh
-./mvnw -Dgpg.skip=true -Ddependency-check.skip=true clean install
+./mvnw -Dgpg.skip=true clean install
 ```
 
 The library targets Java 17 and is tested on Java 17, 21, and 25 runtimes. Build

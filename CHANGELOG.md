@@ -7,6 +7,9 @@ The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring S
 
 ### Added
 
+- Opt-in `security` Maven profile with one reactor-wide aggregate Dependency-Check
+  report, plus nightly/manual scans with a versioned, persistent database cache.
+
 - Opt-in multi-module local Maven staging and manual JReleaser publication for
   Central snapshots/releases, with reusable compatibility CI, dry-run mode and
   documented signing credentials.

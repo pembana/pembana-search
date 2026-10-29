@@ -90,9 +90,11 @@ log, `target/jreleaser/trace.log` and `target/jreleaser/output.properties`.
 Reports are kept for 30 days. Never upload local secret-key exports or settings
 files as artifacts.
 
-As in compatibility CI, the workflow skips the network Dependency-Check scan.
-Complete the vulnerability review separately before an actual release; a passing
-publication workflow is not evidence of a clean vulnerability scan.
+Publication and compatibility workflows do not activate the opt-in `security`
+profile. Review the separate nightly/manual **Dependency security scan** reports
+for the intended release revision before publishing; trigger it manually when
+necessary. A passing publication workflow is not evidence of a clean vulnerability
+scan. See the [security workflow and cache guide](development.md#dependency-check-and-nvd).
 
 ## Local staging and dry runs
 
@@ -105,7 +107,7 @@ checks. It does not upload anything by itself.
 ```sh
 # Runs H2 tests and the normal gates, then stages all modules locally.
 ./mvnw --batch-mode --no-transfer-progress -Ppublication \
-  -Ddependency-check.skip=true clean deploy
+  clean deploy
 ```
 
 The profile's default goal is also `deploy`, as in the reference project. Prefer

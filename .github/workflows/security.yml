@@ -1,0 +1,88 @@
+name: Dependency security scan
+
+on:
+  schedule:
+    # Daily at 00:23 Hawaii Standard Time (10:23 UTC).
+    - cron: '23 10 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: dependency-security-scan
+  cancel-in-progress: false
+
+jobs:
+  security:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: temurin
+          cache: maven
+
+      - name: Record the revision and Dependency-Check version
+        id: configuration
+        run: |
+          mkdir -p build/security
+          git rev-parse HEAD | tee build/security/revision.txt
+          ./mvnw --batch-mode --no-transfer-progress -N help:evaluate -Dexpression=dependency-check-maven.version -Doutput=build/security/dependency-check-version.txt
+          version=$(cat build/security/dependency-check-version.txt)
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Restore the versioned vulnerability database
+        id: database
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/dependency-check-data
+          key: ${{ runner.os }}-dependency-check-${{ steps.configuration.outputs.version }}-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            ${{ runner.os }}-dependency-check-${{ steps.configuration.outputs.version }}-v1-
+
+      - name: Update the vulnerability database once
+        env:
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+        run: |
+          if [[ -z "$NVD_API_KEY" ]]; then
+            echo '::error::Configure the NVD_API_KEY repository secret before running the security workflow.'
+            exit 1
+          fi
+          ./mvnw --batch-mode --no-transfer-progress -N -Psecurity -DdataDirectory="$RUNNER_TEMP/dependency-check-data" dependency-check:update-only 2>&1 | tee build/security/update.log
+
+      # Save after a successful update, even if the subsequent scan fails.
+      - name: Save the updated vulnerability database
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/dependency-check-data
+          key: ${{ steps.database.outputs.cache-primary-key }}
+
+      - name: Build and run one aggregate scan with the updated database
+        run: |
+          ./mvnw --batch-mode --no-transfer-progress -Psecurity -Dgpg.skip=true -DautoUpdate=false -DdataDirectory="$RUNNER_TEMP/dependency-check-data" clean verify 2>&1 | tee build/security/scan.log
+
+      - name: Preserve security reports even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-security-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            build/security/
+            target/dependency-check-report.html
+            target/dependency-check-report.json
+            pembana-search-*/target/surefire-reports/
+            pembana-search-*/target/test-results/
+            pembana-search-*/target/checkstyle-result.xml
+          if-no-files-found: warn
+          retention-days: 30
