@@ -132,6 +132,9 @@
 				<artifactId>nullability-maven-plugin</artifactId>
 				<version>${nullability-maven-plugin.version}</version>
 				<extensions>true</extensions>
+				<configuration>
+					<checking>tests</checking>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>

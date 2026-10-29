@@ -18,6 +18,7 @@ package com.pembana.search;
 import java.util.List;
 
 import jakarta.persistence.EntityManager;
+import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,7 @@ import com.pembana.search.configuration.SearchSpecificationResolver;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -388,11 +390,15 @@ class QueryBehaviorTest {
 	void syntaxErrorsCarryCodeAndOriginalLocationText() throws Exception {
 		var error = assertThrows(InvalidSearchQueryException.class, () -> spec("strict", "userFirstName:"));
 		assertEquals(QueryErrorCode.SYNTAX_ERROR, error.getErrorCode());
-		assertTrue(error.getReason().startsWith("Invalid search query: [line 1:14"));
+		var reason = error.getReason();
+		assertNotNull(reason);
+		assertTrue(reason.startsWith("Invalid search query: [line 1:14"));
 		assertNull(error.getField());
-		assertEquals(1, error.getBody().getProperties().get("line"));
-		assertEquals(14, error.getBody().getProperties().get("column"));
-		assertFalse(error.getBody().getProperties().containsKey("field"));
+		var properties = error.getBody().getProperties();
+		assertNotNull(properties);
+		assertEquals(1, properties.get("line"));
+		assertEquals(14, properties.get("column"));
+		assertFalse(properties.containsKey("field"));
 	}
 
 	/**
@@ -494,8 +500,10 @@ class QueryBehaviorTest {
 		assertEquals(400, error.getStatusCode().value());
 		assertEquals(code, error.getErrorCode());
 		assertEquals(field, error.getField());
-		assertEquals(code.name(), error.getBody().getProperties().get("code"));
-		assertEquals(field, error.getBody().getProperties().get("field"));
+		var properties = error.getBody().getProperties();
+		assertNotNull(properties);
+		assertEquals(code.name(), properties.get("code"));
+		assertEquals(field, properties.get("field"));
 	}
 
 	/**
@@ -522,7 +530,7 @@ class QueryBehaviorTest {
 		 */
 		@GetMapping("/query")
 		String search(@SearchSpec(searchParam = "filter", strictValidation = true,
-				allowedFields = "userFirstName") Specification<Users> search) {
+				allowedFields = "userFirstName") @Nullable Specification<Users> search) {
 			return String.valueOf((search == null) ? this.repository.count() : this.repository.count(search));
 		}
 

@@ -28,6 +28,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import org.hibernate.proxy.HibernateProxy;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Book fixture for Pembana Search database verification.
@@ -42,17 +43,17 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false)
-	public Long id;
+	public @Nullable Long id;
 
 	@ManyToOne
 	@JoinColumn(name = "author_id")
-	public Author author;
+	public @Nullable Author author;
 
 	@Column(name = "title")
-	public String title;
+	public @Nullable String title;
 
 	@Override
-	public final boolean equals(Object other) {
+	public final boolean equals(@Nullable Object other) {
 		if (this == other) {
 			return true;
 		}

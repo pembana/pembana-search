@@ -30,6 +30,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Author fixture for Pembana Search database verification.
@@ -44,13 +45,13 @@ public class Author {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false)
-	public Long id;
+	public @Nullable Long id;
 
 	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
 	public List<Book> books = new ArrayList<>();
 
 	@Column(name = "name")
-	public String name;
+	public @Nullable String name;
 
 	public void addBook(Book book) {
 		this.books.add(book);

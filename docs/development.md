@@ -32,9 +32,10 @@ Checkstyle runs during `validate` before compilation; see the
 
 Like Pembana, the build uses `am.ik.maven:nullability-maven-plugin:0.5.1` as a
 Maven extension with its `configure` goal, plus JSpecify 1.0.1 annotations.
-Compilation automatically runs Error Prone 2.50.0 and NullAway 0.14.1; nullability
-violations fail the build. No separate command or CI setup is needed. The
-compiler still emits Java 17 bytecode, and tests can run on Java 17, 21, or 25.
+The plugin's `checking=tests` configuration runs Error Prone 2.50.0 and NullAway
+0.14.1 during both production and test compilation; nullability violations fail
+the build. No separate command or CI setup is needed. The compiler still emits
+Java 17 bytecode, and tests can run on Java 17, 21, or 25.
 
 Use an OpenJDK-based Java 21 distribution such as Temurin, version 21.0.8 or
 newer. The plugin enables `-XDaddTypeAnnotationsToSymbol=true` so javac reads
@@ -48,14 +49,23 @@ scalar converters retain their strategy-specific null behavior, and the `NULL`
 query token remains distinct from a Java null reference. Nullable Spring MVC/JPA
 and ANTLR callback parameters are declared explicitly. Membership items retain
 their original scalar conversion, including a null item becoming the string
-`"null"` before conversion. Generated ANTLR sources and test sources are excluded
-from nullability checking by the plugin defaults; handwritten production code
-has no unmarked packages or nullability suppressions.
+`"null"` before conversion. Tests declare their own `@NullMarked` package, covering
+fixtures, repositories, nested endpoints and the standalone Java caller. Generated
+ANTLR sources remain excluded by the plugin's default generated-source filter;
+handwritten production and test code have no unmarked regions or nullability
+suppressions.
 
-Add `@NullMarked` to new handwritten production types and use JSpecify
-`@Nullable` for intentional nulls. Verify callers and behavior before changing
-nullability contracts or implementation. Keep the
-plugin's default error severity and explicit marking requirement. Error Prone
+Fixture nullability follows the original Kotlin declarations, including generated
+IDs, optional entity associations and nullable scalar columns, plus the nullable
+last name added for Stage 4. Test-only set factories permit nullable elements.
+Diagnostic assertions check that optional reason text and problem-detail
+properties exist before inspecting their contents. Fixture defaults, database
+mappings and original scenario assertions are preserved.
+
+Ensure new handwritten production and test types inherit or declare `@NullMarked`,
+and use JSpecify `@Nullable` for intentional nulls. Verify callers and behavior
+before changing nullability contracts or implementation. Keep the plugin's
+default error severity and explicit marking requirement. Error Prone
 and NullAway remain compiler tooling; only JSpecify is a project dependency.
 
 The [plugin documentation](https://github.com/making/nullability-maven-plugin/tree/0.5.1)
@@ -73,6 +83,15 @@ JVM field/method descriptors are unchanged and all compiled classes target Java
 bound update type metadata for callers. Grammar, original tests, fixtures,
 dependency versions and matching rules remain unchanged. Native verification
 evidence is retained locally under ignored `build/nullmarked/`.
+
+The subsequent test/fixture migration also passes all 153 tests on the same six
+database/runtime combinations with production and test checking enabled. Compiler
+probes in an isolated copy reject intentional nullability violations in both
+source sets. The 113 original scenario methods and production sources are
+unchanged; fixture bytecode instructions match the preceding implementation.
+All classes still target Java 17. Native compiler, test and coverage evidence is
+retained locally under ignored `build/test-nullability/`. CI runs these checks
+through the existing Maven lifecycle and retains failures in its build logs.
 
 ## PostgreSQL profile
 

@@ -25,6 +25,7 @@ import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -102,9 +103,9 @@ public class JavaCallerSmokeTest {
 	public static class Sample {
 
 		@Id
-		private Long id;
+		private @Nullable Long id;
 
-		private String name;
+		private @Nullable String name;
 
 		public Sample() {
 		}

@@ -34,6 +34,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Upstream defaults and field mappings; fluent setters replace Kotlin named arguments.
@@ -53,7 +54,7 @@ public final class Users {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Integer userId = null;
+	public @Nullable Integer userId = null;
 
 	@Column(name = "FirstName")
 	public String userFirstName = "John";
@@ -62,7 +63,7 @@ public final class Users {
 	public boolean isAdmin = true;
 
 	@Column(name = "LastName")
-	public String userLastName = "Doe";
+	public @Nullable String userLastName = "Doe";
 
 	@Column(name = "email")
 	public String userEmail = "john.doe@wanahoo.fr";
@@ -71,7 +72,7 @@ public final class Users {
 	public String userAddress = "1 rue de l'angleterre";
 
 	@Column(name = "NumberOfChildren")
-	public Integer userChildrenNumber = 3;
+	public @Nullable Integer userChildrenNumber = 3;
 
 	@Column(name = "Salary")
 	public float userSalary = 3000.0F;
@@ -80,16 +81,16 @@ public final class Users {
 	public double userAgeInSeconds = 1261440000.0;
 
 	@Column
-	public Date createdAt = new Date();
+	public @Nullable Date createdAt = new Date();
 
 	@Column
-	public LocalDateTime updatedAt = LocalDateTime.now();
+	public @Nullable LocalDateTime updatedAt = LocalDateTime.now();
 
 	@Column
 	public LocalTime updatedTimeAt = LocalTime.now();
 
 	@Column
-	public LocalDate updatedDateAt = LocalDate.now();
+	public @Nullable LocalDate updatedDateAt = LocalDate.now();
 
 	@Column
 	public Instant updatedInstantAt = Instant.now();
@@ -98,15 +99,15 @@ public final class Users {
 	public Duration validityDuration = Duration.ofDays(30);
 
 	@Column(name = "UserType")
-	public UserType type = UserType.TEAM_MEMBER;
+	public @Nullable UserType type = UserType.TEAM_MEMBER;
 
 	@Column
-	public UUID uuid = UUID.randomUUID();
+	public @Nullable UUID uuid = UUID.randomUUID();
 
 	@Column
-	public Boolean active = true;
+	public @Nullable Boolean active = true;
 
-	public Users withUserId(Integer value) {
+	public Users withUserId(@Nullable Integer value) {
 		this.userId = value;
 		return this;
 	}
@@ -121,7 +122,7 @@ public final class Users {
 		return this;
 	}
 
-	public Users withUserLastName(String value) {
+	public Users withUserLastName(@Nullable String value) {
 		this.userLastName = value;
 		return this;
 	}
@@ -136,7 +137,7 @@ public final class Users {
 		return this;
 	}
 
-	public Users withUserChildrenNumber(Integer value) {
+	public Users withUserChildrenNumber(@Nullable Integer value) {
 		this.userChildrenNumber = value;
 		return this;
 	}
@@ -151,12 +152,12 @@ public final class Users {
 		return this;
 	}
 
-	public Users withCreatedAt(Date value) {
+	public Users withCreatedAt(@Nullable Date value) {
 		this.createdAt = value;
 		return this;
 	}
 
-	public Users withUpdatedAt(LocalDateTime value) {
+	public Users withUpdatedAt(@Nullable LocalDateTime value) {
 		this.updatedAt = value;
 		return this;
 	}
@@ -166,7 +167,7 @@ public final class Users {
 		return this;
 	}
 
-	public Users withUpdatedDateAt(LocalDate value) {
+	public Users withUpdatedDateAt(@Nullable LocalDate value) {
 		this.updatedDateAt = value;
 		return this;
 	}
@@ -181,23 +182,23 @@ public final class Users {
 		return this;
 	}
 
-	public Users withType(UserType value) {
+	public Users withType(@Nullable UserType value) {
 		this.type = value;
 		return this;
 	}
 
-	public Users withUuid(UUID value) {
+	public Users withUuid(@Nullable UUID value) {
 		this.uuid = value;
 		return this;
 	}
 
-	public Users withActive(Boolean value) {
+	public Users withActive(@Nullable Boolean value) {
 		this.active = value;
 		return this;
 	}
 
 	@Override
-	public boolean equals(Object other) {
+	public boolean equals(@Nullable Object other) {
 		if (this == other) {
 			return true;
 		}

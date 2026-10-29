@@ -24,6 +24,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.jspecify.annotations.Nullable;
+
 import com.pembana.search.annotation.SearchSpec;
 
 /**
@@ -38,7 +40,7 @@ final class SearchTestFixtures {
 	}
 
 	@SafeVarargs
-	static <T> Set<T> setOf(T... values) {
+	static <T extends @Nullable Object> Set<T> setOf(T... values) {
 		// Unlike Set.of, Kotlin's setOf permits nulls and repeated values.
 		return new HashSet<>(Arrays.asList(values));
 	}
@@ -91,7 +93,7 @@ final class SearchTestFixtures {
 			}
 
 			@Override
-			public boolean equals(Object other) {
+			public boolean equals(@Nullable Object other) {
 				return other instanceof SearchSpec spec && searchParam.equals(spec.searchParam())
 						&& caseSensitiveFlag == spec.caseSensitiveFlag()
 						&& Arrays.equals(fields, spec.blackListedFields()) && !spec.strictValidation()

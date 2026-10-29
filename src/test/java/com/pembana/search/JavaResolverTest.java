@@ -73,7 +73,9 @@ class JavaResolverTest {
 		ResponseStatusException syntax = assertThrows(ResponseStatusException.class,
 				() -> resolver.resolveArgument(parameter, null, webRequest, null));
 		assertEquals(400, syntax.getStatusCode().value());
-		assertTrue(syntax.getReason().startsWith("Invalid search query: [line 1:"));
+		var reason = syntax.getReason();
+		assertNotNull(reason);
+		assertTrue(reason.startsWith("Invalid search query: [line 1:"));
 	}
 
 	@Test
