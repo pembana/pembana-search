@@ -27,16 +27,21 @@ import org.springframework.data.jpa.domain.Specification;
 
 /**
  * Represents an unconfigured search by returning no predicate.
+ *
  * @param <T> entity type represented by the generated specification
+ * @author Spring Search contributors
  * @author Gunnar Hillert
  */
 public final class NullSpecification<T> implements Specification<T> {
-    /** Creates a NullSpecification with the inherited default configuration. */
-    public NullSpecification() { }
 
-    /** {@inheritDoc} */
-    @Override
-    public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-        return null;
-    }
+	/** Creates a NullSpecification with the inherited default configuration. */
+	public NullSpecification() {
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+		return null;
+	}
+
 }

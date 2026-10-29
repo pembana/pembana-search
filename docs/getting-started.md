@@ -7,12 +7,15 @@ application's model.
 
 ## Build and consume the snapshot
 
-No artifact is published yet. Select Java 17, 21, or 25 and install from this
+No artifact is published yet. Select build JDK 21 and install from this
 repository using its Maven wrapper:
 
 ```sh
 ./mvnw -Dgpg.skip=true -Ddependency-check.skip=true clean install
 ```
+
+The library targets Java 17 and is tested on Java 17, 21, and 25 runtimes. Build
+tools, including Checkstyle, run on Java 21; consumers do not need those tools.
 
 Add `com.pembana:pembana-search:1.0.0-SNAPSHOT` to your application's dependencies.
 The application's Boot 4.1.1 dependency management should align Spring/Hibernate

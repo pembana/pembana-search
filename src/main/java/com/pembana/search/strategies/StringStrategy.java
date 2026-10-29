@@ -19,87 +19,119 @@
  */
 package com.pembana.search.strategies;
 
-import com.pembana.search.SearchOperation;
-import com.pembana.search.annotation.SearchSpec;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.Expression;
-import jakarta.persistence.criteria.Path;
-import jakarta.persistence.criteria.Predicate;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.Path;
+import jakarta.persistence.criteria.Predicate;
+
+import com.pembana.search.SearchOperation;
+import com.pembana.search.annotation.SearchSpec;
+
 /**
  * Converts String values using the inherited matching policy.
+ *
+ * @author Spring Search contributors
  * @author Gunnar Hillert
  */
 public final class StringStrategy implements ParsingStrategy {
-    private SearchSpec searchSpecAnnotation;
-    /**
-     * Supplies legacy case/matching policy.
-     * @param searchSpecAnnotation legacy case/matching policy
-     */
-    public StringStrategy(SearchSpec searchSpecAnnotation) { this.searchSpecAnnotation = searchSpecAnnotation; }
-    /**
-     * Returns current legacy matching settings.
-     * @return current legacy matching settings
-     */
-    public SearchSpec getSearchSpecAnnotation() { return searchSpecAnnotation; }
-    /**
-     * Supplies replacement legacy matching settings.
-     * @param value replacement legacy matching settings
-     */
-    public void setSearchSpecAnnotation(SearchSpec value) { searchSpecAnnotation = value; }
-    /**
-     * Returns matching settings through the retained data-class-style accessor.
-     * @return matching settings through the retained data-class-style accessor
-     */
-    public SearchSpec component1() { return searchSpecAnnotation; }
-    /**
-     * Copies this strategy with replacement settings.
-     * @param annotation replacement matching settings
-     * @return independent strategy instance
-     */
-    public StringStrategy copy(SearchSpec annotation) { return new StringStrategy(annotation); }
-    /** {@inheritDoc} */
-    @Override
-    public boolean equals(Object other) {
-        return this == other || other instanceof StringStrategy strategy
-                && Objects.equals(searchSpecAnnotation, strategy.searchSpecAnnotation);
-    }
-    /** {@inheritDoc} */
-    @Override
-    public int hashCode() { return searchSpecAnnotation.hashCode(); }
-    /** {@inheritDoc} */
-    @Override
-    public String toString() { return "StringStrategy(searchSpecAnnotation=" + searchSpecAnnotation + ")"; }
-    /** {@inheritDoc} */
-    @Override
-    public Predicate buildPredicate(CriteriaBuilder builder, Path<?> path, String fieldName,
-            SearchOperation ops, Object value) {
-        if (!(value instanceof List<?>)) {
-            String casedValue = String.valueOf(value);
-            Expression<String> casedField = path.get(fieldName);
-            if (!searchSpecAnnotation.caseSensitiveFlag()) {
-                casedValue = casedValue.toLowerCase(Locale.ROOT);
-                casedField = builder.lower(casedField);
-            }
-            if (ops == null) { return ParsingStrategy.super.buildPredicate(builder, path, fieldName, null, value); }
-            return switch (ops) {
-                case STARTS_WITH -> builder.like(casedField, casedValue + "%");
-                case ENDS_WITH -> builder.like(casedField, "%" + casedValue);
-                case CONTAINS -> builder.like(casedField, "%" + casedValue + "%");
-                case DOESNT_START_WITH -> builder.notLike(casedField, casedValue + "%");
-                case DOESNT_END_WITH -> builder.notLike(casedField, "%" + casedValue);
-                case DOESNT_CONTAIN -> builder.notLike(casedField, "%" + casedValue + "%");
-                case GREATER_THAN -> builder.greaterThan(casedField, casedValue);
-                case GREATER_THAN_EQUALS -> builder.greaterThanOrEqualTo(casedField, casedValue);
-                // Preserve the upstream asymmetry: equality and these comparisons use the original path/value.
-                case LESS_THAN -> builder.lessThan(path.get(fieldName), casedValue);
-                case LESS_THAN_EQUALS -> builder.lessThanOrEqualTo(path.get(fieldName), casedValue);
-                default -> ParsingStrategy.super.buildPredicate(builder, path, fieldName, ops, value);
-            };
-        }
-        return ParsingStrategy.super.buildPredicate(builder, path, fieldName, ops, value);
-    }
+
+	private SearchSpec searchSpecAnnotation;
+
+	/**
+	 * Supplies legacy case/matching policy.
+	 * @param searchSpecAnnotation legacy case/matching policy
+	 */
+	public StringStrategy(SearchSpec searchSpecAnnotation) {
+		this.searchSpecAnnotation = searchSpecAnnotation;
+	}
+
+	/**
+	 * Returns current legacy matching settings.
+	 * @return current legacy matching settings
+	 */
+	public SearchSpec getSearchSpecAnnotation() {
+		return this.searchSpecAnnotation;
+	}
+
+	/**
+	 * Supplies replacement legacy matching settings.
+	 * @param value replacement legacy matching settings
+	 */
+	public void setSearchSpecAnnotation(SearchSpec value) {
+		this.searchSpecAnnotation = value;
+	}
+
+	/**
+	 * Returns matching settings through the retained data-class-style accessor.
+	 * @return matching settings through the retained data-class-style accessor
+	 */
+	public SearchSpec component1() {
+		return this.searchSpecAnnotation;
+	}
+
+	/**
+	 * Copies this strategy with replacement settings.
+	 * @param annotation replacement matching settings
+	 * @return independent strategy instance
+	 */
+	public StringStrategy copy(SearchSpec annotation) {
+		return new StringStrategy(annotation);
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public boolean equals(Object other) {
+		return this == other || other instanceof StringStrategy strategy
+				&& Objects.equals(this.searchSpecAnnotation, strategy.searchSpecAnnotation);
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public int hashCode() {
+		return this.searchSpecAnnotation.hashCode();
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public String toString() {
+		return "StringStrategy(searchSpecAnnotation=" + this.searchSpecAnnotation + ")";
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public Predicate buildPredicate(CriteriaBuilder builder, Path<?> path, String fieldName, SearchOperation ops,
+			Object value) {
+		if (!(value instanceof List<?>)) {
+			String casedValue = String.valueOf(value);
+			Expression<String> casedField = path.get(fieldName);
+			if (!this.searchSpecAnnotation.caseSensitiveFlag()) {
+				casedValue = casedValue.toLowerCase(Locale.ROOT);
+				casedField = builder.lower(casedField);
+			}
+			if (ops == null) {
+				return ParsingStrategy.super.buildPredicate(builder, path, fieldName, null, value);
+			}
+			return switch (ops) {
+				case STARTS_WITH -> builder.like(casedField, casedValue + "%");
+				case ENDS_WITH -> builder.like(casedField, "%" + casedValue);
+				case CONTAINS -> builder.like(casedField, "%" + casedValue + "%");
+				case DOESNT_START_WITH -> builder.notLike(casedField, casedValue + "%");
+				case DOESNT_END_WITH -> builder.notLike(casedField, "%" + casedValue);
+				case DOESNT_CONTAIN -> builder.notLike(casedField, "%" + casedValue + "%");
+				case GREATER_THAN -> builder.greaterThan(casedField, casedValue);
+				case GREATER_THAN_EQUALS -> builder.greaterThanOrEqualTo(casedField, casedValue);
+				// Preserve the upstream asymmetry: equality and these comparisons use the
+				// original path/value.
+				case LESS_THAN -> builder.lessThan(path.get(fieldName), casedValue);
+				case LESS_THAN_EQUALS -> builder.lessThanOrEqualTo(path.get(fieldName), casedValue);
+				default -> ParsingStrategy.super.buildPredicate(builder, path, fieldName, ops, value);
+			};
+		}
+		return ParsingStrategy.super.buildPredicate(builder, path, fieldName, ops, value);
+	}
+
 }

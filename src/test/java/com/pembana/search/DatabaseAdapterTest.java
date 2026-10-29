@@ -16,29 +16,35 @@
 package com.pembana.search;
 
 import javax.sql.DataSource;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.core.env.Environment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Prevents a PostgreSQL matrix job from silently falling back to an embedded database.
+ *
  * @author Gunnar Hillert
  */
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE, classes = PembanaSearchTestApplication.class)
+@SpringBootTest(webEnvironment = WebEnvironment.NONE, classes = PembanaSearchTestApplication.class)
 class DatabaseAdapterTest {
-    @Autowired
-    DataSource dataSource;
-    @Autowired
-    Environment environment;
 
-    @Test
-    void connectsToTheSelectedDatabaseEngine() throws Exception {
-        try (var connection = dataSource.getConnection()) {
-            assertEquals(environment.matchesProfiles("postgresql") ? "PostgreSQL" : "H2",
-                    connection.getMetaData().getDatabaseProductName());
-        }
-    }
+	@Autowired
+	DataSource dataSource;
+
+	@Autowired
+	Environment environment;
+
+	@Test
+	void connectsToTheSelectedDatabaseEngine() throws Exception {
+		try (var connection = this.dataSource.getConnection()) {
+			assertEquals(this.environment.matchesProfiles("postgresql") ? "PostgreSQL" : "H2",
+					connection.getMetaData().getDatabaseProductName());
+		}
+	}
+
 }

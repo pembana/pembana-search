@@ -31,36 +31,49 @@ import org.hibernate.proxy.HibernateProxy;
 
 /**
  * Book fixture for Pembana Search database verification.
+ *
+ * @author Spring Search contributors
  * @author Gunnar Hillert
  */
 @Entity
 @Table(name = "book")
 public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    public Long id;
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    public Author author;
-    @Column(name = "title")
-    public String title;
 
-    @Override
-    public final boolean equals(Object other) {
-        if (this == other) { return true; }
-        if (other == null) { return false; }
-        Class<?> otherType = other instanceof HibernateProxy proxy
-                ? proxy.getHibernateLazyInitializer().getPersistentClass() : other.getClass();
-        Class<?> thisType = this instanceof HibernateProxy proxy
-                ? proxy.getHibernateLazyInitializer().getPersistentClass() : getClass();
-        if (thisType != otherType) { return false; }
-        Book book = (Book) other;
-        return id != null && id.equals(book.id);
-    }
-    @Override
-    public final int hashCode() {
-        return this instanceof HibernateProxy proxy
-                ? proxy.getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", nullable = false)
+	public Long id;
+
+	@ManyToOne
+	@JoinColumn(name = "author_id")
+	public Author author;
+
+	@Column(name = "title")
+	public String title;
+
+	@Override
+	public final boolean equals(Object other) {
+		if (this == other) {
+			return true;
+		}
+		if (other == null) {
+			return false;
+		}
+		Class<?> otherType = (other instanceof HibernateProxy proxy)
+				? proxy.getHibernateLazyInitializer().getPersistentClass() : other.getClass();
+		Class<?> thisType = (this instanceof HibernateProxy proxy)
+				? proxy.getHibernateLazyInitializer().getPersistentClass() : getClass();
+		if (thisType != otherType) {
+			return false;
+		}
+		Book book = (Book) other;
+		return this.id != null && this.id.equals(book.id);
+	}
+
+	@Override
+	public final int hashCode() {
+		return (this instanceof HibernateProxy proxy)
+				? proxy.getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
+	}
+
 }

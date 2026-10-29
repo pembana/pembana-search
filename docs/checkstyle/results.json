@@ -1,0 +1,998 @@
+{
+  "verified_on": "2026-10-28",
+  "base_revision": "20613ef1ac048f6d46066d1a0fa9dff6cad48fa3",
+  "tools": {
+    "spring_javaformat_checkstyle": "0.0.48",
+    "checkstyle": "14.1.0",
+    "maven_checkstyle_plugin": "3.6.0",
+    "build_java": "21",
+    "compiler_release": 17
+  },
+  "matrix": {
+    "java17-h2": {
+      "build_environment": [
+        "Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)",
+        "Maven home: /Users/hillert/.m2/wrapper/dists/apache-maven-3.10.0/dae9a06d",
+        "Java version: 21.0.10, vendor: Eclipse Adoptium, runtime: /Users/hillert/.sdkman/candidates/java/21.0.10-tem",
+        "Default locale: en_US, platform encoding: UTF-8, time zone: Pacific/Honolulu",
+        "OS name: \"mac os x\", version: \"27.0.1\", arch: \"aarch64\", family: \"mac\""
+      ],
+      "actual_surefire_runtime": "17",
+      "runtime_environment": [
+        "openjdk version \"17.0.20\" 2026-07-21 LTS",
+        "OpenJDK Runtime Environment (build 17.0.20+10-LTS)",
+        "OpenJDK 64-Bit Server VM (build 17.0.20+10-LTS, mixed mode, sharing)"
+      ],
+      "counts": {
+        "original_discovered": 113,
+        "original_executed": 113,
+        "original_passed": 113,
+        "total_discovered": 148,
+        "total_executed": 148,
+        "failed": 0,
+        "errored": 0,
+        "skipped": 0
+      },
+      "checkstyle_checked_java_files": 48,
+      "checkstyle_violations": 0,
+      "exit_codes": {
+        "build-exit-code.txt": 0,
+        "classpath-exit-code.txt": 0,
+        "dependencies-exit-code.txt": 0,
+        "java-caller-exit-code.txt": 0
+      },
+      "compiled_major_version": 61,
+      "runtime_dependency_graph_unchanged": true,
+      "coverage": {
+        "instruction": {
+          "covered": 2291,
+          "missed": 308
+        },
+        "branch": {
+          "covered": 310,
+          "missed": 61
+        },
+        "line": {
+          "covered": 447,
+          "missed": 56
+        },
+        "complexity": {
+          "covered": 248,
+          "missed": 77
+        },
+        "method": {
+          "covered": 94,
+          "missed": 19
+        },
+        "class": {
+          "covered": 28,
+          "missed": 2
+        }
+      },
+      "evidence_sha256": {
+        "build-environment.log": "1cf7c5d2861ba29561457b3ccb80c09b9219a5821c51e0ec98504bc53d10df78",
+        "build-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "build.log": "b5140498840fd215acead294f0532695dfb2367d4bb02722af526ef2f1eeb987",
+        "bytecode.txt": "fb2fa254246ad77042e92304197150166b06fc804163e8a48885df5b40024f11",
+        "checkstyle-result.xml": "f96361c1d6cda9f3edeaf48469461cd4bd5eba1123bfaaee01b28760802f3934",
+        "classpath-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "classpath.log": "4b3f0283e8213d3e15a6cbcf3f63f3a03ce5847debaf3a4de67054b392e7b6a3",
+        "dependencies-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "dependencies.log": "01e7e0b76c755fa18a9636416fe2481d4318531fdc4190bf72259ff76f9abae0",
+        "dependencies.txt": "29ef4bdb9c3862e7977c437926d679ab1dd3c89892cd981a294c2163eedee58d",
+        "java-caller-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "java-caller.log": "5e0d8e30c659b2a5a2320103b69e59cd66bc7626c9b2ae77aa0d7bb20496c137",
+        "runtime-environment.log": "549259d94a348d66d800e861432705437a01c6618b9a2190a496d4d5d6a850b4",
+        "surefire-reports/TEST-com.pembana.search.DatabaseAdapterTest.xml": "b8173e7ff083f8fc7c59a9e82af61eac11169ba8812a2d6dcc2a2a74bf46c3c3",
+        "surefire-reports/TEST-com.pembana.search.JavaCallerSmokeTest.xml": "f1e0d231254157bdc41181fe6d06b224aaac933def75f0e742110c6718963936",
+        "surefire-reports/TEST-com.pembana.search.JavaResolverTest.xml": "7acf0ddae21754018fa39230538ca1e05732d48ab641d6532a4e2caab8cf746e",
+        "surefire-reports/TEST-com.pembana.search.PembanaSearchCompatibilityTest.xml": "c2b23d0e9f0697e1ddf513a45320060083272d919fe6f94c8537c21575765576",
+        "surefire-reports/TEST-com.pembana.search.QueryBehaviorTest.xml": "77e27d67d657805b680356298878df9b559a3f3845c39d49c9f1a8ff0a333ba2",
+        "surefire-reports/TEST-com.pembana.search.ResolverAutoConfigurationTest.xml": "e598d9b9550dcd69ca3391fa50f890df33fc6ea3998d625ea5ee9ee49e45b778",
+        "surefire-reports/com.pembana.search.DatabaseAdapterTest.txt": "1599db7cc30ae79bb9314df90d1b6c5f3de6fd908be805dfa422c41b70b1a093",
+        "surefire-reports/com.pembana.search.JavaCallerSmokeTest.txt": "5ba8e9ac2d869a363fcd9d234c929aba96fcd5bee4a17b7e61ea1aab0f8c75b4",
+        "surefire-reports/com.pembana.search.JavaResolverTest.txt": "5041a91afd71372d39653ab603e09e5795d110d2592f09744c029e8cbcfcf6eb",
+        "surefire-reports/com.pembana.search.PembanaSearchCompatibilityTest.txt": "6fab045a88525f792cf934f8882f5b9f698d28fea8d71c286aaad5b300661912",
+        "surefire-reports/com.pembana.search.QueryBehaviorTest.txt": "8eb30439f0e426df8d5968f08447739599803a56235206eea48eb50e522fa4e6",
+        "surefire-reports/com.pembana.search.ResolverAutoConfigurationTest.txt": "be4beb77e4afd062fdd6bf04ea440e4d0ffb9cad1a10af9a72333d1889e5a47d",
+        "test-results/coverage/jacoco/jacoco.xml": "f83d493ccf46445cb8a4e4b1daf37af7c9d21baf31d42839573db61f3d30b80f"
+      }
+    },
+    "java17-postgresql": {
+      "build_environment": [
+        "Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)",
+        "Maven home: /Users/hillert/.m2/wrapper/dists/apache-maven-3.10.0/dae9a06d",
+        "Java version: 21.0.10, vendor: Eclipse Adoptium, runtime: /Users/hillert/.sdkman/candidates/java/21.0.10-tem",
+        "Default locale: en_US, platform encoding: UTF-8, time zone: Pacific/Honolulu",
+        "OS name: \"mac os x\", version: \"27.0.1\", arch: \"aarch64\", family: \"mac\""
+      ],
+      "actual_surefire_runtime": "17",
+      "runtime_environment": [
+        "openjdk version \"17.0.20\" 2026-07-21 LTS",
+        "OpenJDK Runtime Environment (build 17.0.20+10-LTS)",
+        "OpenJDK 64-Bit Server VM (build 17.0.20+10-LTS, mixed mode, sharing)"
+      ],
+      "counts": {
+        "original_discovered": 113,
+        "original_executed": 113,
+        "original_passed": 113,
+        "total_discovered": 148,
+        "total_executed": 148,
+        "failed": 0,
+        "errored": 0,
+        "skipped": 0
+      },
+      "checkstyle_checked_java_files": 48,
+      "checkstyle_violations": 0,
+      "exit_codes": {
+        "build-exit-code.txt": 0,
+        "classpath-exit-code.txt": 0,
+        "dependencies-exit-code.txt": 0,
+        "java-caller-exit-code.txt": 0
+      },
+      "compiled_major_version": 61,
+      "runtime_dependency_graph_unchanged": true,
+      "coverage": {
+        "instruction": {
+          "covered": 2291,
+          "missed": 308
+        },
+        "branch": {
+          "covered": 310,
+          "missed": 61
+        },
+        "line": {
+          "covered": 447,
+          "missed": 56
+        },
+        "complexity": {
+          "covered": 248,
+          "missed": 77
+        },
+        "method": {
+          "covered": 94,
+          "missed": 19
+        },
+        "class": {
+          "covered": 28,
+          "missed": 2
+        }
+      },
+      "evidence_sha256": {
+        "build-environment.log": "1cf7c5d2861ba29561457b3ccb80c09b9219a5821c51e0ec98504bc53d10df78",
+        "build-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "build.log": "df22661d092245c7263c052a6b8ee873e0118f2191f57edb446e802bde80049e",
+        "bytecode.txt": "fb2fa254246ad77042e92304197150166b06fc804163e8a48885df5b40024f11",
+        "checkstyle-result.xml": "f96361c1d6cda9f3edeaf48469461cd4bd5eba1123bfaaee01b28760802f3934",
+        "classpath-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "classpath.log": "1d01108cf54458ba352dec04574fbe70523a6649f5f8376bbba7a27d3a0bd45f",
+        "dependencies-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "dependencies.log": "c96606db8e5174a5dc22d6c3829ad735ac2eac90e4997c90ad37b8e443a7eef3",
+        "dependencies.txt": "29ef4bdb9c3862e7977c437926d679ab1dd3c89892cd981a294c2163eedee58d",
+        "java-caller-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "java-caller.log": "15af4934517370c1270be8cb5b10fa83c4a06e7ebf9a594a393a98a688acdd23",
+        "runtime-environment.log": "549259d94a348d66d800e861432705437a01c6618b9a2190a496d4d5d6a850b4",
+        "surefire-reports/TEST-com.pembana.search.DatabaseAdapterTest.xml": "d902ab2fa7d652672da8d269613f30750ad70ec487a1840d5842e1f5e39d1a93",
+        "surefire-reports/TEST-com.pembana.search.JavaCallerSmokeTest.xml": "ad23a8652fccbfe080983f1e2676692a4a05b88e83e4617ae822e84b7ee98cd2",
+        "surefire-reports/TEST-com.pembana.search.JavaResolverTest.xml": "71fdc39d530fa55c7e728ed43c6d84d5afa082e4cc38a402ac8dbbafa6fcdc15",
+        "surefire-reports/TEST-com.pembana.search.PembanaSearchCompatibilityTest.xml": "c496b9360758e7a8dc1d36069acb0bab1fd8a0dd18f33c8ac3c3ae45190b4cf7",
+        "surefire-reports/TEST-com.pembana.search.QueryBehaviorTest.xml": "1e1b4c181f4817e9e6d5f371c0d6bf1b806a9bbedd5ddff0d504f096a78cb048",
+        "surefire-reports/TEST-com.pembana.search.ResolverAutoConfigurationTest.xml": "f2c9a16bc386976dea66f571d44d44891c69075758152129db4da27f74dcfa91",
+        "surefire-reports/com.pembana.search.DatabaseAdapterTest.txt": "1599db7cc30ae79bb9314df90d1b6c5f3de6fd908be805dfa422c41b70b1a093",
+        "surefire-reports/com.pembana.search.JavaCallerSmokeTest.txt": "86334c8e070472fa5a64a319c20aed236b4c14cc98813a2a838ce3899083d557",
+        "surefire-reports/com.pembana.search.JavaResolverTest.txt": "619beabc50ea4e39f759dd682dc4ddf357489a75ae822659c87a9814e34e2c8c",
+        "surefire-reports/com.pembana.search.PembanaSearchCompatibilityTest.txt": "fdb892768fdd0b07e1013a94e6260f535707f6bc49194d048e8099d1e0b52a88",
+        "surefire-reports/com.pembana.search.QueryBehaviorTest.txt": "2200868289a072253086826d54fcfa81c952e85fd2da6043ce646fb4d8245543",
+        "surefire-reports/com.pembana.search.ResolverAutoConfigurationTest.txt": "d086fd5bbbc77f6aa674d961667befb255f184cce74dc058f1612d70b18a2182",
+        "test-results/coverage/jacoco/jacoco.xml": "bb96656ef2e14633ca915e30ce1d46882cd32f85c2298a882cd2ed962d22d8e3"
+      }
+    },
+    "java21-h2": {
+      "build_environment": [
+        "Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)",
+        "Maven home: /Users/hillert/.m2/wrapper/dists/apache-maven-3.10.0/dae9a06d",
+        "Java version: 21.0.10, vendor: Eclipse Adoptium, runtime: /Users/hillert/.sdkman/candidates/java/21.0.10-tem",
+        "Default locale: en_US, platform encoding: UTF-8, time zone: Pacific/Honolulu",
+        "OS name: \"mac os x\", version: \"27.0.1\", arch: \"aarch64\", family: \"mac\""
+      ],
+      "actual_surefire_runtime": "21",
+      "runtime_environment": [
+        "openjdk version \"21.0.10\" 2026-01-20 LTS",
+        "OpenJDK Runtime Environment Temurin-21.0.10+7 (build 21.0.10+7-LTS)",
+        "OpenJDK 64-Bit Server VM Temurin-21.0.10+7 (build 21.0.10+7-LTS, mixed mode, sharing)"
+      ],
+      "counts": {
+        "original_discovered": 113,
+        "original_executed": 113,
+        "original_passed": 113,
+        "total_discovered": 148,
+        "total_executed": 148,
+        "failed": 0,
+        "errored": 0,
+        "skipped": 0
+      },
+      "checkstyle_checked_java_files": 48,
+      "checkstyle_violations": 0,
+      "exit_codes": {
+        "build-exit-code.txt": 0,
+        "classpath-exit-code.txt": 0,
+        "dependencies-exit-code.txt": 0,
+        "java-caller-exit-code.txt": 0
+      },
+      "compiled_major_version": 61,
+      "runtime_dependency_graph_unchanged": true,
+      "coverage": {
+        "instruction": {
+          "covered": 2291,
+          "missed": 308
+        },
+        "branch": {
+          "covered": 310,
+          "missed": 61
+        },
+        "line": {
+          "covered": 447,
+          "missed": 56
+        },
+        "complexity": {
+          "covered": 248,
+          "missed": 77
+        },
+        "method": {
+          "covered": 94,
+          "missed": 19
+        },
+        "class": {
+          "covered": 28,
+          "missed": 2
+        }
+      },
+      "evidence_sha256": {
+        "build-environment.log": "1cf7c5d2861ba29561457b3ccb80c09b9219a5821c51e0ec98504bc53d10df78",
+        "build-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "build.log": "38ddec8e187803da612e95ca13702f38b9171ffffe9bbeeb5090c4dfef45d5b8",
+        "bytecode.txt": "fb2fa254246ad77042e92304197150166b06fc804163e8a48885df5b40024f11",
+        "checkstyle-result.xml": "f96361c1d6cda9f3edeaf48469461cd4bd5eba1123bfaaee01b28760802f3934",
+        "classpath-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "classpath.log": "29a799921fcc4dbb69f9826ab0dcfbd4f9974c30e8d704321f487c787388779d",
+        "dependencies-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "dependencies.log": "588f4aede78072c3f98af6178473075a6607537e93eca635f71c4ebe495e6565",
+        "dependencies.txt": "29ef4bdb9c3862e7977c437926d679ab1dd3c89892cd981a294c2163eedee58d",
+        "java-caller-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "java-caller.log": "e6abbe3f1e92e0785752272857325c8b6518c74eca9767561d1a08817bcd4039",
+        "runtime-environment.log": "df99e73ba1f223def82468e35abb72b272fb5201d9ca3f00f0a3a18c6b58ce2b",
+        "surefire-reports/TEST-com.pembana.search.DatabaseAdapterTest.xml": "51ff2888e44e4b0074ead97bf1fd7876a2909a7ada1ff1b7c54cf34e7c59dbf2",
+        "surefire-reports/TEST-com.pembana.search.JavaCallerSmokeTest.xml": "9c0cc6c31a4088ff19bd69202de3e54bdd80711df01d1ba1404fa5186e48ecef",
+        "surefire-reports/TEST-com.pembana.search.JavaResolverTest.xml": "29cebf5863bcd2fb56286bc52f94c57f025ee4cf33bbd6f570494f19d2a0b1e8",
+        "surefire-reports/TEST-com.pembana.search.PembanaSearchCompatibilityTest.xml": "876a27f1c411de7df17b3e784801b0cfb3dc5b1630c0773fb0259f413b03c577",
+        "surefire-reports/TEST-com.pembana.search.QueryBehaviorTest.xml": "3145e898f9b18cd593f749cfc2ef386f3e1473b7ce798f16d7623762f4d8b9f1",
+        "surefire-reports/TEST-com.pembana.search.ResolverAutoConfigurationTest.xml": "953f67245d6192e745d6a8e4b17bf3bae40774effd35566239c4275893f34195",
+        "surefire-reports/com.pembana.search.DatabaseAdapterTest.txt": "1599db7cc30ae79bb9314df90d1b6c5f3de6fd908be805dfa422c41b70b1a093",
+        "surefire-reports/com.pembana.search.JavaCallerSmokeTest.txt": "cf4982708c43aa8ebcb3175285b4efaebd41279901df38d87e23a17cee56e720",
+        "surefire-reports/com.pembana.search.JavaResolverTest.txt": "3c06698194a0b3efbe284fd63ce6ea00699e3b037dae997aac80032176d62767",
+        "surefire-reports/com.pembana.search.PembanaSearchCompatibilityTest.txt": "f47c6c2dbc9a36d1c0e64d33c9ae1dd2cc9f5bcc6a3b21536bc265b8e94384f5",
+        "surefire-reports/com.pembana.search.QueryBehaviorTest.txt": "b77412ac933d2691c062c7301840b744c87f2b1174db9879e737ade9db028193",
+        "surefire-reports/com.pembana.search.ResolverAutoConfigurationTest.txt": "801b8c6f83e4a824d981d4be2bc6b10bf912a3a10d3018633fb1b17623cd020a",
+        "test-results/coverage/jacoco/jacoco.xml": "c63ea7ed989c527847247f3e6e3ac712015953f3e1a79b760cabc92951464ec1"
+      }
+    },
+    "java21-postgresql": {
+      "build_environment": [
+        "Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)",
+        "Maven home: /Users/hillert/.m2/wrapper/dists/apache-maven-3.10.0/dae9a06d",
+        "Java version: 21.0.10, vendor: Eclipse Adoptium, runtime: /Users/hillert/.sdkman/candidates/java/21.0.10-tem",
+        "Default locale: en_US, platform encoding: UTF-8, time zone: Pacific/Honolulu",
+        "OS name: \"mac os x\", version: \"27.0.1\", arch: \"aarch64\", family: \"mac\""
+      ],
+      "actual_surefire_runtime": "21",
+      "runtime_environment": [
+        "openjdk version \"21.0.10\" 2026-01-20 LTS",
+        "OpenJDK Runtime Environment Temurin-21.0.10+7 (build 21.0.10+7-LTS)",
+        "OpenJDK 64-Bit Server VM Temurin-21.0.10+7 (build 21.0.10+7-LTS, mixed mode, sharing)"
+      ],
+      "counts": {
+        "original_discovered": 113,
+        "original_executed": 113,
+        "original_passed": 113,
+        "total_discovered": 148,
+        "total_executed": 148,
+        "failed": 0,
+        "errored": 0,
+        "skipped": 0
+      },
+      "checkstyle_checked_java_files": 48,
+      "checkstyle_violations": 0,
+      "exit_codes": {
+        "build-exit-code.txt": 0,
+        "classpath-exit-code.txt": 0,
+        "dependencies-exit-code.txt": 0,
+        "java-caller-exit-code.txt": 0
+      },
+      "compiled_major_version": 61,
+      "runtime_dependency_graph_unchanged": true,
+      "coverage": {
+        "instruction": {
+          "covered": 2291,
+          "missed": 308
+        },
+        "branch": {
+          "covered": 310,
+          "missed": 61
+        },
+        "line": {
+          "covered": 447,
+          "missed": 56
+        },
+        "complexity": {
+          "covered": 248,
+          "missed": 77
+        },
+        "method": {
+          "covered": 94,
+          "missed": 19
+        },
+        "class": {
+          "covered": 28,
+          "missed": 2
+        }
+      },
+      "evidence_sha256": {
+        "build-environment.log": "1cf7c5d2861ba29561457b3ccb80c09b9219a5821c51e0ec98504bc53d10df78",
+        "build-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "build.log": "243e8919ace5ea6c35aa42961ac2a2b1ce491feda2eb81b7ad40c3b5cd85cae3",
+        "bytecode.txt": "fb2fa254246ad77042e92304197150166b06fc804163e8a48885df5b40024f11",
+        "checkstyle-result.xml": "f96361c1d6cda9f3edeaf48469461cd4bd5eba1123bfaaee01b28760802f3934",
+        "classpath-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "classpath.log": "e2abf404d6681d1f12f4e05d5e250e805fbdf831c2ad0a3633584acd01ba7977",
+        "dependencies-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "dependencies.log": "3473bfab25cc92ebd1d9a7c9519e64cb6888457817c6247fb6ecc5cfc4e7e114",
+        "dependencies.txt": "29ef4bdb9c3862e7977c437926d679ab1dd3c89892cd981a294c2163eedee58d",
+        "java-caller-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "java-caller.log": "018e334bd77fb80bae10b636e52932e036c2be13cee2e3650bd51550e6c65b64",
+        "runtime-environment.log": "df99e73ba1f223def82468e35abb72b272fb5201d9ca3f00f0a3a18c6b58ce2b",
+        "surefire-reports/TEST-com.pembana.search.DatabaseAdapterTest.xml": "ee26de17fd836ceb9000432266eb8f63e47846dbe49e888cfec7524fb335163b",
+        "surefire-reports/TEST-com.pembana.search.JavaCallerSmokeTest.xml": "78366c9f6066f3208676c59d45af48ad87c7ef98e44c37c0578074be9912e6a0",
+        "surefire-reports/TEST-com.pembana.search.JavaResolverTest.xml": "ea9de89f540504ec62d63131497d600e01c94ad739e7fbb0421c3b57b3069560",
+        "surefire-reports/TEST-com.pembana.search.PembanaSearchCompatibilityTest.xml": "0cece964ef83c4fd09331a1d2438dd438afc88c8669c003f7f29f95c414fc49d",
+        "surefire-reports/TEST-com.pembana.search.QueryBehaviorTest.xml": "0e991f78c921e3dae327a8edfd9b4b0d9fe102ba59d2a31d0dc827f7b932d3d7",
+        "surefire-reports/TEST-com.pembana.search.ResolverAutoConfigurationTest.xml": "ffcae1ffd1ebdcc635e9b05cff8010c3b8d73a3fc5031dfff620ea39fac4cf06",
+        "surefire-reports/com.pembana.search.DatabaseAdapterTest.txt": "1599db7cc30ae79bb9314df90d1b6c5f3de6fd908be805dfa422c41b70b1a093",
+        "surefire-reports/com.pembana.search.JavaCallerSmokeTest.txt": "a20212029e79f8f0a6590aa8412e7ae72a2189f3b2ad15bc68ec6fd35e7f6790",
+        "surefire-reports/com.pembana.search.JavaResolverTest.txt": "6685b0fa61cd854147084d4451b6ed5c1065080d989a8ac9b1c0d08afe1baab4",
+        "surefire-reports/com.pembana.search.PembanaSearchCompatibilityTest.txt": "698e31924c6ae9af340e43aed125dd80aeeb2e21fb99c294274776bf7ca0f638",
+        "surefire-reports/com.pembana.search.QueryBehaviorTest.txt": "7f77470f31065be4eca0012c13c30ad75804732ca55450b3e7f2e625a20d9a4a",
+        "surefire-reports/com.pembana.search.ResolverAutoConfigurationTest.txt": "fbca1937e38ae9d0851fa239c76f22b73feb05f95d100385e558ee76f682c9fa",
+        "test-results/coverage/jacoco/jacoco.xml": "c3c523181accae358e4ec61188ad122a3170ee4a187d419e8379ff612d8195cc"
+      }
+    },
+    "java25-h2": {
+      "build_environment": [
+        "Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)",
+        "Maven home: /Users/hillert/.m2/wrapper/dists/apache-maven-3.10.0/dae9a06d",
+        "Java version: 21.0.10, vendor: Eclipse Adoptium, runtime: /Users/hillert/.sdkman/candidates/java/21.0.10-tem",
+        "Default locale: en_US, platform encoding: UTF-8, time zone: Pacific/Honolulu",
+        "OS name: \"mac os x\", version: \"27.0.1\", arch: \"aarch64\", family: \"mac\""
+      ],
+      "actual_surefire_runtime": "25",
+      "runtime_environment": [
+        "openjdk version \"25.0.3\" 2026-04-21 LTS",
+        "OpenJDK Runtime Environment Temurin-25.0.3+9 (build 25.0.3+9-LTS)",
+        "OpenJDK 64-Bit Server VM Temurin-25.0.3+9 (build 25.0.3+9-LTS, mixed mode, sharing)"
+      ],
+      "counts": {
+        "original_discovered": 113,
+        "original_executed": 113,
+        "original_passed": 113,
+        "total_discovered": 148,
+        "total_executed": 148,
+        "failed": 0,
+        "errored": 0,
+        "skipped": 0
+      },
+      "checkstyle_checked_java_files": 48,
+      "checkstyle_violations": 0,
+      "exit_codes": {
+        "build-exit-code.txt": 0,
+        "classpath-exit-code.txt": 0,
+        "dependencies-exit-code.txt": 0,
+        "java-caller-exit-code.txt": 0
+      },
+      "compiled_major_version": 61,
+      "runtime_dependency_graph_unchanged": true,
+      "coverage": {
+        "instruction": {
+          "covered": 2291,
+          "missed": 308
+        },
+        "branch": {
+          "covered": 310,
+          "missed": 61
+        },
+        "line": {
+          "covered": 447,
+          "missed": 56
+        },
+        "complexity": {
+          "covered": 248,
+          "missed": 77
+        },
+        "method": {
+          "covered": 94,
+          "missed": 19
+        },
+        "class": {
+          "covered": 28,
+          "missed": 2
+        }
+      },
+      "evidence_sha256": {
+        "build-environment.log": "1cf7c5d2861ba29561457b3ccb80c09b9219a5821c51e0ec98504bc53d10df78",
+        "build-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "build.log": "1bb04bf747ca2e50519a3a3561ccf7ba61c9275ef1c032e5c55a83dcc0cbf94b",
+        "bytecode.txt": "fb2fa254246ad77042e92304197150166b06fc804163e8a48885df5b40024f11",
+        "checkstyle-result.xml": "f96361c1d6cda9f3edeaf48469461cd4bd5eba1123bfaaee01b28760802f3934",
+        "classpath-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "classpath.log": "6bfa6a9b550dfc80358dafa1b4f57ccab136ff638962a35dbdd93025549ad1d8",
+        "dependencies-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "dependencies.log": "9ab3c22ff8a0fcbade44319626dc216b3a06fbe70d7302eaec884fb75386fa50",
+        "dependencies.txt": "29ef4bdb9c3862e7977c437926d679ab1dd3c89892cd981a294c2163eedee58d",
+        "java-caller-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "java-caller.log": "756b6ff7e9372cc7ce2645fd2bfded1c6aa997b395fe22d37d8932abf4a7a3a9",
+        "runtime-environment.log": "ad67338b2a146936324371bc9826ba8dce2a085e0d145b490f19d989de3a448e",
+        "surefire-reports/TEST-com.pembana.search.DatabaseAdapterTest.xml": "9841edc5d151c42b0feb3356f556fa8f89b223f6b9e26dd5cfeaf9e1dd2bd181",
+        "surefire-reports/TEST-com.pembana.search.JavaCallerSmokeTest.xml": "4ace56cb886a1ccc92c86dc2856376bd47f9bd0c4e8b20eca1258cc1c90d2dce",
+        "surefire-reports/TEST-com.pembana.search.JavaResolverTest.xml": "89e87c24793c1ba3b4931bdd0b2bce6eccdd5eb9a8cf18028c4bff06889e017e",
+        "surefire-reports/TEST-com.pembana.search.PembanaSearchCompatibilityTest.xml": "68f433ecce1097e9e91daee510e83f5fdd022e09b1d6c541b3a6de51710d1d10",
+        "surefire-reports/TEST-com.pembana.search.QueryBehaviorTest.xml": "cb266d41cf2561f29c0cdcf524e945c80b0b6c68fc1eed87d24a810b69cb407d",
+        "surefire-reports/TEST-com.pembana.search.ResolverAutoConfigurationTest.xml": "cc5bf09f3991e0fe9dfcb8973bc1c9c70b3c414837798dabb170b73007766d41",
+        "surefire-reports/com.pembana.search.DatabaseAdapterTest.txt": "850e22ae6dfd1e7b9034a45bc5c93f8d2defedb6b4b613e8bdb0692098e5a848",
+        "surefire-reports/com.pembana.search.JavaCallerSmokeTest.txt": "90042000ab2c4ff7a39478d038b0f36a5451ec8c858a0f5d9646034b765395b7",
+        "surefire-reports/com.pembana.search.JavaResolverTest.txt": "461030e8e9f16548c9b9bfa01fd0b5aa8cc13c76e71282a5520eb98b16031566",
+        "surefire-reports/com.pembana.search.PembanaSearchCompatibilityTest.txt": "c8652f01a8c021de23571f9635cf9495109f8190bb55347db3bc00a00ccb6c08",
+        "surefire-reports/com.pembana.search.QueryBehaviorTest.txt": "d548b8454c5ebe639d4ce4efe2da335afa3302a6e28a9d50ef6bcfa86282c15e",
+        "surefire-reports/com.pembana.search.ResolverAutoConfigurationTest.txt": "a32892d6533d1468aa4d1746ca8208dc24e23f61f22b56ab72d59c0467561e80",
+        "test-results/coverage/jacoco/jacoco.xml": "112d3a321f9f52b1db07dd915454fe715458b64474fa51a11a647455a97ae850"
+      }
+    },
+    "java25-postgresql": {
+      "build_environment": [
+        "Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)",
+        "Maven home: /Users/hillert/.m2/wrapper/dists/apache-maven-3.10.0/dae9a06d",
+        "Java version: 21.0.10, vendor: Eclipse Adoptium, runtime: /Users/hillert/.sdkman/candidates/java/21.0.10-tem",
+        "Default locale: en_US, platform encoding: UTF-8, time zone: Pacific/Honolulu",
+        "OS name: \"mac os x\", version: \"27.0.1\", arch: \"aarch64\", family: \"mac\""
+      ],
+      "actual_surefire_runtime": "25",
+      "runtime_environment": [
+        "openjdk version \"25.0.3\" 2026-04-21 LTS",
+        "OpenJDK Runtime Environment Temurin-25.0.3+9 (build 25.0.3+9-LTS)",
+        "OpenJDK 64-Bit Server VM Temurin-25.0.3+9 (build 25.0.3+9-LTS, mixed mode, sharing)"
+      ],
+      "counts": {
+        "original_discovered": 113,
+        "original_executed": 113,
+        "original_passed": 113,
+        "total_discovered": 148,
+        "total_executed": 148,
+        "failed": 0,
+        "errored": 0,
+        "skipped": 0
+      },
+      "checkstyle_checked_java_files": 48,
+      "checkstyle_violations": 0,
+      "exit_codes": {
+        "build-exit-code.txt": 0,
+        "classpath-exit-code.txt": 0,
+        "dependencies-exit-code.txt": 0,
+        "java-caller-exit-code.txt": 0
+      },
+      "compiled_major_version": 61,
+      "runtime_dependency_graph_unchanged": true,
+      "coverage": {
+        "instruction": {
+          "covered": 2291,
+          "missed": 308
+        },
+        "branch": {
+          "covered": 310,
+          "missed": 61
+        },
+        "line": {
+          "covered": 447,
+          "missed": 56
+        },
+        "complexity": {
+          "covered": 248,
+          "missed": 77
+        },
+        "method": {
+          "covered": 94,
+          "missed": 19
+        },
+        "class": {
+          "covered": 28,
+          "missed": 2
+        }
+      },
+      "evidence_sha256": {
+        "build-environment.log": "1cf7c5d2861ba29561457b3ccb80c09b9219a5821c51e0ec98504bc53d10df78",
+        "build-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "build.log": "52ce3c3a5cb4f232a5c48763878b1bbbdb4a8ce7b9e40cf6ba2403c21746cb35",
+        "bytecode.txt": "fb2fa254246ad77042e92304197150166b06fc804163e8a48885df5b40024f11",
+        "checkstyle-result.xml": "f96361c1d6cda9f3edeaf48469461cd4bd5eba1123bfaaee01b28760802f3934",
+        "classpath-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "classpath.log": "00540f928d191618bea7592938d196a22e733a486d0446d9501cde3acc046314",
+        "dependencies-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "dependencies.log": "af604862f76335e6c2c6df9e47115b12f8b63bea3599a37dde0182983da79092",
+        "dependencies.txt": "29ef4bdb9c3862e7977c437926d679ab1dd3c89892cd981a294c2163eedee58d",
+        "java-caller-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "java-caller.log": "bed81a916e458b12d6e387c6e72495dff61e0a9388762e38d4c97d266310b483",
+        "runtime-environment.log": "ad67338b2a146936324371bc9826ba8dce2a085e0d145b490f19d989de3a448e",
+        "surefire-reports/TEST-com.pembana.search.DatabaseAdapterTest.xml": "2c443c02a83b5b8766a6d4cce43b3897145f968e9adcb776352b7871647ecf5a",
+        "surefire-reports/TEST-com.pembana.search.JavaCallerSmokeTest.xml": "5a2195311cd2a0e11c522e9092c2a827e2c5231a5ba3ccda0c654889224c4626",
+        "surefire-reports/TEST-com.pembana.search.JavaResolverTest.xml": "91594f7c618360563479faf4fcf5ea33e28cabf12852386160993bbc009e60bf",
+        "surefire-reports/TEST-com.pembana.search.PembanaSearchCompatibilityTest.xml": "e49b77fe1550e24a468d2722ab9bf0f57b5af75d174814542968b53181339970",
+        "surefire-reports/TEST-com.pembana.search.QueryBehaviorTest.xml": "c0ab9bdecfa9544b9fda15448b22430f853412a017d1a224bd300ddad97ccf49",
+        "surefire-reports/TEST-com.pembana.search.ResolverAutoConfigurationTest.xml": "4eed652e55f150c70c0c9f3840dbc1842eb375fca06c0f9d820aa3c6c51d825b",
+        "surefire-reports/com.pembana.search.DatabaseAdapterTest.txt": "1599db7cc30ae79bb9314df90d1b6c5f3de6fd908be805dfa422c41b70b1a093",
+        "surefire-reports/com.pembana.search.JavaCallerSmokeTest.txt": "3ec470f92959dfb65c6e348a61830a1c963b2fcfca6e533cec1e4bc7c5b3bb2f",
+        "surefire-reports/com.pembana.search.JavaResolverTest.txt": "b33b2dc52f5234251b472926cabb9ab62f2a6c346921fbd137c3ed822d6c71d5",
+        "surefire-reports/com.pembana.search.PembanaSearchCompatibilityTest.txt": "45fbe03ad05a1483669afaffa1b834be7e7b3d1d0ee51eb9cc9750732146a115",
+        "surefire-reports/com.pembana.search.QueryBehaviorTest.txt": "a12dac08471119ca647277b098dcef60385fcd91f253469d0c4edd576e4c156a",
+        "surefire-reports/com.pembana.search.ResolverAutoConfigurationTest.txt": "3a50521d654865eec6aa3eeeca909dd1acb42662306ecdcbbf6d69e52e4f81b6",
+        "test-results/coverage/jacoco/jacoco.xml": "898aa91b254510209a6df7f1d9b94e5bc66e91e34e0601892a984f326f307d18"
+      }
+    }
+  },
+  "common_test_outcomes": {
+    "com.pembana.search.DatabaseAdapterTest#connectsToTheSelectedDatabaseEngine": "passed",
+    "com.pembana.search.JavaCallerSmokeTest#javaCallerConstructsAndExecutesSpecification": "passed",
+    "com.pembana.search.JavaResolverTest#bindsConfiguredParameterAndPreservesDiagnostics": "passed",
+    "com.pembana.search.JavaResolverTest#registersResolverAndSelectsOnlyAnnotatedSpecifications": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#badRequestWithWrongSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canAddUsers": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetAuthorsWithBooksNotEmpty": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetAuthorsWithBooksNotEmptyAllResult": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetAuthorsWithBooksNotEmptyNoResult": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetAuthorsWithEmptyBook": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetAuthorsWithEmptyBookWithResult": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithBigFamily": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithChildrenEquals": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithChildrenNotEquals": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithChildrenNumberIn": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithChildrenNumberNotIn": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithChineseName": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithChineseNameNoEncoding": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithFirstNameAndLastName": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithFrenchName": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithHigherFloatSalary": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithId": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithIn": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithMedianSalary": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithName": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithNameIn": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithNameInEmptyList": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithNameNotIn": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithNullSalary": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithParentheses": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithSmallFamily": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithSmallerSalary": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithSpaceInNameWithString": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithSpecialCharactersName": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUserWithTypeIn": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersAfterDate": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersAfterEqualDate": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersAtPreciseDate": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersAtPreciseDateNotEqual": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersByBoolean": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersEarlierEqualDate": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersEarlierThanDate": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersNotContaining": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersNotEndingWith": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersNotStartingWith": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithActiveNull": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithAgeEqual": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithAgeHigher": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithAgeLower": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithCaseInsensitiveContainsSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithCaseInsensitiveDoesntContainSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithCaseInsensitiveDoesntEndSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithCaseInsensitiveDoesntStartSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithCaseInsensitiveLowerCaseSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithCaseInsensitiveUpperCaseSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithCreatedAtNull": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithDurationEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithDurationGreaterSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithDurationLessSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithDurationNotEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithInterlinkedConditions": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithInterlinkedConditionsNoSpaces": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithNotNullColumn": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithNotNullFirstName": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithNullColumn": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithNumberOfChildrenBetween": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithNumberOfChildrenGreaterOrEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithNumberOfChildrenLessOrEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithNumberOfChildrenLessSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithPartialEndingName": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithPartialNameAndSpecialCharacter": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithPartialNameContaining": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithPartialNameContainingSpecialCharacterUsingSimpleString": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithPartialNameContainingWithSpecialCharacter": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithPartialNameContainingWithSpecialCharacterUsingDoubleString": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithPartialStartingName": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUUIDEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUUIDNotEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUUIDNull": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdateInstantAtGreaterSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdateInstantAtGreaterThanEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdateInstantAtLessThanEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedAtEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedAtGreaterSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedAtGreaterThanEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedAtLessSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedAtLessThanEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedAtNotEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedDateAtEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedDateAtGreaterSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedDateAtGreaterThanEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedDateAtLessSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedDateAtLessThanEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedDateAtNotEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedDateAtNull": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedDateBetween": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedDateBetweenAndIdIn": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedDateNotBetween": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedDateTimeAtNotNull": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedTimeAtEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedTimeAtGreaterSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedTimeAtGreaterThanEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedTimeAtLessSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedTimeAtLessThanEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUpdatedTimeAtNotEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUserChildrenNumberNull": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUserFirstNameBetween": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUserFirstNameCaseSensitive": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUserFirstNameGt": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUserFirstNameLt": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUserFirstNameNotBetween": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUserTypeEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canGetUsersWithUserTypeNotEqualSearch": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#canNotSearchABlackListedField": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#cantGetAuthorsWithBooksNull": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#cantSearchForEmptyWithNonFieldProperties": "passed",
+    "com.pembana.search.PembanaSearchCompatibilityTest#run": "passed",
+    "com.pembana.search.QueryBehaviorTest#allowlistChecksEveryGrammarBranchAndBlacklistWins": "passed",
+    "com.pembana.search.QueryBehaviorTest#booleanOperatorsSharePrecedenceAndParenthesesOverrideIt": "passed",
+    "com.pembana.search.QueryBehaviorTest#collectionOrPreservesCountsAndPages": "passed",
+    "com.pembana.search.QueryBehaviorTest#defaultsRemainLegacyAndAnnotationFactoryKeepsItsContract": "passed",
+    "com.pembana.search.QueryBehaviorTest#depthLimitIsOptInAndIgnoresQuotedParentheses": "passed",
+    "com.pembana.search.QueryBehaviorTest#emptyMembershipAndNullableBooleanChecksAreStable": "passed",
+    "com.pembana.search.QueryBehaviorTest#httpBindingExecutesSearchAndRendersQueryErrors": "passed",
+    "com.pembana.search.QueryBehaviorTest#insensitivePatternsFoldCaseButEqualityDoesNot": "passed",
+    "com.pembana.search.QueryBehaviorTest#internalAsterisksRemainLiteral": "passed",
+    "com.pembana.search.QueryBehaviorTest#invalidTypedValuesHaveStructuredErrors": "passed",
+    "com.pembana.search.QueryBehaviorTest#legacyBooleanOrderingStillHasNoPredicate": "passed",
+    "com.pembana.search.QueryBehaviorTest#legacyInvalidBooleanStillMeansFalse": "passed",
+    "com.pembana.search.QueryBehaviorTest#lengthLimitIsOptInAndBoundaryInclusive": "passed",
+    "com.pembana.search.QueryBehaviorTest#mandatoryScopeComposesOutsideUserOr": "passed",
+    "com.pembana.search.QueryBehaviorTest#negativeLimitsAreConfigurationErrors": "passed",
+    "com.pembana.search.QueryBehaviorTest#nestedAssociationOrRetainsLegacyInnerJoinSemantics": "passed",
+    "com.pembana.search.QueryBehaviorTest#sortedPaginationAndCountsRemainStable": "passed",
+    "com.pembana.search.QueryBehaviorTest#sqlMetacharactersStillBroadenLegacyPatterns": "passed",
+    "com.pembana.search.QueryBehaviorTest#strictBooleanValidationRejectsInvalidScalarAndListItems": "passed",
+    "com.pembana.search.QueryBehaviorTest#strictEmptyAndCollectionOperationsAreValidated": "passed",
+    "com.pembana.search.QueryBehaviorTest#strictEmptyScalarGetsAnActionableError": "passed",
+    "com.pembana.search.QueryBehaviorTest#strictTypedQueriesRetainExistingSuccessfulSemantics": "passed",
+    "com.pembana.search.QueryBehaviorTest#strictUnknownPathsHaveActionableDiagnostics": "passed",
+    "com.pembana.search.QueryBehaviorTest#strictUnsupportedFieldTypeIsExplicit": "passed",
+    "com.pembana.search.QueryBehaviorTest#strictValidationRejectsBooleanAndEnumOrdering": "passed",
+    "com.pembana.search.QueryBehaviorTest#strictValidationRejectsNumericWildcards": "passed",
+    "com.pembana.search.QueryBehaviorTest#syntaxErrorsCarryCodeAndOriginalLocationText": "passed",
+    "com.pembana.search.ResolverAutoConfigurationTest#bootImportsDiscoverTheResolverConfiguration": "passed",
+    "com.pembana.search.ResolverAutoConfigurationTest#directJpaConsumersDoNotRequireAWebContext": "passed",
+    "com.pembana.search.ResolverAutoConfigurationTest#missingMvcClassesDoNotPreventStartup": "passed",
+    "com.pembana.search.ResolverAutoConfigurationTest#servletConsumersReceiveTheArgumentResolver": "passed"
+  },
+  "source_literal_and_assertion_audit": {
+    "src/main/java/com/pembana/search/CriteriaParser.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "e939aaf65914d4f896f020539dc82c99bdddb7b0c46d195a604a2c1182744087",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/InvalidSearchQueryException.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "2089c6a727b3e706f89eebbadd7af570dba774182b873f10b4761732e97775e5",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/NullSpecification.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "41c5e536ac59f90adae85248dfa53571d31b1245f7bc540f1afd4493d9cbbb87",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/QueryErrorCode.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/QueryVisitorImpl.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "4e9d6a2835c421a8ae087e0cf7906eba7c3c636daea7b16b046d2184a0838382",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/SearchCriteria.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "0e78c48c621b71075283b6a9c5bf772a16477229e0046c31cb3b0b1ad31a6270",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/SearchOperation.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "a449172c6bf65288745166e47b3f72a3655c846b18e87f80021e34dd763800c4",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/SpecificationImpl.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "d9ee41ccf894fd72b0cbcb2977305408ff4a71601b41b8f14075ebaca328bad4",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/SpecificationsBuilder.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/StrictQueryValidation.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "1e899e38422867b40f736805705a70f6a1e460dee01f4ce533b2b3385c8119b4",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/annotation/SearchSpec.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "2d94b3314b7ce3ed6368f76e8c8f0d9d251a65e2516f12c8a32b134a4582b13b",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/configuration/ResolverConf.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/configuration/SearchSpecificationResolver.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "07f7d415d019a82b010341ef46b95d98ff1f2cfcc2131bed98e96b17a32c28b1",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/listeners/SyntaxErrorListener.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "5d19faa841b93e85a2e8a89f7cecc247b51b52c81f167c00f4ca6343a0efaf79",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/strategies/BooleanStrategy.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "374fdfdf6b76b204654c4ada21a6ffa0a935b718221863ca3b1002e7e0002ebc",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/strategies/CollectionStrategy.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "68ddf9a70c5203f7c9a69bf47c08cd1d99a6c2fe58821543259b3253da05851f",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/strategies/DateStrategy.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "374fdfdf6b76b204654c4ada21a6ffa0a935b718221863ca3b1002e7e0002ebc",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/strategies/DoubleStrategy.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "0e78c48c621b71075283b6a9c5bf772a16477229e0046c31cb3b0b1ad31a6270",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/strategies/DurationStrategy.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "374fdfdf6b76b204654c4ada21a6ffa0a935b718221863ca3b1002e7e0002ebc",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/strategies/EnumStrategy.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "e2fbe5302bfc02a07c70755d94816ffb0cdf85fb702cc685dec8785eb400158b",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/strategies/FloatStrategy.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "0e78c48c621b71075283b6a9c5bf772a16477229e0046c31cb3b0b1ad31a6270",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/strategies/InstantStrategy.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "374fdfdf6b76b204654c4ada21a6ffa0a935b718221863ca3b1002e7e0002ebc",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/strategies/IntStrategy.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "0e78c48c621b71075283b6a9c5bf772a16477229e0046c31cb3b0b1ad31a6270",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/strategies/LocalDateStrategy.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "374fdfdf6b76b204654c4ada21a6ffa0a935b718221863ca3b1002e7e0002ebc",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/strategies/LocalDateTimeStrategy.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "374fdfdf6b76b204654c4ada21a6ffa0a935b718221863ca3b1002e7e0002ebc",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/strategies/LocalTimeStrategy.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "374fdfdf6b76b204654c4ada21a6ffa0a935b718221863ca3b1002e7e0002ebc",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/strategies/ParsingStrategy.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "9586e2b32a0214caf8cd6773112b83c9d704b9495eceb80dd52cb67b076e0b0a",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/strategies/StringStrategy.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "ed0b39f09d4d479c66a62c01f7a8cf6bd62ee447ff49874c76140fb6d62e3e0c",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/main/java/com/pembana/search/strategies/UUIDStrategy.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/test/java/com/pembana/search/Author.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "a834d3064f3df06dd038a67b7da6ffc5e869b00004e66e9989daa737b28523a4",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/test/java/com/pembana/search/AuthorRepository.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "e02847f273796f67377bef159e7cd698e741ed084ebf4bcd3b42c62baa74043e",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/test/java/com/pembana/search/Book.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "100e30140b05e55c3eab5b1954e766af48b807802fc3dcfff342546951f5d20e",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/test/java/com/pembana/search/DatabaseAdapterTest.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "6c38b0e3cb79c1dece83c56adabd4b51f8108ce390f4c6f8777da447f326d924",
+      "assertion_multiset_sha256": "f5f11af7a14c9fe9525631d992d82c91eec3725388b9a966f0fa2270fb5c6788"
+    },
+    "src/test/java/com/pembana/search/JavaCallerSmokeTest.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "deb12a4cef27b2a320b30a0d10a2c5ee37cde177f8b0983366c3dfdf1927c4c7",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/test/java/com/pembana/search/JavaResolverTest.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "ae25de9dc845a72813acb5f1d82c9fabdd76a72f2122ddd28076a52886ae1178",
+      "assertion_multiset_sha256": "2861943d6f7d4d71056a0e1bf41ee99e3a259d85d9c0b0811af9c7d9a1952078"
+    },
+    "src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "02a7e85483c391456957d058f66f33c2283b4c45adc6f78a7bf9fea36e00e0a3",
+      "assertion_multiset_sha256": "e0ae7e5da7352c9354be275991154dbd7ca6cc2fbd1eaae03c897be83a398814"
+    },
+    "src/test/java/com/pembana/search/PembanaSearchTestApplication.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/test/java/com/pembana/search/QueryBehaviorTest.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "16c3f8cbbce587925989a3f36de7d91fdd5af19078269b3b7b4e4498f28a1982",
+      "assertion_multiset_sha256": "e6ac0f59363d97234eeae06c0fb792b97f910005ee298306141f496c779ed6da"
+    },
+    "src/test/java/com/pembana/search/ResolverAutoConfigurationTest.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "assertion_multiset_sha256": "0bc485a273ec7a48a48a48f79cba8226791d2c2b388295c31843ce903853fc86"
+    },
+    "src/test/java/com/pembana/search/SearchTestFixtures.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "6ab99468b1c1e06e82e8ba8388b9c9b7857d2820de188250310f3625928e8bc3",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/test/java/com/pembana/search/UserType.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/test/java/com/pembana/search/Users.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "3628b033f37427c0ebe1b72189f36fa32541b9296373862f7a80a3266c49eaa6",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "src/test/java/com/pembana/search/UsersRepository.java": {
+      "same_literals": true,
+      "same_assertion_calls": true,
+      "literal_multiset_sha256": "7c6ec21069d5b1aa6a63b183857f16757209f0fb38269e38d9a683dd6e93c8a0",
+      "assertion_multiset_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    }
+  },
+  "production_instruction_audit": {
+    "classes": 64,
+    "identical": true,
+    "javap_listing_sha256": "2126e58df23deb51cdff38deea874674492e7c4ce32bdd37bd3f8a4a98771c59"
+  },
+  "all_compiled_classes_major_61": 87,
+  "converted_files_with_collective_upstream_authors": 35,
+  "unchanged_historical_and_input_sha256": {
+    "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "LICENSE.txt": "97a2ead6ebae80dff422d9692ec621fe8d9421f950c84d47f3d638f6b57dd4e3",
+    "docs/baseline/README.md": "0b1118776fc2266bb633038763abc0c1887a48e826fe90e872f72b6ed8651d78",
+    "docs/baseline/artifact-provenance.json": "77c894aead6b5b0e013a7a4409fec6d01b8d0d435358e9f703b542d51d19c06b",
+    "docs/baseline/results.json": "4948052939716e50b6300144bb894d76ebf4a55c48d162b4f868064a7506fbad",
+    "docs/baseline/scenarios.json": "f19babd458ec58648bf4593e9bd547874734b38acd31ebe2285b90cfc792dd91",
+    "docs/identity/README.md": "efb0d6525a2a0eda84f600dd90a86280821061252ed0ef06cab97d639eda874d",
+    "docs/identity/results.json": "43c91cbf3fe8116a73c754da8f92a1b0d3266b9fd627830bbbe1ef1d28a7b4d4",
+    "docs/stage1/README.md": "cb84672ed27d2ab6554df7dfc717f5f7db14abf38cfae1d092fddc2214c2444f",
+    "docs/stage1/results.json": "f12017311ae28d1a232c7a3d07f2c083e2e93735432327857f8915dc05320586",
+    "docs/stage2/README.md": "11bc5edafe7bcf66cdff4f8dd535c4ca26988d607d8b80304c06dca62dc62ca9",
+    "docs/stage2/results.json": "f3a61910f63c393db88c8439384c4cdb63099fefc3c24047273469a258cb515d",
+    "docs/stage2/scenarios.json": "bb6a6bf49df45852c9217be5e7d14172bb0fc57304d8f9c98eb3345f7a81e44e",
+    "docs/stage3/README.md": "6743cb5cfe12e45aed309def671ed38f9b2dfd34acafe63687fe986b548cd7e5",
+    "docs/stage3/results.json": "c066c181c8dbe46cd2bd805cf6c2337eb010d0f68be65bb8f7f7b8bb0879bf14",
+    "docs/stage4/README.md": "caa982b8d7e20f59737c9149fb076c28e9fd916f209f49e95a453d5b8b851525",
+    "docs/stage4/query-behavior.md": "57a616c5c441d111ad567977d612cc6b6fc50d3ac66c87eefbc29781ecb4abc9",
+    "docs/stage4/results.json": "6bbae74dd6fc34846a3072c0144c984a8d12964ad232b94a7b7f954f923476d4",
+    "docs/testcontainers/README.md": "c7686d8634ebe4feeb0000db33d3a0cb70b391d08e115a8a0f5470c374756a78",
+    "docs/testcontainers/results.json": "db35e7fa3ef3054f8a35e04d5fb047d95f3ea3b0a1f67fa53d15cb6cc1cc3bed",
+    "src/main/antlr4/Query.g4": "024988cce0bf3f3faf8b7f1f3e0ab806c6ddd883dfd1b9ba5707b4eee1dd545e",
+    "src/test/resources/application-postgresql.properties": "f3f9fe3d70cb9a6c97a652bcd13f1dab90c8d1671965a815155cc58823f49fde",
+    "src/test/resources/application.properties": "e8b3fabf8b780fc18664363b1efab8c1200443a4af0df9d1e42d9dab5b6962e3"
+  },
+  "ci_yaml_and_shell_syntax": "passed",
+  "raw_evidence_directory": "build/checkstyle",
+  "ci_execution": "Configured; not run on GitHub during local implementation",
+  "skipped_checks": [
+    "Maven artifact signing",
+    "Dependency-Check network vulnerability scan"
+  ],
+  "current_guide_local_links": "passed",
+  "testcontainers_containers_remaining": 0
+}

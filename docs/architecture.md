@@ -1,6 +1,7 @@
 # Architecture
 
-Pembana Search is currently one Java 17 artifact, `com.pembana:pembana-search`.
+Pembana Search is currently one Java 17-compatible artifact, `com.pembana:pembana-search`,
+built with JDK 21 and `--release 17`.
 It integrates an ANTLR grammar, Spring Data JPA predicates and optional MVC binding:
 
 ```text

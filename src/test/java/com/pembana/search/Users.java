@@ -19,12 +19,6 @@
  */
 package com.pembana.search;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -34,131 +28,212 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 /**
  * Upstream defaults and field mappings; fluent setters replace Kotlin named arguments.
+ *
+ * @author Spring Search contributors
  * @author Gunnar Hillert
  */
 @Entity
 @Table(name = "USERS")
 public final class Users {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    public Integer userId = null;
 
-    @Column(name = "FirstName")
-    public String userFirstName = "John";
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Integer userId = null;
 
-    @Column(name = "isAdmin")
-    public boolean isAdmin = true;
+	@Column(name = "FirstName")
+	public String userFirstName = "John";
 
-    @Column(name = "LastName")
-    public String userLastName = "Doe";
+	@Column(name = "isAdmin")
+	public boolean isAdmin = true;
 
-    @Column(name = "email")
-    public String userEmail = "john.doe@wanahoo.fr";
+	@Column(name = "LastName")
+	public String userLastName = "Doe";
 
-    @Column(name = "PostalAddress")
-    public String userAddress = "1 rue de l'angleterre";
+	@Column(name = "email")
+	public String userEmail = "john.doe@wanahoo.fr";
 
-    @Column(name = "NumberOfChildren")
-    public Integer userChildrenNumber = 3;
+	@Column(name = "PostalAddress")
+	public String userAddress = "1 rue de l'angleterre";
 
-    @Column(name = "Salary")
-    public float userSalary = 3000.0F;
+	@Column(name = "NumberOfChildren")
+	public Integer userChildrenNumber = 3;
 
-    @Column(name = "AgeInSeconds")
-    public double userAgeInSeconds = 1261440000.0;
+	@Column(name = "Salary")
+	public float userSalary = 3000.0F;
 
-    @Column
-    public Date createdAt = new Date();
+	@Column(name = "AgeInSeconds")
+	public double userAgeInSeconds = 1261440000.0;
 
-    @Column
-    public LocalDateTime updatedAt = LocalDateTime.now();
+	@Column
+	public Date createdAt = new Date();
 
-    @Column
-    public LocalTime updatedTimeAt = LocalTime.now();
+	@Column
+	public LocalDateTime updatedAt = LocalDateTime.now();
 
-    @Column
-    public LocalDate updatedDateAt = LocalDate.now();
+	@Column
+	public LocalTime updatedTimeAt = LocalTime.now();
 
-    @Column
-    public Instant updatedInstantAt = Instant.now();
+	@Column
+	public LocalDate updatedDateAt = LocalDate.now();
 
-    @Column
-    public Duration validityDuration = Duration.ofDays(30);
+	@Column
+	public Instant updatedInstantAt = Instant.now();
 
-    @Column(name = "UserType")
-    public UserType type = UserType.TEAM_MEMBER;
+	@Column
+	public Duration validityDuration = Duration.ofDays(30);
 
-    @Column
-    public UUID uuid = UUID.randomUUID();
+	@Column(name = "UserType")
+	public UserType type = UserType.TEAM_MEMBER;
 
-    @Column
-    public Boolean active = true;
+	@Column
+	public UUID uuid = UUID.randomUUID();
 
-    public Users withUserId(Integer value) { userId = value; return this; }
-    public Users withUserFirstName(String value) { userFirstName = value; return this; }
-    public Users withIsAdmin(boolean value) { isAdmin = value; return this; }
-    public Users withUserLastName(String value) { userLastName = value; return this; }
-    public Users withUserEmail(String value) { userEmail = value; return this; }
-    public Users withUserAddress(String value) { userAddress = value; return this; }
-    public Users withUserChildrenNumber(Integer value) { userChildrenNumber = value; return this; }
-    public Users withUserSalary(float value) { userSalary = value; return this; }
-    public Users withUserAgeInSeconds(double value) { userAgeInSeconds = value; return this; }
-    public Users withCreatedAt(Date value) { createdAt = value; return this; }
-    public Users withUpdatedAt(LocalDateTime value) { updatedAt = value; return this; }
-    public Users withUpdatedTimeAt(LocalTime value) { updatedTimeAt = value; return this; }
-    public Users withUpdatedDateAt(LocalDate value) { updatedDateAt = value; return this; }
-    public Users withUpdatedInstantAt(Instant value) { updatedInstantAt = value; return this; }
-    public Users withValidityDuration(Duration value) { validityDuration = value; return this; }
-    public Users withType(UserType value) { type = value; return this; }
-    public Users withUuid(UUID value) { uuid = value; return this; }
-    public Users withActive(Boolean value) { active = value; return this; }
+	@Column
+	public Boolean active = true;
 
-    @Override
-    public boolean equals(Object other) {
-        if (this == other) { return true; }
-        if (!(other instanceof Users user)) { return false; }
-        return Objects.equals(userId, user.userId)
-                && Objects.equals(userFirstName, user.userFirstName)
-                && isAdmin == user.isAdmin
-                && Objects.equals(userLastName, user.userLastName)
-                && Objects.equals(userEmail, user.userEmail)
-                && Objects.equals(userAddress, user.userAddress)
-                && Objects.equals(userChildrenNumber, user.userChildrenNumber)
-                && Float.compare(userSalary, user.userSalary) == 0
-                && Double.compare(userAgeInSeconds, user.userAgeInSeconds) == 0
-                && Objects.equals(createdAt, user.createdAt)
-                && Objects.equals(updatedAt, user.updatedAt)
-                && Objects.equals(updatedTimeAt, user.updatedTimeAt)
-                && Objects.equals(updatedDateAt, user.updatedDateAt)
-                && Objects.equals(updatedInstantAt, user.updatedInstantAt)
-                && Objects.equals(validityDuration, user.validityDuration)
-                && Objects.equals(type, user.type)
-                && Objects.equals(uuid, user.uuid)
-                && Objects.equals(active, user.active);
-    }
+	public Users withUserId(Integer value) {
+		this.userId = value;
+		return this;
+	}
 
-    @Override
-    public int hashCode() {
-        int result = 0;
-        result = 31 * result + Objects.hashCode(userId);
-        result = 31 * result + Objects.hashCode(userFirstName);
-        result = 31 * result + Boolean.hashCode(isAdmin);
-        result = 31 * result + Objects.hashCode(userLastName);
-        result = 31 * result + Objects.hashCode(userEmail);
-        result = 31 * result + Objects.hashCode(userAddress);
-        result = 31 * result + Objects.hashCode(userChildrenNumber);
-        result = 31 * result + Float.hashCode(userSalary);
-        result = 31 * result + Double.hashCode(userAgeInSeconds);
-        result = 31 * result + Objects.hashCode(createdAt);
-        result = 31 * result + Objects.hashCode(updatedAt);
-        result = 31 * result + Objects.hashCode(updatedTimeAt);
-        result = 31 * result + Objects.hashCode(updatedDateAt);
-        result = 31 * result + Objects.hashCode(updatedInstantAt);
-        result = 31 * result + Objects.hashCode(validityDuration);
-        result = 31 * result + Objects.hashCode(type);
-        result = 31 * result + Objects.hashCode(uuid);
-        result = 31 * result + Objects.hashCode(active);
-        return result;
-    }
+	public Users withUserFirstName(String value) {
+		this.userFirstName = value;
+		return this;
+	}
+
+	public Users withIsAdmin(boolean value) {
+		this.isAdmin = value;
+		return this;
+	}
+
+	public Users withUserLastName(String value) {
+		this.userLastName = value;
+		return this;
+	}
+
+	public Users withUserEmail(String value) {
+		this.userEmail = value;
+		return this;
+	}
+
+	public Users withUserAddress(String value) {
+		this.userAddress = value;
+		return this;
+	}
+
+	public Users withUserChildrenNumber(Integer value) {
+		this.userChildrenNumber = value;
+		return this;
+	}
+
+	public Users withUserSalary(float value) {
+		this.userSalary = value;
+		return this;
+	}
+
+	public Users withUserAgeInSeconds(double value) {
+		this.userAgeInSeconds = value;
+		return this;
+	}
+
+	public Users withCreatedAt(Date value) {
+		this.createdAt = value;
+		return this;
+	}
+
+	public Users withUpdatedAt(LocalDateTime value) {
+		this.updatedAt = value;
+		return this;
+	}
+
+	public Users withUpdatedTimeAt(LocalTime value) {
+		this.updatedTimeAt = value;
+		return this;
+	}
+
+	public Users withUpdatedDateAt(LocalDate value) {
+		this.updatedDateAt = value;
+		return this;
+	}
+
+	public Users withUpdatedInstantAt(Instant value) {
+		this.updatedInstantAt = value;
+		return this;
+	}
+
+	public Users withValidityDuration(Duration value) {
+		this.validityDuration = value;
+		return this;
+	}
+
+	public Users withType(UserType value) {
+		this.type = value;
+		return this;
+	}
+
+	public Users withUuid(UUID value) {
+		this.uuid = value;
+		return this;
+	}
+
+	public Users withActive(Boolean value) {
+		this.active = value;
+		return this;
+	}
+
+	@Override
+	public boolean equals(Object other) {
+		if (this == other) {
+			return true;
+		}
+		if (!(other instanceof Users user)) {
+			return false;
+		}
+		return Objects.equals(this.userId, user.userId) && Objects.equals(this.userFirstName, user.userFirstName)
+				&& this.isAdmin == user.isAdmin && Objects.equals(this.userLastName, user.userLastName)
+				&& Objects.equals(this.userEmail, user.userEmail) && Objects.equals(this.userAddress, user.userAddress)
+				&& Objects.equals(this.userChildrenNumber, user.userChildrenNumber)
+				&& Float.compare(this.userSalary, user.userSalary) == 0
+				&& Double.compare(this.userAgeInSeconds, user.userAgeInSeconds) == 0
+				&& Objects.equals(this.createdAt, user.createdAt) && Objects.equals(this.updatedAt, user.updatedAt)
+				&& Objects.equals(this.updatedTimeAt, user.updatedTimeAt)
+				&& Objects.equals(this.updatedDateAt, user.updatedDateAt)
+				&& Objects.equals(this.updatedInstantAt, user.updatedInstantAt)
+				&& Objects.equals(this.validityDuration, user.validityDuration) && Objects.equals(this.type, user.type)
+				&& Objects.equals(this.uuid, user.uuid) && Objects.equals(this.active, user.active);
+	}
+
+	@Override
+	public int hashCode() {
+		int result = 0;
+		result = 31 * result + Objects.hashCode(this.userId);
+		result = 31 * result + Objects.hashCode(this.userFirstName);
+		result = 31 * result + Boolean.hashCode(this.isAdmin);
+		result = 31 * result + Objects.hashCode(this.userLastName);
+		result = 31 * result + Objects.hashCode(this.userEmail);
+		result = 31 * result + Objects.hashCode(this.userAddress);
+		result = 31 * result + Objects.hashCode(this.userChildrenNumber);
+		result = 31 * result + Float.hashCode(this.userSalary);
+		result = 31 * result + Double.hashCode(this.userAgeInSeconds);
+		result = 31 * result + Objects.hashCode(this.createdAt);
+		result = 31 * result + Objects.hashCode(this.updatedAt);
+		result = 31 * result + Objects.hashCode(this.updatedTimeAt);
+		result = 31 * result + Objects.hashCode(this.updatedDateAt);
+		result = 31 * result + Objects.hashCode(this.updatedInstantAt);
+		result = 31 * result + Objects.hashCode(this.validityDuration);
+		result = 31 * result + Objects.hashCode(this.type);
+		result = 31 * result + Objects.hashCode(this.uuid);
+		result = 31 * result + Objects.hashCode(this.active);
+		return result;
+	}
+
 }

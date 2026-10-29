@@ -15,10 +15,8 @@
  */
 package com.pembana.search;
 
-import com.pembana.search.annotation.SearchSpec;
-import com.pembana.search.configuration.ResolverConf;
-import com.pembana.search.configuration.SearchSpecificationResolver;
 import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.core.MethodParameter;
 import org.springframework.data.jpa.domain.Specification;
@@ -27,53 +25,70 @@ import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.server.ResponseStatusException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.pembana.search.annotation.SearchSpec;
+import com.pembana.search.configuration.ResolverConf;
+import com.pembana.search.configuration.SearchSpecificationResolver;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Directly checks the Java port of MVC glue that the upstream suite does not exercise.
+ *
  * @author Gunnar Hillert
  */
 class JavaResolverTest {
-    private void endpoint(@SearchSpec(searchParam = "filter", caseSensitiveFlag = false,
-            blackListedFields = {"secret"}) Specification<?> query) { }
-    private void unannotated(Specification<?> query) { }
-    private void wrongType(@SearchSpec String query) { }
 
-    @Test
-    void bindsConfiguredParameterAndPreservesDiagnostics() throws Exception {
-        SearchSpecificationResolver resolver = new SearchSpecificationResolver();
-        MethodParameter parameter = parameter("endpoint", Specification.class);
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        ServletWebRequest webRequest = new ServletWebRequest(request);
-        assertNull(resolver.resolveArgument(parameter, null, webRequest, null));
-        request.setParameter("filter", "");
-        assertNull(resolver.resolveArgument(parameter, null, webRequest, null));
-        request.setParameter("filter", "name:*ABA*");
-        assertNotNull(resolver.resolveArgument(parameter, null, webRequest, null));
-        request.setParameter("filter", "secret:value");
-        ResponseStatusException blacklist = assertThrows(ResponseStatusException.class,
-                () -> resolver.resolveArgument(parameter, null, webRequest, null));
-        assertEquals(400, blacklist.getStatusCode().value());
-        assertEquals("Field secret is blacklisted", blacklist.getReason());
-        request.setParameter("filter", "name:");
-        ResponseStatusException syntax = assertThrows(ResponseStatusException.class,
-                () -> resolver.resolveArgument(parameter, null, webRequest, null));
-        assertEquals(400, syntax.getStatusCode().value());
-        assertTrue(syntax.getReason().startsWith("Invalid search query: [line 1:"));
-    }
+	private void endpoint(@SearchSpec(searchParam = "filter", caseSensitiveFlag = false,
+			blackListedFields = { "secret" }) Specification<?> query) {
+	}
 
-    @Test
-    void registersResolverAndSelectsOnlyAnnotatedSpecifications() throws Exception {
-        var resolvers = new ArrayList<HandlerMethodArgumentResolver>();
-        new ResolverConf().addArgumentResolvers(resolvers);
-        assertEquals(1, resolvers.size());
-        HandlerMethodArgumentResolver resolver = resolvers.get(0);
-        assertTrue(resolver.supportsParameter(parameter("endpoint", Specification.class)));
-        assertFalse(resolver.supportsParameter(parameter("unannotated", Specification.class)));
-        assertFalse(resolver.supportsParameter(parameter("wrongType", String.class)));
-    }
+	private void unannotated(Specification<?> query) {
+	}
 
-    private MethodParameter parameter(String name, Class<?> type) throws NoSuchMethodException {
-        return new MethodParameter(JavaResolverTest.class.getDeclaredMethod(name, type), 0);
-    }
+	private void wrongType(@SearchSpec String query) {
+	}
+
+	@Test
+	void bindsConfiguredParameterAndPreservesDiagnostics() throws Exception {
+		SearchSpecificationResolver resolver = new SearchSpecificationResolver();
+		MethodParameter parameter = parameter("endpoint", Specification.class);
+		MockHttpServletRequest request = new MockHttpServletRequest();
+		ServletWebRequest webRequest = new ServletWebRequest(request);
+		assertNull(resolver.resolveArgument(parameter, null, webRequest, null));
+		request.setParameter("filter", "");
+		assertNull(resolver.resolveArgument(parameter, null, webRequest, null));
+		request.setParameter("filter", "name:*ABA*");
+		assertNotNull(resolver.resolveArgument(parameter, null, webRequest, null));
+		request.setParameter("filter", "secret:value");
+		ResponseStatusException blacklist = assertThrows(ResponseStatusException.class,
+				() -> resolver.resolveArgument(parameter, null, webRequest, null));
+		assertEquals(400, blacklist.getStatusCode().value());
+		assertEquals("Field secret is blacklisted", blacklist.getReason());
+		request.setParameter("filter", "name:");
+		ResponseStatusException syntax = assertThrows(ResponseStatusException.class,
+				() -> resolver.resolveArgument(parameter, null, webRequest, null));
+		assertEquals(400, syntax.getStatusCode().value());
+		assertTrue(syntax.getReason().startsWith("Invalid search query: [line 1:"));
+	}
+
+	@Test
+	void registersResolverAndSelectsOnlyAnnotatedSpecifications() throws Exception {
+		var resolvers = new ArrayList<HandlerMethodArgumentResolver>();
+		new ResolverConf().addArgumentResolvers(resolvers);
+		assertEquals(1, resolvers.size());
+		HandlerMethodArgumentResolver resolver = resolvers.get(0);
+		assertTrue(resolver.supportsParameter(parameter("endpoint", Specification.class)));
+		assertFalse(resolver.supportsParameter(parameter("unannotated", Specification.class)));
+		assertFalse(resolver.supportsParameter(parameter("wrongType", String.class)));
+	}
+
+	private MethodParameter parameter(String name, Class<?> type) throws NoSuchMethodException {
+		return new MethodParameter(JavaResolverTest.class.getDeclaredMethod(name, type), 0);
+	}
+
 }

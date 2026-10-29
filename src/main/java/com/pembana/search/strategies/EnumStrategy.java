@@ -18,21 +18,29 @@
  * and other contributors, under the MIT license. See LICENSE.txt and NOTICE.
  */
 package com.pembana.search.strategies;
+
 import com.pembana.search.SearchOperation;
 
 /**
  * Converts Enum values using the inherited matching policy.
+ *
+ * @author Spring Search contributors
  * @author Gunnar Hillert
  */
 public final class EnumStrategy implements ParsingStrategy {
-    /** Creates a EnumStrategy with the inherited default configuration. */
-    public EnumStrategy() { }
 
-    /** {@inheritDoc} */
-    @Override
-    public Object parse(String value, Class<?> fieldClass) throws Exception {
-        if (SearchOperation.NULL.equals(value)) { return value; }
-        // Keep the upstream qualified-name lookup, including its nested-enum limitation.
-        return Class.forName(fieldClass.getCanonicalName()).getMethod("valueOf", String.class).invoke(null, value);
-    }
+	/** Creates a EnumStrategy with the inherited default configuration. */
+	public EnumStrategy() {
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public Object parse(String value, Class<?> fieldClass) throws Exception {
+		if (SearchOperation.NULL.equals(value)) {
+			return value;
+		}
+		// Keep the upstream qualified-name lookup, including its nested-enum limitation.
+		return Class.forName(fieldClass.getCanonicalName()).getMethod("valueOf", String.class).invoke(null, value);
+	}
+
 }

@@ -18,27 +18,36 @@
  * and other contributors, under the MIT license. See LICENSE.txt and NOTICE.
  */
 package com.pembana.search.configuration;
+
 import java.util.List;
+
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication.Type;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * Registers the search argument resolver for servlet applications with Spring MVC available.
+ * Registers the search argument resolver for servlet applications with Spring MVC
+ * available.
+ *
+ * @author Spring Search contributors
  * @author Gunnar Hillert
  */
 @AutoConfiguration
 @ConditionalOnClass(WebMvcConfigurer.class)
-@ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
+@ConditionalOnWebApplication(type = Type.SERVLET)
 public class ResolverConf implements WebMvcConfigurer {
-    /** Creates a ResolverConf with the inherited default configuration. */
-    public ResolverConf() { }
 
-    /** {@inheritDoc} */
-    @Override
-    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(new SearchSpecificationResolver());
-    }
+	/** Creates a ResolverConf with the inherited default configuration. */
+	public ResolverConf() {
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+		argumentResolvers.add(new SearchSpecificationResolver());
+	}
+
 }

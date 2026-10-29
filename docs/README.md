@@ -9,6 +9,7 @@
 | [Configuration/API reference](reference/configuration.md) | Annotation defaults, public entry points, auto-configuration and dependencies |
 | [Architecture](architecture.md) | Current data flow, single-artifact boundaries, future module plan |
 | [Development](development.md) | Contributors: JDKs, databases, CI artifacts, coverage, signing, NVD and troubleshooting |
+| [Spring Checkstyle](checkstyle/README.md) | Build-time style enforcement, formatting, compatibility exceptions and verification |
 | [Migration](migration.md) | Coordinate/package changes and intentional incompatibilities |
 | [Releasing](releasing.md) | Spring-style version progression and the unpublished release checklist |
 | [Identity verification](identity/README.md) | Evidence for the mechanical rename and packaged artifacts |

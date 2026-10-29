@@ -50,3 +50,9 @@ Pembana Search, and packaged binary/source/Javadoc artifacts retain these notice
 Historical reports and upstream notices keep their original names and identities.
 Query behavior, grammar, framework dependencies and tests remain equivalent under
 the documented class-name mapping. No publication is configured or performed.
+
+The style/build milestone adds Spring JavaFormat Checkstyle enforcement and
+mechanical Java formatting. Builds use JDK 21 while targeting Java 17 and testing
+consumer runtimes 17, 21, and 25. Converted Java files credit Spring Search
+contributors alongside the fork contributor; existing copyright and MIT notices
+remain intact. Query values, assertions, and production instructions are retained.

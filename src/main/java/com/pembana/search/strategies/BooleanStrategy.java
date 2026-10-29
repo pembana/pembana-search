@@ -18,20 +18,28 @@
  * and other contributors, under the MIT license. See LICENSE.txt and NOTICE.
  */
 package com.pembana.search.strategies;
+
 import com.pembana.search.SearchOperation;
 
 /**
  * Converts Boolean values using the inherited matching policy.
+ *
+ * @author Spring Search contributors
  * @author Gunnar Hillert
  */
 public final class BooleanStrategy implements ParsingStrategy {
-    /** Creates a BooleanStrategy with the inherited default configuration. */
-    public BooleanStrategy() { }
 
-    /** {@inheritDoc} */
-    @Override
-    public Object parse(String value, Class<?> fieldClass) {
-        if (SearchOperation.NULL.equals(value)) { return value; }
-        return value == null ? null : Boolean.valueOf(value);
-    }
+	/** Creates a BooleanStrategy with the inherited default configuration. */
+	public BooleanStrategy() {
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public Object parse(String value, Class<?> fieldClass) {
+		if (SearchOperation.NULL.equals(value)) {
+			return value;
+		}
+		return (value == null) ? null : Boolean.valueOf(value);
+	}
+
 }

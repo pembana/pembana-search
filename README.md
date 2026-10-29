@@ -13,7 +13,8 @@ currently includes parsing, JPA integration, and MVC binding.
 | Component | Verified baseline |
 | --- | --- |
 | Spring Boot | 4.1.1 |
-| Java | 17, 21, 25; Java 17 bytecode |
+| Build JDK | 21 (Maven, Checkstyle, compiler, and Javadoc) |
+| Consumer/test runtimes | 17, 21, 25; compiled with `--release 17` |
 | H2 | 2.4.240; default test database, no Docker required |
 | PostgreSQL | 18.1 through Testcontainers 2.0.5; Docker required for that profile |
 
@@ -22,7 +23,8 @@ as supported. Production and tests use Java; Kotlin tooling is not required.
 
 ## Build locally
 
-Select JDK 17, 21, or 25 in `JAVA_HOME` and `PATH`:
+Select JDK 21 in `JAVA_HOME` and `PATH`. The compiler emits Java 17-compatible
+code; the build tools themselves require Java 21.
 
 ```sh
 # H2 by default; artifact signing and the network vulnerability scan are skipped.
@@ -97,6 +99,7 @@ association joins. Strict validation does not silently change matching semantics
 - [Architecture and dependency boundaries](docs/architecture.md)
 - [Migration from Spring Search and earlier imported snapshots](docs/migration.md)
 - [Building, testing, NVD configuration, and troubleshooting](docs/development.md)
+- [Spring Checkstyle configuration and verification](docs/checkstyle/README.md)
 - [Release/versioning checklist](docs/releasing.md)
 - [Contributing](CONTRIBUTING.md), [changelog](CHANGELOG.md), [documentation index](docs/README.md)
 

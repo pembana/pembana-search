@@ -19,49 +19,56 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 /**
- * A bad-request diagnostic with a stable category and optional entity field.
- * Its ProblemDetail exposes {@code code} and, when known, {@code field}.
- * Applications choose whether and how to render that body through MVC advice.
+ * A bad-request diagnostic with a stable category and optional entity field. Its
+ * ProblemDetail exposes {@code code} and, when known, {@code field}. Applications choose
+ * whether and how to render that body through MVC advice.
+ *
  * @author Gunnar Hillert
  */
 public final class InvalidSearchQueryException extends ResponseStatusException {
-    private static final long serialVersionUID = 1L;
-    /** Retained diagnostic metadata for this instance. */
-    private final QueryErrorCode errorCode;
-    /** Retained diagnostic metadata for this instance. */
-    private final String field;
 
-    /**
-     * Creates a diagnostic without including a rejected value in structured metadata.
-     * @param errorCode stable rejection category
-     * @param field complete entity path, or null for expression-wide errors
-     * @param reason human-readable explanation
-     */
-    public InvalidSearchQueryException(QueryErrorCode errorCode, String field, String reason) {
-        super(HttpStatus.BAD_REQUEST, reason);
-        this.errorCode = errorCode;
-        this.field = field;
-        getBody().setProperty("code", errorCode.name());
-        if (field != null) {
-            getBody().setProperty("field", field);
-        }
-    }
+	private static final long serialVersionUID = 1L;
 
-    /**
+	/** Retained diagnostic metadata for this instance. */
+	private final QueryErrorCode errorCode;
 
-     * Returns the stable rejection category.
+	/** Retained diagnostic metadata for this instance. */
+	private final String field;
 
-     * @return the stable rejection category
+	/**
+	 * Creates a diagnostic without including a rejected value in structured metadata.
+	 * @param errorCode stable rejection category
+	 * @param field complete entity path, or null for expression-wide errors
+	 * @param reason human-readable explanation
+	 */
+	public InvalidSearchQueryException(QueryErrorCode errorCode, String field, String reason) {
+		super(HttpStatus.BAD_REQUEST, reason);
+		this.errorCode = errorCode;
+		this.field = field;
+		getBody().setProperty("code", errorCode.name());
+		if (field != null) {
+			getBody().setProperty("field", field);
+		}
+	}
 
-     */
-    public QueryErrorCode getErrorCode() { return errorCode; }
+	/**
+	 *
+	 * Returns the stable rejection category.
+	 * @return the stable rejection category
+	 *
+	 */
+	public QueryErrorCode getErrorCode() {
+		return this.errorCode;
+	}
 
-    /**
+	/**
+	 *
+	 * Returns the complete entity path, or null for expression-wide errors.
+	 * @return the complete entity path, or null for expression-wide errors
+	 *
+	 */
+	public String getField() {
+		return this.field;
+	}
 
-     * Returns the complete entity path, or null for expression-wide errors.
-
-     * @return the complete entity path, or null for expression-wide errors
-
-     */
-    public String getField() { return field; }
 }

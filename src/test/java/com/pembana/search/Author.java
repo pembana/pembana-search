@@ -19,6 +19,9 @@
  */
 package com.pembana.search;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,31 +30,36 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Author fixture for Pembana Search database verification.
+ *
+ * @author Spring Search contributors
  * @author Gunnar Hillert
  */
 @Entity
 @Table(name = "author")
 public class Author {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    public Long id;
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
-    public List<Book> books = new ArrayList<>();
-    @Column(name = "name")
-    public String name;
 
-    public void addBook(Book book) {
-        books.add(book);
-        book.author = this;
-    }
-    public void removeBook(Book book) {
-        books.remove(book);
-        book.author = null;
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", nullable = false)
+	public Long id;
+
+	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+	public List<Book> books = new ArrayList<>();
+
+	@Column(name = "name")
+	public String name;
+
+	public void addBook(Book book) {
+		this.books.add(book);
+		book.author = this;
+	}
+
+	public void removeBook(Book book) {
+		this.books.remove(book);
+		book.author = null;
+	}
+
 }

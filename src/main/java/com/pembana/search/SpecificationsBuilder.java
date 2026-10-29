@@ -19,37 +19,50 @@
  */
 package com.pembana.search;
 
-import com.pembana.search.annotation.SearchSpec;
 import org.springframework.data.jpa.domain.Specification;
+
+import com.pembana.search.annotation.SearchSpec;
 
 /**
  * Builds JPA specifications from advanced expressions using explicit annotation settings.
+ *
  * @param <U> entity type represented by the generated specification
+ * @author Spring Search contributors
  * @author Gunnar Hillert
  */
 public final class SpecificationsBuilder<U> {
-    private Specification<U> specs = new NullSpecification<>();
-    private final CriteriaParser<U> parser;
-    /**
-     * Creates an unconfigured builder whose specification contributes no predicate.
-     * @param searchSpecAnnotation matching, field-access and validation settings
-     */
-    public SpecificationsBuilder(SearchSpec searchSpecAnnotation) {
-        parser = new CriteriaParser<>(searchSpecAnnotation);
-    }
-    /**
-     * Replaces this builder's previous expression; calls do not accumulate predicates.
-     * @param search advanced expression to parse
-     * @return this builder
-     * @throws InvalidSearchQueryException if parsing, configured limits or field access fail
-     */
-    public SpecificationsBuilder<U> withSearch(String search) {
-        specs = parser.parse(search);
-        return this;
-    }
-    /**
-     * Returns the current specification; JPA field/type checks happen on predicate construction.
-     * @return the current specification, never null
-     */
-    public Specification<U> build() { return specs; }
+
+	private Specification<U> specs = new NullSpecification<>();
+
+	private final CriteriaParser<U> parser;
+
+	/**
+	 * Creates an unconfigured builder whose specification contributes no predicate.
+	 * @param searchSpecAnnotation matching, field-access and validation settings
+	 */
+	public SpecificationsBuilder(SearchSpec searchSpecAnnotation) {
+		this.parser = new CriteriaParser<>(searchSpecAnnotation);
+	}
+
+	/**
+	 * Replaces this builder's previous expression; calls do not accumulate predicates.
+	 * @param search advanced expression to parse
+	 * @return this builder
+	 * @throws InvalidSearchQueryException if parsing, configured limits or field access
+	 * fail
+	 */
+	public SpecificationsBuilder<U> withSearch(String search) {
+		this.specs = this.parser.parse(search);
+		return this;
+	}
+
+	/**
+	 * Returns the current specification; JPA field/type checks happen on predicate
+	 * construction.
+	 * @return the current specification, never null
+	 */
+	public Specification<U> build() {
+		return this.specs;
+	}
+
 }

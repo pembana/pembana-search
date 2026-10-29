@@ -26,44 +26,58 @@ import java.lang.annotation.Target;
 
 /**
  * Maps a request search parameter to a JPA specification.
+ *
+ * @author Spring Search contributors
  * @author Gunnar Hillert
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface SearchSpec {
-    /**
-     * Returns HTTP query parameter name consumed by the MVC resolver.
-     * @return HTTP query parameter name consumed by the MVC resolver
-     */
-    String searchParam() default "search";
-    /**
-     * Returns whether legacy string patterns retain case; see the query guide for operator asymmetry.
-     * @return whether legacy string patterns retain case; see the query guide for operator asymmetry
-     */
-    boolean caseSensitiveFlag() default true;
-    /**
-     * Returns exactly forbidden entity paths; these override allowed fields.
-     * @return exactly forbidden entity paths; these override allowed fields
-     */
-    String[] blackListedFields() default {};
-    /**
-     * Returns whether to reject lexical errors, unknown fields and unsupported typed operations.
-     * @return whether to reject lexical errors, unknown fields and unsupported typed operations
-     */
-    boolean strictValidation() default false;
-    /**
-     * Returns exact searchable paths; an empty list preserves unrestricted legacy access.
-     * @return exact searchable paths; an empty list preserves unrestricted legacy access
-     */
-    String[] allowedFields() default {};
-    /**
-     * Returns maximum expression characters, or zero for the legacy unlimited behavior.
-     * @return maximum expression characters, or zero for the legacy unlimited behavior
-     */
-    int maxQueryLength() default 0;
-    /**
-     * Returns maximum parenthesis depth, or zero for the legacy unlimited behavior.
-     * @return maximum parenthesis depth, or zero for the legacy unlimited behavior
-     */
-    int maxNestingDepth() default 0;
+
+	/**
+	 * Returns HTTP query parameter name consumed by the MVC resolver.
+	 * @return HTTP query parameter name consumed by the MVC resolver
+	 */
+	String searchParam() default "search";
+
+	/**
+	 * Returns whether legacy string patterns retain case; see the query guide for
+	 * operator asymmetry.
+	 * @return whether legacy string patterns retain case; see the query guide for
+	 * operator asymmetry
+	 */
+	boolean caseSensitiveFlag() default true;
+
+	/**
+	 * Returns exactly forbidden entity paths; these override allowed fields.
+	 * @return exactly forbidden entity paths; these override allowed fields
+	 */
+	String[] blackListedFields() default {};
+
+	/**
+	 * Returns whether to reject lexical errors, unknown fields and unsupported typed
+	 * operations.
+	 * @return whether to reject lexical errors, unknown fields and unsupported typed
+	 * operations
+	 */
+	boolean strictValidation() default false;
+
+	/**
+	 * Returns exact searchable paths; an empty list preserves unrestricted legacy access.
+	 * @return exact searchable paths; an empty list preserves unrestricted legacy access
+	 */
+	String[] allowedFields() default {};
+
+	/**
+	 * Returns maximum expression characters, or zero for the legacy unlimited behavior.
+	 * @return maximum expression characters, or zero for the legacy unlimited behavior
+	 */
+	int maxQueryLength() default 0;
+
+	/**
+	 * Returns maximum parenthesis depth, or zero for the legacy unlimited behavior.
+	 * @return maximum parenthesis depth, or zero for the legacy unlimited behavior
+	 */
+	int maxNestingDepth() default 0;
+
 }

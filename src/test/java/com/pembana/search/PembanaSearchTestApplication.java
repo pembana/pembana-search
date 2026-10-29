@@ -24,12 +24,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Test-only Spring Boot configuration for the compatibility and database suites.
+ *
+ * @author Spring Search contributors
  * @author Gunnar Hillert
  */
 @SpringBootApplication
 public class PembanaSearchTestApplication {
-    /** @param args command-line arguments for the test-only application */
-    public static void main(String[] args) {
-        SpringApplication.run(PembanaSearchTestApplication.class, args);
-    }
+
+	/**
+	 * @param args command-line arguments for the test-only application
+	 */
+	public static void main(String[] args) {
+		SpringApplication.run(PembanaSearchTestApplication.class, args);
+	}
+
 }

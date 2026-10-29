@@ -18,33 +18,39 @@
  * and other contributors, under the MIT license. See LICENSE.txt and NOTICE.
  */
 package com.pembana.search.strategies;
-import com.pembana.search.SearchOperation;
+
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.pembana.search.SearchOperation;
+
 /**
  * Converts Collection values using the inherited matching policy.
+ *
+ * @author Spring Search contributors
  * @author Gunnar Hillert
  */
 public final class CollectionStrategy implements ParsingStrategy {
-    /** Creates a CollectionStrategy with the inherited default configuration. */
-    public CollectionStrategy() { }
 
-    /** {@inheritDoc} */
-    @Override
-    public Predicate buildPredicate(CriteriaBuilder builder, Path<?> path, String fieldName,
-            SearchOperation ops, Object value) {
-        if (ops == SearchOperation.IS && SearchOperation.EMPTY.equals(value)) {
-            return builder.isEmpty(path.get(fieldName));
-        }
-        if (ops == SearchOperation.IS_NOT && SearchOperation.EMPTY.equals(value)) {
-            return builder.isNotEmpty(path.get(fieldName));
-        }
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                "Unsupported operation " + ops + " " + value + " for collection field " + fieldName
-                + ", only IS EMPTY and IS NOT EMPTY are supported");
-    }
+	/** Creates a CollectionStrategy with the inherited default configuration. */
+	public CollectionStrategy() {
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public Predicate buildPredicate(CriteriaBuilder builder, Path<?> path, String fieldName, SearchOperation ops,
+			Object value) {
+		if (ops == SearchOperation.IS && SearchOperation.EMPTY.equals(value)) {
+			return builder.isEmpty(path.get(fieldName));
+		}
+		if (ops == SearchOperation.IS_NOT && SearchOperation.EMPTY.equals(value)) {
+			return builder.isNotEmpty(path.get(fieldName));
+		}
+		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unsupported operation " + ops + " " + value
+				+ " for collection field " + fieldName + ", only IS EMPTY and IS NOT EMPTY are supported");
+	}
+
 }

@@ -2,7 +2,8 @@
 
 ## Prerequisites and H2 default
 
-Use JDK 17, 21, or 25 and select it through `JAVA_HOME` and `PATH`. The wrapper
+Use JDK 21 for Maven/Checkstyle/compilation and select it through `JAVA_HOME` and
+`PATH`. The compiler targets Java 17 using `maven.compiler.release`. The wrapper
 supplies Maven 3.10.0. Run `./mvnw --version` to confirm the active JDK; do not use
 a different JDK such as 27 to establish this compatibility matrix.
 
@@ -15,6 +16,16 @@ No profile means in-memory H2. Docker is not required. The same command with
 Maven repository for another local project. Maven creates generated sources,
 compiled output, tests, coverage, binary/source/Javadoc JARs under `target/`.
 No repository scripts or Python environment are needed.
+
+To run tests on Java 17 or 25 while keeping Maven on Java 21, select a forked
+test executable (replace the example path with the installed runtime):
+
+```sh
+./mvnw -Dgpg.skip=true -Ddependency-check.skip=true -Djvm=/path/to/jdk17/bin/java clean verify
+```
+
+Checkstyle runs during `validate` before compilation; see the
+[Spring Checkstyle guide](checkstyle/README.md) for formatting and compatibility rules.
 
 ## PostgreSQL profile
 
@@ -33,9 +44,11 @@ fails the PostgreSQL run; tests are not skipped or redirected to H2.
 
 ## CI and test identities
 
-Pushes to any branch or tag, pull requests to `main`, and manual workflow dispatch run Java 17/21/25 ×
-H2/PostgreSQL. Every job runs the complete 148-method suite and coverage, then a
-Java caller against the packaged JAR in a separate JVM. Dependencies, effective
+Pushes to any branch or tag, pull requests to `main`, and manual workflow dispatch
+run Java 17/21/25 runtimes × H2/PostgreSQL, always building on JDK 21. Surefire's
+`jvm` option selects the test runtime independently of Maven. Every job runs the
+complete 148-method suite and coverage, then a Java caller against the packaged
+JAR using that same runtime in a separate JVM. Dependencies, effective
 POMs, environment/build logs, Surefire XML, and coverage reports are uploaded
 for 30 days, including evidence from failed jobs. No deployment is configured.
 
@@ -94,7 +107,9 @@ files into commits, logs, or uploaded artifacts.
 
 ## Troubleshooting
 
-- **Wrong Java:** confirm `./mvnw --version` and fix both `JAVA_HOME` and `PATH`.
+- **Wrong build Java:** confirm `./mvnw --version` uses JDK 21 and fix both
+  `JAVA_HOME` and `PATH`. A Java 17 test runtime is selected with `-Djvm`, not by
+  running Maven's Java-21-only Checkstyle engine on JDK 17.
 - **Docker unavailable:** use default H2 for local work or start/configure a
   supported Docker-compatible engine before selecting `postgresql`.
 - **Unknown field/type:** query keys are Java entity attributes. Enable strict

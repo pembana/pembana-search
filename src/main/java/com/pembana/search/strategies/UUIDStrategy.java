@@ -18,21 +18,30 @@
  * and other contributors, under the MIT license. See LICENSE.txt and NOTICE.
  */
 package com.pembana.search.strategies;
-import com.pembana.search.SearchOperation;
+
 import java.util.UUID;
+
+import com.pembana.search.SearchOperation;
 
 /**
  * Converts UUID values using the inherited matching policy.
+ *
+ * @author Spring Search contributors
  * @author Gunnar Hillert
  */
 public final class UUIDStrategy implements ParsingStrategy {
-    /** Creates a UUIDStrategy with the inherited default configuration. */
-    public UUIDStrategy() { }
 
-    /** {@inheritDoc} */
-    @Override
-    public Object parse(String value, Class<?> fieldClass) {
-        if (SearchOperation.NULL.equals(value)) { return value; }
-        return UUID.fromString(value);
-    }
+	/** Creates a UUIDStrategy with the inherited default configuration. */
+	public UUIDStrategy() {
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public Object parse(String value, Class<?> fieldClass) {
+		if (SearchOperation.NULL.equals(value)) {
+			return value;
+		}
+		return UUID.fromString(value);
+	}
+
 }

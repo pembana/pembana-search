@@ -21,8 +21,12 @@ package com.pembana.search;
 
 /**
  * UserType fixture for Pembana Search database verification.
+ *
+ * @author Spring Search contributors
  * @author Gunnar Hillert
  */
 public enum UserType {
-    ADMINISTRATOR, MANAGER, TEAM_MEMBER
+
+	ADMINISTRATOR, MANAGER, TEAM_MEMBER
+
 }

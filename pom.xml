@@ -31,7 +31,12 @@
 	</issueManagement>
 
 	<properties>
+		<!-- Maven/Checkstyle run on JDK 21; library and test bytecode target Java 17. -->
 		<java.version>17</java.version>
+		<maven.compiler.release>${java.version}</maven.compiler.release>
+		<spring-javaformat-checkstyle.version>0.0.48</spring-javaformat-checkstyle.version>
+		<checkstyle.version>14.1.0</checkstyle.version>
+		<maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
 		<!-- Publishing awaits Pembana release configuration. -->
 		<maven.deploy.skip>true</maven.deploy.skip>
 		<jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
@@ -115,6 +120,39 @@
 			</resource>
 		</resources>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${maven-checkstyle-plugin.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.puppycrawl.tools</groupId>
+						<artifactId>checkstyle</artifactId>
+						<version>${checkstyle.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>io.spring.javaformat</groupId>
+						<artifactId>spring-javaformat-checkstyle</artifactId>
+						<version>${spring-javaformat-checkstyle.version}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<configLocation>${project.basedir}/src/checkstyle/checkstyle.xml</configLocation>
+					<headerLocation>${project.basedir}/src/checkstyle/header.txt</headerLocation>
+					<suppressionsLocation>${project.basedir}/src/checkstyle/suppressions.xml</suppressionsLocation>
+					<includeTestSourceDirectory>true</includeTestSourceDirectory>
+					<excludeGeneratedSources>true</excludeGeneratedSources>
+					<includeResources>false</includeResources>
+					<includeTestResources>false</includeTestResources>
+				</configuration>
+				<executions>
+					<execution>
+						<id>checkstyle-validation</id>
+						<phase>validate</phase>
+						<goals><goal>check</goal></goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>

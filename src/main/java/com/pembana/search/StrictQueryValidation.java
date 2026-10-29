@@ -15,7 +15,11 @@
  */
 package com.pembana.search;
 
-import java.time.*;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -23,65 +27,76 @@ import java.util.UUID;
 
 /**
  * Opt-in checks performed before type conversion or provider predicate construction.
+ *
  * @author Gunnar Hillert
  */
 final class StrictQueryValidation {
-    private static final Set<Class<?>> ORDERED_TYPES = Set.of(Integer.class, int.class,
-            Double.class, double.class, Float.class, float.class, Date.class, Duration.class,
-            LocalDate.class, LocalTime.class, LocalDateTime.class, Instant.class, String.class);
 
-    /** Prevents construction of the stateless validator. */
-    private StrictQueryValidation() { }
+	private static final Set<Class<?>> ORDERED_TYPES = Set.of(Integer.class, int.class, Double.class, double.class,
+			Float.class, float.class, Date.class, Duration.class, LocalDate.class, LocalTime.class, LocalDateTime.class,
+			Instant.class, String.class);
 
-    /**
-     * Rejects unsupported combinations without changing legacy conversion or matching.
-     * @param type resolved entity attribute type
-     * @param collection whether the attribute is collection-valued
-     * @param field complete entity path for diagnostics
-     * @param operation requested operation after wildcard/range expansion
-     * @param value unconverted scalar or membership list
-     */
-    static void validate(Class<?> type, boolean collection, String field, SearchOperation operation, Object value) {
-        if (collection) {
-            if ((operation == SearchOperation.IS || operation == SearchOperation.IS_NOT)
-                    && SearchOperation.EMPTY.equals(value)) { return; }
-            throw unsupported(field, operation);
-        }
-        if (operation == SearchOperation.IS || operation == SearchOperation.IS_NOT) {
-            if (SearchOperation.NULL.equals(value)) { return; }
-            throw unsupported(field, operation);
-        }
-        boolean bool = type == Boolean.class || type == boolean.class;
-        if (!ORDERED_TYPES.contains(type) && !bool && !type.isEnum() && type != UUID.class) {
-            throw new InvalidSearchQueryException(QueryErrorCode.UNSUPPORTED_FIELD_TYPE, field,
-                    "Unsupported field type " + type.getSimpleName() + " for field " + field);
-        }
-        boolean supported = operation != null && switch (operation) {
-            case EQUALS, NOT_EQUALS, IN_ARRAY, NOT_IN_ARRAY -> true;
-            case GREATER_THAN, GREATER_THAN_EQUALS, LESS_THAN, LESS_THAN_EQUALS -> ORDERED_TYPES.contains(type);
-            case STARTS_WITH, ENDS_WITH, CONTAINS, DOESNT_START_WITH, DOESNT_END_WITH, DOESNT_CONTAIN -> type == String.class;
-            default -> false;
-        };
-        if (!supported) { throw unsupported(field, operation); }
-        if (bool) {
-            List<?> values = value instanceof List<?> list ? list : java.util.Collections.singletonList(value);
-            for (Object item : values) {
-                if (!"true".equalsIgnoreCase(String.valueOf(item)) && !"false".equalsIgnoreCase(String.valueOf(item))) {
-                    throw new InvalidSearchQueryException(QueryErrorCode.INVALID_VALUE, field,
-                            "Expected true or false for field " + field);
-                }
-            }
-        }
-    }
+	/** Prevents construction of the stateless validator. */
+	private StrictQueryValidation() {
+	}
 
-    /**
-     * Describes an unsupported operator without exposing provider exception details.
-     * @param field complete entity path
-     * @param operation rejected operation
-     * @return a bad-request diagnostic
-     */
-    private static InvalidSearchQueryException unsupported(String field, SearchOperation operation) {
-        return new InvalidSearchQueryException(QueryErrorCode.UNSUPPORTED_OPERATION, field,
-                "Unsupported operation " + operation + " for field " + field);
-    }
+	/**
+	 * Rejects unsupported combinations without changing legacy conversion or matching.
+	 * @param type resolved entity attribute type
+	 * @param collection whether the attribute is collection-valued
+	 * @param field complete entity path for diagnostics
+	 * @param operation requested operation after wildcard/range expansion
+	 * @param value unconverted scalar or membership list
+	 */
+	static void validate(Class<?> type, boolean collection, String field, SearchOperation operation, Object value) {
+		if (collection) {
+			if ((operation == SearchOperation.IS || operation == SearchOperation.IS_NOT)
+					&& SearchOperation.EMPTY.equals(value)) {
+				return;
+			}
+			throw unsupported(field, operation);
+		}
+		if (operation == SearchOperation.IS || operation == SearchOperation.IS_NOT) {
+			if (SearchOperation.NULL.equals(value)) {
+				return;
+			}
+			throw unsupported(field, operation);
+		}
+		boolean bool = type == Boolean.class || type == boolean.class;
+		if (!ORDERED_TYPES.contains(type) && !bool && !type.isEnum() && type != UUID.class) {
+			throw new InvalidSearchQueryException(QueryErrorCode.UNSUPPORTED_FIELD_TYPE, field,
+					"Unsupported field type " + type.getSimpleName() + " for field " + field);
+		}
+		boolean supported = operation != null && switch (operation) {
+			case EQUALS, NOT_EQUALS, IN_ARRAY, NOT_IN_ARRAY -> true;
+			case GREATER_THAN, GREATER_THAN_EQUALS, LESS_THAN, LESS_THAN_EQUALS -> ORDERED_TYPES.contains(type);
+			case STARTS_WITH, ENDS_WITH, CONTAINS, DOESNT_START_WITH, DOESNT_END_WITH, DOESNT_CONTAIN ->
+				type == String.class;
+			default -> false;
+		};
+		if (!supported) {
+			throw unsupported(field, operation);
+		}
+		if (bool) {
+			List<?> values = (value instanceof List<?> list) ? list : java.util.Collections.singletonList(value);
+			for (Object item : values) {
+				if (!"true".equalsIgnoreCase(String.valueOf(item)) && !"false".equalsIgnoreCase(String.valueOf(item))) {
+					throw new InvalidSearchQueryException(QueryErrorCode.INVALID_VALUE, field,
+							"Expected true or false for field " + field);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Describes an unsupported operator without exposing provider exception details.
+	 * @param field complete entity path
+	 * @param operation rejected operation
+	 * @return a bad-request diagnostic
+	 */
+	private static InvalidSearchQueryException unsupported(String field, SearchOperation operation) {
+		return new InvalidSearchQueryException(QueryErrorCode.UNSUPPORTED_OPERATION, field,
+				"Unsupported operation " + operation + " for field " + field);
+	}
+
 }

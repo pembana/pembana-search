@@ -21,57 +21,72 @@ package com.pembana.search.listeners;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 
 /**
  * Collects parser diagnostics in the original format.
+ *
+ * @author Spring Search contributors
  * @author Gunnar Hillert
  */
 public class SyntaxErrorListener extends BaseErrorListener {
-    /** Creates a SyntaxErrorListener with the inherited default configuration. */
-    public SyntaxErrorListener() { }
 
-    private final List<String> messages = new ArrayList<>();
-    private int firstLine = -1;
-    private int firstColumn = -1;
+	/** Creates a SyntaxErrorListener with the inherited default configuration. */
+	public SyntaxErrorListener() {
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line,
-            int charPositionInLine, String msg, RecognitionException e) {
-        if (messages.isEmpty()) {
-            firstLine = line;
-            firstColumn = charPositionInLine;
-        }
-        messages.add("line " + line + ":" + charPositionInLine + " " + msg);
-    }
-    /**
-     * Returns the first diagnostic's one-based line, or -1 if absent.
-     * @return the first diagnostic's one-based line, or -1 if absent
-     */
-    public int getFirstLine() { return firstLine; }
+	private final List<String> messages = new ArrayList<>();
 
-    /**
+	private int firstLine = -1;
 
-     * Returns the first diagnostic's zero-based column, or -1 if absent.
+	private int firstColumn = -1;
 
-     * @return the first diagnostic's zero-based column, or -1 if absent
+	/** {@inheritDoc} */
+	@Override
+	public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine,
+			String msg, RecognitionException e) {
+		if (this.messages.isEmpty()) {
+			this.firstLine = line;
+			this.firstColumn = charPositionInLine;
+		}
+		this.messages.add("line " + line + ":" + charPositionInLine + " " + msg);
+	}
 
-     */
-    public int getFirstColumn() { return firstColumn; }
+	/**
+	 * Returns the first diagnostic's one-based line, or -1 if absent.
+	 * @return the first diagnostic's one-based line, or -1 if absent
+	 */
+	public int getFirstLine() {
+		return this.firstLine;
+	}
 
-    /**
+	/**
+	 *
+	 * Returns the first diagnostic's zero-based column, or -1 if absent.
+	 * @return the first diagnostic's zero-based column, or -1 if absent
+	 *
+	 */
+	public int getFirstColumn() {
+		return this.firstColumn;
+	}
 
-     * Returns whether any lexer or parser diagnostic was collected.
+	/**
+	 *
+	 * Returns whether any lexer or parser diagnostic was collected.
+	 * @return whether any lexer or parser diagnostic was collected
+	 *
+	 */
+	public boolean hasErrors() {
+		return !this.messages.isEmpty();
+	}
 
-     * @return whether any lexer or parser diagnostic was collected
+	/** {@inheritDoc} */
+	@Override
+	public String toString() {
+		return this.messages.toString();
+	}
 
-     */
-    public boolean hasErrors() { return !messages.isEmpty(); }
-
-    /** {@inheritDoc} */
-    @Override
-    public String toString() { return messages.toString(); }
 }

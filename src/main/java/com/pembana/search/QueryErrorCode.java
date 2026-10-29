@@ -17,21 +17,24 @@ package com.pembana.search;
 
 /**
  * Stable categories for rejected search input; callers should not parse reason text.
+ *
  * @author Gunnar Hillert
  */
 public enum QueryErrorCode {
-    /** The expression cannot be parsed. */
-    SYNTAX_ERROR,
-    /** An explicitly configured size or nesting limit was exceeded. */
-    QUERY_LIMIT_EXCEEDED,
-    /** A blacklist or allowlist excludes the field. */
-    FIELD_NOT_ALLOWED,
-    /** Strict validation could not resolve the entity path. */
-    UNKNOWN_FIELD,
-    /** The value cannot be converted to the field's supported type. */
-    INVALID_VALUE,
-    /** Strict validation does not support this field type. */
-    UNSUPPORTED_FIELD_TYPE,
-    /** The field does not support the requested operation. */
-    UNSUPPORTED_OPERATION
+
+	/** The expression cannot be parsed. */
+	SYNTAX_ERROR,
+	/** An explicitly configured size or nesting limit was exceeded. */
+	QUERY_LIMIT_EXCEEDED,
+	/** A blacklist or allowlist excludes the field. */
+	FIELD_NOT_ALLOWED,
+	/** Strict validation could not resolve the entity path. */
+	UNKNOWN_FIELD,
+	/** The value cannot be converted to the field's supported type. */
+	INVALID_VALUE,
+	/** Strict validation does not support this field type. */
+	UNSUPPORTED_FIELD_TYPE,
+	/** The field does not support the requested operation. */
+	UNSUPPORTED_OPERATION
+
 }

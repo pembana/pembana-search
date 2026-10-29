@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<module name="com.puppycrawl.tools.checkstyle.Checker">
+    <module name="SuppressionFilter">
+        <property name="file" value="${checkstyle.suppressions.file}"/>
+    </module>
+    <module name="io.spring.javaformat.checkstyle.SpringChecks">
+        <property name="projectRootPackage" value="com.pembana.search"/>
+        <property name="avoidStaticImportExcludes" value="com.pembana.search.SearchTestFixtures.*"/>
+        <!-- Validate the existing project license below and retain mapped Test.java identities. -->
+        <property name="excludes" value="io.spring.javaformat.checkstyle.check.SpringHeaderCheck,io.spring.javaformat.checkstyle.check.SpringTestFileNameCheck,io.spring.javaformat.checkstyle.check.SpringTernaryCheck"/>
+    </module>
+    <module name="io.spring.javaformat.checkstyle.check.SpringHeaderCheck">
+        <property name="fileExtensions" value="java"/>
+        <property name="headerFile" value="${checkstyle.header.file}"/>
+        <!-- Inherited files retain a second MIT attribution block directly after this header. -->
+        <property name="blankLineAfter" value="false"/>
+    </module>
+    <module name="TreeWalker">
+        <!-- Preserve conditional branch order while enforcing parenthesized conditions. -->
+        <module name="io.spring.javaformat.checkstyle.check.SpringTernaryCheck">
+            <property name="equalsTest" value="any"/>
+        </module>
+    </module>
+</module>

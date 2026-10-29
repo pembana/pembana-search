@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   compatibility:
-    name: Java ${{ matrix.java }} / ${{ matrix.database }}
+    name: Runtime Java ${{ matrix.java }} / ${{ matrix.database }}
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     strategy:
@@ -25,10 +25,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Java ${{ matrix.java }}
+      - name: Set up runtime Java ${{ matrix.java }}
         uses: actions/setup-java@v4
         with:
           java-version: ${{ matrix.java }}
+          distribution: temurin
+
+      - name: Remember the test runtime
+        run: echo "TEST_JAVA_HOME=$JAVA_HOME" >> "$GITHUB_ENV"
+
+      - name: Set up build Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
           distribution: temurin
           cache: maven
 
@@ -38,10 +47,11 @@ jobs:
           git rev-parse HEAD | tee build/compatibility/revision.txt
           java -version 2>&1 | tee build/compatibility/environment.log
           ./mvnw --version 2>&1 | tee -a build/compatibility/environment.log
+          "$TEST_JAVA_HOME/bin/java" -version 2>&1 | tee build/compatibility/runtime-environment.log
 
       - name: Run the full corpus and coverage checks
         run: |
-          ./mvnw --batch-mode -Dgpg.skip=true -Ddependency-check.skip=true -Dspring.profiles.active=${{ matrix.database }} clean verify 2>&1 | tee build/compatibility/build.log
+          ./mvnw --batch-mode -Dgpg.skip=true -Ddependency-check.skip=true -Djvm="$TEST_JAVA_HOME/bin/java" -Dspring.profiles.active=${{ matrix.database }} clean verify 2>&1 | tee build/compatibility/build.log
 
       - name: Record resolved dependencies
         if: always()
@@ -74,7 +84,7 @@ jobs:
           ./mvnw --batch-mode org.apache.maven.plugins:maven-dependency-plugin:3.6.1:build-classpath -DincludeScope=test -Dmdep.outputFile=build/compatibility/java-caller-classpath.txt 2>&1 | tee build/compatibility/classpath.log
           artifact="$(find target -maxdepth 1 -name 'pembana-search-*.jar' ! -name '*-sources.jar' ! -name '*-javadoc.jar')"
           test -f "$artifact"
-          java -Dspring.profiles.active=${{ matrix.database }} -cp "target/test-classes:${artifact}:$(cat build/compatibility/java-caller-classpath.txt)" com.pembana.search.JavaCallerSmokeTest 2>&1 | tee build/compatibility/java-caller.log
+          "$TEST_JAVA_HOME/bin/java" -Dspring.profiles.active=${{ matrix.database }} -cp "target/test-classes:${artifact}:$(cat build/compatibility/java-caller-classpath.txt)" com.pembana.search.JavaCallerSmokeTest 2>&1 | tee build/compatibility/java-caller.log
 
       - name: Preserve compatibility evidence even on failure
         if: always()
@@ -85,6 +95,7 @@ jobs:
             build/compatibility/
             target/surefire-reports/
             target/test-results/
+            target/checkstyle-result.xml
             target/reports/apidocs/
           if-no-files-found: error
           retention-days: 30

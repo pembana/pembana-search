@@ -5,20 +5,23 @@ Read the [Code of Conduct](CODE_OF_CONDUCT.md) and [development guide](docs/deve
 
 1. Branch from `main`; use a descriptive branch name (`codex/` for agent work).
 2. Keep behavior changes separate from mechanical renames and framework upgrades.
-3. Use the Maven wrapper with JDK 17, 21, or 25. H2 is the default; PostgreSQL is
+3. Use the Maven wrapper with build JDK 21 and Java 17 release targeting. H2 is the default; PostgreSQL is
    an explicit Spring profile backed by Testcontainers.
 4. Add meaningful regression tests for fixes/features. Keep all 113 upstream
    methods and their assertions, with the documented identity mapping after renaming.
 5. Run relevant checks and preserve native Maven reports. CI verifies H2 and
-   PostgreSQL on all three JDKs; see the development guide for commands.
+   PostgreSQL on Java 17/21/25 runtimes while building on JDK 21; see the development guide for commands.
 6. Document API and intentional semantic changes, compatibility limits, and
    migration steps. Never rewrite historical baseline evidence as current output.
 7. Sign commits (`git commit -S`) and verify them (`git verify-commit HEAD`).
    Prefer Conventional Commit titles for new contributions.
 
 New Java source files require a **2026 Apache License 2.0 header**, meaningful
-class and method Javadoc, and class `@author` tags. Use Gunnar Hillert for the
-current fork contributions and preserve existing upstream MIT attribution.
+class and method Javadoc, and class `@author` tags. Credit verified contributors
+(Gunnar Hillert for the current fork work). Converted Spring Search files also
+retain `@author Spring Search contributors`; add individual upstream names only
+when file-specific provenance supports them. Preserve existing MIT attribution,
+and do not infer each file's authors from the project-wide copyright notice.
 Author tags belong on types; method Javadoc should explain parameters, return
 values, failure modes, and non-obvious behavior. Inherited overrides can use
 `{@inheritDoc}` when the documented contract is accurate. Do not add boilerplate
@@ -33,3 +36,11 @@ Do not add custom build/comparison scripts or Python setup where Maven and
 GitHub Actions suffice. Publishing and release credentials are configured in a
 separate release milestone; no automatic push, tag, PR, or deployment is part
 of a local build. See the [release checklist](docs/releasing.md).
+
+Spring JavaFormat Checkstyle 0.0.48 runs during Maven `validate` on production and
+test Java sources. Run `./mvnw validate` for a quick style check, and use
+`./mvnw io.spring.javaformat:spring-javaformat-maven-plugin:0.0.48:apply` for
+mechanical formatting. Review the diff: formatting does not fix every import,
+qualification, or semantic-style rule. The [style guide](docs/checkstyle/README.md)
+explains the narrow compatibility exceptions; retain original assertion semantics
+and upstream license attribution.
