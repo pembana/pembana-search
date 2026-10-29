@@ -3,10 +3,16 @@
 Advanced search expressions for Spring Data JPA, with optional Spring MVC query
 binding, field restrictions, input limits, and structured validation errors.
 
-**Development snapshot:** `com.pembana:pembana-search:1.0.0-SNAPSHOT`.
-No Pembana Search artifact has been published. Build and install locally before
-using the dependency below. The API is evolving toward 1.0; this single artifact
-currently includes parsing, JPA integration, and MVC binding.
+**Development version:** `1.0.0-SNAPSHOT`. No artifact has been published.
+Build/install the reactor locally, then choose the integration you need:
+
+| Artifact (`com.pembana`) | Responsibility |
+| --- | --- |
+| `pembana-search-core` | Immutable query model and expression parser; no Spring or persistence dependencies |
+| `pembana-search-data-jpa` | Model-to-specification translation and retained Java JPA entry points |
+| `pembana-search-spring-boot-starter` | Optional Boot/MVC binding with an overridable resolver |
+
+`pembana-search` is now the parent/aggregator POM. The API is evolving toward 1.0.
 
 ## Compatibility
 
@@ -46,14 +52,15 @@ After installing this development snapshot locally:
 ```xml
 <dependency>
     <groupId>com.pembana</groupId>
-    <artifactId>pembana-search</artifactId>
+    <artifactId>pembana-search-spring-boot-starter</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
 
-Your application supplies Spring Data JPA, a JDBC driver, and, for HTTP binding,
-Spring MVC. For Boot 4 use `spring-boot-starter-data-jpa` and
-`spring-boot-starter-webmvc`. Extend `JpaSpecificationExecutor` on your repository:
+The starter brings Boot JPA and MVC integration. Your application supplies its
+entities, database driver, configuration and security policy. For direct JPA
+without Boot/MVC binding, depend on `pembana-search-data-jpa` instead and supply
+a JPA provider. Extend `JpaSpecificationExecutor` on your repository:
 
 ```java
 public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
@@ -93,6 +100,26 @@ The [query reference](docs/reference/query-language.md) documents important lega
 limits, including case-operator asymmetry, SQL LIKE metacharacters, and implicit
 association joins. Strict validation does not silently change matching semantics.
 
+## Core and programmatic queries
+
+```java
+import com.pembana.search.core.Comparison;
+import com.pembana.search.core.ComparisonOperator;
+import com.pembana.search.core.ExpressionParser;
+import com.pembana.search.core.Query;
+
+Query parsed = new ExpressionParser().parse("name:Ada* AND active:true");
+Query built = new Comparison("name", ComparisonOperator.STARTS_WITH, "Ada")
+        .and(new Comparison("active", ComparisonOperator.EQUALS, "true"));
+// parsed.equals(built) is true; neither path needs Spring or a database.
+```
+
+With the JPA module, pass the same tree to
+`new JpaQueryTranslator<User>(settings).translate(built)` or
+`new SpecificationsBuilder<User>(settings).withQuery(built).build()`.
+Programmatic values remain data; they are never concatenated into expressions.
+See [architecture](docs/architecture.md) and [module verification](docs/modules/README.md).
+
 ## Documentation
 
 - [Getting started and direct JPA usage](docs/getting-started.md)
@@ -107,7 +134,7 @@ association joins. Strict validation does not silently change matching semantics
 
 `./mvnw -Dgpg.skip=true -Ddependency-check.skip=true package` produces binary,
 source, and Javadoc JARs. Generated API documentation is in
-`target/reports/apidocs/` with the current Maven Javadoc plugin.
+each module’s `target/reports/apidocs/` directory.
 
 ## License and provenance
 

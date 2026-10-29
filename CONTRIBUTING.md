@@ -40,7 +40,7 @@ failures. See
 and the OpenJDK 21.0.8+ build requirement.
 
 Existing Maven coverage gates require 80% instructions and 75% branches, excluding
-only generated parser classes. New/materially changed production code must meet
+only generated parser classes, enforced independently in each module. New/materially changed production code must meet
 80% changed-line coverage, with meaningful failure-path coverage. Describe
 remaining gaps rather than excluding difficult code to make checks pass.
 
@@ -50,7 +50,7 @@ separate release milestone; no automatic push, tag, PR, or deployment is part
 of a local build. See the [release checklist](docs/releasing.md).
 
 Spring JavaFormat Checkstyle 0.0.48 runs during Maven `validate` on production and
-test Java sources. Run `./mvnw validate` for a quick style check, and use
+test Java sources. Run `./mvnw validate` from the reactor root for a quick style check, and use
 `./mvnw io.spring.javaformat:spring-javaformat-maven-plugin:0.0.48:apply` for
 mechanical formatting. Review the diff: formatting does not fix every import,
 qualification, or semantic-style rule. The [style guide](docs/checkstyle/README.md)

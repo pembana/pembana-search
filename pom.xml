@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
@@ -9,9 +9,10 @@
 	</parent>
 	<groupId>com.pembana</groupId>
 	<artifactId>pembana-search</artifactId>
+	<packaging>pom</packaging>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>Pembana Search</name>
-	<description>Advanced search expressions and opt-in validation for Spring Data JPA and Spring MVC.</description>
+	<description>Immutable search query models, expression parsing, Spring Data JPA translation, and optional Spring Boot MVC integration.</description>
 	<url>https://github.com/pembana/pembana-search</url>
 	<licenses>
 		<license>
@@ -29,7 +30,11 @@
 		<system>GitHub</system>
 		<url>https://github.com/pembana/pembana-search/issues</url>
 	</issueManagement>
-
+	<modules>
+		<module>pembana-search-core</module>
+		<module>pembana-search-data-jpa</module>
+		<module>pembana-search-spring-boot-starter</module>
+	</modules>
 	<properties>
 		<!-- Maven/Checkstyle run on JDK 21; library and test bytecode target Java 17. -->
 		<java.version>17</java.version>
@@ -49,75 +54,39 @@
 		<documentation.outputDirectory>${project.build.directory}/reports</documentation.outputDirectory>
 		<project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
 	</properties>
-
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.pembana</groupId>
+				<artifactId>pembana-search-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.pembana</groupId>
+				<artifactId>pembana-search-data-jpa</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.pembana</groupId>
+				<artifactId>pembana-search-spring-boot-starter</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.jspecify</groupId>
 			<artifactId>jspecify</artifactId>
 			<version>${jspecify.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-rest</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webmvc</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.yaml</groupId>
-			<artifactId>snakeyaml</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.testcontainers</groupId>
-			<artifactId>testcontainers-postgresql</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.antlr</groupId>
-			<artifactId>antlr4-runtime</artifactId>
-			<version>${antl4.version}</version>
-		</dependency>
 	</dependencies>
-
 	<build>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
 			</resource>
 			<resource>
-				<directory>${project.basedir}</directory>
+				<directory>${maven.multiModuleProjectDirectory}</directory>
 				<targetPath>META-INF</targetPath>
 				<includes>
 					<include>LICENSE</include>
@@ -160,9 +129,9 @@
 					</dependency>
 				</dependencies>
 				<configuration>
-					<configLocation>${project.basedir}/src/checkstyle/checkstyle.xml</configLocation>
-					<headerLocation>${project.basedir}/src/checkstyle/header.txt</headerLocation>
-					<suppressionsLocation>${project.basedir}/src/checkstyle/suppressions.xml</suppressionsLocation>
+					<configLocation>${maven.multiModuleProjectDirectory}/src/checkstyle/checkstyle.xml</configLocation>
+					<headerLocation>${maven.multiModuleProjectDirectory}/src/checkstyle/header.txt</headerLocation>
+					<suppressionsLocation>${maven.multiModuleProjectDirectory}/src/checkstyle/suppressions.xml</suppressionsLocation>
 					<includeTestSourceDirectory>true</includeTestSourceDirectory>
 					<excludeGeneratedSources>true</excludeGeneratedSources>
 					<includeResources>false</includeResources>
@@ -172,7 +141,9 @@
 					<execution>
 						<id>checkstyle-validation</id>
 						<phase>validate</phase>
-						<goals><goal>check</goal></goals>
+						<goals>
+							<goal>check</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>
@@ -182,12 +153,14 @@
 					<execution>
 						<id>prepare-javadoc-notices</id>
 						<phase>prepare-package</phase>
-						<goals><goal>copy-resources</goal></goals>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
 						<configuration>
 							<outputDirectory>${documentation.outputDirectory}/apidocs/META-INF</outputDirectory>
 							<resources>
 								<resource>
-									<directory>${project.basedir}</directory>
+									<directory>${maven.multiModuleProjectDirectory}</directory>
 									<includes>
 										<include>LICENSE</include>
 										<include>LICENSE.txt</include>
@@ -198,28 +171,6 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.antlr</groupId>
-				<artifactId>antlr4-maven-plugin</artifactId>
-				<version>${antl4.version}</version>
-				<executions>
-					<execution>
-						<id>antlr</id>
-						<goals>
-							<goal>antlr4</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<listener>true</listener>
-					<visitor>true</visitor>
-					<arguments>
-						<argument>-package</argument>
-						<argument>${grammar.package}</argument>
-					</arguments>
-					<outputDirectory>${project.build.directory}/generated-sources/antlr4/${grammar.directory}</outputDirectory>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
@@ -363,7 +314,39 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.6.1</version>
+				<executions>
+					<execution>
+						<id>resolved-dependencies</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>tree</goal>
+						</goals>
+						<configuration>
+							<outputFile>${project.build.directory}/dependencies.txt</outputFile>
+							<verbose>true</verbose>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+			</testResource>
+			<testResource>
+				<directory>${maven.multiModuleProjectDirectory}</directory>
+				<targetPath>META-INF</targetPath>
+				<includes>
+					<include>LICENSE</include>
+					<include>LICENSE.txt</include>
+					<include>NOTICE</include>
+				</includes>
+			</testResource>
+		</testResources>
 	</build>
 	<scm>
 		<connection>scm:git:https://github.com/pembana/pembana-search.git</connection>
@@ -371,5 +354,4 @@
 		<url>https://github.com/pembana/pembana-search</url>
 		<tag>HEAD</tag>
 	</scm>
-
 </project>

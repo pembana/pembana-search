@@ -15,7 +15,9 @@ a different JDK such as 27 to establish this compatibility matrix.
 No profile means in-memory H2. Docker is not required. The same command with
 `install` instead of `verify` also writes the unpublished snapshot to your local
 Maven repository for another local project. Maven creates generated sources,
-compiled output, tests, coverage, binary/source/Javadoc JARs under `target/`.
+compiled output, tests, coverage, binary/source/Javadoc JARs under each module’s
+`target/`. The root project is the parent/aggregator POM. JPA also attaches a
+test-only fixture JAR for the starter tests; it is not a runtime dependency.
 No repository scripts or Python environment are needed.
 
 To run tests on Java 17 or 25 while keeping Maven on Java 21, select a forked
@@ -42,7 +44,7 @@ newer. The plugin enables `-XDaddTypeAnnotationsToSymbol=true` so javac reads
 JSpecify type-use annotations from dependencies correctly. Oracle JDK 21 does
 not support that flag. CI already uses current Temurin 21.
 
-All five handwritten production packages declare `@NullMarked`, including their
+All handwritten production packages declare `@NullMarked`, including their
 nested types. Intentional nulls use `@Nullable`: absent/empty MVC searches and
 unsupported legacy operations can still produce no specification or predicate,
 scalar converters retain their strategy-specific null behavior, and the `NULL`
@@ -113,14 +115,16 @@ fails the PostgreSQL run; tests are not skipped or redirected to H2.
 Pushes to any branch or tag, pull requests to `main`, and manual workflow dispatch
 run Java 17/21/25 runtimes × H2/PostgreSQL, always building on JDK 21. Surefire's
 `jvm` option selects the test runtime independently of Maven. Every job runs the
-complete 153-method suite and coverage, then a Java caller against the packaged
+complete 185-method suite and per-module coverage, then a Java caller against the packaged
 JAR using that same runtime in a separate JVM. Dependencies, effective
 POMs, environment/build logs, Surefire XML, and coverage reports are uploaded
 for 30 days, including evidence from failed jobs. No deployment is configured.
 
 The original 113 methods now reside in `PembanaSearchCompatibilityTest`.
 The eight prior integration checks, 27 Stage 4 tests and five nullability contract
-tests are supplemental. Frozen
+tests are retained. New module tests add 26 core checks, five JPA model checks and
+one resolver-override check. The HTTP Stage 4 method now lives in
+`MvcQueryBehaviorTest`; its scenario body is unchanged. Frozen
 inventories use the old class name; the identity mapping is in the
 [migration guide](migration.md). Preserve method names/queries/assertions rather
 than updating historical hashes to make a comparison appear equivalent.
@@ -128,8 +132,9 @@ than updating historical hashes to make a comparison appear equivalent.
 Maven enforces 80% instruction and 75% branch coverage with only generated parser
 classes excluded. New/materially changed production code additionally needs 80%
 changed-line coverage and meaningful failure-path tests. Surefire output is under
-`target/surefire-reports`; coverage HTML/XML is under
-`target/test-results/coverage/jacoco`. Distinguish compilation, infrastructure,
+`<module>/target/surefire-reports`; coverage HTML/XML is under
+`<module>/target/test-results/coverage/jacoco`. Core runs 26 tests, JPA 151 and
+the starter eight. All modules enforce the same coverage gates independently. Distinguish compilation, infrastructure,
 test, coverage, documentation, signing and scan failures in findings.
 
 ## Commit signing versus artifact signing

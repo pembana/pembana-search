@@ -7,7 +7,8 @@
 | [Getting started](getting-started.md) | Application developers: install, MVC binding, direct JPA and consumer scopes |
 | [Query reference](reference/query-language.md) | Grammar, typed operators, matching quirks, validation, errors and association limits |
 | [Configuration/API reference](reference/configuration.md) | Annotation defaults, public entry points, auto-configuration and dependencies |
-| [Architecture](architecture.md) | Current data flow, single-artifact boundaries, future module plan |
+| [Architecture](architecture.md) | Core model, JPA translation, optional starter and dependency boundaries |
+| [Module verification](modules/README.md) | Retained scenario mapping, new equivalence tests and module acceptance evidence |
 | [Development](development.md) | Contributors: JDKs, databases, CI artifacts, coverage, signing, NVD and troubleshooting |
 | [Spring Checkstyle](checkstyle/README.md) | Build-time style enforcement, formatting, compatibility exceptions and verification |
 | [Migration](migration.md) | Coordinate/package changes and intentional incompatibilities |
@@ -16,7 +17,7 @@
 | [Upstream author provenance](provenance/upstream-authors.md) | Per-file author credits, supporting Git commits, identity handling and exceptions |
 
 The root [README](../README.md) is the short Java quickstart. Generated API HTML
-is in `target/reports/apidocs/` after packaging; a Javadoc JAR is attached to the build.
+is in each module’s `target/reports/apidocs/` after packaging; a Javadoc JAR is attached to the build.
 
 ## Historical evidence
 

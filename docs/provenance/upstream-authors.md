@@ -59,6 +59,17 @@ collective or individual upstream class author is invented from its callers.
 New fork-only API/validation classes and package documentation receive no
 unrelated upstream tags.
 
+## Module extraction
+
+The mapping below records the earlier single-module paths. With the module split,
+JPA production classes and the original corpus live under `pembana-search-data-jpa/`;
+MVC configuration/binding and its tests live under
+`pembana-search-spring-boot-starter/`. The grammar and syntax listener live under
+`pembana-search-core/`. Core `ExpressionParser` and `QueryModelVisitor` are
+extractions of `CriteriaParser` and `QueryVisitorImpl`; they retain the same MIT
+notices and verified original-author tags. New immutable model/adapter types
+credit Gunnar Hillert. Historical JSON paths and supporting commits are preserved.
+
 ## Per-file mapping
 
 Paths below are relative to `src/`; the JSON records full current and upstream

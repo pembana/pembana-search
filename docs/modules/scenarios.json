@@ -1,0 +1,1396 @@
+{
+  "baseline_revision": "a6448bcdc81861b00af9d8b3041b0715032d3f13",
+  "retained_test_methods": 153,
+  "additional_test_methods": 32,
+  "total_test_methods": 185,
+  "normalization": "Scenario bodies compared after removing comments and whitespace outside string/character literals. Inputs, calls and assertions must match.",
+  "retained": [
+    {
+      "baseline_class": "DatabaseAdapterTest",
+      "method": "connectsToTheSelectedDatabaseEngine",
+      "module": "pembana-search-data-jpa",
+      "current_class": "DatabaseAdapterTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/DatabaseAdapterTest.java",
+      "body_sha256": "2ef5fe36bb172f9c2c53b0f2dd7d51b00338000f76d94e1fd2e960889a7c59aa"
+    },
+    {
+      "baseline_class": "JavaCallerSmokeTest",
+      "method": "javaCallerConstructsAndExecutesSpecification",
+      "module": "pembana-search-data-jpa",
+      "current_class": "JavaCallerSmokeTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/JavaCallerSmokeTest.java",
+      "body_sha256": "ef8cc0d8f4fb76b39084f63cb429683b82ca2135afd9cb1ed418eac05d2efd6e"
+    },
+    {
+      "baseline_class": "JavaResolverTest",
+      "method": "bindsConfiguredParameterAndPreservesDiagnostics",
+      "module": "pembana-search-spring-boot-starter",
+      "current_class": "JavaResolverTest",
+      "current_source": "pembana-search-spring-boot-starter/src/test/java/com/pembana/search/JavaResolverTest.java",
+      "body_sha256": "37752ec17c2f7b45425556dbdc0915894572ff00ea450fb6da473b77a5a8a831"
+    },
+    {
+      "baseline_class": "JavaResolverTest",
+      "method": "registersResolverAndSelectsOnlyAnnotatedSpecifications",
+      "module": "pembana-search-spring-boot-starter",
+      "current_class": "JavaResolverTest",
+      "current_source": "pembana-search-spring-boot-starter/src/test/java/com/pembana/search/JavaResolverTest.java",
+      "body_sha256": "0e5f03487ccb2dee25c92370d4379c26daf810357a067d7708f089aa9df267a7"
+    },
+    {
+      "baseline_class": "NullabilityContractTest",
+      "method": "preservesNullTokenAcrossScalarStrategies",
+      "module": "pembana-search-data-jpa",
+      "current_class": "NullabilityContractTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/NullabilityContractTest.java",
+      "body_sha256": "10e84b0c92e332bf26574f6aa48993087f5fd78f51b7e8b80430c67ff553d16f"
+    },
+    {
+      "baseline_class": "NullabilityContractTest",
+      "method": "retainsStrategySpecificNullReferenceHandling",
+      "module": "pembana-search-data-jpa",
+      "current_class": "NullabilityContractTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/NullabilityContractTest.java",
+      "body_sha256": "486e7b49bb566b4b50de4d2b5e8ff9f646990f6e3e0fb825358e3555f87603a9"
+    },
+    {
+      "baseline_class": "NullabilityContractTest",
+      "method": "preservesMembershipNullConversion",
+      "module": "pembana-search-data-jpa",
+      "current_class": "NullabilityContractTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/NullabilityContractTest.java",
+      "body_sha256": "bad4e1b9ce9bbf5b5d29f9393bc052f17473d9763f8748677464c7f66957fc3d"
+    },
+    {
+      "baseline_class": "NullabilityContractTest",
+      "method": "preservesAbsentPredicateAndNullableQuery",
+      "module": "pembana-search-data-jpa",
+      "current_class": "NullabilityContractTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/NullabilityContractTest.java",
+      "body_sha256": "bbb4a7404757885da2aef429d6f23d0c030aabc9b73aa4b0788573c867825732"
+    },
+    {
+      "baseline_class": "NullabilityContractTest",
+      "method": "rejectsNullMembershipLists",
+      "module": "pembana-search-data-jpa",
+      "current_class": "NullabilityContractTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/NullabilityContractTest.java",
+      "body_sha256": "19324d6a60d422d545777d2bfcabcb0a00c9e068a7116d7d037693382a84c466"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "run",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canAddUsers",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "680165e13abd77a6ac97b8ff62cabfbb6009777a585b6f29dd90f6542065b5fc"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithId",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "69fd29371f7e9d1d7b040b400ac76a68cde270d9475b39c7fb88b331e818f487"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithName",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "c392e2b2a653afb1c8e96d4a412b4fee5ac295254ccd1c3e4c06548b5b31658b"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithFirstNameAndLastName",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "3af1354924fba4d5aa93824f35703f02fd020fa5abb88c9a557868c1f2b78a0c"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithFrenchName",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "3768c136f014c00e3bdc1e8bd88d5580f5be289ebab31fcca285190cc84e66ba"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithChineseName",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "6cc78b0b9e91ec6e9ad54db1ed16340298a38f4f6f1f66129a321d8c75ede49d"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithChineseNameNoEncoding",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "6cc78b0b9e91ec6e9ad54db1ed16340298a38f4f6f1f66129a321d8c75ede49d"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithSpecialCharactersName",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "2b211936eced6037e5a95656d73b280972baf88a26ae88b767516a165f829f6f"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithSpaceInNameWithString",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "6973d65eb49174c90956435dbc836629c2e70ac43e90b81a06521c71610572c2"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithPartialStartingName",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "987e03df631bf283094a885f6a8fa27784fb92e0f8f8a849b31b11e1e945eaed"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithPartialEndingName",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "d76132a6e5d6834309566025a2f6aabb6cad4edf7cb37dbdc09ce4bb535cc331"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithPartialNameAndSpecialCharacter",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "f5c4ec6eebd2c2597dd0a3d93927c29f0a79761d45f4fd528b023c1841c87d87"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithPartialNameContaining",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "2b9f744fdbd18b37703d6e532408756d95c7343ca3c6dfdf0a6407f9cfa44247"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithPartialNameContainingWithSpecialCharacter",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "5dbf7b6cbf6d79690c9d8721a9d6751eac51a1cc23ce822663ac2a3d9881c40e"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithPartialNameContainingSpecialCharacterUsingSimpleString",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "1f6320c74c29de063329f3660c71a18dc4a2c4b6aa46b0ef467f10ff15753209"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithPartialNameContainingWithSpecialCharacterUsingDoubleString",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "966817057b350e93a764affde4f3538deea20f5deca97c47ee49016fd9580548"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersNotContaining",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "ef3d9d9aad9b2a8ed13b82955eff03f6fa6f1d4359a2294ee5073f8818598811"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersNotStartingWith",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "234bba8943c54f3893d988e1f4b232515b23679ab0f8e97f24feefb6cd02b526"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersNotEndingWith",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "e617336553fdf44ffb23d1c33702e1a82b5d146f0c132b6400d854212c539515"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithBigFamily",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "d8f4aee38c851433f6ea8b682db0e38f187d30cd39b4c5c6d5205f7373781da9"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithSmallFamily",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "a6fdb991c904a28e45672c0228c701242febd5dcc968616d05e4a424d936720f"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithChildrenEquals",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "abd63de100b5f1429db29b0ddbc1d07e97cc3721fe0949072bb573090a10be2f"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithChildrenNotEquals",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "1552700fb47d271ebc92f9d99319dd97188e170baac37eb3871039899092d575"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithSmallerSalary",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "cac7d844ce2dc372ce6df70c8814507fd8def44901ef3ab2f27c99b8c3073620"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithHigherFloatSalary",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "b8ab5c01219c0fbe63a337ae18de4912a73860fceba0c87378a3ff1547e17084"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithMedianSalary",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "aabc8fa4d25721404e3a17ad61432b087dac45418746d3144b086d2495498c02"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithAgeHigher",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "4e5d45a4e5e61ac358d67452ab1402a53ba174161b1ca4ace921640e79e9771d"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithAgeLower",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "b0268f3d9e5f51cc5bcd51487400532e1dd1f3d6c46fb4cdf358fe4194112d44"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithAgeEqual",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "766fe29e710551d5b92f4f7be26d217bb2096ef4a858fb0ca9c099f9ac1df75f"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithParentheses",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "fdbf4ee1d0a827a89c761b5dcda6e1f646a3c4a3aebe6d419efacae730689972"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithInterlinkedConditions",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "8936f9a2ea9acd52ca530125703dbbb8566f7fe15fc9cfc0981bab9ff9f3d1fc"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithInterlinkedConditionsNoSpaces",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "74b98eb6a52972d316a5f03074a7eaa7a386b93ebceb2749d8a9f0fdde250c85"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersByBoolean",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "74732dcec720e76465fb2760763b2c8ae0378901afaa50908f4bf69a8ba7fcf4"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersEarlierThanDate",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "11e00b575789cee7576967ca0ffe1e3722f373ebe9bbc5e9db5b5a19478194ea"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersAfterDate",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "37e7992f60befb76d48ab870e05c4e416fa3c76342d8a1898d546ed255d20045"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersAfterEqualDate",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "2f922b73d49f2bde06bfd4e21437af1ee16dbfb54d494387af323b8a0886ade1"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersEarlierEqualDate",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "8636246055829a72372e65b52e975b4fbc40b3af18c8ec36e8491127969e825e"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersAtPreciseDate",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "94b14f5a558e3c8fce07a3e16edad610907d73a4e29598763150f017b459e6f3"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersAtPreciseDateNotEqual",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "ed0bc2cd0c519000fc8dd8ff2ca6f54497c61774f4bf9b5c4d16ef816bdc6004"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithCaseInsensitiveLowerCaseSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "aea0bc53ef71fede5d002877529075f9fca65e90df5ff859bbd80f2475c6b305"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithCaseInsensitiveUpperCaseSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "a4182f6f0d57a5b72a5883513cdad7fa638cf8639a1632ef9f63800b83476e2b"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithCaseInsensitiveContainsSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "b67b347c9dbb154425c3ede532b0faede08377bbe395abf51e59193721faa867"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithCaseInsensitiveDoesntContainSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "aeb9064ea727192dd59d700034efc125f66a772608d01db53b54e79a2d6c079c"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithCaseInsensitiveDoesntStartSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "e092f75b40d873a4241347dfa142134239d09eb19fc454e59a68b11bc91957a2"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithCaseInsensitiveDoesntEndSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "17b10a8f3ac8b8ff4ad9787a79aa3e8c2d10a74ee9e178c4cc7fb28ccc820936"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUserTypeEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "bd3f0fea0765b1ba8bc39455972e8b8329ab00c6ba50098f0bea8b5f235986a2"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUserTypeNotEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "013b6e48e8b7872d4f528c99b599131965be1b9ae77c752621967d6c8b1fd886"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedAtGreaterSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "32336ac65312fdb36936e3d25be3b7ba9c5ac99241b6cc423f469196e1c1ea41"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdateInstantAtGreaterSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "cfa29f66512cd7e6e50c6278dee4de024112617bdb909f4708b27701f21a9834"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdateInstantAtGreaterThanEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "79c399ae31cc1908b44f1c7987b9e03cc22c3b4ab5895449ce9daf942417d333"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdateInstantAtLessThanEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "ddb94b10277a3b5298296bdd182c6bfea2edc8ca28d70d459f1ab6bec5e9dbcb"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedAtLessSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "686abd3083a1f0bf87a749702ed2734056f9cf857ff60019a48ef22bd9594693"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedAtEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "6c749d88a3bb4b598750761a9c9da0699b8b773314f183554f4fefc9f54b25f8"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedAtNotEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "0948c9b75e061cf25bfd3523e4cadd09d7e55fb4d04d8d4017a52cdf5db55d48"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedAtGreaterThanEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "e7dab8538a511b79f44e209410a0a1ff0677d3e0c7c49d2cf667fc1a386492ee"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedAtLessThanEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "d55a972cdb3d7cfcb2cee5a15c4d7602cc6067cbdac42130e5f0eea023f292fa"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedDateAtGreaterSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "4d17036e98aa4036c74037be5280a45d22b5deca50785dc5cd23d7fc0980ffe1"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedDateAtLessSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "f1b4523218525738223025336d4c1794279f90c05a6d7c10c2686360bfe41f36"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedDateAtEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "a202e6cc5d0963505fba514c6f344e9020098374640a47ab414da69b349c7bb1"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedDateAtNotEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "f3a600ea18c8fcfa52b0f9eb31ba288630325392982cb9d7b90d06bda9d661bd"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedDateAtLessThanEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "83b6a8f038ec6975cfa44c331a6dfd0f30e29319d403f05f70925798bd4dc1ce"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedDateAtGreaterThanEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "aa4c13045b54179c9341110763ed894a61fb0ccc82a31a5986cb76f5a8351366"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedTimeAtGreaterSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "d0558332c0e7834c1e317496b5aa516a9674aae5129c6a677677b4935cd633fc"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedTimeAtLessSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "f101f4fc016b4649662d092e532afe0cf5c87f4a1dfa04b7f61ddbee5780b465"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedTimeAtEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "3f2021e369482f2088fc9f9eaf536b9176c2b2eea93b98f311678f425c494497"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedTimeAtLessThanEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "3f013dbfdc8222f76b1298461309ea0b6e02e08f41f5f2559a365c0413405554"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedTimeAtGreaterThanEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "f20c14c91b0341ee3930662556497313295fc22bbbfd51088002813bd632f95d"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedTimeAtNotEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "843d3800521d8bbb2c30b5d890951b5bed6f3ddcfe09ba77672b81c0311be510"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithDurationGreaterSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "761b295c0d3cc29f1afe19a550954540e8a80ac82af380a762c18e109e2f8e8a"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithDurationLessSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "2a825f8ae014a72768416bb3c7e46daa6b8c43d27dfa092cac6517c40c057f52"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithDurationEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "3e7364585fb904368b6d4a24ad714fd8ddbfe974fb6478fefe2702e4c2394df4"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithDurationNotEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "ec62f902fec95a88586194bf5fcc31612ea402212a4232bf76146f129cc93556"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUUIDEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "18ec7b0810206833ff8a77b7d8aaa8ef977fa5a297a3b0cb08b11564153332ef"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUUIDNotEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "996c06b82fafb23f8da2fd3ac4578b54006710adc127b101f7c0285bb909c287"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithNumberOfChildrenLessOrEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "402fea3f94c43e4ef0ad9ca292cf201b2efa84b92ea8b98ebbfa871c6305070b"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithNumberOfChildrenGreaterOrEqualSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "812a21f72e9e8227b58869c90888442386c19b7b1d08c380fee70c2e7cb46b87"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithNumberOfChildrenLessSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "93bdbab446fff1641d758115d6e4f0b30199075dd351da30767cfbdcd09f3eeb"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithNameIn",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "fcea132febe4af90fc04fca5b86fa7bc565c930ad563199b892b5152e39cb9d2"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithNameInEmptyList",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "0de0fb751aa3ddf4da21e3c44a6a7118fb7a14a95859153cf29436b6c78a4a7e"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithNameNotIn",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "f694b8f3c22f4d286faa9025810de5f347a20dd80404d83d56c54da538513776"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithChildrenNumberNotIn",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "84f55c61d2543f5b3f54d21a605cebdeeb7aa150e6140e197b20dd3a766c79fc"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithChildrenNumberIn",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "66cb17de07c60cc92dc820d76ae042ae52298a32b64cdcce0ba46d3c612cc812"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithTypeIn",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "61c8b4f5787d105d1d55c4f83a55ac0a6d86eec9d9bab0aead6b3dbc692b77b7"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithIn",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "feca0f8b0642c0faeafda5b7621a60c3b7f91e07ffc184a2c645cc4f9a274ec3"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetAuthorsWithEmptyBook",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "f99f1fd7984f499e710fd8a11836fbe455c3cd610d340e17e27f7c372587d3e2"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "cantSearchForEmptyWithNonFieldProperties",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "0d9ce7b094c051b37b9f6b04a596b7340605ef05b5e1e0ca982d3ccfa85f5108"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetAuthorsWithEmptyBookWithResult",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "3046eec76b234f93defb66a75cd2345640ebdc7ceba52648e4e1a6d662e76786"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetAuthorsWithBooksNotEmpty",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "9985cbb4be2bfadd05506dc82b023523a768b627d69bdffa1f88f630a22ded90"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetAuthorsWithBooksNotEmptyAllResult",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "cd748506739a362ba0159cc6f328b4628a401f49e08843d0349de81ff2ae9b5a"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetAuthorsWithBooksNotEmptyNoResult",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "c9c14d6398e9729a862b4ac7bfcf2b5af0ee08beddb93fa0c4d078fd432f7d78"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "cantGetAuthorsWithBooksNull",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "042637e254b084820b9beb2c3c3a4e0b39da80c761769dcc6f81b3800b046f7e"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithNumberOfChildrenBetween",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "749bb9ae565b3d02433ce67d31cefc68a0b13794579f31920a6dbb9d66770240"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedDateBetween",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "0bd54536c4ae86a79a6e3592bb472d1dd4c03f6e13678b5e931fc7a32fbcaf0d"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedDateNotBetween",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "2bb7b565d1a0cfb563b0c90df7cb65af42d93d8af3d687de74fa354f9cebdcc0"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedDateBetweenAndIdIn",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "8915163639ad5ff715e2a6c4ee4489f736c085b366de65cfb7d8c76ef50073c9"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUserFirstNameBetween",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "ea7411251fc6f6ddb6d31ed1793a8e869f67e5b74c2862d5218cc2d96357dac2"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUserFirstNameNotBetween",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "b30dae7a4c9feb4099a11c9ece01b6db7007423563eca7690a0bb3cac53246f1"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUserFirstNameGt",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "85b0200a95483d7cdb6c183c0af848e3a38a2a2d9705157cfa8c0cc5747773e4"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUserFirstNameLt",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "642fb88abbb5a451405a97d45591e16515e6823eac06992331dc41e19eba06a7"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUserFirstNameCaseSensitive",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "e7b8392e061b9965d1c91c3ae47cb5a5becf706cea8cf641770e47b2391696e7"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "badRequestWithWrongSearch",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "ea20aa3fdf421693861b8fad13b67f74a62ba064a6aab4b03b093c9056ece4d3"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithNullColumn",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "900fb9fa556acc88c7454259dc3943c12958442506dc49018ed4e71b78e1a319"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithNotNullColumn",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "28ad68117c5b9949f52e2a711f07e5513821e417e852e024d3309da2764996a0"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithNotNullFirstName",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "c5a43043c627a1462a7e4c8ef55d939390d0a1731feed12e68b1115688c1d0c5"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUserWithNullSalary",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "9c008694248d1102b208877d372d6fa7d5405d6373f5691bed770d671306a535"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canNotSearchABlackListedField",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "e200cf9455763335e1b18f9bf140bc8854f7b4a728455a44cb8959f672120453"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUUIDNull",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "f4a8b71d1ccaa4102dccacce786e1c20714602feba38274a90c74af7491c0bac"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedDateAtNull",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "6ae28a419fbc7eb1aa12e1ecbe69817ceff128f8e392d1d6a1aeead41e6f3b8a"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUpdatedDateTimeAtNotNull",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "0d414b1cd1f67b86fb542814cd04ea4fffbebe940efdb162f2bffdaffeae729c"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithActiveNull",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "5e3644c1ca5c5d0f2d4967cefa2dbfd3c6d591f464d9fb7491a303f20717692e"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithUserChildrenNumberNull",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "d6196576d9594f9b62ad28f7f6295e31c64f1111a3f06921235262d409015fd6"
+    },
+    {
+      "baseline_class": "PembanaSearchCompatibilityTest",
+      "method": "canGetUsersWithCreatedAtNull",
+      "module": "pembana-search-data-jpa",
+      "current_class": "PembanaSearchCompatibilityTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "body_sha256": "a84e84cd5b768d502bbd9f33e59b928ec0ebbf875babb2a0049166efb6b65376"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "defaultsRemainLegacyAndAnnotationFactoryKeepsItsContract",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "fcdc410052ab9108c5a75b7157a63573e4d08a6368ae884fc927bacd7f1d0dea"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "legacyInvalidBooleanStillMeansFalse",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "2e0900e1d2c5871bdcfb92ec168653eda0670bd3ed1b57b2c840356c8b050946"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "legacyBooleanOrderingStillHasNoPredicate",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "619037bad73d15de840a63a973f354586635a61829e9bcbbdc9bf0dc5358832d"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "insensitivePatternsFoldCaseButEqualityDoesNot",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "17fecd47d849482c922ed09487824dcd96160ed24961d947233b50761bbbc374"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "sqlMetacharactersStillBroadenLegacyPatterns",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "119e39427feb068c04e1aa258ad053805fdc9d0f5b92d1cde621aaca3eaea58e"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "internalAsterisksRemainLiteral",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "9ccbf675caf806293438e8eaa5b0675fc1d7675ff0dc6b8356e3335ccd6ea8a5"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "booleanOperatorsSharePrecedenceAndParenthesesOverrideIt",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "06e0c41adffb204d5b377bc01323bbee9264933b64ae30277b257a0f1dfc505a"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "emptyMembershipAndNullableBooleanChecksAreStable",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "c630d7029fcc7a6b5d7ce2908245ff21bc96505b670ea0586248af2de991b0fa"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "mandatoryScopeComposesOutsideUserOr",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "d151e6d114c3ea629865f43bea0f53be6344e418c4455c9c6e1f25388844bdd3"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "sortedPaginationAndCountsRemainStable",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "178ccf1948b51c29bd35111d91d5adb5979409293bccc2918d49fb05736b431d"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "collectionOrPreservesCountsAndPages",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "59cd65d0fc1ba7042791aea334952d37efd2ed68e2794eb8d2a54b24ad99a9cc"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "nestedAssociationOrRetainsLegacyInnerJoinSemantics",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "840cdce137f91e43823393147fa2547863f818f894338ce171579c19e92be363"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "strictBooleanValidationRejectsInvalidScalarAndListItems",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "05f419436a2a8365600a0cbdc241dcc89f993634293572d29fd3b93f5e8b815c"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "strictValidationRejectsBooleanAndEnumOrdering",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "67f420b32829cbd6b10e15654fc2ecf8220eeea6186e6c3c69e4bcafd11bb0bc"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "strictValidationRejectsNumericWildcards",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "8eee055c884fc34e92e899a2605953691660be9a1ae523855debefa142ba9e00"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "strictUnknownPathsHaveActionableDiagnostics",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "9805e0f6c62199af779007484dc90406fcc97045fa5be268b7dd4718b030549e"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "invalidTypedValuesHaveStructuredErrors",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "418c49c6bac4c385a79f895f680af208ebd0e4697b4e75b21e4500b83d66a632"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "strictEmptyScalarGetsAnActionableError",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "041089dd31a67f45d57f15eaded7143c3e5528f48ab7d41ea291f7fc9a468d69"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "strictEmptyAndCollectionOperationsAreValidated",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "b7fa0e81e61dc853c46df481097c71f91fa3c127f6dcdd9bd4dcf99570f226f0"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "allowlistChecksEveryGrammarBranchAndBlacklistWins",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "59189cd5050f55ccbad29e3c1aefc380d211ecc8660a8741068715444d5d7e9c"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "negativeLimitsAreConfigurationErrors",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "d0435f3ba76f7829ae66ac93cb35cc3704d591dd34886145da21c4e6f01a8143"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "lengthLimitIsOptInAndBoundaryInclusive",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "bb6000e663280a65a423aeb7b08cc9505be4567de212b47f7d9dacd632402ceb"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "depthLimitIsOptInAndIgnoresQuotedParentheses",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "b3fd8aca065cb44adc64d19cc721ac71ee070cb187626c38012eaffa0075c800"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "syntaxErrorsCarryCodeAndOriginalLocationText",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "79a4fd3e21531b79e03d5fb6ecf0047a89b2cfcb00fe2d40c2cba073d1fd3aaa"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "strictTypedQueriesRetainExistingSuccessfulSemantics",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "ca29c19b27b09f457e3ba05a1b3a0ff91789ac39ef5bd40c66f0b96ea0dab5bf"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "strictUnsupportedFieldTypeIsExplicit",
+      "module": "pembana-search-data-jpa",
+      "current_class": "QueryBehaviorTest",
+      "current_source": "pembana-search-data-jpa/src/test/java/com/pembana/search/QueryBehaviorTest.java",
+      "body_sha256": "a4c90202a04d064d9064697a87acdb4926f9f2738c297101e6772d89e9881728"
+    },
+    {
+      "baseline_class": "QueryBehaviorTest",
+      "method": "httpBindingExecutesSearchAndRendersQueryErrors",
+      "module": "pembana-search-spring-boot-starter",
+      "current_class": "MvcQueryBehaviorTest",
+      "current_source": "pembana-search-spring-boot-starter/src/test/java/com/pembana/search/MvcQueryBehaviorTest.java",
+      "body_sha256": "f0ecd0194f1686566b31942af6be0614aab2546ded34ab332cf650d3455ed856"
+    },
+    {
+      "baseline_class": "ResolverAutoConfigurationTest",
+      "method": "bootImportsDiscoverTheResolverConfiguration",
+      "module": "pembana-search-spring-boot-starter",
+      "current_class": "ResolverAutoConfigurationTest",
+      "current_source": "pembana-search-spring-boot-starter/src/test/java/com/pembana/search/ResolverAutoConfigurationTest.java",
+      "body_sha256": "3905b31f0f604a895d1cc950b18b7b67cf642e5c9aa673b660028b7de7f5b609"
+    },
+    {
+      "baseline_class": "ResolverAutoConfigurationTest",
+      "method": "servletConsumersReceiveTheArgumentResolver",
+      "module": "pembana-search-spring-boot-starter",
+      "current_class": "ResolverAutoConfigurationTest",
+      "current_source": "pembana-search-spring-boot-starter/src/test/java/com/pembana/search/ResolverAutoConfigurationTest.java",
+      "body_sha256": "ef91713061522dd8300ad3a368919b7c87a145a721f506bbd010c348531e3de3"
+    },
+    {
+      "baseline_class": "ResolverAutoConfigurationTest",
+      "method": "directJpaConsumersDoNotRequireAWebContext",
+      "module": "pembana-search-spring-boot-starter",
+      "current_class": "ResolverAutoConfigurationTest",
+      "current_source": "pembana-search-spring-boot-starter/src/test/java/com/pembana/search/ResolverAutoConfigurationTest.java",
+      "body_sha256": "5d49c1002941f2bc7a2d2827ff69b0200eea7c2d3e2d7f99fc8a9c2a18c2e5ca"
+    },
+    {
+      "baseline_class": "ResolverAutoConfigurationTest",
+      "method": "missingMvcClassesDoNotPreventStartup",
+      "module": "pembana-search-spring-boot-starter",
+      "current_class": "ResolverAutoConfigurationTest",
+      "current_source": "pembana-search-spring-boot-starter/src/test/java/com/pembana/search/ResolverAutoConfigurationTest.java",
+      "body_sha256": "0ba0c22d9ef527e81070412f2a1c98790e9374bc1e811c0e237596321e58f5f3"
+    }
+  ],
+  "additional": [
+    {
+      "class": "CoreQueryTest",
+      "method": "atLeast",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "atMost",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "booleanComposition",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "complexityLimits",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "contains",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "doesNotContain",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "doesNotEndWith",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "doesNotStartWith",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "emptyCollection",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "emptyScalars",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "endsWith",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "equality",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "fieldRestrictions",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "greaterThan",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "immutableCollections",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "independentClasspath",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "inequality",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "lessThan",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "membership",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "nonEmptyCollection",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "notNullCheck",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "nullCheck",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "quotedScalars",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "ranges",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "startsWith",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "CoreQueryTest",
+      "method": "syntaxLocations",
+      "source": "pembana-search-core/src/test/java/com/pembana/search/core/CoreQueryTest.java"
+    },
+    {
+      "class": "JpaModelEquivalenceTest",
+      "method": "legacyVisitorEntryPoints",
+      "source": "pembana-search-data-jpa/src/test/java/com/pembana/search/JpaModelEquivalenceTest.java"
+    },
+    {
+      "class": "JpaModelEquivalenceTest",
+      "method": "literalValuesAndMandatoryScopes",
+      "source": "pembana-search-data-jpa/src/test/java/com/pembana/search/JpaModelEquivalenceTest.java"
+    },
+    {
+      "class": "JpaModelEquivalenceTest",
+      "method": "noStarterOnClasspath",
+      "source": "pembana-search-data-jpa/src/test/java/com/pembana/search/JpaModelEquivalenceTest.java"
+    },
+    {
+      "class": "JpaModelEquivalenceTest",
+      "method": "programmaticFieldsRemainRestricted",
+      "source": "pembana-search-data-jpa/src/test/java/com/pembana/search/JpaModelEquivalenceTest.java"
+    },
+    {
+      "class": "JpaModelEquivalenceTest",
+      "method": "programmaticQueriesMatchParsedExpressions",
+      "source": "pembana-search-data-jpa/src/test/java/com/pembana/search/JpaModelEquivalenceTest.java"
+    },
+    {
+      "class": "ResolverAutoConfigurationTest",
+      "method": "consumerCanReplaceSearchResolver",
+      "source": "pembana-search-spring-boot-starter/src/test/java/com/pembana/search/ResolverAutoConfigurationTest.java"
+    }
+  ],
+  "unchanged_empty_upstream_method": "PembanaSearchCompatibilityTest.run has no behavioral assertion."
+}

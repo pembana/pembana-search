@@ -53,15 +53,19 @@ jobs:
         run: |
           ./mvnw --batch-mode -Dgpg.skip=true -Ddependency-check.skip=true -Djvm="$TEST_JAVA_HOME/bin/java" -Dspring.profiles.active=${{ matrix.database }} clean verify 2>&1 | tee build/compatibility/build.log
 
-      - name: Record resolved dependencies
-        if: always()
+      - name: Verify core dependency boundary
         run: |
-          ./mvnw --batch-mode org.apache.maven.plugins:maven-dependency-plugin:3.6.1:tree -Dverbose -DoutputFile=build/compatibility/dependencies.txt 2>&1 | tee build/compatibility/dependency-tree.log
+          test -s pembana-search-core/target/dependencies.txt
+          if grep -Eq 'org.springframework|jakarta.persistence|org.hibernate|org.postgresql|com.h2database|org.jetbrains.kotlin' pembana-search-core/target/dependencies.txt; then
+            echo "Core acquired a framework, persistence, database, or Kotlin dependency"
+            exit 1
+          fi
 
       - name: Verify packaged identity and attribution
         run: |
-          set -- target/pembana-search-*.jar
-          test "$#" -eq 3
+          set -- pembana-search-*/target/pembana-search-*.jar
+          test "$#" -eq 10
+          : > build/compatibility/runtime-classes.txt
           for archive in "$@"; do
             listing="build/compatibility/$(basename "$archive").contents.txt"
             jar tf "$archive" > "$listing"
@@ -72,6 +76,15 @@ jobs:
             for notice in LICENSE LICENSE.txt NOTICE; do
               unzip -p "$archive" "META-INF/$notice" | cmp - "$notice"
             done
+            case "$archive" in
+              *-sources.jar|*-javadoc.jar|*-tests.jar) ;;
+              *) grep '\.class$' "$listing" >> build/compatibility/runtime-classes.txt ;;
+            esac
+          done
+          sort build/compatibility/runtime-classes.txt | uniq -d > build/compatibility/duplicate-runtime-classes.txt
+          test ! -s build/compatibility/duplicate-runtime-classes.txt
+          for archive in pembana-search-core/target/*-sources.jar; do
+            unzip -p "$archive" META-INF/grammar/Query.g4 | cmp - pembana-search-core/src/main/antlr4/Query.g4
           done
 
       - name: Record effective build configuration
@@ -81,10 +94,9 @@ jobs:
 
       - name: Run the Java caller against the packaged JAR and selected database
         run: |
-          ./mvnw --batch-mode org.apache.maven.plugins:maven-dependency-plugin:3.6.1:build-classpath -DincludeScope=test -Dmdep.outputFile=build/compatibility/java-caller-classpath.txt 2>&1 | tee build/compatibility/classpath.log
-          artifact="$(find target -maxdepth 1 -name 'pembana-search-*.jar' ! -name '*-sources.jar' ! -name '*-javadoc.jar')"
+          artifact="$(find pembana-search-data-jpa/target -maxdepth 1 -name 'pembana-search-data-jpa-*.jar' ! -name '*-sources.jar' ! -name '*-javadoc.jar' ! -name '*-tests.jar')"
           test -f "$artifact"
-          "$TEST_JAVA_HOME/bin/java" -Dspring.profiles.active=${{ matrix.database }} -cp "target/test-classes:${artifact}:$(cat build/compatibility/java-caller-classpath.txt)" com.pembana.search.JavaCallerSmokeTest 2>&1 | tee build/compatibility/java-caller.log
+          "$TEST_JAVA_HOME/bin/java" -Dspring.profiles.active=${{ matrix.database }} -cp "pembana-search-data-jpa/target/test-classes:${artifact}:$(cat pembana-search-data-jpa/target/java-caller-classpath.txt)" com.pembana.search.JavaCallerSmokeTest 2>&1 | tee build/compatibility/java-caller.log
 
       - name: Preserve compatibility evidence even on failure
         if: always()
@@ -93,9 +105,11 @@ jobs:
           name: compatibility-java${{ matrix.java }}-${{ matrix.database }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             build/compatibility/
-            target/surefire-reports/
-            target/test-results/
-            target/checkstyle-result.xml
-            target/reports/apidocs/
+            pembana-search-*/target/surefire-reports/
+            pembana-search-*/target/test-results/
+            pembana-search-*/target/checkstyle-result.xml
+            pembana-search-*/target/reports/apidocs/
+            pembana-search-*/target/dependencies.txt
+            pembana-search-data-jpa/target/java-caller-classpath.txt
           if-no-files-found: error
           retention-days: 30

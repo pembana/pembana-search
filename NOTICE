@@ -56,3 +56,11 @@ mechanical Java formatting. Builds use JDK 21 while targeting Java 17 and testin
 consumer runtimes 17, 21, and 25. Converted Java files credit Spring Search
 contributors alongside the fork contributor; existing copyright and MIT notices
 remain intact. Query values, assertions, and production instructions are retained.
+
+The module milestone introduces independent core, JPA and optional Boot starter
+artifacts and a shared immutable query model. Core parsing/visitor extraction
+retains the inherited MIT notices and verified upstream author credits; new model
+and adapter contributions carry 2026 Apache License 2.0 headers. Matching defaults,
+grammar and the original scenario corpus remain characterized and retained. The
+root artifact is now a parent POM. See docs/modules/README.md for boundaries and
+verification; no artifacts are published.

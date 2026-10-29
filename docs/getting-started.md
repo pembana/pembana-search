@@ -17,12 +17,12 @@ repository using its Maven wrapper:
 The library targets Java 17 and is tested on Java 17, 21, and 25 runtimes. Build
 tools, including Checkstyle, run on Java 21; consumers do not need those tools.
 
-Add `com.pembana:pembana-search:1.0.0-SNAPSHOT` to your application's dependencies.
-The application's Boot 4.1.1 dependency management should align Spring/Hibernate
-versions. It must supply `spring-boot-starter-data-jpa`, a database driver, and,
-for request binding, `spring-boot-starter-webmvc`. The library's framework
-starters are provided dependencies; it does not select a production database.
-See the complete dependency snippet in the [README](../README.md).
+Choose `com.pembana:pembana-search-spring-boot-starter:1.0.0-SNAPSHOT` for Boot
+JPA/MVC integration, `pembana-search-data-jpa` for direct JPA, or
+`pembana-search-core` for model/parsing only. The starter brings Boot's JPA and
+MVC starters; the application supplies its database driver, model and security
+policy. Align Spring/Hibernate through Boot 4.1.1 dependency management. See the
+artifact table in the [README](../README.md).
 
 ## HTTP search
 
@@ -117,12 +117,13 @@ public final class UserSearch {
 ```
 
 Pass the result to `repository.findAll`, `count`, or the sorted/paged overload.
-Parsing requires no running Spring context/database, but this artifact's API
-still depends on Spring Data JPA and Spring web error types. It is not yet a
-Spring-independent core or a programmatic immutable query DSL. JPA field/type
+This entry point lives in `pembana-search-data-jpa`; it requires no running Spring
+context/database, but its types depend on Spring Data JPA and Spring Web. For
+framework-independent parsing and immutable programmatic models, use
+`ExpressionParser` from `pembana-search-core` as shown in the README. JPA field/type
 validation occurs when the predicate is constructed, not during parsing alone.
-A builder without `withSearch` supplies a no-predicate specification; repeated
-`withSearch` calls replace its expression.
+A builder without `withSearch` or `withQuery` supplies a no-predicate specification; repeated
+`withSearch`/`withQuery` calls replace its query.
 
 ## Mandatory consumer scopes
 

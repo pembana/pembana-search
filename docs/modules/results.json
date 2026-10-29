@@ -1,0 +1,969 @@
+{
+  "baseline_revision": "a6448bcdc81861b00af9d8b3041b0715032d3f13",
+  "build_java": "Temurin 21.0.10",
+  "compiler_release": 17,
+  "class_file_major_versions": [
+    61
+  ],
+  "combinations": [
+    {
+      "combination": "java17-h2",
+      "modules": [
+        {
+          "module": "pembana-search-core",
+          "discovered": 26,
+          "executed": 26,
+          "tests": 26,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "runtime_java_versions": [
+            "17.0.20"
+          ],
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 887,
+              "missed": 7
+            },
+            "BRANCH": {
+              "covered": 88,
+              "missed": 7
+            },
+            "LINE": {
+              "covered": 178,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 85,
+              "missed": 7
+            },
+            "METHOD": {
+              "covered": 42,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 13,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0,
+          "surefire_report_sha256": {
+            "TEST-com.pembana.search.core.CoreQueryTest.xml": "0a242a61f453bc337cc51b7572730f3380c7d8b0cd86a622c425f2f6888e396e"
+          }
+        },
+        {
+          "module": "pembana-search-data-jpa",
+          "discovered": 151,
+          "executed": 151,
+          "tests": 151,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "runtime_java_versions": [
+            "17.0.20"
+          ],
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 1981,
+              "missed": 309
+            },
+            "BRANCH": {
+              "covered": 254,
+              "missed": 65
+            },
+            "LINE": {
+              "covered": 384,
+              "missed": 52
+            },
+            "COMPLEXITY": {
+              "covered": 220,
+              "missed": 76
+            },
+            "METHOD": {
+              "covered": 92,
+              "missed": 18
+            },
+            "CLASS": {
+              "covered": 27,
+              "missed": 1
+            }
+          },
+          "checkstyle_violations": 0,
+          "surefire_report_sha256": {
+            "TEST-com.pembana.search.DatabaseAdapterTest.xml": "b89b789186d7c748b57982300c8281ff4abd19eb070ed4142e70fec53929f892",
+            "TEST-com.pembana.search.JavaCallerSmokeTest.xml": "f2bb63a1e44389991f91aacb6bcd829ce0c06ab4305ff73ad0b2d99363ae8a83",
+            "TEST-com.pembana.search.JpaModelEquivalenceTest.xml": "6a52186c77a955899495a5a6bb8d25140dfda88cc29dcad793695a899b92fd6a",
+            "TEST-com.pembana.search.NullabilityContractTest.xml": "4e56f0a82bc0831dab8fd4471d02c7a9d5134f355b96fce37cf3bb4162f50e28",
+            "TEST-com.pembana.search.PembanaSearchCompatibilityTest.xml": "8fc6d77276e0f8374fa925fb1a9a359369f3b5bafcdb27123f1544fb1ad71c6f",
+            "TEST-com.pembana.search.QueryBehaviorTest.xml": "fa695750a73b48e29e907016f571007bf41e676177b511876a7b697664450696"
+          }
+        },
+        {
+          "module": "pembana-search-spring-boot-starter",
+          "discovered": 8,
+          "executed": 8,
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "runtime_java_versions": [
+            "17.0.20"
+          ],
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 90,
+              "missed": 0
+            },
+            "BRANCH": {
+              "covered": 10,
+              "missed": 0
+            },
+            "LINE": {
+              "covered": 23,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 14,
+              "missed": 0
+            },
+            "METHOD": {
+              "covered": 9,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 2,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0,
+          "surefire_report_sha256": {
+            "TEST-com.pembana.search.JavaResolverTest.xml": "1182176bf90a697d4731b30d7e68c9807539246c1ee2b29df1ef574faa2bf37d",
+            "TEST-com.pembana.search.MvcQueryBehaviorTest.xml": "3703a536e4fa2e14e35b42ca6ca6d3e94b3da0665e6373d6800ab7ef37c2e719",
+            "TEST-com.pembana.search.ResolverAutoConfigurationTest.xml": "a19280a78f8a58555f6cb90f2af000d997d20e0881a4c3bbe0bbbff8d33b2ba0"
+          }
+        }
+      ],
+      "total_discovered": 185,
+      "total_executed": 185,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "packaged_java_caller": "passed"
+    },
+    {
+      "combination": "java17-postgresql",
+      "modules": [
+        {
+          "module": "pembana-search-core",
+          "discovered": 26,
+          "executed": 26,
+          "tests": 26,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "runtime_java_versions": [
+            "17.0.20"
+          ],
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 887,
+              "missed": 7
+            },
+            "BRANCH": {
+              "covered": 88,
+              "missed": 7
+            },
+            "LINE": {
+              "covered": 178,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 85,
+              "missed": 7
+            },
+            "METHOD": {
+              "covered": 42,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 13,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0,
+          "surefire_report_sha256": {
+            "TEST-com.pembana.search.core.CoreQueryTest.xml": "0e78892ed6dd6ea7f6ab60cac83bc1502167c26853aeb0a6c72046a5d1c8318b"
+          }
+        },
+        {
+          "module": "pembana-search-data-jpa",
+          "discovered": 151,
+          "executed": 151,
+          "tests": 151,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "runtime_java_versions": [
+            "17.0.20"
+          ],
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 1981,
+              "missed": 309
+            },
+            "BRANCH": {
+              "covered": 254,
+              "missed": 65
+            },
+            "LINE": {
+              "covered": 384,
+              "missed": 52
+            },
+            "COMPLEXITY": {
+              "covered": 220,
+              "missed": 76
+            },
+            "METHOD": {
+              "covered": 92,
+              "missed": 18
+            },
+            "CLASS": {
+              "covered": 27,
+              "missed": 1
+            }
+          },
+          "checkstyle_violations": 0,
+          "surefire_report_sha256": {
+            "TEST-com.pembana.search.DatabaseAdapterTest.xml": "31e687b122aca27270b046cd582a04f600f6bcac2bbc9bb0aafa16d95cad618d",
+            "TEST-com.pembana.search.JavaCallerSmokeTest.xml": "abe732a902802c29e614fde05fcd93c6bb5bdee7d6ff9c70493629380b92e34d",
+            "TEST-com.pembana.search.JpaModelEquivalenceTest.xml": "d09bd0ce3b8016d00b86c50405d5650e634e2a5d4712affcaa6118f8181464b9",
+            "TEST-com.pembana.search.NullabilityContractTest.xml": "55c84f968fa8eae3151ddc8677ccbcc55f8ee78905f76f90d0e6c0de9f26a68d",
+            "TEST-com.pembana.search.PembanaSearchCompatibilityTest.xml": "4a1c6bd724ff0a3c5d271e84d0f800a86248796774780a5e51e81d44e467e717",
+            "TEST-com.pembana.search.QueryBehaviorTest.xml": "9b9595840dd4b62d1531190bc42f68381d5fc21bfee01238ee1ee57af70d41fc"
+          }
+        },
+        {
+          "module": "pembana-search-spring-boot-starter",
+          "discovered": 8,
+          "executed": 8,
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "runtime_java_versions": [
+            "17.0.20"
+          ],
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 90,
+              "missed": 0
+            },
+            "BRANCH": {
+              "covered": 10,
+              "missed": 0
+            },
+            "LINE": {
+              "covered": 23,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 14,
+              "missed": 0
+            },
+            "METHOD": {
+              "covered": 9,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 2,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0,
+          "surefire_report_sha256": {
+            "TEST-com.pembana.search.JavaResolverTest.xml": "0edaf89d2d298ebb51ca0f8f6b0d08d356e1b83a3ed5718a0bc5f893e56747a7",
+            "TEST-com.pembana.search.MvcQueryBehaviorTest.xml": "9fee87845768d4a2497a7f2bfb672375aaa89446fc530e14059694ee3cfd22e4",
+            "TEST-com.pembana.search.ResolverAutoConfigurationTest.xml": "b1191bf1e59a51ac562aaba548ffea6cf7d00dd63cc4a7159e9c1e163e0ec7a9"
+          }
+        }
+      ],
+      "total_discovered": 185,
+      "total_executed": 185,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "packaged_java_caller": "passed"
+    },
+    {
+      "combination": "java21-h2",
+      "modules": [
+        {
+          "module": "pembana-search-core",
+          "discovered": 26,
+          "executed": 26,
+          "tests": 26,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "runtime_java_versions": [
+            "21.0.10"
+          ],
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 887,
+              "missed": 7
+            },
+            "BRANCH": {
+              "covered": 88,
+              "missed": 7
+            },
+            "LINE": {
+              "covered": 178,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 85,
+              "missed": 7
+            },
+            "METHOD": {
+              "covered": 42,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 13,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0,
+          "surefire_report_sha256": {
+            "TEST-com.pembana.search.core.CoreQueryTest.xml": "607f5f55db9f944ceead61f38f50d2842a18e1dc53e8071aa92e6646b97e8d9b"
+          }
+        },
+        {
+          "module": "pembana-search-data-jpa",
+          "discovered": 151,
+          "executed": 151,
+          "tests": 151,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "runtime_java_versions": [
+            "21.0.10"
+          ],
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 1981,
+              "missed": 309
+            },
+            "BRANCH": {
+              "covered": 254,
+              "missed": 65
+            },
+            "LINE": {
+              "covered": 384,
+              "missed": 52
+            },
+            "COMPLEXITY": {
+              "covered": 220,
+              "missed": 76
+            },
+            "METHOD": {
+              "covered": 92,
+              "missed": 18
+            },
+            "CLASS": {
+              "covered": 27,
+              "missed": 1
+            }
+          },
+          "checkstyle_violations": 0,
+          "surefire_report_sha256": {
+            "TEST-com.pembana.search.DatabaseAdapterTest.xml": "d0441fda1603a4e1aa66abcf9e2b94b7034513fca3c0eb133c7ecb79168b9902",
+            "TEST-com.pembana.search.JavaCallerSmokeTest.xml": "24b689d1f18ee32728e52d54107c6dd08d56287e83a1126d609fdcfc9e104584",
+            "TEST-com.pembana.search.JpaModelEquivalenceTest.xml": "c24f0ecf7e88b7fcd8d1217f057615af4639c07aed375f3d85e38609c5b4dada",
+            "TEST-com.pembana.search.NullabilityContractTest.xml": "1fd32dfa0dec693ff812957c64fb5bbc735e10178826327357cd35ba82beae58",
+            "TEST-com.pembana.search.PembanaSearchCompatibilityTest.xml": "91b9985299a55cc1a6c3cb8f5bd25400c25b0fe76e7e89b247016e1ce1c4bf35",
+            "TEST-com.pembana.search.QueryBehaviorTest.xml": "c856fd0f4796706157232f1c29a78be6f306d51e1746bcb1c844f21cdc235d89"
+          }
+        },
+        {
+          "module": "pembana-search-spring-boot-starter",
+          "discovered": 8,
+          "executed": 8,
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "runtime_java_versions": [
+            "21.0.10"
+          ],
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 90,
+              "missed": 0
+            },
+            "BRANCH": {
+              "covered": 10,
+              "missed": 0
+            },
+            "LINE": {
+              "covered": 23,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 14,
+              "missed": 0
+            },
+            "METHOD": {
+              "covered": 9,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 2,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0,
+          "surefire_report_sha256": {
+            "TEST-com.pembana.search.JavaResolverTest.xml": "c09237066ef3b3bbfd45f6eca4397b98d97d8e0459467d93c99c6fb877695d6d",
+            "TEST-com.pembana.search.MvcQueryBehaviorTest.xml": "102bbdae2b35fa4a5a25f0f2c63b04ca5744bd1e963caed2e9b13b6aa204fd84",
+            "TEST-com.pembana.search.ResolverAutoConfigurationTest.xml": "e322d186d6955337f3a1f9ed40aca1a06cc7e663e113d1c47e109d2b931d1730"
+          }
+        }
+      ],
+      "total_discovered": 185,
+      "total_executed": 185,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "packaged_java_caller": "passed"
+    },
+    {
+      "combination": "java21-postgresql",
+      "modules": [
+        {
+          "module": "pembana-search-core",
+          "discovered": 26,
+          "executed": 26,
+          "tests": 26,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "runtime_java_versions": [
+            "21.0.10"
+          ],
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 887,
+              "missed": 7
+            },
+            "BRANCH": {
+              "covered": 88,
+              "missed": 7
+            },
+            "LINE": {
+              "covered": 178,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 85,
+              "missed": 7
+            },
+            "METHOD": {
+              "covered": 42,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 13,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0,
+          "surefire_report_sha256": {
+            "TEST-com.pembana.search.core.CoreQueryTest.xml": "43c5d5ba103030ac4c69ed2f537e66cd148d236c4fc21586ee425e2f3bd2aa2e"
+          }
+        },
+        {
+          "module": "pembana-search-data-jpa",
+          "discovered": 151,
+          "executed": 151,
+          "tests": 151,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "runtime_java_versions": [
+            "21.0.10"
+          ],
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 1981,
+              "missed": 309
+            },
+            "BRANCH": {
+              "covered": 254,
+              "missed": 65
+            },
+            "LINE": {
+              "covered": 384,
+              "missed": 52
+            },
+            "COMPLEXITY": {
+              "covered": 220,
+              "missed": 76
+            },
+            "METHOD": {
+              "covered": 92,
+              "missed": 18
+            },
+            "CLASS": {
+              "covered": 27,
+              "missed": 1
+            }
+          },
+          "checkstyle_violations": 0,
+          "surefire_report_sha256": {
+            "TEST-com.pembana.search.DatabaseAdapterTest.xml": "842c81daccd98d83466e0fd1ee08f608d4833c078e43d45c8ad63f78602b43ce",
+            "TEST-com.pembana.search.JavaCallerSmokeTest.xml": "ea41dcd8d07363016ecc9c58a136ad6fea9af71bf7fac2a2df99bf2788b79aad",
+            "TEST-com.pembana.search.JpaModelEquivalenceTest.xml": "294cd2a543149ed4d0691c1c6b0ec6965563b026482d343848ed12e1c41acc49",
+            "TEST-com.pembana.search.NullabilityContractTest.xml": "7a534cab87646f30e81fc69b0bdfea0ff974c6d847d50417f6501bdb417f87a1",
+            "TEST-com.pembana.search.PembanaSearchCompatibilityTest.xml": "2016c605fe953eb1bacb352ab3067e1f9613cd0dc4528a80d81bfc2b176999e3",
+            "TEST-com.pembana.search.QueryBehaviorTest.xml": "5e35d4eab5d21d1fbdd2be1bcc726ecf596dddfb872236240495b4a09d2588fa"
+          }
+        },
+        {
+          "module": "pembana-search-spring-boot-starter",
+          "discovered": 8,
+          "executed": 8,
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "runtime_java_versions": [
+            "21.0.10"
+          ],
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 90,
+              "missed": 0
+            },
+            "BRANCH": {
+              "covered": 10,
+              "missed": 0
+            },
+            "LINE": {
+              "covered": 23,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 14,
+              "missed": 0
+            },
+            "METHOD": {
+              "covered": 9,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 2,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0,
+          "surefire_report_sha256": {
+            "TEST-com.pembana.search.JavaResolverTest.xml": "e91918c6252743d280f072bb4314161a0757112dd8a6fd282f0256684e35c0de",
+            "TEST-com.pembana.search.MvcQueryBehaviorTest.xml": "013170dcc148a5fbbfc2423772161a74b7fac78641943ff70b1e5b739542303f",
+            "TEST-com.pembana.search.ResolverAutoConfigurationTest.xml": "51ddcc44044273ff821519134257738e7ea59c0b185773aff645c286d254501f"
+          }
+        }
+      ],
+      "total_discovered": 185,
+      "total_executed": 185,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "packaged_java_caller": "passed"
+    },
+    {
+      "combination": "java25-h2",
+      "modules": [
+        {
+          "module": "pembana-search-core",
+          "discovered": 26,
+          "executed": 26,
+          "tests": 26,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "runtime_java_versions": [
+            "25.0.3"
+          ],
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 887,
+              "missed": 7
+            },
+            "BRANCH": {
+              "covered": 88,
+              "missed": 7
+            },
+            "LINE": {
+              "covered": 178,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 85,
+              "missed": 7
+            },
+            "METHOD": {
+              "covered": 42,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 13,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0,
+          "surefire_report_sha256": {
+            "TEST-com.pembana.search.core.CoreQueryTest.xml": "456c0f4f66383a5c7160519bc445bf4344a360d5a562732caff08df5248075b5"
+          }
+        },
+        {
+          "module": "pembana-search-data-jpa",
+          "discovered": 151,
+          "executed": 151,
+          "tests": 151,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "runtime_java_versions": [
+            "25.0.3"
+          ],
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 1981,
+              "missed": 309
+            },
+            "BRANCH": {
+              "covered": 254,
+              "missed": 65
+            },
+            "LINE": {
+              "covered": 384,
+              "missed": 52
+            },
+            "COMPLEXITY": {
+              "covered": 220,
+              "missed": 76
+            },
+            "METHOD": {
+              "covered": 92,
+              "missed": 18
+            },
+            "CLASS": {
+              "covered": 27,
+              "missed": 1
+            }
+          },
+          "checkstyle_violations": 0,
+          "surefire_report_sha256": {
+            "TEST-com.pembana.search.DatabaseAdapterTest.xml": "6c733682d68f92f8b018ceb3ebf8faf3de388cf62d3cd04a29624238d66b58f8",
+            "TEST-com.pembana.search.JavaCallerSmokeTest.xml": "1b6a1fd6bf128a733bb13f40a2602ada992bc362e72ef46cdcb14f90d1116dcb",
+            "TEST-com.pembana.search.JpaModelEquivalenceTest.xml": "d2a1c31e17925c5a1c52cb718ef7ef8ec9001ec58a68c6fc035a74937d00068d",
+            "TEST-com.pembana.search.NullabilityContractTest.xml": "b34c527228f4e7a02bdebc57e6e9eb20e649a9db2c1d84c187cb5f602c4509a3",
+            "TEST-com.pembana.search.PembanaSearchCompatibilityTest.xml": "ca6a5c79c839c0a4f8038a2f49b03cb1f61916edbf7cbe01a36e5d58caa6020d",
+            "TEST-com.pembana.search.QueryBehaviorTest.xml": "49c62e38f7453650c718db476b86a2468f95fe9db2e46956f88b5ac2a64833fb"
+          }
+        },
+        {
+          "module": "pembana-search-spring-boot-starter",
+          "discovered": 8,
+          "executed": 8,
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "runtime_java_versions": [
+            "25.0.3"
+          ],
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 90,
+              "missed": 0
+            },
+            "BRANCH": {
+              "covered": 10,
+              "missed": 0
+            },
+            "LINE": {
+              "covered": 23,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 14,
+              "missed": 0
+            },
+            "METHOD": {
+              "covered": 9,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 2,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0,
+          "surefire_report_sha256": {
+            "TEST-com.pembana.search.JavaResolverTest.xml": "763e7dca09dc29b764cf799c0a92e6897a0ad9838056823506988e8ae5852a01",
+            "TEST-com.pembana.search.MvcQueryBehaviorTest.xml": "8f09613e059c0a0a79fc82dfb0defd5b6ececb393250aed375c49ff3f47c2f4f",
+            "TEST-com.pembana.search.ResolverAutoConfigurationTest.xml": "10b1415badc8f0e99c3ab1c6e342286e1b3763565604c8ace589fc911a780d21"
+          }
+        }
+      ],
+      "total_discovered": 185,
+      "total_executed": 185,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "packaged_java_caller": "passed"
+    },
+    {
+      "combination": "java25-postgresql",
+      "modules": [
+        {
+          "module": "pembana-search-core",
+          "discovered": 26,
+          "executed": 26,
+          "tests": 26,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "runtime_java_versions": [
+            "25.0.3"
+          ],
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 887,
+              "missed": 7
+            },
+            "BRANCH": {
+              "covered": 88,
+              "missed": 7
+            },
+            "LINE": {
+              "covered": 178,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 85,
+              "missed": 7
+            },
+            "METHOD": {
+              "covered": 42,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 13,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0,
+          "surefire_report_sha256": {
+            "TEST-com.pembana.search.core.CoreQueryTest.xml": "cfca6f786517dd85e76c3e4c46c05255de8d147791cc73ec9408b35870ec6c08"
+          }
+        },
+        {
+          "module": "pembana-search-data-jpa",
+          "discovered": 151,
+          "executed": 151,
+          "tests": 151,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "runtime_java_versions": [
+            "25.0.3"
+          ],
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 1981,
+              "missed": 309
+            },
+            "BRANCH": {
+              "covered": 254,
+              "missed": 65
+            },
+            "LINE": {
+              "covered": 384,
+              "missed": 52
+            },
+            "COMPLEXITY": {
+              "covered": 220,
+              "missed": 76
+            },
+            "METHOD": {
+              "covered": 92,
+              "missed": 18
+            },
+            "CLASS": {
+              "covered": 27,
+              "missed": 1
+            }
+          },
+          "checkstyle_violations": 0,
+          "surefire_report_sha256": {
+            "TEST-com.pembana.search.DatabaseAdapterTest.xml": "42069be385884eeed3bc1aa019a932717959ba51cecbf6ce06356efb0037cd20",
+            "TEST-com.pembana.search.JavaCallerSmokeTest.xml": "6a2a414b69e22e6a17011666afe310db597246c3ef31c42d1a82b0e8ae559c49",
+            "TEST-com.pembana.search.JpaModelEquivalenceTest.xml": "b54fbad59389bae6b9c26c1ae694b3628fa1c720527b06dd7baffe8acae9f4b9",
+            "TEST-com.pembana.search.NullabilityContractTest.xml": "947be5ac0fc49216a5035adc28401e21660d730e881240c24dfc37cace51e832",
+            "TEST-com.pembana.search.PembanaSearchCompatibilityTest.xml": "a8ef8694216d84d4b9633dceef64b3ffc1866d75869fda707edbb307d2ae5ae5",
+            "TEST-com.pembana.search.QueryBehaviorTest.xml": "67b4cc287ceca548c9e6d99bdb435b6dbb502892e324c34cc838e60bc68e10fb"
+          }
+        },
+        {
+          "module": "pembana-search-spring-boot-starter",
+          "discovered": 8,
+          "executed": 8,
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "runtime_java_versions": [
+            "25.0.3"
+          ],
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 90,
+              "missed": 0
+            },
+            "BRANCH": {
+              "covered": 10,
+              "missed": 0
+            },
+            "LINE": {
+              "covered": 23,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 14,
+              "missed": 0
+            },
+            "METHOD": {
+              "covered": 9,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 2,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0,
+          "surefire_report_sha256": {
+            "TEST-com.pembana.search.JavaResolverTest.xml": "1d29938e422b41602b50b3345ea147cc83632aa9aea4a837f3001247f715a328",
+            "TEST-com.pembana.search.MvcQueryBehaviorTest.xml": "91aac28c6f8cf8169534dd284483cebb1a151027a9d87deea84da0f663d62c5d",
+            "TEST-com.pembana.search.ResolverAutoConfigurationTest.xml": "07957fdf308c2ddc061f801ddb7b8b272b07a9c0df6a1d8d0971689dac36fd9f"
+          }
+        }
+      ],
+      "total_discovered": 185,
+      "total_executed": 185,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "packaged_java_caller": "passed"
+    }
+  ],
+  "changed_line_coverage": {
+    "covered": 221,
+    "total": 221,
+    "ratio": 1.0,
+    "sources": [
+      {
+        "source": "pembana-search-core/src/main/java/com/pembana/search/core/ExpressionParser.java",
+        "changed_executable_lines": 33,
+        "covered_changed_lines": 33
+      },
+      {
+        "source": "pembana-search-core/src/main/java/com/pembana/search/core/QueryModelVisitor.java",
+        "changed_executable_lines": 62,
+        "covered_changed_lines": 62
+      },
+      {
+        "source": "pembana-search-core/src/main/java/com/pembana/search/core/Junction.java",
+        "changed_executable_lines": 5,
+        "covered_changed_lines": 5
+      },
+      {
+        "source": "pembana-search-core/src/main/java/com/pembana/search/core/DiagnosticCode.java",
+        "changed_executable_lines": 5,
+        "covered_changed_lines": 5
+      },
+      {
+        "source": "pembana-search-core/src/main/java/com/pembana/search/core/BooleanOperator.java",
+        "changed_executable_lines": 3,
+        "covered_changed_lines": 3
+      },
+      {
+        "source": "pembana-search-core/src/main/java/com/pembana/search/core/Negation.java",
+        "changed_executable_lines": 3,
+        "covered_changed_lines": 3
+      },
+      {
+        "source": "pembana-search-core/src/main/java/com/pembana/search/core/Comparison.java",
+        "changed_executable_lines": 5,
+        "covered_changed_lines": 5
+      },
+      {
+        "source": "pembana-search-core/src/main/java/com/pembana/search/core/ComparisonOperator.java",
+        "changed_executable_lines": 15,
+        "covered_changed_lines": 15
+      },
+      {
+        "source": "pembana-search-core/src/main/java/com/pembana/search/core/Membership.java",
+        "changed_executable_lines": 4,
+        "covered_changed_lines": 4
+      },
+      {
+        "source": "pembana-search-core/src/main/java/com/pembana/search/core/Query.java",
+        "changed_executable_lines": 3,
+        "covered_changed_lines": 3
+      },
+      {
+        "source": "pembana-search-core/src/main/java/com/pembana/search/core/QueryParseException.java",
+        "changed_executable_lines": 14,
+        "covered_changed_lines": 14
+      },
+      {
+        "source": "pembana-search-core/src/main/java/com/pembana/search/core/ParserOptions.java",
+        "changed_executable_lines": 12,
+        "covered_changed_lines": 12
+      },
+      {
+        "source": "pembana-search-data-jpa/src/main/java/com/pembana/search/CriteriaParser.java",
+        "changed_executable_lines": 5,
+        "covered_changed_lines": 5
+      },
+      {
+        "source": "pembana-search-data-jpa/src/main/java/com/pembana/search/JpaQueryTranslator.java",
+        "changed_executable_lines": 28,
+        "covered_changed_lines": 28
+      },
+      {
+        "source": "pembana-search-data-jpa/src/main/java/com/pembana/search/QueryVisitorImpl.java",
+        "changed_executable_lines": 13,
+        "covered_changed_lines": 13
+      },
+      {
+        "source": "pembana-search-data-jpa/src/main/java/com/pembana/search/SpecificationsBuilder.java",
+        "changed_executable_lines": 3,
+        "covered_changed_lines": 3
+      },
+      {
+        "source": "pembana-search-spring-boot-starter/src/main/java/com/pembana/search/configuration/ResolverConf.java",
+        "changed_executable_lines": 8,
+        "covered_changed_lines": 8
+      }
+    ]
+  },
+  "artifact_signing": "skipped for local verification; Git commits signed separately",
+  "vulnerability_scan": "skipped for compatibility runs",
+  "github_actions": "workflow updated; local matrix executed, no claim of a GitHub run"
+}

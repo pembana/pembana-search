@@ -7,6 +7,11 @@ The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring S
 
 ### Added
 
+- Independent core, JPA and optional Boot starter modules.
+- Immutable query trees shared by parsing and programmatic construction.
+- Field-policy enforcement for programmatic trees and a replaceable named MVC resolver.
+- Core equivalence/dependency-boundary and direct JPA model tests.
+
 - Java implementation and tests preserving all 113 original scenarios.
 - H2 and Testcontainers PostgreSQL verification on Java 17, 21, and 25.
 - Opt-in strict validation, field allowlists, query limits, and structured errors.
@@ -18,7 +23,8 @@ The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring S
 - Spring Boot baseline is 4.1.1; Kotlin tooling has been removed.
 - Maven and style tools build on JDK 21 while compiler release targeting and
   consumer compatibility remain Java 17; CI tests runtimes 17, 21, and 25.
-- Coordinates are `com.pembana:pembana-search:1.0.0-SNAPSHOT`.
+- `com.pembana:pembana-search:1.0.0-SNAPSHOT` is the parent/aggregator; applications
+  select the core, JPA or Boot starter artifact at the same version.
 - Java packages use `com.pembana.search`, with `annotation` replacing `anotation`.
 - Test application/corpus names use Pembana Search; historical identities are mapped.
 - Upstream publishing defaults and obsolete release automation are removed;

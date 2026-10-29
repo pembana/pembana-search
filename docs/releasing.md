@@ -1,6 +1,8 @@
 # Versioning and release preparation
 
-Current coordinates: `com.pembana:pembana-search:1.0.0-SNAPSHOT`.
+Current version: `1.0.0-SNAPSHOT`, group `com.pembana`. Runtime artifacts are
+`pembana-search-core`, `pembana-search-data-jpa` and
+`pembana-search-spring-boot-starter`; `pembana-search` is the parent POM.
 No artifact has been published. Group naming follows Pembana's existing project;
 this does not assert registry ownership or an approved publication account.
 
@@ -26,8 +28,8 @@ changelog and migration guide; do not imply 1.0 stability for snapshots.
 
 1. Confirm publication namespace ownership, repository/account, access controls,
    signing keys, credentials/secrets and an approved release workflow.
-2. Decide the release's supported APIs and whether the planned core/JPA/starter
-   boundaries are implemented; publish only artifacts that actually exist.
+2. Decide the release's supported APIs and the implemented core/JPA/starter
+   boundaries meet the release requirements; publish only artifacts that actually exist.
 3. Verify all original/supplemental scenarios and the declared JDK/framework/database
    matrix, perform the vulnerability review, and explain unresolved findings.
 4. Verify binaries, sources and Javadoc contain licenses/notices and accurate POM
