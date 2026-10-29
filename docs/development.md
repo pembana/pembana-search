@@ -2,8 +2,9 @@
 
 ## Prerequisites and H2 default
 
-Use JDK 21 for Maven/Checkstyle/compilation and select it through `JAVA_HOME` and
-`PATH`. The compiler targets Java 17 using `maven.compiler.release`. The wrapper
+Use OpenJDK 21.0.8 or newer in the Java 21 line for Maven/Checkstyle/compilation,
+selected through `JAVA_HOME` and `PATH`. The compiler targets Java 17 using
+`maven.compiler.release`. The wrapper
 supplies Maven 3.10.0. Run `./mvnw --version` to confirm the active JDK; do not use
 a different JDK such as 27 to establish this compatibility matrix.
 
@@ -26,6 +27,37 @@ test executable (replace the example path with the installed runtime):
 
 Checkstyle runs during `validate` before compilation; see the
 [Spring Checkstyle guide](checkstyle/README.md) for formatting and compatibility rules.
+
+## Nullability checks
+
+Like Pembana, the build uses `am.ik.maven:nullability-maven-plugin:0.5.1` as a
+Maven extension with its `configure` goal, plus JSpecify 1.0.1 annotations.
+Compilation automatically runs Error Prone 2.50.0 and NullAway 0.14.1; nullability
+violations fail the build. No separate command or CI setup is needed. The
+compiler still emits Java 17 bytecode, and tests can run on Java 17, 21, or 25.
+
+Use an OpenJDK-based Java 21 distribution such as Temurin, version 21.0.8 or
+newer. The plugin enables `-XDaddTypeAnnotationsToSymbol=true` so javac reads
+JSpecify type-use annotations from dependencies correctly. Oracle JDK 21 does
+not support that flag. CI already uses current Temurin 21.
+
+All five handwritten production packages explicitly declare `@NullUnmarked`,
+matching Pembana's incremental adoption convention. `InvalidSearchQueryException`,
+`QueryErrorCode`, and `StrictQueryValidation` opt into checking with `@NullMarked`;
+their nullable values use `@Nullable`. Other legacy classes are not yet checked
+for nullable dereferences. This preserves their existing contracts, including
+the resolver returning null for an absent query. Generated ANTLR sources and
+test sources are excluded from nullability checking by the plugin defaults.
+
+Add `@NullMarked` to new handwritten production types and use JSpecify
+`@Nullable` for intentional nulls. When marking an existing type, verify its
+callers and behavior before changing annotations or implementation. Keep the
+plugin's default error severity and explicit marking requirement. Error Prone
+and NullAway remain compiler tooling; only JSpecify is a project dependency.
+
+The [plugin documentation](https://github.com/making/nullability-maven-plugin/tree/0.5.1)
+describes configuration and compiler requirements. `-Dnullability.skip=true`
+disables the extension for diagnosis; normal verification and CI must run it.
 
 ## PostgreSQL profile
 

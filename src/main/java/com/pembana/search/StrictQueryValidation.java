@@ -25,11 +25,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
+
 /**
  * Opt-in checks performed before type conversion or provider predicate construction.
  *
  * @author Gunnar Hillert
  */
+@NullMarked
 final class StrictQueryValidation {
 
 	private static final Set<Class<?>> ORDERED_TYPES = Set.of(Integer.class, int.class, Double.class, double.class,
@@ -48,7 +52,8 @@ final class StrictQueryValidation {
 	 * @param operation requested operation after wildcard/range expansion
 	 * @param value unconverted scalar or membership list
 	 */
-	static void validate(Class<?> type, boolean collection, String field, SearchOperation operation, Object value) {
+	static void validate(Class<?> type, boolean collection, String field, @Nullable SearchOperation operation,
+			@Nullable Object value) {
 		if (collection) {
 			if ((operation == SearchOperation.IS || operation == SearchOperation.IS_NOT)
 					&& SearchOperation.EMPTY.equals(value)) {
@@ -94,7 +99,7 @@ final class StrictQueryValidation {
 	 * @param operation rejected operation
 	 * @return a bad-request diagnostic
 	 */
-	private static InvalidSearchQueryException unsupported(String field, SearchOperation operation) {
+	private static InvalidSearchQueryException unsupported(String field, @Nullable SearchOperation operation) {
 		return new InvalidSearchQueryException(QueryErrorCode.UNSUPPORTED_OPERATION, field,
 				"Unsupported operation " + operation + " for field " + field);
 	}

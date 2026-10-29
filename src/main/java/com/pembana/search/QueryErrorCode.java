@@ -15,11 +15,14 @@
  */
 package com.pembana.search;
 
+import org.jspecify.annotations.NullMarked;
+
 /**
  * Stable categories for rejected search input; callers should not parse reason text.
  *
  * @author Gunnar Hillert
  */
+@NullMarked
 public enum QueryErrorCode {
 
 	/** The expression cannot be parsed. */

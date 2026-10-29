@@ -23,8 +23,10 @@ as supported. Production and tests use Java; Kotlin tooling is not required.
 
 ## Build locally
 
-Select JDK 21 in `JAVA_HOME` and `PATH`. The compiler emits Java 17-compatible
-code; the build tools themselves require Java 21.
+Select OpenJDK 21.0.8 or newer in the Java 21 line in `JAVA_HOME` and `PATH`.
+The compiler emits Java 17-compatible code; the build tools themselves require
+Java 21. See the [nullability checks](docs/development.md#nullability-checks)
+for compiler requirements and annotation conventions.
 
 ```sh
 # H2 by default; artifact signing and the network vulnerability scan are skipped.

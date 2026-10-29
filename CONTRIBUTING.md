@@ -31,6 +31,12 @@ values, failure modes, and non-obvious behavior. Inherited overrides can use
 `{@inheritDoc}` when the documented contract is accurate. Do not add boilerplate
 tests that merely repeat implementation details.
 
+New handwritten production types also require JSpecify `@NullMarked` and
+`@Nullable` where null is intentional. Maven checks marked production code with
+NullAway automatically. Existing packages remain `@NullUnmarked` for incremental
+adoption; see [nullability checks](docs/development.md#nullability-checks) for the
+checked scope and the OpenJDK 21.0.8+ build requirement.
+
 Existing Maven coverage gates require 80% instructions and 75% branches, excluding
 only generated parser classes. New/materially changed production code must meet
 80% changed-line coverage, with meaningful failure-path coverage. Describe

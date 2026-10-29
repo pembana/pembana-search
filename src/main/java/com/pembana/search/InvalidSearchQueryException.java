@@ -15,6 +15,8 @@
  */
 package com.pembana.search;
 
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -25,6 +27,7 @@ import org.springframework.web.server.ResponseStatusException;
  *
  * @author Gunnar Hillert
  */
+@NullMarked
 public final class InvalidSearchQueryException extends ResponseStatusException {
 
 	private static final long serialVersionUID = 1L;
@@ -33,7 +36,7 @@ public final class InvalidSearchQueryException extends ResponseStatusException {
 	private final QueryErrorCode errorCode;
 
 	/** Retained diagnostic metadata for this instance. */
-	private final String field;
+	private final @Nullable String field;
 
 	/**
 	 * Creates a diagnostic without including a rejected value in structured metadata.
@@ -41,7 +44,7 @@ public final class InvalidSearchQueryException extends ResponseStatusException {
 	 * @param field complete entity path, or null for expression-wide errors
 	 * @param reason human-readable explanation
 	 */
-	public InvalidSearchQueryException(QueryErrorCode errorCode, String field, String reason) {
+	public InvalidSearchQueryException(QueryErrorCode errorCode, @Nullable String field, String reason) {
 		super(HttpStatus.BAD_REQUEST, reason);
 		this.errorCode = errorCode;
 		this.field = field;
@@ -67,7 +70,7 @@ public final class InvalidSearchQueryException extends ResponseStatusException {
 	 * @return the complete entity path, or null for expression-wide errors
 	 *
 	 */
-	public String getField() {
+	public @Nullable String getField() {
 		return this.field;
 	}
 
