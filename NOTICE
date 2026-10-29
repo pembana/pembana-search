@@ -64,3 +64,9 @@ and adapter contributions carry 2026 Apache License 2.0 headers. Matching defaul
 grammar and the original scenario corpus remain characterized and retained. The
 root artifact is now a parent POM. See docs/modules/README.md for boundaries and
 verification; no artifacts are published.
+
+The request-options milestone adds immutable global/per-property case choices,
+explicit JSON and GET/form binding, validation and opt-in String matching
+consistency. Inherited annotation defaults and no-options behavior are retained;
+new contributions retain 2026 Apache License 2.0 headers. See
+docs/case-options/README.md for scope and verification.

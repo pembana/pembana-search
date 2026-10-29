@@ -103,8 +103,22 @@ association joins. Strict validation does not silently change matching semantics
 For case-insensitive equality and patterns, set `@SearchSpec(caseSensitiveFlag = false)`.
 For example, `name:ADA` then matches `Ada`, and `name!ADA` excludes it. The default
 remains `true`; membership still has separate case behavior. See
-[case sensitivity](docs/reference/case-sensitivity.md) for the recommended form
-default, null/collation limits and the proposed per-property override design.
+[case sensitivity](docs/reference/case-sensitivity.md) for global/per-property request options, GET/JSON binding, validation and the
+recommended form defaults.
+
+Per-property request choices override a global choice:
+
+```json
+{
+  "search": "name:ADA AND code:AbC",
+  "caseSensitivity": "insensitive",
+  "fieldCaseSensitivity": {"code": "sensitive"}
+}
+```
+
+GET uses `caseSensitivity=insensitive&fieldCaseSensitivity[code]=sensitive`.
+JSON endpoints opt in with `@SearchRequestBody` alongside `@SearchSpec`; existing
+query/form binding remains the default. Options also work with the Java API.
 
 ## Core and programmatic queries
 

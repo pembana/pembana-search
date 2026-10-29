@@ -15,6 +15,7 @@
  */
 package com.pembana.search;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
@@ -24,14 +25,22 @@ import org.springframework.boot.context.annotation.ImportCandidates;
 import org.springframework.boot.test.context.FilteredClassLoader;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 import org.springframework.boot.test.context.runner.WebApplicationContextRunner;
+import org.springframework.core.MethodParameter;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import tools.jackson.core.StreamReadConstraints;
+import tools.jackson.core.json.JsonFactory;
+import tools.jackson.databind.json.JsonMapper;
 
 import com.pembana.search.configuration.ResolverConf;
 import com.pembana.search.configuration.SearchSpecificationResolver;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 
 /**
@@ -55,6 +64,30 @@ class ResolverAutoConfigurationTest {
 				assertThat(resolvers).hasSize(1);
 				assertSame(replacement, resolvers.get(0));
 				assertThat(context).doesNotHaveBean(SearchSpecificationResolver.class);
+			});
+	}
+
+	/**
+	 * Boot supplies its configured mapper rather than silently creating an unrelated one.
+	 */
+	@Test
+	void defaultResolverUsesApplicationMapper() throws Exception {
+		JsonMapper mapper = JsonMapper
+			.builder(JsonFactory.builder()
+				.streamReadConstraints(StreamReadConstraints.builder().maxStringLength(1).build())
+				.build())
+			.build();
+		MethodParameter parameter = new MethodParameter(
+				CaseOptionsBindingTest.Endpoint.class.getDeclaredMethod("post", Specification.class), 0);
+		MockHttpServletRequest request = new MockHttpServletRequest("POST", "/case-search");
+		request.setContentType("application/json");
+		request.setContent("{\"search\":\"userFirstName:Ada\"}".getBytes(StandardCharsets.UTF_8));
+		new WebApplicationContextRunner().withConfiguration(AutoConfigurations.of(ResolverConf.class))
+			.withBean(JsonMapper.class, () -> mapper)
+			.run((context) -> {
+				var resolver = context.getBean(SearchSpecificationResolver.class);
+				assertThrows(InvalidSearchQueryException.class,
+						() -> resolver.resolveArgument(parameter, null, new ServletWebRequest(request), null));
 			});
 	}
 

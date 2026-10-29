@@ -31,6 +31,7 @@ import org.jspecify.annotations.Nullable;
 import org.springframework.data.jpa.domain.Specification;
 
 import com.pembana.search.annotation.SearchSpec;
+import com.pembana.search.core.SearchOptions;
 import com.pembana.search.strategies.ParsingStrategy;
 
 /**
@@ -53,6 +54,9 @@ public final class SpecificationImpl<T> implements Specification<T> {
 	/** Retained criterion configuration for this instance. */
 	private final SearchSpec searchSpecAnnotation;
 
+	/** Retained immutable case choices for this criterion. */
+	private final SearchOptions searchOptions;
+
 	/**
 	 * Creates a legacy criterion specification; parsed field restrictions belong to the
 	 * visitor.
@@ -60,6 +64,17 @@ public final class SpecificationImpl<T> implements Specification<T> {
 	 * @param searchSpecAnnotation matching and validation settings
 	 */
 	public SpecificationImpl(SearchCriteria criteria, SearchSpec searchSpecAnnotation) {
+		this(criteria, searchSpecAnnotation, SearchOptions.defaults());
+	}
+
+	/**
+	 * Creates a criterion with case choices applied after resolving the entity type.
+	 * @param criteria criterion to evaluate
+	 * @param searchSpecAnnotation configured matching and validation settings
+	 * @param searchOptions request-wide and per-property choices
+	 */
+	SpecificationImpl(SearchCriteria criteria, SearchSpec searchSpecAnnotation, SearchOptions searchOptions) {
+		this.searchOptions = searchOptions;
 		this.criteria = criteria;
 		this.searchSpecAnnotation = searchSpecAnnotation;
 	}
@@ -78,7 +93,7 @@ public final class SpecificationImpl<T> implements Specification<T> {
 			fieldClass = nestedRoot.get(criteriaKey).getJavaType();
 		}
 		catch (IllegalArgumentException | IllegalStateException exception) {
-			if (!this.searchSpecAnnotation.strictValidation()) {
+			if (!this.searchSpecAnnotation.strictValidation() && this.searchOptions.isEmpty()) {
 				throw exception;
 			}
 			throw new InvalidSearchQueryException(QueryErrorCode.UNKNOWN_FIELD, this.criteria.getKey(),
@@ -89,8 +104,12 @@ public final class SpecificationImpl<T> implements Specification<T> {
 			StrictQueryValidation.validate(fieldClass, isCollectionField, this.criteria.getKey(),
 					this.criteria.getOperation(), this.criteria.getValue());
 		}
-		ParsingStrategy strategy = ParsingStrategy.getStrategy(fieldClass, this.searchSpecAnnotation,
-				isCollectionField);
+		if (this.searchOptions.hasFieldOverride(this.criteria.getKey()) && fieldClass != String.class) {
+			throw new InvalidSearchQueryException(QueryErrorCode.INVALID_SEARCH_OPTIONS, this.criteria.getKey(),
+					"Case sensitivity overrides require a String property: " + this.criteria.getKey());
+		}
+		ParsingStrategy strategy = ParsingStrategy.getStrategy(fieldClass, this.searchSpecAnnotation, isCollectionField,
+				this.searchOptions.resolve(this.criteria.getKey()));
 		@Nullable Object value = parseValue(strategy, fieldClass, criteriaKey, this.criteria.getValue());
 		return strategy.buildPredicate(builder, nestedRoot, criteriaKey, this.criteria.getOperation(), value);
 	}

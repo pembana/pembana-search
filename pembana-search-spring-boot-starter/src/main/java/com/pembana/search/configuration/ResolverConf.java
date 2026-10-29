@@ -33,6 +33,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import tools.jackson.databind.json.JsonMapper;
 
 /**
  * Registers the search argument resolver for servlet applications with Spring MVC
@@ -69,10 +70,20 @@ public class ResolverConf implements WebMvcConfigurer {
 	 * Supplies default binding when the application has not provided a replacement.
 	 * @return default search resolver
 	 */
-	@Bean(RESOLVER_BEAN_NAME)
-	@ConditionalOnMissingBean(name = RESOLVER_BEAN_NAME)
 	public SearchSpecificationResolver searchSpecificationResolver() {
 		return new SearchSpecificationResolver();
+	}
+
+	/**
+	 * Supplies default binding while honoring an application-provided Jackson mapper.
+	 * @param mappers provider of the application mapper
+	 * @return configured default search resolver
+	 */
+	@Bean(RESOLVER_BEAN_NAME)
+	@ConditionalOnMissingBean(name = RESOLVER_BEAN_NAME)
+	public SearchSpecificationResolver configuredSearchSpecificationResolver(ObjectProvider<JsonMapper> mappers) {
+		JsonMapper mapper = mappers.getIfAvailable();
+		return (mapper == null) ? searchSpecificationResolver() : new SearchSpecificationResolver(mapper);
 	}
 
 	/** {@inheritDoc} */

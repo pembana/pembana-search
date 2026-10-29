@@ -41,6 +41,11 @@ semantics. Ranges normalize into inclusive comparison pairs; NOT BETWEEN negates
 the whole pair. Grouping and the existing grammar's Boolean precedence are
 preserved, rather than applying a new precedence rule.
 
+`SearchOptions` and `CaseSensitivity` live in core and are separate from tree
+values/grouping. JPA resolves per-property choices before global choices and the
+annotation fallback. Explicit choices consistently cover String membership and
+ordering; inherited defaults preserve the existing compatibility policy.
+
 Scalar and membership values remain unconverted text until the JPA adapter
 resolves an entity attribute's type. This avoids pretending that an unconfigured
 parser knows an application's schema. Programmatic operators are explicit:
@@ -78,3 +83,14 @@ it is never a runtime dependency. One HTTP characterization method moves to
 Core tests run without a framework or database, and JPA tests run without the
 starter on their classpath. Each module retains the 80% instruction / 75% branch
 coverage gates. See [module verification](modules/README.md).
+
+## Request binding
+
+`@SearchSpec` retains query/form binding. `@SearchRequestBody` explicitly selects
+a strict JSON envelope, preserving existing endpoints that own unrelated
+`@RequestBody` payloads. The starter translates both transports into immutable
+core options. It uses the application's Jackson 3 mapper constraints while always
+rejecting duplicate keys/trailing documents. Option keys must occur in the query;
+JPA validates explicit property choices against actual attribute types. Core
+remains free of Jackson and Spring dependencies. See the
+[case guide](reference/case-sensitivity.md).

@@ -38,6 +38,9 @@ public enum QueryErrorCode {
 	/** Strict validation does not support this field type. */
 	UNSUPPORTED_FIELD_TYPE,
 	/** The field does not support the requested operation. */
-	UNSUPPORTED_OPERATION
+	UNSUPPORTED_OPERATION,
+
+	/** Global or per-property case options are invalid. */
+	INVALID_SEARCH_OPTIONS
 
 }

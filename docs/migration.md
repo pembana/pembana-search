@@ -59,9 +59,11 @@ already did to patterns. For `Ada`, `name:ADA` now matches and `name!ADA` no lon
 matches. This intentionally changes false-flag queries; the original true default,
 membership, ordering, typed conversion and null-check operations are unchanged.
 Use `true` when retaining exact comparison is required, subject to the database's
-collation. No per-property option or automatic global HTTP toggle exists yet.
+collation. First-class global/per-property request options now exist as a separate opt-in
+policy; omitting them keeps the annotation behavior. JSON search binding requires
+`@SearchRequestBody`, preserving existing POST body handling.
 See [case sensitivity](reference/case-sensitivity.md) for current behavior and the
-recommended future UI/policy design. Historical baseline reports remain frozen.
+implemented binding and recommended UI design. Historical baseline reports remain frozen.
 
 ## Historical evidence
 

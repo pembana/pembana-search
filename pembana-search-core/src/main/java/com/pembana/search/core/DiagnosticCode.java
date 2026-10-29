@@ -29,6 +29,9 @@ public enum DiagnosticCode {
 	/** A configured field restriction rejected a path. */
 	FIELD_NOT_ALLOWED,
 	/** A strict scalar check rejected a value. */
-	INVALID_VALUE
+	INVALID_VALUE,
+
+	/** Request case options are invalid. */
+	INVALID_SEARCH_OPTIONS
 
 }

@@ -22,8 +22,10 @@ properties. Database test profiles are test resources, not production settings.
 See the [query reference](query-language.md) for complete matching/error semantics.
 
 For examples, migration implications and the current limits of field/global
-controls, see [case sensitivity](case-sensitivity.md). The annotation is a static
-policy; an HTTP case-toggle parameter has no automatic effect.
+controls, see [case sensitivity](case-sensitivity.md). The annotation supplies the configured fallback. Requests can override it through
+`caseSensitivity` and `fieldCaseSensitivity[property]`; JSON search bodies opt in
+with `com.pembana.search.configuration.SearchRequestBody`. See that guide for
+precedence, strict validation and the unchanged no-options compatibility behavior.
 
 ## Entry points
 
@@ -32,6 +34,8 @@ policy; an HTTP case-toggle parameter has no automatic effect.
 | `SpecificationsBuilder<T>` | Replace a query with `withSearch` or `withQuery`; return a specification with `build` |
 | `ExpressionParser`, `ParserOptions` | Framework-independent parsing and immutable input policy in core |
 | `Query`, `Comparison`, `Membership`, `Junction`, `Negation` | Immutable programmatic/parsed query trees in core |
+| `CaseSensitivity`, `SearchOptions` | Immutable global/property choices independent of transport and query syntax |
+| `SearchRequestBody` | Opt a search specification argument into the JSON envelope |
 | `JpaQueryTranslator<T>` | Shared model-to-JPA translation with field restrictions |
 | `CriteriaParser<T>` | Direct expression-to-specification parsing with an explicit policy |
 | `InvalidSearchQueryException` | HTTP-400-compatible diagnostic, code/field accessors and ProblemDetail body |

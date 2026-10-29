@@ -54,6 +54,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webmvc</artifactId>
 		</dependency>
+		<dependency><groupId>tools.jackson.core</groupId><artifactId>jackson-databind</artifactId></dependency>
 	</dependencies>
 	<build>
 		<plugins />

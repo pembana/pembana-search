@@ -125,6 +125,17 @@ validation occurs when the predicate is constructed, not during parsing alone.
 A builder without `withSearch` or `withQuery` supplies a no-predicate specification; repeated
 `withSearch`/`withQuery` calls replace its query.
 
+## Global and per-property case choices
+
+GET/form requests can supply `caseSensitivity=insensitive` and
+`fieldCaseSensitivity[code]=sensitive`. A property choice overrides the global
+choice; `inherit` or omission falls back to the next level, ultimately the
+existing annotation flag. For JSON, add `@SearchRequestBody` from
+`com.pembana.search.configuration` to the same `@SearchSpec` argument and reserve
+the body for the search envelope. The JSON keys are `search`, `caseSensitivity`
+and `fieldCaseSensitivity`. The [case guide](reference/case-sensitivity.md) gives
+complete controller, curl, JSON and Java examples plus validation rules.
+
 ## Mandatory consumer scopes
 
 Compose mandatory restrictions outside the entire user expression:

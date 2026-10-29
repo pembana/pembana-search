@@ -39,6 +39,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.pembana.search.SearchOperation;
 import com.pembana.search.annotation.SearchSpec;
+import com.pembana.search.core.CaseSensitivity;
 
 /**
  * Converts scalar or list values and constructs typed Criteria predicates.
@@ -189,6 +190,20 @@ public interface ParsingStrategy {
 			return new UUIDStrategy();
 		}
 		return new StringStrategy(annotation);
+	}
+
+	/**
+	 * Selects a converter, applying explicit case choices only to String attributes.
+	 * @param fieldClass attribute type
+	 * @param annotation configured matching settings
+	 * @param collection whether collection-valued
+	 * @param caseSensitivity resolved request choice, or INHERIT for legacy behavior
+	 * @return selected strategy
+	 */
+	static ParsingStrategy getStrategy(Class<?> fieldClass, SearchSpec annotation, boolean collection,
+			CaseSensitivity caseSensitivity) {
+		return (fieldClass == String.class && !collection) ? new StringStrategy(annotation, caseSensitivity)
+				: getStrategy(fieldClass, annotation, collection);
 	}
 
 	/** Legacy companion-style access; ordinary Java callers can use the static method. */

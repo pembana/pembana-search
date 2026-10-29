@@ -29,6 +29,7 @@ import com.pembana.search.core.Negation;
 import com.pembana.search.core.ParserOptions;
 import com.pembana.search.core.Query;
 import com.pembana.search.core.QueryParseException;
+import com.pembana.search.core.SearchOptions;
 
 /**
  * Translates immutable query trees through the characterized JPA conversion strategies.
@@ -43,11 +44,23 @@ public final class JpaQueryTranslator<T> {
 
 	private final ParserOptions options;
 
+	private final SearchOptions searchOptions;
+
 	/**
 	 * Retains matching and validation settings for translation and predicate execution.
 	 * @param settings application-supplied policy
 	 */
 	public JpaQueryTranslator(SearchSpec settings) {
+		this(settings, SearchOptions.defaults());
+	}
+
+	/**
+	 * Creates a translator with request-wide and per-property case choices.
+	 * @param settings configured matching and validation fallback
+	 * @param searchOptions explicit request choices
+	 */
+	public JpaQueryTranslator(SearchSpec settings, SearchOptions searchOptions) {
+		this.searchOptions = searchOptions;
 		this.settings = settings;
 		this.options = parserOptions(settings);
 	}
@@ -61,27 +74,38 @@ public final class JpaQueryTranslator<T> {
 	 */
 	public Specification<T> translate(Query query) {
 		try {
-			if (query instanceof Comparison comparison) {
-				this.options.verifyField(comparison.field());
-				return new SpecificationImpl<>(new SearchCriteria(comparison.field(),
-						SearchOperation.valueOf(comparison.operator().name()), comparison.value()), this.settings);
-			}
-			if (query instanceof Membership membership) {
-				this.options.verifyField(membership.field());
-				return new SpecificationImpl<>(new SearchCriteria(membership.field(),
-						membership.negated() ? SearchOperation.NOT_IN_ARRAY : SearchOperation.IN_ARRAY,
-						membership.values()), this.settings);
-			}
-			if (query instanceof Junction junction) {
-				Specification<T> left = translate(junction.left());
-				Specification<T> right = translate(junction.right());
-				return (junction.operator() == BooleanOperator.OR) ? left.or(right) : left.and(right);
-			}
-			return Specification.not(translate(((Negation) query).query()));
+			this.searchOptions.validate(query);
+			return translateNode(query);
 		}
 		catch (QueryParseException exception) {
 			throw diagnostic(exception);
 		}
+	}
+
+	/**
+	 * Translates a validated tree while preserving its operand order and grouping.
+	 * @param query current node
+	 * @return matching specification
+	 */
+	private Specification<T> translateNode(Query query) {
+		if (query instanceof Comparison comparison) {
+			this.options.verifyField(comparison.field());
+			return new SpecificationImpl<>(new SearchCriteria(comparison.field(),
+					SearchOperation.valueOf(comparison.operator().name()), comparison.value()), this.settings,
+					this.searchOptions);
+		}
+		if (query instanceof Membership membership) {
+			this.options.verifyField(membership.field());
+			return new SpecificationImpl<>(new SearchCriteria(membership.field(),
+					membership.negated() ? SearchOperation.NOT_IN_ARRAY : SearchOperation.IN_ARRAY,
+					membership.values()), this.settings, this.searchOptions);
+		}
+		if (query instanceof Junction junction) {
+			Specification<T> left = translateNode(junction.left());
+			Specification<T> right = translateNode(junction.right());
+			return (junction.operator() == BooleanOperator.OR) ? left.or(right) : left.and(right);
+		}
+		return Specification.not(translateNode(((Negation) query).query()));
 	}
 
 	/**

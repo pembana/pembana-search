@@ -23,6 +23,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import com.pembana.search.annotation.SearchSpec;
 import com.pembana.search.core.Query;
+import com.pembana.search.core.SearchOptions;
 
 /**
  * Builds JPA specifications from advanced expressions using explicit annotation settings.
@@ -47,8 +48,18 @@ public final class SpecificationsBuilder<U> {
 	 * @param searchSpecAnnotation matching, field-access and validation settings
 	 */
 	public SpecificationsBuilder(SearchSpec searchSpecAnnotation) {
-		this.parser = new CriteriaParser<>(searchSpecAnnotation);
-		this.translator = new JpaQueryTranslator<>(searchSpecAnnotation);
+		this(searchSpecAnnotation, SearchOptions.defaults());
+	}
+
+	/**
+	 * Creates a SpecificationsBuilder with explicit case choices and configured fallback
+	 * policy.
+	 * @param searchSpecAnnotation configured matching and validation settings
+	 * @param searchOptions request-wide and per-property choices
+	 */
+	public SpecificationsBuilder(SearchSpec searchSpecAnnotation, SearchOptions searchOptions) {
+		this.parser = new CriteriaParser<>(searchSpecAnnotation, searchOptions);
+		this.translator = new JpaQueryTranslator<>(searchSpecAnnotation, searchOptions);
 	}
 
 	/**

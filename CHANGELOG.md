@@ -7,6 +7,11 @@ The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring S
 
 ### Added
 
+- Immutable global/per-property case-sensitivity choices with property precedence.
+- GET/form option binding and explicit JSON search binding through `@SearchRequestBody`.
+- Strict option/envelope validation, application Jackson 3 mapper integration and
+  opt-in consistent String membership/ordering without changing inherited defaults.
+
 - Independent core, JPA and optional Boot starter modules.
 - Immutable query trees shared by parsing and programmatic construction.
 - Field-policy enforcement for programmatic trees and a replaceable named MVC resolver.

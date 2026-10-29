@@ -24,6 +24,7 @@ import org.springframework.data.jpa.domain.Specification;
 import com.pembana.search.annotation.SearchSpec;
 import com.pembana.search.core.ExpressionParser;
 import com.pembana.search.core.QueryParseException;
+import com.pembana.search.core.SearchOptions;
 
 /**
  * Parses expressions using the unchanged lexer, parser and visitor sequence.
@@ -47,8 +48,17 @@ public final class CriteriaParser<T> {
 	 * @throws IllegalArgumentException if a configured query limit is negative
 	 */
 	public CriteriaParser(SearchSpec searchSpecAnnotation) {
+		this(searchSpecAnnotation, SearchOptions.defaults());
+	}
+
+	/**
+	 * Creates a CriteriaParser with explicit case choices and configured fallback policy.
+	 * @param searchSpecAnnotation configured matching and validation settings
+	 * @param searchOptions request-wide and per-property choices
+	 */
+	public CriteriaParser(SearchSpec searchSpecAnnotation, SearchOptions searchOptions) {
 		this.parser = new ExpressionParser(JpaQueryTranslator.parserOptions(searchSpecAnnotation));
-		this.translator = new JpaQueryTranslator<>(searchSpecAnnotation);
+		this.translator = new JpaQueryTranslator<>(searchSpecAnnotation, searchOptions);
 	}
 
 	/**

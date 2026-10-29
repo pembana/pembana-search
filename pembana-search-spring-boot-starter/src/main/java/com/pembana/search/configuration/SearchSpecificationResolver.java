@@ -30,9 +30,13 @@ import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
+import tools.jackson.databind.json.JsonMapper;
 
+import com.pembana.search.InvalidSearchQueryException;
+import com.pembana.search.QueryErrorCode;
 import com.pembana.search.SpecificationsBuilder;
 import com.pembana.search.annotation.SearchSpec;
+import com.pembana.search.core.SearchOptions;
 
 /**
  * Resolves annotated Spring MVC search parameters without imposing consumer authorization
@@ -48,6 +52,17 @@ public final class SearchSpecificationResolver implements HandlerMethodArgumentR
 
 	/** Creates a SearchSpecificationResolver with the inherited default configuration. */
 	public SearchSpecificationResolver() {
+		this(JsonMapper.builder().build());
+	}
+
+	private final SearchRequestReader requestReader;
+
+	/**
+	 * Creates request binding using the application's Jackson 3 mapper constraints.
+	 * @param mapper configured JSON mapper
+	 */
+	public SearchSpecificationResolver(JsonMapper mapper) {
+		this.requestReader = new SearchRequestReader(mapper);
 	}
 
 	private static final Logger logger = LoggerFactory.getLogger(SearchSpecificationResolver.class);
@@ -70,18 +85,23 @@ public final class SearchSpecificationResolver implements HandlerMethodArgumentR
 			@Nullable ModelAndViewContainer mavContainer, NativeWebRequest webRequest,
 			@Nullable WebDataBinderFactory binderFactory) throws Exception {
 		SearchSpec def = Objects.requireNonNull(parameter.getParameterAnnotation(SearchSpec.class));
-		return buildSpecification(parameter.getGenericParameterType().getClass(),
-				webRequest.getParameter(def.searchParam()), def);
+		SearchRequestReader.BoundSearch bound = this.requestReader.read(webRequest, def.searchParam(),
+				parameter.hasParameterAnnotation(SearchRequestBody.class));
+		return buildSpecification(parameter.getGenericParameterType().getClass(), bound.search(), def, bound.options());
 	}
 
 	private <T> @Nullable Specification<T> buildSpecification(Class<T> specClass, @Nullable String search,
-			SearchSpec annotation) {
+			SearchSpec annotation, SearchOptions options) {
 		logger.debug("Building specification for class {}", specClass);
 		logger.debug("Search value found is {}", search);
 		if (search == null || search.isEmpty()) {
+			if (!options.fieldCaseSensitivity().isEmpty()) {
+				throw new InvalidSearchQueryException(QueryErrorCode.INVALID_SEARCH_OPTIONS, null,
+						"Property case options require a non-empty search");
+			}
 			return null;
 		}
-		return new SpecificationsBuilder<T>(annotation).withSearch(search).build();
+		return new SpecificationsBuilder<T>(annotation, options).withSearch(search).build();
 	}
 
 }
