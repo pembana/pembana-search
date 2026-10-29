@@ -274,6 +274,8 @@
 					<author>true</author>
 					<doctitle>Pembana Search ${project.version}</doctitle>
 					<windowtitle>Pembana Search ${project.version}</windowtitle>
+					<bottom><![CDATA[Copyright &#169; 2026 Hillert, Inc. and contributors. Licensed under the <a href="{@docRoot}/META-INF/LICENSE">Apache License, Version 2.0</a>.<br>
+Includes Spring Search material &#169; 2019&ndash;present Woody Rousseau and other contributors, licensed under <a href="{@docRoot}/META-INF/LICENSE.txt">MIT</a>. See <a href="{@docRoot}/META-INF/NOTICE">notices</a>.]]></bottom>
 					<excludePackageNames>com.pembana.search.grammar</excludePackageNames>
 					<sourcepath>${project.build.sourceDirectory}${path.separator}${project.build.directory}/generated-sources/antlr4</sourcepath>
 					<sourceFileExcludes>
