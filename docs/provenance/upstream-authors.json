@@ -1,0 +1,2786 @@
+{
+  "verified_on": "2026-10-28",
+  "upstream_repository": "https://github.com/theodo-fintech/spring-search",
+  "upstream_revision": "c4b404dc6cf22b540d3e7f6211e557f5d83b6c61",
+  "base_revision": "8477fb68316e0d477ae8b9d43577de808adc97f6",
+  "scope": "Primary authors and explicit Co-authored-by contributors recorded by non-merge history of each converted file at the imported revision; extracted classes use their own retained-line blame. This is contributor credit, not a claim of sole creation or copyright ownership. Committers are not credited as authors. No post-import commits are used.",
+  "method": [
+    "git log --follow --no-merges --format=%H%x09%an%x09%ae%x09%as%x09%s <pin> -- <upstream-file>",
+    "git blame -w -M -C -C --line-porcelain -L 32,36 <pin> -- src/main/kotlin/com/sipios/springsearch/SpecificationsBuilder.kt",
+    "git show -s --format=%B <file-history-commit> (read explicit Co-authored-by trailers)"
+  ],
+  "identity_normalizations": [
+    {
+      "recorded_name": "MollardMichael",
+      "credited_name": "Michael Mollard",
+      "basis": "Exact handle matches the GitHub author login for a pinned-ancestry commit whose Git author is Michael Mollard; public profile confirms the display name.",
+      "commit": "905f77b7eb47dd26a2d055c75fa377e3522b16e5",
+      "github_author_login": "MollardMichael",
+      "github_author_id": 10924873,
+      "profile_url": "https://github.com/MollardMichael"
+    },
+    {
+      "recorded_name": "lucboussant-roux",
+      "credited_name": "Luc Boussant-roux",
+      "basis": "The raw author email is identical for both spellings in the pinned upstream history.",
+      "evidence_commits": [
+        "1ececb12fb64099dfe38d91484e344eb6af92061",
+        "b2aacfff0d72ff1c18a0e3dd056eb33677e3d854"
+      ]
+    }
+  ],
+  "unresolved_recorded_names": [
+    "vincentescoffier",
+    "fernandorubio"
+  ],
+  "unresolved_name_policy": "Retain recorded handles; do not infer full names from email addresses or merge similar names without identity evidence. Vincent Escoffier and vincentescoffier remain separately credited where both are recorded.",
+  "files": [
+    {
+      "java_file": "src/main/java/com/pembana/search/CriteriaParser.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/CriteriaParser.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Thibault F",
+          "javadoc_tag": "Thibault F",
+          "recorded_names": [
+            "Thibault F"
+          ],
+          "evidence_commits": [
+            "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+          ]
+        },
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "0e905fccfc8caf4af64311c95ced0eb819c1f4e2",
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7"
+          ]
+        },
+        {
+          "name": "Luc Boussant-roux",
+          "javadoc_tag": "Luc Boussant-roux",
+          "recorded_names": [
+            "lucboussant-roux"
+          ],
+          "evidence_commits": [
+            "6f90c8b4535f37df4f94a4d19712f0ce45d681de"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "84957a90e21d4c7273847217a7837372200ca5e5"
+          ]
+        }
+      ],
+      "history": [
+        "84957a90e21d4c7273847217a7837372200ca5e5",
+        "6f90c8b4535f37df4f94a4d19712f0ce45d681de",
+        "0e905fccfc8caf4af64311c95ced0eb819c1f4e2",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/NullSpecification.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/SpecificationsBuilder.kt",
+      "kind": "extracted_class_line_blame",
+      "authors": [
+        {
+          "name": "Thibault F",
+          "javadoc_tag": "Thibault F",
+          "recorded_names": [
+            "Thibault F"
+          ],
+          "evidence_commits": [
+            "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+          ]
+        },
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "0e905fccfc8caf4af64311c95ced0eb819c1f4e2"
+          ]
+        }
+      ],
+      "history": [
+        "0e905fccfc8caf4af64311c95ced0eb819c1f4e2",
+        "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+      ],
+      "upstream_class_lines": {
+        "first": 32,
+        "last": 36
+      }
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/QueryVisitorImpl.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/QueryVisitorImpl.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Thibault F",
+          "javadoc_tag": "Thibault F",
+          "recorded_names": [
+            "Thibault F"
+          ],
+          "evidence_commits": [
+            "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+          ]
+        },
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "0e905fccfc8caf4af64311c95ced0eb819c1f4e2",
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7"
+          ]
+        },
+        {
+          "name": "Luc Boussant-roux",
+          "javadoc_tag": "Luc Boussant-roux",
+          "recorded_names": [
+            "lucboussant-roux"
+          ],
+          "evidence_commits": [
+            "6f90c8b4535f37df4f94a4d19712f0ce45d681de"
+          ]
+        },
+        {
+          "name": "Mahdi Lazraq",
+          "javadoc_tag": "Mahdi Lazraq",
+          "recorded_names": [
+            "Mahdi Lazraq"
+          ],
+          "evidence_commits": [
+            "23272f57a0d8206e84aa173a32db1e4faccb2b36"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "02a4e1508084c5c19e0127a1ee370677395fc0c8",
+            "421f64ca8f52218285be5901f5ec27de5ba44568",
+            "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+            "7ae618253104f6302afc4e1ef123a825fe7aac19",
+            "cde9c74ca48fcb73ec2ff8704965afdef530abe2",
+            "2455fea7af3998a9189b3cb7f9d00a12c0316589",
+            "4c99eb2bab5dbe6e5f790e7fc72e2495070d6476",
+            "e3db1fcf6cdc5eeb11f612e67ac772e5c087d93c",
+            "56d75003614a947db7b10f8268204c04d553bed2",
+            "e289e20c3f9d55d2bd9486a5fc2a3adbf87f0102",
+            "0b8d21c5c358c803f0e6aeccc331c0a53f9e5fcc",
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "1dd35799f6b6a4fc2d3d4153565b9a195bd207f0",
+            "7922ad2ce1cef51a874d6c5c8fedccfa2a34646d",
+            "9f4d68c9fd07556ebca84c40bca8fbf0ec177534",
+            "bc92dc8b3fe6dd6ac9c918588c7cb72571002dd0",
+            "faaf7cd29d10db311816b41f4438f273b40281ce",
+            "fbdf0ead142effc35ee3c0edcab064f0958a734e",
+            "3be28bbd0741901eb1473563d4b33c09dbf9fa44",
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b",
+            "0b8d21c5c358c803f0e6aeccc331c0a53f9e5fcc"
+          ]
+        }
+      ],
+      "history": [
+        "0b8d21c5c358c803f0e6aeccc331c0a53f9e5fcc",
+        "8e23f5f05003b66a4df7317cc1a64e86866dc24b",
+        "3be28bbd0741901eb1473563d4b33c09dbf9fa44",
+        "faaf7cd29d10db311816b41f4438f273b40281ce",
+        "fbdf0ead142effc35ee3c0edcab064f0958a734e",
+        "bc92dc8b3fe6dd6ac9c918588c7cb72571002dd0",
+        "9f4d68c9fd07556ebca84c40bca8fbf0ec177534",
+        "7922ad2ce1cef51a874d6c5c8fedccfa2a34646d",
+        "1dd35799f6b6a4fc2d3d4153565b9a195bd207f0",
+        "e289e20c3f9d55d2bd9486a5fc2a3adbf87f0102",
+        "56d75003614a947db7b10f8268204c04d553bed2",
+        "e3db1fcf6cdc5eeb11f612e67ac772e5c087d93c",
+        "2455fea7af3998a9189b3cb7f9d00a12c0316589",
+        "4c99eb2bab5dbe6e5f790e7fc72e2495070d6476",
+        "cde9c74ca48fcb73ec2ff8704965afdef530abe2",
+        "7ae618253104f6302afc4e1ef123a825fe7aac19",
+        "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+        "421f64ca8f52218285be5901f5ec27de5ba44568",
+        "02a4e1508084c5c19e0127a1ee370677395fc0c8",
+        "23272f57a0d8206e84aa173a32db1e4faccb2b36",
+        "6f90c8b4535f37df4f94a4d19712f0ce45d681de",
+        "0e905fccfc8caf4af64311c95ced0eb819c1f4e2",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/SearchCriteria.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/SearchCriteria.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Thibault F",
+          "javadoc_tag": "Thibault F",
+          "recorded_names": [
+            "Thibault F"
+          ],
+          "evidence_commits": [
+            "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+          ]
+        },
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "0e905fccfc8caf4af64311c95ced0eb819c1f4e2",
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+            "facb5910eb02aeec8d59f2428d7756384e8037cd"
+          ]
+        },
+        {
+          "name": "Mahdi Lazraq",
+          "javadoc_tag": "Mahdi Lazraq",
+          "recorded_names": [
+            "Mahdi Lazraq"
+          ],
+          "evidence_commits": [
+            "7352f21ce56b8968d116b829003f7dbd23457a56"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "9845c478312827f1421c8a4aee1e25dc8903be7e",
+            "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+            "243e7534cdc430d33e15e7e8fbfef8ed3945bd33",
+            "4c99eb2bab5dbe6e5f790e7fc72e2495070d6476"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "1dd35799f6b6a4fc2d3d4153565b9a195bd207f0",
+            "61b986c89850fe2f2f5a4a89aa067503aef5fc07",
+            "88f3055384dab62dd898a52f70764dcdd78e8cd9"
+          ]
+        }
+      ],
+      "history": [
+        "1dd35799f6b6a4fc2d3d4153565b9a195bd207f0",
+        "88f3055384dab62dd898a52f70764dcdd78e8cd9",
+        "61b986c89850fe2f2f5a4a89aa067503aef5fc07",
+        "4c99eb2bab5dbe6e5f790e7fc72e2495070d6476",
+        "243e7534cdc430d33e15e7e8fbfef8ed3945bd33",
+        "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+        "9845c478312827f1421c8a4aee1e25dc8903be7e",
+        "7352f21ce56b8968d116b829003f7dbd23457a56",
+        "0e905fccfc8caf4af64311c95ced0eb819c1f4e2",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "facb5910eb02aeec8d59f2428d7756384e8037cd",
+        "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/SearchOperation.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/SearchOperation.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Thibault F",
+          "javadoc_tag": "Thibault F",
+          "recorded_names": [
+            "Thibault F"
+          ],
+          "evidence_commits": [
+            "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+          ]
+        },
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "22d880c4430bbadd958a3d92012774cd14da00da",
+            "9845c478312827f1421c8a4aee1e25dc8903be7e",
+            "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+            "9633ba59cf0420079749e0d6ff6ec883a8996beb",
+            "243e7534cdc430d33e15e7e8fbfef8ed3945bd33",
+            "2455fea7af3998a9189b3cb7f9d00a12c0316589",
+            "4c99eb2bab5dbe6e5f790e7fc72e2495070d6476",
+            "e3db1fcf6cdc5eeb11f612e67ac772e5c087d93c",
+            "56d75003614a947db7b10f8268204c04d553bed2",
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        }
+      ],
+      "history": [
+        "8e23f5f05003b66a4df7317cc1a64e86866dc24b",
+        "56d75003614a947db7b10f8268204c04d553bed2",
+        "e3db1fcf6cdc5eeb11f612e67ac772e5c087d93c",
+        "2455fea7af3998a9189b3cb7f9d00a12c0316589",
+        "4c99eb2bab5dbe6e5f790e7fc72e2495070d6476",
+        "243e7534cdc430d33e15e7e8fbfef8ed3945bd33",
+        "9633ba59cf0420079749e0d6ff6ec883a8996beb",
+        "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+        "22d880c4430bbadd958a3d92012774cd14da00da",
+        "9845c478312827f1421c8a4aee1e25dc8903be7e",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/SpecificationImpl.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/SpecificationImpl.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Thibault F",
+          "javadoc_tag": "Thibault F",
+          "recorded_names": [
+            "Thibault F"
+          ],
+          "evidence_commits": [
+            "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+          ]
+        },
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+            "facb5910eb02aeec8d59f2428d7756384e8037cd",
+            "320fb959d331187034f145e1bf1accb6d17903df"
+          ]
+        },
+        {
+          "name": "Luc Boussant-roux",
+          "javadoc_tag": "Luc Boussant-roux",
+          "recorded_names": [
+            "lucboussant-roux"
+          ],
+          "evidence_commits": [
+            "613dd609f91347d040ce5ed1ce534a6058c5cd96",
+            "6f90c8b4535f37df4f94a4d19712f0ce45d681de"
+          ]
+        },
+        {
+          "name": "Mahdi Lazraq",
+          "javadoc_tag": "Mahdi Lazraq",
+          "recorded_names": [
+            "Mahdi Lazraq"
+          ],
+          "evidence_commits": [
+            "33ad2cb03d3892940a76f1ca80610a017219b419"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "7ae618253104f6302afc4e1ef123a825fe7aac19",
+            "9633ba59cf0420079749e0d6ff6ec883a8996beb",
+            "d1529fa69fbd8312b307ee9d9ae87a26ba59b2a6",
+            "805fa54e7fa529a27836c428d9770b5147591e3c"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "61b986c89850fe2f2f5a4a89aa067503aef5fc07",
+            "88f3055384dab62dd898a52f70764dcdd78e8cd9"
+          ]
+        }
+      ],
+      "history": [
+        "88f3055384dab62dd898a52f70764dcdd78e8cd9",
+        "61b986c89850fe2f2f5a4a89aa067503aef5fc07",
+        "805fa54e7fa529a27836c428d9770b5147591e3c",
+        "d1529fa69fbd8312b307ee9d9ae87a26ba59b2a6",
+        "9633ba59cf0420079749e0d6ff6ec883a8996beb",
+        "7ae618253104f6302afc4e1ef123a825fe7aac19",
+        "33ad2cb03d3892940a76f1ca80610a017219b419",
+        "6f90c8b4535f37df4f94a4d19712f0ce45d681de",
+        "613dd609f91347d040ce5ed1ce534a6058c5cd96",
+        "320fb959d331187034f145e1bf1accb6d17903df",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "facb5910eb02aeec8d59f2428d7756384e8037cd",
+        "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/SpecificationsBuilder.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/SpecificationsBuilder.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Thibault F",
+          "javadoc_tag": "Thibault F",
+          "recorded_names": [
+            "Thibault F"
+          ],
+          "evidence_commits": [
+            "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+          ]
+        },
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "0e905fccfc8caf4af64311c95ced0eb819c1f4e2",
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7"
+          ]
+        },
+        {
+          "name": "Luc Boussant-roux",
+          "javadoc_tag": "Luc Boussant-roux",
+          "recorded_names": [
+            "lucboussant-roux"
+          ],
+          "evidence_commits": [
+            "2f040f134ae6b0104e509fe3160721f0126b3b0c",
+            "6f90c8b4535f37df4f94a4d19712f0ce45d681de"
+          ]
+        },
+        {
+          "name": "Mahdi Lazraq",
+          "javadoc_tag": "Mahdi Lazraq",
+          "recorded_names": [
+            "Mahdi Lazraq"
+          ],
+          "evidence_commits": [
+            "33ad2cb03d3892940a76f1ca80610a017219b419",
+            "4269e8ebb2e297e07cf4c1eeba8664a31665085b"
+          ]
+        }
+      ],
+      "history": [
+        "4269e8ebb2e297e07cf4c1eeba8664a31665085b",
+        "33ad2cb03d3892940a76f1ca80610a017219b419",
+        "6f90c8b4535f37df4f94a4d19712f0ce45d681de",
+        "2f040f134ae6b0104e509fe3160721f0126b3b0c",
+        "0e905fccfc8caf4af64311c95ced0eb819c1f4e2",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/annotation/SearchSpec.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/anotation/SearchSpec.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Thibault F",
+          "javadoc_tag": "Thibault F",
+          "recorded_names": [
+            "Thibault F"
+          ],
+          "evidence_commits": [
+            "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+          ]
+        },
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7"
+          ]
+        },
+        {
+          "name": "Luc Boussant-roux",
+          "javadoc_tag": "Luc Boussant-roux",
+          "recorded_names": [
+            "lucboussant-roux"
+          ],
+          "evidence_commits": [
+            "6f90c8b4535f37df4f94a4d19712f0ce45d681de"
+          ]
+        },
+        {
+          "name": "Mahdi Lazraq",
+          "javadoc_tag": "Mahdi Lazraq",
+          "recorded_names": [
+            "Mahdi Lazraq"
+          ],
+          "evidence_commits": [
+            "29bf5454c6179bc6ae896cbd090ebd41105fca0c"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "0b8d21c5c358c803f0e6aeccc331c0a53f9e5fcc"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "0b8d21c5c358c803f0e6aeccc331c0a53f9e5fcc"
+          ]
+        }
+      ],
+      "history": [
+        "0b8d21c5c358c803f0e6aeccc331c0a53f9e5fcc",
+        "29bf5454c6179bc6ae896cbd090ebd41105fca0c",
+        "6f90c8b4535f37df4f94a4d19712f0ce45d681de",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/configuration/ResolverConf.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/configuration/ResolverConf.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Thibault F",
+          "javadoc_tag": "Thibault F",
+          "recorded_names": [
+            "Thibault F"
+          ],
+          "evidence_commits": [
+            "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+          ]
+        }
+      ],
+      "history": [
+        "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/configuration/SearchSpecificationResolver.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/configuration/SearchSpecificationResolver.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Thibault F",
+          "javadoc_tag": "Thibault F",
+          "recorded_names": [
+            "Thibault F"
+          ],
+          "evidence_commits": [
+            "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+          ]
+        },
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7"
+          ]
+        },
+        {
+          "name": "Luc Boussant-roux",
+          "javadoc_tag": "Luc Boussant-roux",
+          "recorded_names": [
+            "lucboussant-roux"
+          ],
+          "evidence_commits": [
+            "6f90c8b4535f37df4f94a4d19712f0ce45d681de"
+          ]
+        },
+        {
+          "name": "Mahdi Lazraq",
+          "javadoc_tag": "Mahdi Lazraq",
+          "recorded_names": [
+            "Mahdi Lazraq"
+          ],
+          "evidence_commits": [
+            "ebe7d222b42841f1a987a38f116d515c710b8c5c"
+          ]
+        }
+      ],
+      "history": [
+        "ebe7d222b42841f1a987a38f116d515c710b8c5c",
+        "6f90c8b4535f37df4f94a4d19712f0ce45d681de",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/listeners/SyntaxErrorListener.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/listeners/SyntaxErrorListener.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "84957a90e21d4c7273847217a7837372200ca5e5"
+          ]
+        }
+      ],
+      "history": [
+        "84957a90e21d4c7273847217a7837372200ca5e5"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/strategies/BooleanStrategy.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/strategies/BooleanStrategy.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+            "facb5910eb02aeec8d59f2428d7756384e8037cd"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+            "7ae618253104f6302afc4e1ef123a825fe7aac19",
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        }
+      ],
+      "history": [
+        "8e23f5f05003b66a4df7317cc1a64e86866dc24b",
+        "7ae618253104f6302afc4e1ef123a825fe7aac19",
+        "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "facb5910eb02aeec8d59f2428d7756384e8037cd"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/strategies/CollectionStrategy.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/strategies/CollectionStrategy.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "5926e26e4d69ecd733b3750d96cc129458e5bf0e",
+            "9633ba59cf0420079749e0d6ff6ec883a8996beb",
+            "e3db1fcf6cdc5eeb11f612e67ac772e5c087d93c",
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        }
+      ],
+      "history": [
+        "8e23f5f05003b66a4df7317cc1a64e86866dc24b",
+        "e3db1fcf6cdc5eeb11f612e67ac772e5c087d93c",
+        "5926e26e4d69ecd733b3750d96cc129458e5bf0e",
+        "9633ba59cf0420079749e0d6ff6ec883a8996beb"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/strategies/DateStrategy.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/strategies/DateStrategy.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+            "facb5910eb02aeec8d59f2428d7756384e8037cd"
+          ]
+        },
+        {
+          "name": "Luc Boussant-roux",
+          "javadoc_tag": "Luc Boussant-roux",
+          "recorded_names": [
+            "lucboussant-roux"
+          ],
+          "evidence_commits": [
+            "47632acc26d06d430dae87244ca23782b0f49de0",
+            "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f"
+          ]
+        },
+        {
+          "name": "Mahdi Lazraq",
+          "javadoc_tag": "Mahdi Lazraq",
+          "recorded_names": [
+            "Mahdi Lazraq"
+          ],
+          "evidence_commits": [
+            "33ad2cb03d3892940a76f1ca80610a017219b419",
+            "beb3cb3986d52032477eeae0ee3f21861c9c399d"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "5e306f8c187e1078ffa4bc228559d76e3f012816",
+            "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+            "7ae618253104f6302afc4e1ef123a825fe7aac19",
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        }
+      ],
+      "history": [
+        "8e23f5f05003b66a4df7317cc1a64e86866dc24b",
+        "7ae618253104f6302afc4e1ef123a825fe7aac19",
+        "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+        "5e306f8c187e1078ffa4bc228559d76e3f012816",
+        "beb3cb3986d52032477eeae0ee3f21861c9c399d",
+        "33ad2cb03d3892940a76f1ca80610a017219b419",
+        "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f",
+        "47632acc26d06d430dae87244ca23782b0f49de0",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "facb5910eb02aeec8d59f2428d7756384e8037cd"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/strategies/DoubleStrategy.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/strategies/DoubleStrategy.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+            "facb5910eb02aeec8d59f2428d7756384e8037cd"
+          ]
+        },
+        {
+          "name": "Luc Boussant-roux",
+          "javadoc_tag": "Luc Boussant-roux",
+          "recorded_names": [
+            "lucboussant-roux"
+          ],
+          "evidence_commits": [
+            "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f"
+          ]
+        },
+        {
+          "name": "Mahdi Lazraq",
+          "javadoc_tag": "Mahdi Lazraq",
+          "recorded_names": [
+            "Mahdi Lazraq"
+          ],
+          "evidence_commits": [
+            "33ad2cb03d3892940a76f1ca80610a017219b419",
+            "beb3cb3986d52032477eeae0ee3f21861c9c399d"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "5e306f8c187e1078ffa4bc228559d76e3f012816",
+            "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+            "7ae618253104f6302afc4e1ef123a825fe7aac19",
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        }
+      ],
+      "history": [
+        "8e23f5f05003b66a4df7317cc1a64e86866dc24b",
+        "7ae618253104f6302afc4e1ef123a825fe7aac19",
+        "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+        "5e306f8c187e1078ffa4bc228559d76e3f012816",
+        "beb3cb3986d52032477eeae0ee3f21861c9c399d",
+        "33ad2cb03d3892940a76f1ca80610a017219b419",
+        "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "facb5910eb02aeec8d59f2428d7756384e8037cd"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/strategies/DurationStrategy.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/strategies/DurationStrategy.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+            "facb5910eb02aeec8d59f2428d7756384e8037cd"
+          ]
+        },
+        {
+          "name": "Luc Boussant-roux",
+          "javadoc_tag": "Luc Boussant-roux",
+          "recorded_names": [
+            "lucboussant-roux"
+          ],
+          "evidence_commits": [
+            "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f"
+          ]
+        },
+        {
+          "name": "HamidReza Ireh",
+          "javadoc_tag": "HamidReza Ireh",
+          "recorded_names": [
+            "HamidReza Ireh"
+          ],
+          "evidence_commits": [
+            "b0fd0ac09d481943fe2e55257d6fd552b3161cc7"
+          ]
+        },
+        {
+          "name": "Mahdi Lazraq",
+          "javadoc_tag": "Mahdi Lazraq",
+          "recorded_names": [
+            "Mahdi Lazraq"
+          ],
+          "evidence_commits": [
+            "33ad2cb03d3892940a76f1ca80610a017219b419",
+            "beb3cb3986d52032477eeae0ee3f21861c9c399d"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "5e306f8c187e1078ffa4bc228559d76e3f012816",
+            "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+            "7ae618253104f6302afc4e1ef123a825fe7aac19",
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        }
+      ],
+      "history": [
+        "8e23f5f05003b66a4df7317cc1a64e86866dc24b",
+        "7ae618253104f6302afc4e1ef123a825fe7aac19",
+        "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+        "5e306f8c187e1078ffa4bc228559d76e3f012816",
+        "beb3cb3986d52032477eeae0ee3f21861c9c399d",
+        "33ad2cb03d3892940a76f1ca80610a017219b419",
+        "b0fd0ac09d481943fe2e55257d6fd552b3161cc7",
+        "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "facb5910eb02aeec8d59f2428d7756384e8037cd"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/strategies/EnumStrategy.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/strategies/EnumStrategy.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+            "facb5910eb02aeec8d59f2428d7756384e8037cd"
+          ]
+        },
+        {
+          "name": "Luc Boussant-roux",
+          "javadoc_tag": "Luc Boussant-roux",
+          "recorded_names": [
+            "lucboussant-roux"
+          ],
+          "evidence_commits": [
+            "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f"
+          ]
+        },
+        {
+          "name": "HamidReza Ireh",
+          "javadoc_tag": "HamidReza Ireh",
+          "recorded_names": [
+            "HamidReza Ireh"
+          ],
+          "evidence_commits": [
+            "c975e686fc84e667978afcfe508cdc7fe22bed92",
+            "a12be408705d71e583e38d1bceb6795e06ed9297",
+            "a9fd588a6e18436dea43900c68555c6a905dc6e4",
+            "9257859f13fb62ec76dcb2aae985e34b3d3f50dd"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+            "7ae618253104f6302afc4e1ef123a825fe7aac19",
+            "cde9c74ca48fcb73ec2ff8704965afdef530abe2",
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        }
+      ],
+      "history": [
+        "8e23f5f05003b66a4df7317cc1a64e86866dc24b",
+        "cde9c74ca48fcb73ec2ff8704965afdef530abe2",
+        "7ae618253104f6302afc4e1ef123a825fe7aac19",
+        "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+        "9257859f13fb62ec76dcb2aae985e34b3d3f50dd",
+        "a9fd588a6e18436dea43900c68555c6a905dc6e4",
+        "a12be408705d71e583e38d1bceb6795e06ed9297",
+        "c975e686fc84e667978afcfe508cdc7fe22bed92",
+        "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "facb5910eb02aeec8d59f2428d7756384e8037cd"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/strategies/FloatStrategy.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/strategies/FloatStrategy.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+            "facb5910eb02aeec8d59f2428d7756384e8037cd"
+          ]
+        },
+        {
+          "name": "Luc Boussant-roux",
+          "javadoc_tag": "Luc Boussant-roux",
+          "recorded_names": [
+            "lucboussant-roux"
+          ],
+          "evidence_commits": [
+            "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f"
+          ]
+        },
+        {
+          "name": "Mahdi Lazraq",
+          "javadoc_tag": "Mahdi Lazraq",
+          "recorded_names": [
+            "Mahdi Lazraq"
+          ],
+          "evidence_commits": [
+            "33ad2cb03d3892940a76f1ca80610a017219b419",
+            "beb3cb3986d52032477eeae0ee3f21861c9c399d"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "5e306f8c187e1078ffa4bc228559d76e3f012816",
+            "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+            "7ae618253104f6302afc4e1ef123a825fe7aac19",
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        }
+      ],
+      "history": [
+        "8e23f5f05003b66a4df7317cc1a64e86866dc24b",
+        "7ae618253104f6302afc4e1ef123a825fe7aac19",
+        "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+        "5e306f8c187e1078ffa4bc228559d76e3f012816",
+        "beb3cb3986d52032477eeae0ee3f21861c9c399d",
+        "33ad2cb03d3892940a76f1ca80610a017219b419",
+        "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "facb5910eb02aeec8d59f2428d7756384e8037cd"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/strategies/InstantStrategy.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/strategies/InstantStrategy.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+            "facb5910eb02aeec8d59f2428d7756384e8037cd"
+          ]
+        },
+        {
+          "name": "Luc Boussant-roux",
+          "javadoc_tag": "Luc Boussant-roux",
+          "recorded_names": [
+            "lucboussant-roux"
+          ],
+          "evidence_commits": [
+            "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f"
+          ]
+        },
+        {
+          "name": "fernandorubio",
+          "javadoc_tag": "fernandorubio (upstream Git author)",
+          "recorded_names": [
+            "fernandorubio"
+          ],
+          "evidence_commits": [
+            "db0cffac49184982777e5dfa2f75dc455c8ed151"
+          ]
+        },
+        {
+          "name": "Mahdi Lazraq",
+          "javadoc_tag": "Mahdi Lazraq",
+          "recorded_names": [
+            "Mahdi Lazraq"
+          ],
+          "evidence_commits": [
+            "33ad2cb03d3892940a76f1ca80610a017219b419",
+            "beb3cb3986d52032477eeae0ee3f21861c9c399d"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "5e306f8c187e1078ffa4bc228559d76e3f012816",
+            "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+            "7ae618253104f6302afc4e1ef123a825fe7aac19",
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        }
+      ],
+      "history": [
+        "8e23f5f05003b66a4df7317cc1a64e86866dc24b",
+        "7ae618253104f6302afc4e1ef123a825fe7aac19",
+        "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+        "5e306f8c187e1078ffa4bc228559d76e3f012816",
+        "beb3cb3986d52032477eeae0ee3f21861c9c399d",
+        "33ad2cb03d3892940a76f1ca80610a017219b419",
+        "db0cffac49184982777e5dfa2f75dc455c8ed151",
+        "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "facb5910eb02aeec8d59f2428d7756384e8037cd"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/strategies/IntStrategy.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/strategies/IntStrategy.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+            "facb5910eb02aeec8d59f2428d7756384e8037cd"
+          ]
+        },
+        {
+          "name": "Luc Boussant-roux",
+          "javadoc_tag": "Luc Boussant-roux",
+          "recorded_names": [
+            "lucboussant-roux"
+          ],
+          "evidence_commits": [
+            "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f"
+          ]
+        },
+        {
+          "name": "Mahdi Lazraq",
+          "javadoc_tag": "Mahdi Lazraq",
+          "recorded_names": [
+            "Mahdi Lazraq"
+          ],
+          "evidence_commits": [
+            "33ad2cb03d3892940a76f1ca80610a017219b419",
+            "beb3cb3986d52032477eeae0ee3f21861c9c399d"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "5e306f8c187e1078ffa4bc228559d76e3f012816",
+            "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+            "7ae618253104f6302afc4e1ef123a825fe7aac19",
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        }
+      ],
+      "history": [
+        "8e23f5f05003b66a4df7317cc1a64e86866dc24b",
+        "7ae618253104f6302afc4e1ef123a825fe7aac19",
+        "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+        "5e306f8c187e1078ffa4bc228559d76e3f012816",
+        "beb3cb3986d52032477eeae0ee3f21861c9c399d",
+        "33ad2cb03d3892940a76f1ca80610a017219b419",
+        "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "facb5910eb02aeec8d59f2428d7756384e8037cd"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/strategies/LocalDateStrategy.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/strategies/LocalDateStrategy.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+            "facb5910eb02aeec8d59f2428d7756384e8037cd"
+          ]
+        },
+        {
+          "name": "Luc Boussant-roux",
+          "javadoc_tag": "Luc Boussant-roux",
+          "recorded_names": [
+            "lucboussant-roux"
+          ],
+          "evidence_commits": [
+            "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f"
+          ]
+        },
+        {
+          "name": "HamidReza Ireh",
+          "javadoc_tag": "HamidReza Ireh",
+          "recorded_names": [
+            "HamidReza Ireh"
+          ],
+          "evidence_commits": [
+            "b0fd0ac09d481943fe2e55257d6fd552b3161cc7"
+          ]
+        },
+        {
+          "name": "Mahdi Lazraq",
+          "javadoc_tag": "Mahdi Lazraq",
+          "recorded_names": [
+            "Mahdi Lazraq"
+          ],
+          "evidence_commits": [
+            "33ad2cb03d3892940a76f1ca80610a017219b419",
+            "beb3cb3986d52032477eeae0ee3f21861c9c399d"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "5e306f8c187e1078ffa4bc228559d76e3f012816",
+            "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+            "7ae618253104f6302afc4e1ef123a825fe7aac19",
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        }
+      ],
+      "history": [
+        "8e23f5f05003b66a4df7317cc1a64e86866dc24b",
+        "7ae618253104f6302afc4e1ef123a825fe7aac19",
+        "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+        "5e306f8c187e1078ffa4bc228559d76e3f012816",
+        "beb3cb3986d52032477eeae0ee3f21861c9c399d",
+        "33ad2cb03d3892940a76f1ca80610a017219b419",
+        "b0fd0ac09d481943fe2e55257d6fd552b3161cc7",
+        "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "facb5910eb02aeec8d59f2428d7756384e8037cd"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/strategies/LocalDateTimeStrategy.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/strategies/LocalDateTimeStrategy.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+            "facb5910eb02aeec8d59f2428d7756384e8037cd"
+          ]
+        },
+        {
+          "name": "Luc Boussant-roux",
+          "javadoc_tag": "Luc Boussant-roux",
+          "recorded_names": [
+            "lucboussant-roux"
+          ],
+          "evidence_commits": [
+            "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f"
+          ]
+        },
+        {
+          "name": "HamidReza Ireh",
+          "javadoc_tag": "HamidReza Ireh",
+          "recorded_names": [
+            "HamidReza Ireh"
+          ],
+          "evidence_commits": [
+            "b0fd0ac09d481943fe2e55257d6fd552b3161cc7"
+          ]
+        },
+        {
+          "name": "Mahdi Lazraq",
+          "javadoc_tag": "Mahdi Lazraq",
+          "recorded_names": [
+            "Mahdi Lazraq"
+          ],
+          "evidence_commits": [
+            "33ad2cb03d3892940a76f1ca80610a017219b419",
+            "beb3cb3986d52032477eeae0ee3f21861c9c399d"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "5e306f8c187e1078ffa4bc228559d76e3f012816",
+            "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+            "7ae618253104f6302afc4e1ef123a825fe7aac19",
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        }
+      ],
+      "history": [
+        "8e23f5f05003b66a4df7317cc1a64e86866dc24b",
+        "7ae618253104f6302afc4e1ef123a825fe7aac19",
+        "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+        "5e306f8c187e1078ffa4bc228559d76e3f012816",
+        "beb3cb3986d52032477eeae0ee3f21861c9c399d",
+        "33ad2cb03d3892940a76f1ca80610a017219b419",
+        "b0fd0ac09d481943fe2e55257d6fd552b3161cc7",
+        "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "facb5910eb02aeec8d59f2428d7756384e8037cd"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/strategies/LocalTimeStrategy.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/strategies/LocalTimeStrategy.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+            "facb5910eb02aeec8d59f2428d7756384e8037cd"
+          ]
+        },
+        {
+          "name": "Luc Boussant-roux",
+          "javadoc_tag": "Luc Boussant-roux",
+          "recorded_names": [
+            "lucboussant-roux"
+          ],
+          "evidence_commits": [
+            "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f"
+          ]
+        },
+        {
+          "name": "HamidReza Ireh",
+          "javadoc_tag": "HamidReza Ireh",
+          "recorded_names": [
+            "HamidReza Ireh"
+          ],
+          "evidence_commits": [
+            "b0fd0ac09d481943fe2e55257d6fd552b3161cc7"
+          ]
+        },
+        {
+          "name": "Mahdi Lazraq",
+          "javadoc_tag": "Mahdi Lazraq",
+          "recorded_names": [
+            "Mahdi Lazraq"
+          ],
+          "evidence_commits": [
+            "33ad2cb03d3892940a76f1ca80610a017219b419",
+            "beb3cb3986d52032477eeae0ee3f21861c9c399d"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "5e306f8c187e1078ffa4bc228559d76e3f012816",
+            "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+            "7ae618253104f6302afc4e1ef123a825fe7aac19",
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        }
+      ],
+      "history": [
+        "8e23f5f05003b66a4df7317cc1a64e86866dc24b",
+        "7ae618253104f6302afc4e1ef123a825fe7aac19",
+        "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+        "5e306f8c187e1078ffa4bc228559d76e3f012816",
+        "beb3cb3986d52032477eeae0ee3f21861c9c399d",
+        "33ad2cb03d3892940a76f1ca80610a017219b419",
+        "b0fd0ac09d481943fe2e55257d6fd552b3161cc7",
+        "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "facb5910eb02aeec8d59f2428d7756384e8037cd"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/strategies/ParsingStrategy.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/strategies/ParsingStrategy.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+            "facb5910eb02aeec8d59f2428d7756384e8037cd",
+            "320fb959d331187034f145e1bf1accb6d17903df"
+          ]
+        },
+        {
+          "name": "Luc Boussant-roux",
+          "javadoc_tag": "Luc Boussant-roux",
+          "recorded_names": [
+            "lucboussant-roux"
+          ],
+          "evidence_commits": [
+            "c49e163cc57d6c2b69ae2f0872e71986a34254d7",
+            "6f90c8b4535f37df4f94a4d19712f0ce45d681de"
+          ]
+        },
+        {
+          "name": "HamidReza Ireh",
+          "javadoc_tag": "HamidReza Ireh",
+          "recorded_names": [
+            "HamidReza Ireh"
+          ],
+          "evidence_commits": [
+            "c975e686fc84e667978afcfe508cdc7fe22bed92",
+            "89392d1e301670a9046b897fb3fc21050aa7bc8b",
+            "b0fd0ac09d481943fe2e55257d6fd552b3161cc7"
+          ]
+        },
+        {
+          "name": "Diego Corredor",
+          "javadoc_tag": "Diego Corredor",
+          "recorded_names": [
+            "Diego Corredor"
+          ],
+          "evidence_commits": [
+            "e098a13d0673cec98db23183b53c1c696919940f"
+          ]
+        },
+        {
+          "name": "fernandorubio",
+          "javadoc_tag": "fernandorubio (upstream Git author)",
+          "recorded_names": [
+            "fernandorubio"
+          ],
+          "evidence_commits": [
+            "db0cffac49184982777e5dfa2f75dc455c8ed151"
+          ]
+        },
+        {
+          "name": "Mahdi Lazraq",
+          "javadoc_tag": "Mahdi Lazraq",
+          "recorded_names": [
+            "Mahdi Lazraq"
+          ],
+          "evidence_commits": [
+            "33ad2cb03d3892940a76f1ca80610a017219b419",
+            "beb3cb3986d52032477eeae0ee3f21861c9c399d"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+            "d3e996d7f3cf08b4cad72ffb58a9f6d4e6aac97b",
+            "7ae618253104f6302afc4e1ef123a825fe7aac19",
+            "9633ba59cf0420079749e0d6ff6ec883a8996beb",
+            "243e7534cdc430d33e15e7e8fbfef8ed3945bd33",
+            "56d75003614a947db7b10f8268204c04d553bed2",
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        }
+      ],
+      "history": [
+        "8e23f5f05003b66a4df7317cc1a64e86866dc24b",
+        "56d75003614a947db7b10f8268204c04d553bed2",
+        "243e7534cdc430d33e15e7e8fbfef8ed3945bd33",
+        "9633ba59cf0420079749e0d6ff6ec883a8996beb",
+        "7ae618253104f6302afc4e1ef123a825fe7aac19",
+        "d3e996d7f3cf08b4cad72ffb58a9f6d4e6aac97b",
+        "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+        "beb3cb3986d52032477eeae0ee3f21861c9c399d",
+        "33ad2cb03d3892940a76f1ca80610a017219b419",
+        "db0cffac49184982777e5dfa2f75dc455c8ed151",
+        "e098a13d0673cec98db23183b53c1c696919940f",
+        "b0fd0ac09d481943fe2e55257d6fd552b3161cc7",
+        "89392d1e301670a9046b897fb3fc21050aa7bc8b",
+        "c975e686fc84e667978afcfe508cdc7fe22bed92",
+        "6f90c8b4535f37df4f94a4d19712f0ce45d681de",
+        "c49e163cc57d6c2b69ae2f0872e71986a34254d7",
+        "320fb959d331187034f145e1bf1accb6d17903df",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "facb5910eb02aeec8d59f2428d7756384e8037cd"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/strategies/StringStrategy.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/strategies/StringStrategy.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+            "facb5910eb02aeec8d59f2428d7756384e8037cd"
+          ]
+        },
+        {
+          "name": "Luc Boussant-roux",
+          "javadoc_tag": "Luc Boussant-roux",
+          "recorded_names": [
+            "lucboussant-roux"
+          ],
+          "evidence_commits": [
+            "6f90c8b4535f37df4f94a4d19712f0ce45d681de"
+          ]
+        },
+        {
+          "name": "Mahdi Lazraq",
+          "javadoc_tag": "Mahdi Lazraq",
+          "recorded_names": [
+            "Mahdi Lazraq"
+          ],
+          "evidence_commits": [
+            "20c2e8c9f29e4613a8f7e5f936f34960c6edfad7",
+            "33ad2cb03d3892940a76f1ca80610a017219b419",
+            "370ade65bec0358ffe902b1e3411e6cbb5d71234",
+            "beb3cb3986d52032477eeae0ee3f21861c9c399d",
+            "d6bd5199efefb2d915127b63c4653cd7f733db5c"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+            "243e7534cdc430d33e15e7e8fbfef8ed3945bd33",
+            "56d75003614a947db7b10f8268204c04d553bed2"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "0fba638a8b7f2657161a05f33fdca952a65700a6",
+            "bd6956ce549e49539d2ee8ad092ebf286fe2621e"
+          ]
+        }
+      ],
+      "history": [
+        "bd6956ce549e49539d2ee8ad092ebf286fe2621e",
+        "0fba638a8b7f2657161a05f33fdca952a65700a6",
+        "56d75003614a947db7b10f8268204c04d553bed2",
+        "243e7534cdc430d33e15e7e8fbfef8ed3945bd33",
+        "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+        "d6bd5199efefb2d915127b63c4653cd7f733db5c",
+        "20c2e8c9f29e4613a8f7e5f936f34960c6edfad7",
+        "beb3cb3986d52032477eeae0ee3f21861c9c399d",
+        "370ade65bec0358ffe902b1e3411e6cbb5d71234",
+        "33ad2cb03d3892940a76f1ca80610a017219b419",
+        "6f90c8b4535f37df4f94a4d19712f0ce45d681de",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "facb5910eb02aeec8d59f2428d7756384e8037cd"
+      ]
+    },
+    {
+      "java_file": "src/main/java/com/pembana/search/strategies/UUIDStrategy.java",
+      "upstream_file": "src/main/kotlin/com/sipios/springsearch/strategies/UUIDStrategy.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+            "facb5910eb02aeec8d59f2428d7756384e8037cd"
+          ]
+        },
+        {
+          "name": "Diego Corredor",
+          "javadoc_tag": "Diego Corredor",
+          "recorded_names": [
+            "Diego Corredor"
+          ],
+          "evidence_commits": [
+            "e098a13d0673cec98db23183b53c1c696919940f"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+            "7ae618253104f6302afc4e1ef123a825fe7aac19",
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        }
+      ],
+      "history": [
+        "8e23f5f05003b66a4df7317cc1a64e86866dc24b",
+        "7ae618253104f6302afc4e1ef123a825fe7aac19",
+        "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+        "e098a13d0673cec98db23183b53c1c696919940f",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "facb5910eb02aeec8d59f2428d7756384e8037cd"
+      ]
+    },
+    {
+      "java_file": "src/test/java/com/pembana/search/Author.java",
+      "upstream_file": "src/test/kotlin/com/sipios/springsearch/Author.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "9633ba59cf0420079749e0d6ff6ec883a8996beb",
+            "d1529fa69fbd8312b307ee9d9ae87a26ba59b2a6"
+          ]
+        }
+      ],
+      "history": [
+        "d1529fa69fbd8312b307ee9d9ae87a26ba59b2a6",
+        "9633ba59cf0420079749e0d6ff6ec883a8996beb"
+      ]
+    },
+    {
+      "java_file": "src/test/java/com/pembana/search/AuthorRepository.java",
+      "upstream_file": "src/test/kotlin/com/sipios/springsearch/AuthorRepository.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Thibault F",
+          "javadoc_tag": "Thibault F",
+          "recorded_names": [
+            "Thibault F"
+          ],
+          "evidence_commits": [
+            "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+          ]
+        },
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "9633ba59cf0420079749e0d6ff6ec883a8996beb"
+          ]
+        }
+      ],
+      "history": [
+        "9633ba59cf0420079749e0d6ff6ec883a8996beb",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+      ]
+    },
+    {
+      "java_file": "src/test/java/com/pembana/search/Book.java",
+      "upstream_file": "src/test/kotlin/com/sipios/springsearch/Book.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "9633ba59cf0420079749e0d6ff6ec883a8996beb",
+            "d1529fa69fbd8312b307ee9d9ae87a26ba59b2a6"
+          ]
+        }
+      ],
+      "history": [
+        "d1529fa69fbd8312b307ee9d9ae87a26ba59b2a6",
+        "9633ba59cf0420079749e0d6ff6ec883a8996beb"
+      ]
+    },
+    {
+      "java_file": "src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java",
+      "upstream_file": "src/test/kotlin/com/sipios/springsearch/SpringSearchApplicationTest.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Thibault F",
+          "javadoc_tag": "Thibault F",
+          "recorded_names": [
+            "Thibault F"
+          ],
+          "evidence_commits": [
+            "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+          ]
+        },
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "Michael Mollard",
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+            "facb5910eb02aeec8d59f2428d7756384e8037cd",
+            "905f77b7eb47dd26a2d055c75fa377e3522b16e5"
+          ]
+        },
+        {
+          "name": "Luc Boussant-roux",
+          "javadoc_tag": "Luc Boussant-roux",
+          "recorded_names": [
+            "lucboussant-roux"
+          ],
+          "evidence_commits": [
+            "842fda8c2920d43da1b40b8ec967faab0bd9fac5",
+            "31b419126c6b3f6a9dbe459572953d5500d2062d",
+            "6f90c8b4535f37df4f94a4d19712f0ce45d681de"
+          ]
+        },
+        {
+          "name": "HamidReza Ireh",
+          "javadoc_tag": "HamidReza Ireh",
+          "recorded_names": [
+            "HamidReza Ireh"
+          ],
+          "evidence_commits": [
+            "c975e686fc84e667978afcfe508cdc7fe22bed92",
+            "89392d1e301670a9046b897fb3fc21050aa7bc8b",
+            "cdb5e0dd0f5a4da43611a3f5dd98de03aca53000",
+            "00f0b8a67a5409e901f73fee3503b1f41da82061",
+            "44701f9a172ea28fce668a1480323bfa90213098",
+            "b0fd0ac09d481943fe2e55257d6fd552b3161cc7",
+            "421316627d873f1392fd98f23a19ebbd33b987ed"
+          ]
+        },
+        {
+          "name": "Diego Corredor",
+          "javadoc_tag": "Diego Corredor",
+          "recorded_names": [
+            "Diego Corredor"
+          ],
+          "evidence_commits": [
+            "e098a13d0673cec98db23183b53c1c696919940f"
+          ]
+        },
+        {
+          "name": "fernandorubio",
+          "javadoc_tag": "fernandorubio (upstream Git author)",
+          "recorded_names": [
+            "fernandorubio"
+          ],
+          "evidence_commits": [
+            "db0cffac49184982777e5dfa2f75dc455c8ed151"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "22d880c4430bbadd958a3d92012774cd14da00da",
+            "5e306f8c187e1078ffa4bc228559d76e3f012816",
+            "8b12f579411d71bdd02ff00ba06e3f31076af8f2",
+            "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+            "7ae618253104f6302afc4e1ef123a825fe7aac19",
+            "9633ba59cf0420079749e0d6ff6ec883a8996beb",
+            "d1529fa69fbd8312b307ee9d9ae87a26ba59b2a6",
+            "bd4b8151c2457e92b803560caa3bd6725fd14f17",
+            "243e7534cdc430d33e15e7e8fbfef8ed3945bd33",
+            "2455fea7af3998a9189b3cb7f9d00a12c0316589",
+            "d3aa64bfa274db96b73a138ced55f225d428de3d",
+            "56d75003614a947db7b10f8268204c04d553bed2",
+            "84957a90e21d4c7273847217a7837372200ca5e5",
+            "0b8d21c5c358c803f0e6aeccc331c0a53f9e5fcc",
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        },
+        {
+          "name": "Mahdi Lazraq",
+          "javadoc_tag": "Mahdi Lazraq",
+          "recorded_names": [
+            "Mahdi Lazraq"
+          ],
+          "evidence_commits": [
+            "7869ec37e735c80fa006c438fa31822b93d3d2f0",
+            "b7eed03757fda4266bb338762c6f8555e28dfdbb"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "0fba638a8b7f2657161a05f33fdca952a65700a6",
+            "2036a1f1dc5c2cecc0294ccf6b10c8aa5d1bdb45",
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b",
+            "0b8d21c5c358c803f0e6aeccc331c0a53f9e5fcc"
+          ]
+        }
+      ],
+      "history": [
+        "0b8d21c5c358c803f0e6aeccc331c0a53f9e5fcc",
+        "8e23f5f05003b66a4df7317cc1a64e86866dc24b",
+        "2036a1f1dc5c2cecc0294ccf6b10c8aa5d1bdb45",
+        "0fba638a8b7f2657161a05f33fdca952a65700a6",
+        "84957a90e21d4c7273847217a7837372200ca5e5",
+        "56d75003614a947db7b10f8268204c04d553bed2",
+        "d3aa64bfa274db96b73a138ced55f225d428de3d",
+        "2455fea7af3998a9189b3cb7f9d00a12c0316589",
+        "243e7534cdc430d33e15e7e8fbfef8ed3945bd33",
+        "bd4b8151c2457e92b803560caa3bd6725fd14f17",
+        "d1529fa69fbd8312b307ee9d9ae87a26ba59b2a6",
+        "9633ba59cf0420079749e0d6ff6ec883a8996beb",
+        "7ae618253104f6302afc4e1ef123a825fe7aac19",
+        "91e882d80de3aadb9b47296d8b8f7df21d6a15ec",
+        "22d880c4430bbadd958a3d92012774cd14da00da",
+        "5e306f8c187e1078ffa4bc228559d76e3f012816",
+        "8b12f579411d71bdd02ff00ba06e3f31076af8f2",
+        "b7eed03757fda4266bb338762c6f8555e28dfdbb",
+        "7869ec37e735c80fa006c438fa31822b93d3d2f0",
+        "db0cffac49184982777e5dfa2f75dc455c8ed151",
+        "e098a13d0673cec98db23183b53c1c696919940f",
+        "421316627d873f1392fd98f23a19ebbd33b987ed",
+        "44701f9a172ea28fce668a1480323bfa90213098",
+        "b0fd0ac09d481943fe2e55257d6fd552b3161cc7",
+        "00f0b8a67a5409e901f73fee3503b1f41da82061",
+        "89392d1e301670a9046b897fb3fc21050aa7bc8b",
+        "cdb5e0dd0f5a4da43611a3f5dd98de03aca53000",
+        "c975e686fc84e667978afcfe508cdc7fe22bed92",
+        "31b419126c6b3f6a9dbe459572953d5500d2062d",
+        "6f90c8b4535f37df4f94a4d19712f0ce45d681de",
+        "842fda8c2920d43da1b40b8ec967faab0bd9fac5",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "facb5910eb02aeec8d59f2428d7756384e8037cd",
+        "905f77b7eb47dd26a2d055c75fa377e3522b16e5",
+        "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+      ]
+    },
+    {
+      "java_file": "src/test/java/com/pembana/search/PembanaSearchTestApplication.java",
+      "upstream_file": "src/test/kotlin/com/sipios/springsearch/SpringSearchApplication.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Thibault F",
+          "javadoc_tag": "Thibault F",
+          "recorded_names": [
+            "Thibault F"
+          ],
+          "evidence_commits": [
+            "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+          ]
+        },
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7"
+          ]
+        }
+      ],
+      "history": [
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+      ]
+    },
+    {
+      "java_file": "src/test/java/com/pembana/search/SearchTestFixtures.java",
+      "kind": "fork_only_adaptation",
+      "added_individual_tags": [],
+      "reason": "No upstream class exists: this Java-only helper implements test annotation/set factories introduced during the port. Only the verified fork author tag (Gunnar Hillert) remains; all existing license notices are retained."
+    },
+    {
+      "java_file": "src/test/java/com/pembana/search/UserType.java",
+      "upstream_file": "src/test/kotlin/com/sipios/springsearch/UserType.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "HamidReza Ireh",
+          "javadoc_tag": "HamidReza Ireh",
+          "recorded_names": [
+            "HamidReza Ireh"
+          ],
+          "evidence_commits": [
+            "c975e686fc84e667978afcfe508cdc7fe22bed92"
+          ]
+        }
+      ],
+      "history": [
+        "c975e686fc84e667978afcfe508cdc7fe22bed92"
+      ]
+    },
+    {
+      "java_file": "src/test/java/com/pembana/search/Users.java",
+      "upstream_file": "src/test/kotlin/com/sipios/springsearch/Users.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7"
+          ]
+        },
+        {
+          "name": "HamidReza Ireh",
+          "javadoc_tag": "HamidReza Ireh",
+          "recorded_names": [
+            "HamidReza Ireh"
+          ],
+          "evidence_commits": [
+            "c975e686fc84e667978afcfe508cdc7fe22bed92",
+            "a12be408705d71e583e38d1bceb6795e06ed9297",
+            "b0fd0ac09d481943fe2e55257d6fd552b3161cc7"
+          ]
+        },
+        {
+          "name": "Diego Corredor",
+          "javadoc_tag": "Diego Corredor",
+          "recorded_names": [
+            "Diego Corredor"
+          ],
+          "evidence_commits": [
+            "e098a13d0673cec98db23183b53c1c696919940f"
+          ]
+        },
+        {
+          "name": "fernandorubio",
+          "javadoc_tag": "fernandorubio (upstream Git author)",
+          "recorded_names": [
+            "fernandorubio"
+          ],
+          "evidence_commits": [
+            "db0cffac49184982777e5dfa2f75dc455c8ed151"
+          ]
+        },
+        {
+          "name": "Mahdi Lazraq",
+          "javadoc_tag": "Mahdi Lazraq",
+          "recorded_names": [
+            "Mahdi Lazraq"
+          ],
+          "evidence_commits": [
+            "33ad2cb03d3892940a76f1ca80610a017219b419"
+          ]
+        },
+        {
+          "name": "vincentescoffier",
+          "javadoc_tag": "vincentescoffier (upstream Git author)",
+          "recorded_names": [
+            "vincentescoffier"
+          ],
+          "evidence_commits": [
+            "2455fea7af3998a9189b3cb7f9d00a12c0316589",
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        },
+        {
+          "name": "Vincent Escoffier",
+          "javadoc_tag": "Vincent Escoffier",
+          "recorded_names": [
+            "Vincent Escoffier"
+          ],
+          "evidence_commits": [
+            "8e23f5f05003b66a4df7317cc1a64e86866dc24b"
+          ]
+        }
+      ],
+      "history": [
+        "8e23f5f05003b66a4df7317cc1a64e86866dc24b",
+        "2455fea7af3998a9189b3cb7f9d00a12c0316589",
+        "33ad2cb03d3892940a76f1ca80610a017219b419",
+        "db0cffac49184982777e5dfa2f75dc455c8ed151",
+        "e098a13d0673cec98db23183b53c1c696919940f",
+        "b0fd0ac09d481943fe2e55257d6fd552b3161cc7",
+        "a12be408705d71e583e38d1bceb6795e06ed9297",
+        "c975e686fc84e667978afcfe508cdc7fe22bed92",
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7"
+      ]
+    },
+    {
+      "java_file": "src/test/java/com/pembana/search/UsersRepository.java",
+      "upstream_file": "src/test/kotlin/com/sipios/springsearch/UsersRepository.kt",
+      "kind": "upstream_file_history",
+      "authors": [
+        {
+          "name": "Thibault F",
+          "javadoc_tag": "Thibault F",
+          "recorded_names": [
+            "Thibault F"
+          ],
+          "evidence_commits": [
+            "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+          ]
+        },
+        {
+          "name": "Michael Mollard",
+          "javadoc_tag": "Michael Mollard",
+          "recorded_names": [
+            "MollardMichael"
+          ],
+          "evidence_commits": [
+            "25f08b15c1675009ed30f8aec1efffc67d1e75c7"
+          ]
+        }
+      ],
+      "history": [
+        "25f08b15c1675009ed30f8aec1efffc67d1e75c7",
+        "044cde35b00edd479d01fabbac7c3063d2cb1f11"
+      ]
+    }
+  ],
+  "commits": {
+    "00f0b8a67a5409e901f73fee3503b1f41da82061": {
+      "name": "HamidReza Ireh",
+      "date": "2021-03-09",
+      "subject": "Add test not equal for enum",
+      "coauthors": []
+    },
+    "02a4e1508084c5c19e0127a1ee370677395fc0c8": {
+      "name": "vincentescoffier",
+      "date": "2024-01-05",
+      "subject": "feat: parse array value in visitor",
+      "coauthors": []
+    },
+    "044cde35b00edd479d01fabbac7c3063d2cb1f11": {
+      "name": "Thibault F",
+      "date": "2019-08-30",
+      "subject": "Initial commit",
+      "coauthors": []
+    },
+    "0b8d21c5c358c803f0e6aeccc331c0a53f9e5fcc": {
+      "name": "Vincent Escoffier",
+      "date": "2024-06-23",
+      "subject": "Feat/blacklist (#83)",
+      "coauthors": [
+        "vincentescoffier"
+      ]
+    },
+    "0e905fccfc8caf4af64311c95ced0eb819c1f4e2": {
+      "name": "MollardMichael",
+      "date": "2019-09-08",
+      "subject": "Add coverage",
+      "coauthors": []
+    },
+    "0fba638a8b7f2657161a05f33fdca952a65700a6": {
+      "name": "Vincent Escoffier",
+      "date": "2024-01-19",
+      "subject": "feat: add gt lt for string and allow to search 'like value' with case sensitive",
+      "coauthors": []
+    },
+    "158d8d5f93e90c2d34cd59bf3dd2032d2c60b05f": {
+      "name": "lucboussant-roux",
+      "date": "2021-01-07",
+      "subject": "chore: remove unneeded type annotation",
+      "coauthors": []
+    },
+    "1dd35799f6b6a4fc2d3d4153565b9a195bd207f0": {
+      "name": "Vincent Escoffier",
+      "date": "2024-01-19",
+      "subject": "refactor: create secondary constructor, change var to val, fix naming",
+      "coauthors": []
+    },
+    "2036a1f1dc5c2cecc0294ccf6b10c8aa5d1bdb45": {
+      "name": "Vincent Escoffier",
+      "date": "2024-01-19",
+      "subject": "test: add missing test for gt lt",
+      "coauthors": []
+    },
+    "20c2e8c9f29e4613a8f7e5f936f34960c6edfad7": {
+      "name": "Mahdi Lazraq",
+      "date": "2023-12-26",
+      "subject": "refactor: make searchSpecAnnotation private",
+      "coauthors": []
+    },
+    "22d880c4430bbadd958a3d92012774cd14da00da": {
+      "name": "vincentescoffier",
+      "date": "2024-01-04",
+      "subject": "refactor: change from = to :",
+      "coauthors": []
+    },
+    "23272f57a0d8206e84aa173a32db1e4faccb2b36": {
+      "name": "Mahdi Lazraq",
+      "date": "2023-12-26",
+      "subject": "refactor: private property should not start with an uppercase letter",
+      "coauthors": []
+    },
+    "243e7534cdc430d33e15e7e8fbfef8ed3945bd33": {
+      "name": "vincentescoffier",
+      "date": "2024-01-11",
+      "subject": "refactor: change symbol from IN/NOT IN to :/!",
+      "coauthors": []
+    },
+    "2455fea7af3998a9189b3cb7f9d00a12c0316589": {
+      "name": "vincentescoffier",
+      "date": "2024-01-12",
+      "subject": "feat: between / not between",
+      "coauthors": []
+    },
+    "25f08b15c1675009ed30f8aec1efffc67d1e75c7": {
+      "name": "MollardMichael",
+      "date": "2019-09-08",
+      "subject": "Add linter",
+      "coauthors": []
+    },
+    "29bf5454c6179bc6ae896cbd090ebd41105fca0c": {
+      "name": "Mahdi Lazraq",
+      "date": "2023-12-26",
+      "subject": "fix: fix typo",
+      "coauthors": []
+    },
+    "2f040f134ae6b0104e509fe3160721f0126b3b0c": {
+      "name": "lucboussant-roux",
+      "date": "2021-01-08",
+      "subject": "chore: fix typo",
+      "coauthors": []
+    },
+    "31b419126c6b3f6a9dbe459572953d5500d2062d": {
+      "name": "lucboussant-roux",
+      "date": "2021-01-08",
+      "subject": "feat: add tests for the case insensitive search",
+      "coauthors": []
+    },
+    "320fb959d331187034f145e1bf1accb6d17903df": {
+      "name": "MollardMichael",
+      "date": "2019-09-09",
+      "subject": "Move factory to interface",
+      "coauthors": []
+    },
+    "33ad2cb03d3892940a76f1ca80610a017219b419": {
+      "name": "Mahdi Lazraq",
+      "date": "2023-12-26",
+      "subject": "chore: bump spring, java and kotlin versions",
+      "coauthors": []
+    },
+    "370ade65bec0358ffe902b1e3411e6cbb5d71234": {
+      "name": "Mahdi Lazraq",
+      "date": "2023-12-26",
+      "subject": "refactor: replace deprecated lowercase method",
+      "coauthors": []
+    },
+    "3be28bbd0741901eb1473563d4b33c09dbf9fa44": {
+      "name": "Vincent Escoffier",
+      "date": "2024-01-23",
+      "subject": "fix: unreachable code path",
+      "coauthors": []
+    },
+    "421316627d873f1392fd98f23a19ebbd33b987ed": {
+      "name": "HamidReza Ireh",
+      "date": "2021-03-19",
+      "subject": "Edit format",
+      "coauthors": []
+    },
+    "421f64ca8f52218285be5901f5ec27de5ba44568": {
+      "name": "vincentescoffier",
+      "date": "2024-01-05",
+      "subject": "refactor: code clean",
+      "coauthors": []
+    },
+    "4269e8ebb2e297e07cf4c1eeba8664a31665085b": {
+      "name": "Mahdi Lazraq",
+      "date": "2023-12-26",
+      "subject": "fix: fix typo",
+      "coauthors": []
+    },
+    "44701f9a172ea28fce668a1480323bfa90213098": {
+      "name": "HamidReza Ireh",
+      "date": "2021-03-14",
+      "subject": "Test java.time.* type strategies",
+      "coauthors": []
+    },
+    "47632acc26d06d430dae87244ca23782b0f49de0": {
+      "name": "lucboussant-roux",
+      "date": "2021-01-06",
+      "subject": "chore: rename the sdf variable to enhance comprehension",
+      "coauthors": []
+    },
+    "4c99eb2bab5dbe6e5f790e7fc72e2495070d6476": {
+      "name": "vincentescoffier",
+      "date": "2024-01-12",
+      "subject": "refactor: update grammar, add a visitor for array eq",
+      "coauthors": []
+    },
+    "56d75003614a947db7b10f8268204c04d553bed2": {
+      "name": "vincentescoffier",
+      "date": "2024-01-15",
+      "subject": "refactor: change symbols",
+      "coauthors": []
+    },
+    "5926e26e4d69ecd733b3750d96cc129458e5bf0e": {
+      "name": "vincentescoffier",
+      "date": "2024-01-09",
+      "subject": "doc: strategy",
+      "coauthors": []
+    },
+    "5e306f8c187e1078ffa4bc228559d76e3f012816": {
+      "name": "vincentescoffier",
+      "date": "2024-01-04",
+      "subject": "feat: update strategies and add tests",
+      "coauthors": []
+    },
+    "613dd609f91347d040ce5ed1ce534a6058c5cd96": {
+      "name": "lucboussant-roux",
+      "date": "2021-01-06",
+      "subject": "chore: fix documentation typo",
+      "coauthors": []
+    },
+    "61b986c89850fe2f2f5a4a89aa067503aef5fc07": {
+      "name": "Vincent Escoffier",
+      "date": "2024-01-19",
+      "subject": "refactor: extract code to function",
+      "coauthors": []
+    },
+    "6f90c8b4535f37df4f94a4d19712f0ce45d681de": {
+      "name": "lucboussant-roux",
+      "date": "2021-01-08",
+      "subject": "feat: pass annotation down to StringStrategy",
+      "coauthors": []
+    },
+    "7352f21ce56b8968d116b829003f7dbd23457a56": {
+      "name": "Mahdi Lazraq",
+      "date": "2023-12-26",
+      "subject": "refactor: use 'when' statement",
+      "coauthors": []
+    },
+    "7869ec37e735c80fa006c438fa31822b93d3d2f0": {
+      "name": "Mahdi Lazraq",
+      "date": "2024-01-09",
+      "subject": "test: fix test name typo",
+      "coauthors": []
+    },
+    "7922ad2ce1cef51a874d6c5c8fedccfa2a34646d": {
+      "name": "Vincent Escoffier",
+      "date": "2024-01-19",
+      "subject": "refactor: simplify grammar",
+      "coauthors": []
+    },
+    "7ae618253104f6302afc4e1ef123a825fe7aac19": {
+      "name": "vincentescoffier",
+      "date": "2024-01-08",
+      "subject": "refactor: move the logic in the parent class",
+      "coauthors": []
+    },
+    "805fa54e7fa529a27836c428d9770b5147591e3c": {
+      "name": "vincentescoffier",
+      "date": "2024-01-16",
+      "subject": "refactor: use reflection to check if type is collection",
+      "coauthors": []
+    },
+    "842fda8c2920d43da1b40b8ec967faab0bd9fac5": {
+      "name": "lucboussant-roux",
+      "date": "2021-01-07",
+      "subject": "feat: add tests to reach coverage goal",
+      "coauthors": []
+    },
+    "84957a90e21d4c7273847217a7837372200ca5e5": {
+      "name": "vincentescoffier",
+      "date": "2024-01-17",
+      "subject": "feat: handling syntax errors",
+      "coauthors": []
+    },
+    "88f3055384dab62dd898a52f70764dcdd78e8cd9": {
+      "name": "Vincent Escoffier",
+      "date": "2024-01-19",
+      "subject": "refactor: extract code to function",
+      "coauthors": []
+    },
+    "89392d1e301670a9046b897fb3fc21050aa7bc8b": {
+      "name": "HamidReza Ireh",
+      "date": "2021-03-05",
+      "subject": "Edit enum strategy",
+      "coauthors": []
+    },
+    "8b12f579411d71bdd02ff00ba06e3f31076af8f2": {
+      "name": "vincentescoffier",
+      "date": "2024-01-04",
+      "subject": "test: add tests",
+      "coauthors": []
+    },
+    "8e23f5f05003b66a4df7317cc1a64e86866dc24b": {
+      "name": "Vincent Escoffier",
+      "date": "2024-06-20",
+      "subject": "feat: is null/is not null",
+      "coauthors": [
+        "vincentescoffier"
+      ]
+    },
+    "905f77b7eb47dd26a2d055c75fa377e3522b16e5": {
+      "name": "Michael Mollard",
+      "date": "2021-01-05",
+      "subject": "chore: update spring and kotlin versions",
+      "coauthors": []
+    },
+    "91e882d80de3aadb9b47296d8b8f7df21d6a15ec": {
+      "name": "vincentescoffier",
+      "date": "2024-01-05",
+      "subject": "feat: update strategies",
+      "coauthors": []
+    },
+    "9257859f13fb62ec76dcb2aae985e34b3d3f50dd": {
+      "name": "HamidReza Ireh",
+      "date": "2021-03-12",
+      "subject": "Edit enum strategy",
+      "coauthors": []
+    },
+    "9633ba59cf0420079749e0d6ff6ec883a8996beb": {
+      "name": "vincentescoffier",
+      "date": "2024-01-09",
+      "subject": "feat: update strategy to add IN operator support, add tests",
+      "coauthors": []
+    },
+    "9845c478312827f1421c8a4aee1e25dc8903be7e": {
+      "name": "vincentescoffier",
+      "date": "2024-01-04",
+      "subject": "feat: add gte and lte operations and change from chat to string",
+      "coauthors": []
+    },
+    "9f4d68c9fd07556ebca84c40bca8fbf0ec177534": {
+      "name": "Vincent Escoffier",
+      "date": "2024-01-19",
+      "subject": "refactor: remove unnecessary non null assertions and use grouped regex",
+      "coauthors": []
+    },
+    "a12be408705d71e583e38d1bceb6795e06ed9297": {
+      "name": "HamidReza Ireh",
+      "date": "2021-03-06",
+      "subject": "Edit parse in enum strategy",
+      "coauthors": []
+    },
+    "a9fd588a6e18436dea43900c68555c6a905dc6e4": {
+      "name": "HamidReza Ireh",
+      "date": "2021-03-07",
+      "subject": "Edit parse in enum strategy",
+      "coauthors": []
+    },
+    "b0fd0ac09d481943fe2e55257d6fd552b3161cc7": {
+      "name": "HamidReza Ireh",
+      "date": "2021-03-14",
+      "subject": "Add java.time type strategies",
+      "coauthors": []
+    },
+    "b7eed03757fda4266bb338762c6f8555e28dfdbb": {
+      "name": "Mahdi Lazraq",
+      "date": "2024-01-09",
+      "subject": "test: add unit tests for Instant strategy",
+      "coauthors": []
+    },
+    "bc92dc8b3fe6dd6ac9c918588c7cb72571002dd0": {
+      "name": "Vincent Escoffier",
+      "date": "2024-01-19",
+      "subject": "refactor: throw with invalid op",
+      "coauthors": []
+    },
+    "bd4b8151c2457e92b803560caa3bd6725fd14f17": {
+      "name": "vincentescoffier",
+      "date": "2024-01-10",
+      "subject": "test: remove unnecessary assignments",
+      "coauthors": []
+    },
+    "bd6956ce549e49539d2ee8ad092ebf286fe2621e": {
+      "name": "Vincent Escoffier",
+      "date": "2024-01-23",
+      "subject": "doc: change comment",
+      "coauthors": []
+    },
+    "beb3cb3986d52032477eeae0ee3f21861c9c399d": {
+      "name": "Mahdi Lazraq",
+      "date": "2023-12-26",
+      "subject": "refactor: element access should use indexed access operators whenever easy",
+      "coauthors": []
+    },
+    "c49e163cc57d6c2b69ae2f0872e71986a34254d7": {
+      "name": "lucboussant-roux",
+      "date": "2021-01-06",
+      "subject": "doc: add documentation for base interface",
+      "coauthors": []
+    },
+    "c975e686fc84e667978afcfe508cdc7fe22bed92": {
+      "name": "HamidReza Ireh",
+      "date": "2021-02-18",
+      "subject": "Add enum strategy",
+      "coauthors": []
+    },
+    "cdb5e0dd0f5a4da43611a3f5dd98de03aca53000": {
+      "name": "HamidReza Ireh",
+      "date": "2021-03-05",
+      "subject": "Update SpringSearchApplicationTest.kt",
+      "coauthors": []
+    },
+    "cde9c74ca48fcb73ec2ff8704965afdef530abe2": {
+      "name": "vincentescoffier",
+      "date": "2024-01-08",
+      "subject": "doc: update documentation",
+      "coauthors": []
+    },
+    "d1529fa69fbd8312b307ee9d9ae87a26ba59b2a6": {
+      "name": "vincentescoffier",
+      "date": "2024-01-09",
+      "subject": "fix: formatting",
+      "coauthors": []
+    },
+    "d3aa64bfa274db96b73a138ced55f225d428de3d": {
+      "name": "vincentescoffier",
+      "date": "2024-01-12",
+      "subject": "fix: test",
+      "coauthors": []
+    },
+    "d3e996d7f3cf08b4cad72ffb58a9f6d4e6aac97b": {
+      "name": "vincentescoffier",
+      "date": "2024-01-05",
+      "subject": "refactor: remove print",
+      "coauthors": []
+    },
+    "d6bd5199efefb2d915127b63c4653cd7f733db5c": {
+      "name": "Mahdi Lazraq",
+      "date": "2023-12-28",
+      "subject": "refactor: use data class",
+      "coauthors": []
+    },
+    "db0cffac49184982777e5dfa2f75dc455c8ed151": {
+      "name": "fernandorubio",
+      "date": "2022-04-05",
+      "subject": "Added Support for Instant ParsingStrategy.kt, created Test.",
+      "coauthors": []
+    },
+    "e098a13d0673cec98db23183b53c1c696919940f": {
+      "name": "Diego Corredor",
+      "date": "2021-04-24",
+      "subject": "add UUID strategy",
+      "coauthors": []
+    },
+    "e289e20c3f9d55d2bd9486a5fc2a3adbf87f0102": {
+      "name": "vincentescoffier",
+      "date": "2024-01-17",
+      "subject": "refactor: factorise code",
+      "coauthors": []
+    },
+    "e3db1fcf6cdc5eeb11f612e67ac772e5c087d93c": {
+      "name": "vincentescoffier",
+      "date": "2024-01-12",
+      "subject": "refactor: add a new rule",
+      "coauthors": []
+    },
+    "ebe7d222b42841f1a987a38f116d515c710b8c5c": {
+      "name": "Mahdi Lazraq",
+      "date": "2023-12-26",
+      "subject": "refactor: replace null check and collection size check with \"isNullOrEmpty()\"",
+      "coauthors": []
+    },
+    "faaf7cd29d10db311816b41f4438f273b40281ce": {
+      "name": "Vincent Escoffier",
+      "date": "2024-01-22",
+      "subject": "refactor: use val instead of var",
+      "coauthors": []
+    },
+    "facb5910eb02aeec8d59f2428d7756384e8037cd": {
+      "name": "MollardMichael",
+      "date": "2019-09-08",
+      "subject": "Build predicate by type",
+      "coauthors": []
+    },
+    "fbdf0ead142effc35ee3c0edcab064f0958a734e": {
+      "name": "Vincent Escoffier",
+      "date": "2024-01-22",
+      "subject": "refactor: use val instead of var",
+      "coauthors": []
+    }
+  },
+  "collective_author_policy": "Omit generic collective author tags when per-file upstream contributors are verified. The Java-only helper credits its fork author; no upstream class authors are invented. Copyright/license notices remain unchanged.",
+  "verification": {
+    "java_sources_with_only_author_tag_edits": 35,
+    "converted_classes_with_individual_credits": 34,
+    "unique_file_history_commits": 75,
+    "collective_tags_removed": 35,
+    "unchanged_license_notice_sha256": {
+      "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "LICENSE.txt": "97a2ead6ebae80dff422d9692ec621fe8d9421f950c84d47f3d638f6b57dd4e3",
+      "NOTICE": "4c2af60dc6820ef15365d697a4f82860458d1cef81b6fa2ab10643ebb7ec5943"
+    },
+    "unchanged_source_header_sha256": {
+      "src/main/java/com/pembana/search/CriteriaParser.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/NullSpecification.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/QueryVisitorImpl.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/SearchCriteria.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/SearchOperation.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/SpecificationImpl.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/SpecificationsBuilder.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/annotation/SearchSpec.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/configuration/ResolverConf.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/configuration/SearchSpecificationResolver.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/listeners/SyntaxErrorListener.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/strategies/BooleanStrategy.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/strategies/CollectionStrategy.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/strategies/DateStrategy.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/strategies/DoubleStrategy.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/strategies/DurationStrategy.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/strategies/EnumStrategy.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/strategies/FloatStrategy.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/strategies/InstantStrategy.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/strategies/IntStrategy.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/strategies/LocalDateStrategy.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/strategies/LocalDateTimeStrategy.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/strategies/LocalTimeStrategy.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/strategies/ParsingStrategy.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/strategies/StringStrategy.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/main/java/com/pembana/search/strategies/UUIDStrategy.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/test/java/com/pembana/search/Author.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/test/java/com/pembana/search/AuthorRepository.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/test/java/com/pembana/search/Book.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/test/java/com/pembana/search/PembanaSearchCompatibilityTest.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/test/java/com/pembana/search/PembanaSearchTestApplication.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/test/java/com/pembana/search/SearchTestFixtures.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/test/java/com/pembana/search/UserType.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/test/java/com/pembana/search/Users.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a",
+      "src/test/java/com/pembana/search/UsersRepository.java": "d008dfce6d881c36e2928d2398b3905903e77b04bdd34d7fbb6815433587582a"
+    },
+    "unchanged_other_inputs": 24,
+    "checkstyle_violations": 0,
+    "strict_javadoc": "passed",
+    "h2_test_counts": {
+      "tests": 148,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "build_jdk": "21",
+    "build_log_sha256": "85af6a102af862348f9d0957788153658972343135879871950dffaf5aaf8861",
+    "raw_evidence_directory": "build/authors",
+    "skipped_checks": [
+      "Maven artifact signing",
+      "Dependency-Check network vulnerability scan"
+    ]
+  }
+}

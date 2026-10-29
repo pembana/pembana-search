@@ -27,7 +27,12 @@ import java.lang.annotation.Target;
 /**
  * Maps a request search parameter to a JPA specification.
  *
- * @author Spring Search contributors
+ * @author Thibault F
+ * @author Michael Mollard
+ * @author Luc Boussant-roux
+ * @author Mahdi Lazraq
+ * @author Vincent Escoffier
+ * @author vincentescoffier (upstream Git author)
  * @author Gunnar Hillert
  */
 @Target(ElementType.PARAMETER)

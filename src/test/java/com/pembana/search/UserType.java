@@ -22,7 +22,7 @@ package com.pembana.search;
 /**
  * UserType fixture for Pembana Search database verification.
  *
- * @author Spring Search contributors
+ * @author HamidReza Ireh
  * @author Gunnar Hillert
  */
 public enum UserType {

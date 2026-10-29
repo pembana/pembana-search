@@ -26,7 +26,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource(path = "users")
 /**
  * UsersRepository fixture for Pembana Search database verification.
- * @author Spring Search contributors
+ * @author Thibault F
+ * @author Michael Mollard
  * @author Gunnar Hillert
  */
 public interface UsersRepository extends CrudRepository<Users, Long>, JpaSpecificationExecutor<Users> {

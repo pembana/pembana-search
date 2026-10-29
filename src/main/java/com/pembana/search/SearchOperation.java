@@ -23,7 +23,10 @@ package com.pembana.search;
  * Legacy predicate operations and parser symbols; the grammar determines accepted
  * expression syntax.
  *
- * @author Spring Search contributors
+ * @author Thibault F
+ * @author Michael Mollard
+ * @author vincentescoffier (upstream Git author)
+ * @author Vincent Escoffier
  * @author Gunnar Hillert
  */
 public enum SearchOperation {

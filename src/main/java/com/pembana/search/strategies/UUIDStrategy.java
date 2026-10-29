@@ -26,7 +26,10 @@ import com.pembana.search.SearchOperation;
 /**
  * Converts UUID values using the inherited matching policy.
  *
- * @author Spring Search contributors
+ * @author Michael Mollard
+ * @author Diego Corredor
+ * @author vincentescoffier (upstream Git author)
+ * @author Vincent Escoffier
  * @author Gunnar Hillert
  */
 public final class UUIDStrategy implements ParsingStrategy {

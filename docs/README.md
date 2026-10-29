@@ -13,6 +13,7 @@
 | [Migration](migration.md) | Coordinate/package changes and intentional incompatibilities |
 | [Releasing](releasing.md) | Spring-style version progression and the unpublished release checklist |
 | [Identity verification](identity/README.md) | Evidence for the mechanical rename and packaged artifacts |
+| [Upstream author provenance](provenance/upstream-authors.md) | Per-file author credits, supporting Git commits, identity handling and exceptions |
 
 The root [README](../README.md) is the short Java quickstart. Generated API HTML
 is in `target/reports/apidocs/` after packaging; a Javadoc JAR is attached to the build.

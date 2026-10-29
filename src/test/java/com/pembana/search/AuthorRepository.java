@@ -26,7 +26,9 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource(path = "author")
 /**
  * AuthorRepository fixture for Pembana Search database verification.
- * @author Spring Search contributors
+ * @author Thibault F
+ * @author Michael Mollard
+ * @author vincentescoffier (upstream Git author)
  * @author Gunnar Hillert
  */
 public interface AuthorRepository extends CrudRepository<Author, Long>, JpaSpecificationExecutor<Author> {

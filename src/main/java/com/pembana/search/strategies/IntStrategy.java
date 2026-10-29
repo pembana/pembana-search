@@ -28,7 +28,11 @@ import com.pembana.search.SearchOperation;
 /**
  * Converts Int values using the inherited matching policy.
  *
- * @author Spring Search contributors
+ * @author Michael Mollard
+ * @author Luc Boussant-roux
+ * @author Mahdi Lazraq
+ * @author vincentescoffier (upstream Git author)
+ * @author Vincent Escoffier
  * @author Gunnar Hillert
  */
 public final class IntStrategy implements ParsingStrategy {

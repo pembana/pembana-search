@@ -45,7 +45,15 @@ import static com.pembana.search.SearchTestFixtures.setOf;
 /**
  * One Java method for each original Kotlin scenario; see docs/stage2/scenarios.json.
  *
- * @author Spring Search contributors
+ * @author Thibault F
+ * @author Michael Mollard
+ * @author Luc Boussant-roux
+ * @author HamidReza Ireh
+ * @author Diego Corredor
+ * @author fernandorubio (upstream Git author)
+ * @author vincentescoffier (upstream Git author)
+ * @author Mahdi Lazraq
+ * @author Vincent Escoffier
  * @author Gunnar Hillert
  */
 @SpringBootTest(webEnvironment = WebEnvironment.NONE, classes = PembanaSearchTestApplication.class)

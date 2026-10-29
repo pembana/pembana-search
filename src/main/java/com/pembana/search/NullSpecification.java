@@ -29,7 +29,8 @@ import org.springframework.data.jpa.domain.Specification;
  * Represents an unconfigured search by returning no predicate.
  *
  * @param <T> entity type represented by the generated specification
- * @author Spring Search contributors
+ * @author Thibault F
+ * @author Michael Mollard
  * @author Gunnar Hillert
  */
 public final class NullSpecification<T> implements Specification<T> {

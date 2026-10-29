@@ -41,7 +41,14 @@ import com.pembana.search.annotation.SearchSpec;
 /**
  * Converts scalar or list values and constructs typed Criteria predicates.
  *
- * @author Spring Search contributors
+ * @author Michael Mollard
+ * @author Luc Boussant-roux
+ * @author HamidReza Ireh
+ * @author Diego Corredor
+ * @author fernandorubio (upstream Git author)
+ * @author Mahdi Lazraq
+ * @author vincentescoffier (upstream Git author)
+ * @author Vincent Escoffier
  * @author Gunnar Hillert
  */
 public interface ParsingStrategy {

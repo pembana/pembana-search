@@ -18,10 +18,14 @@ Read the [Code of Conduct](CODE_OF_CONDUCT.md) and [development guide](docs/deve
 
 New Java source files require a **2026 Apache License 2.0 header**, meaningful
 class and method Javadoc, and class `@author` tags. Credit verified contributors
-(Gunnar Hillert for the current fork work). Converted Spring Search files also
-retain `@author Spring Search contributors`; add individual upstream names only
-when file-specific provenance supports them. Preserve existing MIT attribution,
+(Gunnar Hillert for the current fork work). Converted Spring Search files list
+verified individual upstream authors; omit the generic `Spring Search contributors`
+author tag when those credits are established. Use a collective tag only while
+individual attribution remains unresolved. Preserve existing MIT attribution,
 and do not infer each file's authors from the project-wide copyright notice.
+The [verified upstream author mapping](docs/provenance/upstream-authors.md)
+records individual credits, identity evidence, and exceptions for extracted or
+fork-only helper classes. Extend it when adding newly verified upstream credits.
 Author tags belong on types; method Javadoc should explain parameters, return
 values, failure modes, and non-obvious behavior. Inherited overrides can use
 `{@inheritDoc}` when the documented contract is accurate. Do not add boilerplate

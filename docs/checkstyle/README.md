@@ -62,11 +62,13 @@ may need separate cleanup. No custom formatting scripts or Python setup are requ
 ## Attribution
 
 Converted files retain their Apache header and the separate "Derived from Spring
-Search" MIT attribution. Their class Javadoc credits `Spring Search contributors`
-alongside `Gunnar Hillert` for the Java port/fork work. Individual upstream names
-should be added only with file-specific provenance; the project-wide Woody
-Rousseau copyright notice is not used as a universal author tag. Original names
-and notices are preserved rather than replaced with "Original Author" placeholders.
+Search" MIT attribution. Their class Javadoc now credits verified individual
+upstream contributors alongside `Gunnar Hillert` for the Java port/fork work;
+the collective tag used during the style milestone is removed where names are
+established. See the [per-file provenance](../provenance/upstream-authors.md).
+The Java-only adaptation helper credits its fork author. The project-wide Woody
+Rousseau copyright notice is not used as a universal author tag, and recorded
+handles are not replaced with guessed full names or "Original Author" placeholders.
 
 ## Verification
 

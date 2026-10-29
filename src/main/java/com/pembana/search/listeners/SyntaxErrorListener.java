@@ -29,7 +29,7 @@ import org.antlr.v4.runtime.Recognizer;
 /**
  * Collects parser diagnostics in the original format.
  *
- * @author Spring Search contributors
+ * @author vincentescoffier (upstream Git author)
  * @author Gunnar Hillert
  */
 public class SyntaxErrorListener extends BaseErrorListener {

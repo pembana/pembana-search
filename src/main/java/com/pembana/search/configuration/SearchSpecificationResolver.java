@@ -35,7 +35,10 @@ import com.pembana.search.annotation.SearchSpec;
  * Resolves annotated Spring MVC search parameters without imposing consumer authorization
  * scopes.
  *
- * @author Spring Search contributors
+ * @author Thibault F
+ * @author Michael Mollard
+ * @author Luc Boussant-roux
+ * @author Mahdi Lazraq
  * @author Gunnar Hillert
  */
 public final class SearchSpecificationResolver implements HandlerMethodArgumentResolver {

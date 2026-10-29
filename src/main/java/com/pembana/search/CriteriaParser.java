@@ -32,7 +32,10 @@ import com.pembana.search.listeners.SyntaxErrorListener;
  * Parses expressions using the unchanged lexer, parser and visitor sequence.
  *
  * @param <T> entity type represented by the generated specification
- * @author Spring Search contributors
+ * @author Thibault F
+ * @author Michael Mollard
+ * @author Luc Boussant-roux
+ * @author vincentescoffier (upstream Git author)
  * @author Gunnar Hillert
  */
 public final class CriteriaParser<T> {

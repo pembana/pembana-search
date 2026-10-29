@@ -24,7 +24,9 @@ import com.pembana.search.SearchOperation;
 /**
  * Converts Boolean values using the inherited matching policy.
  *
- * @author Spring Search contributors
+ * @author Michael Mollard
+ * @author vincentescoffier (upstream Git author)
+ * @author Vincent Escoffier
  * @author Gunnar Hillert
  */
 public final class BooleanStrategy implements ParsingStrategy {

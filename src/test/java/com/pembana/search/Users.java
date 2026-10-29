@@ -38,7 +38,13 @@ import jakarta.persistence.Table;
 /**
  * Upstream defaults and field mappings; fluent setters replace Kotlin named arguments.
  *
- * @author Spring Search contributors
+ * @author Michael Mollard
+ * @author HamidReza Ireh
+ * @author Diego Corredor
+ * @author fernandorubio (upstream Git author)
+ * @author Mahdi Lazraq
+ * @author vincentescoffier (upstream Git author)
+ * @author Vincent Escoffier
  * @author Gunnar Hillert
  */
 @Entity

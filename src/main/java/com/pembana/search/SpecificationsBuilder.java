@@ -27,7 +27,10 @@ import com.pembana.search.annotation.SearchSpec;
  * Builds JPA specifications from advanced expressions using explicit annotation settings.
  *
  * @param <U> entity type represented by the generated specification
- * @author Spring Search contributors
+ * @author Thibault F
+ * @author Michael Mollard
+ * @author Luc Boussant-roux
+ * @author Mahdi Lazraq
  * @author Gunnar Hillert
  */
 public final class SpecificationsBuilder<U> {

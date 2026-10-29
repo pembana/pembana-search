@@ -24,7 +24,11 @@ import com.pembana.search.SearchOperation;
 /**
  * Converts Enum values using the inherited matching policy.
  *
- * @author Spring Search contributors
+ * @author Michael Mollard
+ * @author Luc Boussant-roux
+ * @author HamidReza Ireh
+ * @author vincentescoffier (upstream Git author)
+ * @author Vincent Escoffier
  * @author Gunnar Hillert
  */
 public final class EnumStrategy implements ParsingStrategy {

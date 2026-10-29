@@ -32,7 +32,7 @@ import org.hibernate.proxy.HibernateProxy;
 /**
  * Book fixture for Pembana Search database verification.
  *
- * @author Spring Search contributors
+ * @author vincentescoffier (upstream Git author)
  * @author Gunnar Hillert
  */
 @Entity

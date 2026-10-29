@@ -22,7 +22,11 @@ package com.pembana.search;
 /**
  * Search criteria with the original outer-asterisk operation mapping.
  *
- * @author Spring Search contributors
+ * @author Thibault F
+ * @author Michael Mollard
+ * @author Mahdi Lazraq
+ * @author vincentescoffier (upstream Git author)
+ * @author Vincent Escoffier
  * @author Gunnar Hillert
  */
 public final class SearchCriteria {

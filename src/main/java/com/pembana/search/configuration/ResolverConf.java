@@ -32,7 +32,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * Registers the search argument resolver for servlet applications with Spring MVC
  * available.
  *
- * @author Spring Search contributors
+ * @author Thibault F
  * @author Gunnar Hillert
  */
 @AutoConfiguration

@@ -34,7 +34,12 @@ import com.pembana.search.grammar.QueryParser;
  * Translates the generated parse tree using the inherited advanced-expression semantics.
  *
  * @param <T> entity type represented by the generated specification
- * @author Spring Search contributors
+ * @author Thibault F
+ * @author Michael Mollard
+ * @author Luc Boussant-roux
+ * @author Mahdi Lazraq
+ * @author vincentescoffier (upstream Git author)
+ * @author Vincent Escoffier
  * @author Gunnar Hillert
  */
 public final class QueryVisitorImpl<T> extends QueryBaseVisitor<Specification<T>> {

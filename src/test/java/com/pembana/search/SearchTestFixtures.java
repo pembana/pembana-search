@@ -30,7 +30,6 @@ import com.pembana.search.annotation.SearchSpec;
  * Test-only factories: preserve Kotlin setOf and annotation-instance semantics without
  * Kotlin.
  *
- * @author Spring Search contributors
  * @author Gunnar Hillert
  */
 final class SearchTestFixtures {

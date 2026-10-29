@@ -36,7 +36,12 @@ import com.pembana.search.strategies.ParsingStrategy;
  * Original JPA specification, using Java reflection instead of Kotlin reflection.
  *
  * @param <T> entity type represented by the generated specification
- * @author Spring Search contributors
+ * @author Thibault F
+ * @author Michael Mollard
+ * @author Luc Boussant-roux
+ * @author Mahdi Lazraq
+ * @author vincentescoffier (upstream Git author)
+ * @author Vincent Escoffier
  * @author Gunnar Hillert
  */
 public final class SpecificationImpl<T> implements Specification<T> {

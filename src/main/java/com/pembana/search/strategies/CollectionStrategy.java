@@ -30,7 +30,8 @@ import com.pembana.search.SearchOperation;
 /**
  * Converts Collection values using the inherited matching policy.
  *
- * @author Spring Search contributors
+ * @author vincentescoffier (upstream Git author)
+ * @author Vincent Escoffier
  * @author Gunnar Hillert
  */
 public final class CollectionStrategy implements ParsingStrategy {

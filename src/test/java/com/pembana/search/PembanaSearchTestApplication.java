@@ -25,7 +25,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * Test-only Spring Boot configuration for the compatibility and database suites.
  *
- * @author Spring Search contributors
+ * @author Thibault F
+ * @author Michael Mollard
  * @author Gunnar Hillert
  */
 @SpringBootApplication
