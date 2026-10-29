@@ -19,7 +19,6 @@
  */
 package com.pembana.search;
 
-import java.util.Collection;
 import java.util.List;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -27,6 +26,7 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import jakarta.persistence.metamodel.PluralAttribute;
 import org.jspecify.annotations.Nullable;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -35,7 +35,7 @@ import com.pembana.search.core.SearchOptions;
 import com.pembana.search.strategies.ParsingStrategy;
 
 /**
- * Original JPA specification, using Java reflection instead of Kotlin reflection.
+ * JPA specification using resolved attribute metadata and typed conversion strategies.
  *
  * @param <T> entity type represented by the generated specification
  * @author Thibault F
@@ -86,11 +86,14 @@ public final class SpecificationImpl<T> implements Specification<T> {
 		Path<?> nestedRoot = root;
 		String criteriaKey = nestedKey[nestedKey.length - 1];
 		Class<?> fieldClass;
+		boolean isCollectionField;
 		try {
 			for (int i = 0; i < nestedKey.length - 1; i++) {
 				nestedRoot = nestedRoot.get(nestedKey[i]);
 			}
-			fieldClass = nestedRoot.get(criteriaKey).getJavaType();
+			Path<?> attribute = nestedRoot.get(criteriaKey);
+			fieldClass = attribute.getJavaType();
+			isCollectionField = attribute.getModel() instanceof PluralAttribute<?, ?, ?> || fieldClass.isArray();
 		}
 		catch (IllegalArgumentException | IllegalStateException exception) {
 			if (!this.searchSpecAnnotation.strictValidation() && this.searchOptions.isEmpty()) {
@@ -99,7 +102,6 @@ public final class SpecificationImpl<T> implements Specification<T> {
 			throw new InvalidSearchQueryException(QueryErrorCode.UNKNOWN_FIELD, this.criteria.getKey(),
 					"Unknown field " + this.criteria.getKey());
 		}
-		boolean isCollectionField = isCollectionType(nestedRoot.getJavaType(), criteriaKey);
 		if (this.searchSpecAnnotation.strictValidation()) {
 			StrictQueryValidation.validate(fieldClass, isCollectionField, this.criteria.getKey(),
 					this.criteria.getOperation(), this.criteria.getValue());
@@ -112,16 +114,6 @@ public final class SpecificationImpl<T> implements Specification<T> {
 				this.searchOptions.resolve(this.criteria.getKey()));
 		@Nullable Object value = parseValue(strategy, fieldClass, criteriaKey, this.criteria.getValue());
 		return strategy.buildPredicate(builder, nestedRoot, criteriaKey, this.criteria.getOperation(), value);
-	}
-
-	private boolean isCollectionType(Class<?> clazz, String fieldName) {
-		try {
-			Class<?> type = clazz.getDeclaredField(fieldName).getType();
-			return Collection.class.isAssignableFrom(type) || type.isArray();
-		}
-		catch (NoSuchFieldException ex) {
-			return false;
-		}
 	}
 
 	private @Nullable Object parseValue(ParsingStrategy strategy, Class<?> fieldClass, String criteriaKey,

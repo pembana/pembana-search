@@ -65,6 +65,16 @@ policy; omitting them keeps the annotation behavior. JSON search binding require
 See [case sensitivity](reference/case-sensitivity.md) for current behavior and the
 implemented binding and recommended UI design. Historical baseline reports remain frozen.
 
+## JPA collection metadata and nested enum corrections
+
+Collection emptiness now follows JPA metadata, so inherited and getter-mapped
+collections behave like directly declared collection fields, including dotted
+association paths. Nested enum values, including private nested types, are
+converted using their resolved class rather than a canonical-name class lookup.
+Valid queries that previously failed now execute; enum names remain case-sensitive,
+invalid constants retain `INVALID_VALUE`, and unsupported collection operators
+remain rejected. No matching defaults or public API signatures change.
+
 ## Historical evidence
 
 Frozen Stage 0–4 reports retain old coordinates, class names, hashes, and upstream
@@ -76,8 +86,8 @@ current branding or installation advice.
 
 ## Consumer migration checks
 
-1. Build/install the new unpublished snapshot locally or use an explicitly
-   approved internal repository; do not assume a public snapshot repository exists.
+1. Before publication, build/install the snapshot locally. After publication,
+   configure the public snapshot repository described in [Getting started](getting-started.md#consume-a-published-snapshot).
 2. Update imports/coordinates and any explicit resolver registration or exclusions.
 3. Verify application queries and mandatory scope composition on its own schema.
 4. Review strict validation choices separately; the rename does not turn it on.

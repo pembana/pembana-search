@@ -115,8 +115,8 @@ fails the PostgreSQL run; tests are not skipped or redirected to H2.
 Pushes to any branch or tag, pull requests to `main`, and manual workflow dispatch
 run Java 17/21/25 runtimes × H2/PostgreSQL, always building on JDK 21. Surefire's
 `jvm` option selects the test runtime independently of Maven. Every job runs the
-complete 232-method suite and per-module coverage, then a Java caller against the packaged
-JAR using that same runtime in a separate JVM. Dependencies, effective
+complete 242-method suite and per-module coverage, then a Java caller against the
+packaged JAR using that same runtime in a separate JVM. Dependencies, effective
 POMs, environment/build logs, Surefire XML, and coverage reports are uploaded
 for 30 days, including evidence from failed jobs. Publication uses the separate
 manual workflow documented in [Releasing](releasing.md).
@@ -138,9 +138,11 @@ Maven enforces 80% instruction and 75% branch coverage with only generated parse
 classes excluded. New/materially changed production code additionally needs 80%
 changed-line coverage and meaningful failure-path tests. Surefire output is under
 `<module>/target/surefire-reports`; coverage HTML/XML is under
-`<module>/target/test-results/coverage/jacoco`. Core runs 32 tests, JPA 174 and
-the starter 26. All modules enforce the same coverage gates independently. Distinguish compilation, infrastructure,
-test, coverage, documentation, signing and scan failures in findings.
+`<module>/target/test-results/coverage/jacoco`. Core runs 32 tests, JPA 184 and
+the starter 26. Ten JPA regression methods cover collection mapping styles and
+nested enum conversion in both validation modes. All modules enforce the same
+coverage gates independently. Distinguish compilation, infrastructure, test,
+coverage, documentation, signing and scan failures in findings.
 
 ## Commit signing versus artifact signing
 

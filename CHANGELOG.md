@@ -32,6 +32,11 @@ The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring S
 
 ### Fixed
 
+- Resolve collection attributes through JPA metadata so inherited and getter-mapped
+  collections support emptiness queries, including dotted association paths.
+- Convert nested enum values through the resolved enum class, including private
+  nested types, while retaining exact names and structured invalid-value errors.
+
 - String equality and inequality now honor `caseSensitiveFlag=false`, folding
   both field and input. The true default and membership behavior are unchanged.
 - Documented the intentional false-flag behavior change, null/collation limits,

@@ -54,7 +54,22 @@ guide](docs/development.md#dependency-check-and-nvd) for local use and nightly C
 
 ## Add to a Spring Boot application
 
-After installing this development snapshot locally:
+After the first snapshot is published, add the public snapshot repository to your
+application POM (no download credentials are required):
+
+```xml
+<repositories>
+    <repository>
+        <id>central-snapshots</id>
+        <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+        <releases><enabled>false</enabled></releases>
+        <snapshots><enabled>true</enabled></snapshots>
+    </repository>
+</repositories>
+```
+
+Until that publication, install locally using the build command above. Add the
+starter dependency in either case:
 
 ```xml
 <dependency>
@@ -63,6 +78,9 @@ After installing this development snapshot locally:
     <version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
+
+Snapshots are mutable; run `./mvnw -U verify` in your consumer project to check
+for a newer published build of the same snapshot version.
 
 The starter brings Boot JPA and MVC integration. Your application supplies its
 entities, database driver, configuration and security policy. For direct JPA

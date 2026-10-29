@@ -50,20 +50,29 @@ inequality and wildcard predicates fold the field using SQL `lower` and the
 input using Java `Locale.ROOT`. Thus both `name:ADA` and `name:*ADA*` can match
 `Ada`; `name!ADA` excludes it. Strict validation does not change that choice.
 
-Membership still uses the original field/items. Greater-than comparisons retain
-the folded field/value, while less-than comparisons retain the original field
-with a folded value. These remaining operator asymmetries are unchanged. SQL
-collation, non-ASCII case handling, accent sensitivity and backslash behavior can
-depend on the database. See [case sensitivity](case-sensitivity.md) for examples,
-null semantics, upgrade implications, and the proposed form/field override UX.
+When request options are omitted or inherit the annotation flag, membership uses
+the original field/items. Greater-than comparisons retain the folded field/value,
+while less-than comparisons retain the original field with a folded value. These
+legacy asymmetries remain the default. An explicit `insensitive` global or
+per-property choice consistently folds equality, patterns, membership and all
+ordering/range comparisons; `sensitive` skips folding. Property choices take
+precedence over the global choice, then the annotation fallback.
+
+GET/form binding uses `caseSensitivity` and `fieldCaseSensitivity[property]`;
+JSON search binding is explicitly enabled with `@SearchRequestBody`. SQL collation,
+non-ASCII case handling, accent sensitivity and backslash behavior can still
+depend on the database. See [case sensitivity](case-sensitivity.md) for the
+implemented GET/JSON options, inheritance, validation, null semantics and form UX.
 
 Supported conversion strategies cover String, Integer/int, Float/float,
 Double/double, Boolean/boolean, Date, Duration, LocalDate, LocalTime,
-LocalDateTime, Instant, UUID, and top-level enums. Java time values use their
-existing parsers; Date retains Jackson 2 `StdDateFormat`. Enum conversion remains
-case-sensitive and retains its existing nested-enum limitation. Types without a
-strategy fall back to string handling in compatibility mode. Null checks are
-distinct from equality to a string such as `'NULL'`.
+LocalDateTime, Instant, UUID, and enums, including public and private nested enum
+types. Java time values use their existing parsers; Date retains Jackson 2
+`StdDateFormat`. Enum conversion uses the resolved attribute class and exact,
+case-sensitive constant names for equality and membership. Invalid constants
+produce `INVALID_VALUE`; text case options do not alter enum conversion. Types
+without a strategy fall back to string handling in compatibility mode. Null checks
+are distinct from equality to a string such as `'NULL'`.
 
 ## Optional validation and field policy
 
@@ -165,13 +174,17 @@ Tests compose a mandatory tenant predicate as `tenant.and(userSearch)` so user
 OR expressions cannot escape that restriction. Collection existence combined
 with OR is tested with multiple child rows, accurate totals, and a sorted page.
 Scalar queries have explicit sorting, two pages, and consistent counts on both
-databases. These cases do not establish arbitrary join/pagination correctness.
+databases. `IS EMPTY` and `IS NOT EMPTY` also support inherited collections,
+getter-mapped properties with differently named backing fields, and dotted paths
+to those collections. Detection uses JPA plural-attribute metadata, independently
+of strict validation. Scalar operators on collections remain unsupported. These
+cases do not establish arbitrary join/pagination correctness.
 
 `author.name:Writer OR title:Orphan` on Book retains the implicit inner join:
 a Book with null author is excluded even if its title matches the other branch.
 That regression test records the limitation; no left-join/EXISTS rewrite is
 introduced. To-many path navigation, all association topologies, aliases,
-field/operator registries, an immutable Spring-independent query model, extension
-points, ordinary-text word matching, internal glob syntax, literal SQL escaping,
-and comprehensive collation behavior remain separate changes. The inherited
+field/operator registries, extension points, ordinary-text word matching, internal
+glob syntax, literal SQL escaping, and comprehensive collation behavior remain
+separate changes. The inherited
 empty `run()` test still provides no behavioral assertion.

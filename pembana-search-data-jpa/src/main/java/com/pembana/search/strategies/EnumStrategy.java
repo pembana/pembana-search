@@ -19,6 +19,8 @@
  */
 package com.pembana.search.strategies;
 
+import java.util.Objects;
+
 import org.jspecify.annotations.Nullable;
 
 import com.pembana.search.SearchOperation;
@@ -41,12 +43,13 @@ public final class EnumStrategy implements ParsingStrategy {
 
 	/** {@inheritDoc} */
 	@Override
+	@SuppressWarnings("unchecked")
 	public @Nullable Object parse(@Nullable String value, Class<?> fieldClass) throws Exception {
 		if (SearchOperation.NULL.equals(value)) {
 			return value;
 		}
-		// Keep the upstream qualified-name lookup, including its nested-enum limitation.
-		return Class.forName(fieldClass.getCanonicalName()).getMethod("valueOf", String.class).invoke(null, value);
+		// Strategy selection supplies an enum type; retain its loader and visibility.
+		return Enum.valueOf(fieldClass.asSubclass(Enum.class), Objects.requireNonNull(value));
 	}
 
 }
