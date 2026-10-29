@@ -45,14 +45,17 @@ matches every non-null first name, and `userFirstName:'A_a*'` matches `Ada`.
 Strict validation deliberately leaves those matching semantics unchanged. Literal
 SQL-metacharacter escaping needs a separate explicit matching-policy change.
 
-`caseSensitiveFlag=true` is the default. With `false`, wildcard predicates fold
-the field using SQL `lower` and the pattern using Java `Locale.ROOT`. Greater-than
-comparisons also use the folded field, but equality/membership use the original
-field and value, and less-than comparisons retain the original field with a
-folded value. Thus `*ADA*` can match `Ada` while equality to `ADA` does not.
-This inherited asymmetry is characterized rather than corrected. SQL collation,
-non-ASCII case handling, accent sensitivity, and backslash behavior can depend on
-the database; the suite does not promise identical behavior for every collation.
+`caseSensitiveFlag=true` is the default. With `false`, string equality,
+inequality and wildcard predicates fold the field using SQL `lower` and the
+input using Java `Locale.ROOT`. Thus both `name:ADA` and `name:*ADA*` can match
+`Ada`; `name!ADA` excludes it. Strict validation does not change that choice.
+
+Membership still uses the original field/items. Greater-than comparisons retain
+the folded field/value, while less-than comparisons retain the original field
+with a folded value. These remaining operator asymmetries are unchanged. SQL
+collation, non-ASCII case handling, accent sensitivity and backslash behavior can
+depend on the database. See [case sensitivity](case-sensitivity.md) for examples,
+null semantics, upgrade implications, and the proposed form/field override UX.
 
 Supported conversion strategies cover String, Integer/int, Float/float,
 Double/double, Boolean/boolean, Date, Duration, LocalDate, LocalTime,

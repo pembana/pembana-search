@@ -115,7 +115,7 @@ fails the PostgreSQL run; tests are not skipped or redirected to H2.
 Pushes to any branch or tag, pull requests to `main`, and manual workflow dispatch
 run Java 17/21/25 runtimes × H2/PostgreSQL, always building on JDK 21. Surefire's
 `jvm` option selects the test runtime independently of Maven. Every job runs the
-complete 185-method suite and per-module coverage, then a Java caller against the packaged
+complete 193-method suite and per-module coverage, then a Java caller against the packaged
 JAR using that same runtime in a separate JVM. Dependencies, effective
 POMs, environment/build logs, Surefire XML, and coverage reports are uploaded
 for 30 days, including evidence from failed jobs. No deployment is configured.
@@ -123,7 +123,9 @@ for 30 days, including evidence from failed jobs. No deployment is configured.
 The original 113 methods now reside in `PembanaSearchCompatibilityTest`.
 The eight prior integration checks, 27 Stage 4 tests and five nullability contract
 tests are retained. New module tests add 26 core checks, five JPA model checks and
-one resolver-override check. The HTTP Stage 4 method now lives in
+one resolver-override check. Eight further case-equality regressions verify the
+intentional correction of false-flag equality/inequality; the prior Stage 4
+characterization is updated and documented in the migration guide. The HTTP Stage 4 method now lives in
 `MvcQueryBehaviorTest`; its scenario body is unchanged. Frozen
 inventories use the old class name; the identity mapping is in the
 [migration guide](migration.md). Preserve method names/queries/assertions rather
@@ -133,7 +135,7 @@ Maven enforces 80% instruction and 75% branch coverage with only generated parse
 classes excluded. New/materially changed production code additionally needs 80%
 changed-line coverage and meaningful failure-path tests. Surefire output is under
 `<module>/target/surefire-reports`; coverage HTML/XML is under
-`<module>/target/test-results/coverage/jacoco`. Core runs 26 tests, JPA 151 and
+`<module>/target/test-results/coverage/jacoco`. Core runs 26 tests, JPA 159 and
 the starter eight. All modules enforce the same coverage gates independently. Distinguish compilation, infrastructure,
 test, coverage, documentation, signing and scan failures in findings.
 

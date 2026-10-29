@@ -52,6 +52,17 @@ This identity change introduces no new matching policy, grammar, framework
 upgrade, module split or application migration. The inherited operator quirks
 and association limitations are documented in the [query reference](reference/query-language.md).
 
+## Case-insensitive string equality correction
+
+`caseSensitiveFlag=false` now applies to string equality and inequality, as it
+already did to patterns. For `Ada`, `name:ADA` now matches and `name!ADA` no longer
+matches. This intentionally changes false-flag queries; the original true default,
+membership, ordering, typed conversion and null-check operations are unchanged.
+Use `true` when retaining exact comparison is required, subject to the database's
+collation. No per-property option or automatic global HTTP toggle exists yet.
+See [case sensitivity](reference/case-sensitivity.md) for current behavior and the
+recommended future UI/policy design. Historical baseline reports remain frozen.
+
 ## Historical evidence
 
 Frozen Stage 0–4 reports retain old coordinates, class names, hashes, and upstream

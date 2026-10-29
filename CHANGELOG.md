@@ -18,6 +18,13 @@ The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring S
 - Matching/association characterization tests and current Java documentation.
 - Spring JavaFormat Checkstyle 0.0.48 enforcement for handwritten production/test Java.
 
+### Fixed
+
+- String equality and inequality now honor `caseSensitiveFlag=false`, folding
+  both field and input. The true default and membership behavior are unchanged.
+- Documented the intentional false-flag behavior change, null/collation limits,
+  recommended case-insensitive form defaults and proposed per-field controls.
+
 ### Changed
 
 - Spring Boot baseline is 4.1.1; Kotlin tooling has been removed.

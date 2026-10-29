@@ -33,7 +33,7 @@ import com.pembana.search.SearchOperation;
 import com.pembana.search.annotation.SearchSpec;
 
 /**
- * Converts String values using the inherited matching policy.
+ * Converts String values using the configured case policy for equality and patterns.
  *
  * @author Michael Mollard
  * @author Luc Boussant-roux
@@ -113,14 +113,18 @@ public final class StringStrategy implements ParsingStrategy {
 		if (!(value instanceof List<?>)) {
 			String casedValue = String.valueOf(value);
 			Expression<String> casedField = path.get(fieldName);
+			@Nullable Object equalityValue = value;
 			if (!this.searchSpecAnnotation.caseSensitiveFlag()) {
 				casedValue = casedValue.toLowerCase(Locale.ROOT);
 				casedField = builder.lower(casedField);
+				equalityValue = (value == null) ? null : casedValue;
 			}
 			if (ops == null) {
 				return ParsingStrategy.super.buildPredicate(builder, path, fieldName, null, value);
 			}
 			return switch (ops) {
+				case EQUALS -> builder.equal(casedField, equalityValue);
+				case NOT_EQUALS -> builder.notEqual(casedField, equalityValue);
 				case STARTS_WITH -> builder.like(casedField, casedValue + "%");
 				case ENDS_WITH -> builder.like(casedField, "%" + casedValue);
 				case CONTAINS -> builder.like(casedField, "%" + casedValue + "%");
@@ -129,8 +133,7 @@ public final class StringStrategy implements ParsingStrategy {
 				case DOESNT_CONTAIN -> builder.notLike(casedField, "%" + casedValue + "%");
 				case GREATER_THAN -> builder.greaterThan(casedField, casedValue);
 				case GREATER_THAN_EQUALS -> builder.greaterThanOrEqualTo(casedField, casedValue);
-				// Preserve the upstream asymmetry: equality and these comparisons use the
-				// original path/value.
+				// Preserve the existing ordering behavior; it is separate from equality.
 				case LESS_THAN -> builder.lessThan(path.get(fieldName), casedValue);
 				case LESS_THAN_EQUALS -> builder.lessThanOrEqualTo(path.get(fieldName), casedValue);
 				default -> ParsingStrategy.super.buildPredicate(builder, path, fieldName, ops, value);

@@ -1,0 +1,719 @@
+{
+  "baseline_revision": "19353b9771ad48930755b519ddab12018499ccf7",
+  "build_java": "Temurin 21.0.10",
+  "compiler_release": 17,
+  "total_test_methods": 193,
+  "upstream_test_methods_unchanged": 113,
+  "new_regressions": 8,
+  "intentional_characterization_change": "QueryBehaviorTest.insensitivePatternsFoldCaseButEqualityDoesNot -> insensitiveEqualityAndPatternsFoldCaseButMembershipDoesNot; equality now expects Ada for ADA under a false flag; membership expectation remains unchanged.",
+  "baseline_regression_run": {
+    "tests": 8,
+    "failures": 4,
+    "errors": 0,
+    "skipped": 0,
+    "coverage": "disabled for focused baseline selection"
+  },
+  "changed_line_coverage": {
+    "covered": 4,
+    "executable": 4,
+    "ratio": 1.0
+  },
+  "matrix": [
+    {
+      "combination": "java17-h2",
+      "total_discovered": 193,
+      "total_executed": 193,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "modules": [
+        {
+          "module": "pembana-search-core",
+          "tests": 26,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "executed": 26,
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 887,
+              "missed": 7
+            },
+            "BRANCH": {
+              "covered": 88,
+              "missed": 7
+            },
+            "LINE": {
+              "covered": 178,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 85,
+              "missed": 7
+            },
+            "METHOD": {
+              "covered": 42,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 13,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0
+        },
+        {
+          "module": "pembana-search-data-jpa",
+          "tests": 159,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "executed": 159,
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 2001,
+              "missed": 307
+            },
+            "BRANCH": {
+              "covered": 259,
+              "missed": 64
+            },
+            "LINE": {
+              "covered": 388,
+              "missed": 52
+            },
+            "COMPLEXITY": {
+              "covered": 224,
+              "missed": 75
+            },
+            "METHOD": {
+              "covered": 92,
+              "missed": 18
+            },
+            "CLASS": {
+              "covered": 27,
+              "missed": 1
+            }
+          },
+          "checkstyle_violations": 0
+        },
+        {
+          "module": "pembana-search-spring-boot-starter",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "executed": 8,
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 90,
+              "missed": 0
+            },
+            "BRANCH": {
+              "covered": 10,
+              "missed": 0
+            },
+            "LINE": {
+              "covered": 23,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 14,
+              "missed": 0
+            },
+            "METHOD": {
+              "covered": 9,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 2,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0
+        }
+      ]
+    },
+    {
+      "combination": "java17-postgresql",
+      "total_discovered": 193,
+      "total_executed": 193,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "modules": [
+        {
+          "module": "pembana-search-core",
+          "tests": 26,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "executed": 26,
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 887,
+              "missed": 7
+            },
+            "BRANCH": {
+              "covered": 88,
+              "missed": 7
+            },
+            "LINE": {
+              "covered": 178,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 85,
+              "missed": 7
+            },
+            "METHOD": {
+              "covered": 42,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 13,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0
+        },
+        {
+          "module": "pembana-search-data-jpa",
+          "tests": 159,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "executed": 159,
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 2001,
+              "missed": 307
+            },
+            "BRANCH": {
+              "covered": 259,
+              "missed": 64
+            },
+            "LINE": {
+              "covered": 388,
+              "missed": 52
+            },
+            "COMPLEXITY": {
+              "covered": 224,
+              "missed": 75
+            },
+            "METHOD": {
+              "covered": 92,
+              "missed": 18
+            },
+            "CLASS": {
+              "covered": 27,
+              "missed": 1
+            }
+          },
+          "checkstyle_violations": 0
+        },
+        {
+          "module": "pembana-search-spring-boot-starter",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "executed": 8,
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 90,
+              "missed": 0
+            },
+            "BRANCH": {
+              "covered": 10,
+              "missed": 0
+            },
+            "LINE": {
+              "covered": 23,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 14,
+              "missed": 0
+            },
+            "METHOD": {
+              "covered": 9,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 2,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0
+        }
+      ]
+    },
+    {
+      "combination": "java21-h2",
+      "total_discovered": 193,
+      "total_executed": 193,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "modules": [
+        {
+          "module": "pembana-search-core",
+          "tests": 26,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "executed": 26,
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 887,
+              "missed": 7
+            },
+            "BRANCH": {
+              "covered": 88,
+              "missed": 7
+            },
+            "LINE": {
+              "covered": 178,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 85,
+              "missed": 7
+            },
+            "METHOD": {
+              "covered": 42,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 13,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0
+        },
+        {
+          "module": "pembana-search-data-jpa",
+          "tests": 159,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "executed": 159,
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 2001,
+              "missed": 307
+            },
+            "BRANCH": {
+              "covered": 259,
+              "missed": 64
+            },
+            "LINE": {
+              "covered": 388,
+              "missed": 52
+            },
+            "COMPLEXITY": {
+              "covered": 224,
+              "missed": 75
+            },
+            "METHOD": {
+              "covered": 92,
+              "missed": 18
+            },
+            "CLASS": {
+              "covered": 27,
+              "missed": 1
+            }
+          },
+          "checkstyle_violations": 0
+        },
+        {
+          "module": "pembana-search-spring-boot-starter",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "executed": 8,
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 90,
+              "missed": 0
+            },
+            "BRANCH": {
+              "covered": 10,
+              "missed": 0
+            },
+            "LINE": {
+              "covered": 23,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 14,
+              "missed": 0
+            },
+            "METHOD": {
+              "covered": 9,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 2,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0
+        }
+      ]
+    },
+    {
+      "combination": "java21-postgresql",
+      "total_discovered": 193,
+      "total_executed": 193,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "modules": [
+        {
+          "module": "pembana-search-core",
+          "tests": 26,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "executed": 26,
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 887,
+              "missed": 7
+            },
+            "BRANCH": {
+              "covered": 88,
+              "missed": 7
+            },
+            "LINE": {
+              "covered": 178,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 85,
+              "missed": 7
+            },
+            "METHOD": {
+              "covered": 42,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 13,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0
+        },
+        {
+          "module": "pembana-search-data-jpa",
+          "tests": 159,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "executed": 159,
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 2001,
+              "missed": 307
+            },
+            "BRANCH": {
+              "covered": 259,
+              "missed": 64
+            },
+            "LINE": {
+              "covered": 388,
+              "missed": 52
+            },
+            "COMPLEXITY": {
+              "covered": 224,
+              "missed": 75
+            },
+            "METHOD": {
+              "covered": 92,
+              "missed": 18
+            },
+            "CLASS": {
+              "covered": 27,
+              "missed": 1
+            }
+          },
+          "checkstyle_violations": 0
+        },
+        {
+          "module": "pembana-search-spring-boot-starter",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "executed": 8,
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 90,
+              "missed": 0
+            },
+            "BRANCH": {
+              "covered": 10,
+              "missed": 0
+            },
+            "LINE": {
+              "covered": 23,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 14,
+              "missed": 0
+            },
+            "METHOD": {
+              "covered": 9,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 2,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0
+        }
+      ]
+    },
+    {
+      "combination": "java25-h2",
+      "total_discovered": 193,
+      "total_executed": 193,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "modules": [
+        {
+          "module": "pembana-search-core",
+          "tests": 26,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "executed": 26,
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 887,
+              "missed": 7
+            },
+            "BRANCH": {
+              "covered": 88,
+              "missed": 7
+            },
+            "LINE": {
+              "covered": 178,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 85,
+              "missed": 7
+            },
+            "METHOD": {
+              "covered": 42,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 13,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0
+        },
+        {
+          "module": "pembana-search-data-jpa",
+          "tests": 159,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "executed": 159,
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 2001,
+              "missed": 307
+            },
+            "BRANCH": {
+              "covered": 259,
+              "missed": 64
+            },
+            "LINE": {
+              "covered": 388,
+              "missed": 52
+            },
+            "COMPLEXITY": {
+              "covered": 224,
+              "missed": 75
+            },
+            "METHOD": {
+              "covered": 92,
+              "missed": 18
+            },
+            "CLASS": {
+              "covered": 27,
+              "missed": 1
+            }
+          },
+          "checkstyle_violations": 0
+        },
+        {
+          "module": "pembana-search-spring-boot-starter",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "executed": 8,
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 90,
+              "missed": 0
+            },
+            "BRANCH": {
+              "covered": 10,
+              "missed": 0
+            },
+            "LINE": {
+              "covered": 23,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 14,
+              "missed": 0
+            },
+            "METHOD": {
+              "covered": 9,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 2,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0
+        }
+      ]
+    },
+    {
+      "combination": "java25-postgresql",
+      "total_discovered": 193,
+      "total_executed": 193,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "modules": [
+        {
+          "module": "pembana-search-core",
+          "tests": 26,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "executed": 26,
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 887,
+              "missed": 7
+            },
+            "BRANCH": {
+              "covered": 88,
+              "missed": 7
+            },
+            "LINE": {
+              "covered": 178,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 85,
+              "missed": 7
+            },
+            "METHOD": {
+              "covered": 42,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 13,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0
+        },
+        {
+          "module": "pembana-search-data-jpa",
+          "tests": 159,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "executed": 159,
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 2001,
+              "missed": 307
+            },
+            "BRANCH": {
+              "covered": 259,
+              "missed": 64
+            },
+            "LINE": {
+              "covered": 388,
+              "missed": 52
+            },
+            "COMPLEXITY": {
+              "covered": 224,
+              "missed": 75
+            },
+            "METHOD": {
+              "covered": 92,
+              "missed": 18
+            },
+            "CLASS": {
+              "covered": 27,
+              "missed": 1
+            }
+          },
+          "checkstyle_violations": 0
+        },
+        {
+          "module": "pembana-search-spring-boot-starter",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "executed": 8,
+          "coverage": {
+            "INSTRUCTION": {
+              "covered": 90,
+              "missed": 0
+            },
+            "BRANCH": {
+              "covered": 10,
+              "missed": 0
+            },
+            "LINE": {
+              "covered": 23,
+              "missed": 0
+            },
+            "COMPLEXITY": {
+              "covered": 14,
+              "missed": 0
+            },
+            "METHOD": {
+              "covered": 9,
+              "missed": 0
+            },
+            "CLASS": {
+              "covered": 2,
+              "missed": 0
+            }
+          },
+          "checkstyle_violations": 0
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Membership and ordering semantics unchanged",
+    "Database collation and non-ASCII folding remain database dependent",
+    "Per-field options and automatic HTTP toggles are not implemented",
+    "NVD scan and artifact signing skipped for compatibility runs"
+  ]
+}

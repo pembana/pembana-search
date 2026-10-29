@@ -8,7 +8,7 @@ and is retained at runtime. MVC applies it only to `Specification` parameters.
 | Member | Default | Contract |
 | --- | --- | --- |
 | `searchParam` | `"search"` | HTTP query parameter name |
-| `caseSensitiveFlag` | `true` | Legacy text matching policy; false does not fold every operator |
+| `caseSensitiveFlag` | `true` | False folds string equality, inequality and patterns; membership/ordering have documented limits |
 | `blackListedFields` | `{}` | Exactly denied entity paths; wins over allowlists |
 | `strictValidation` | `false` | Opt-in typed/path/operator validation and actionable rejections |
 | `allowedFields` | `{}` | Nonempty exact allowlist for parsed and programmatic queries |
@@ -20,6 +20,10 @@ returns null; whitespace is not treated as absent. Policies are explicit Java
 annotation settings; the library defines no `pembana.search.*` configuration
 properties. Database test profiles are test resources, not production settings.
 See the [query reference](query-language.md) for complete matching/error semantics.
+
+For examples, migration implications and the current limits of field/global
+controls, see [case sensitivity](case-sensitivity.md). The annotation is a static
+policy; an HTTP case-toggle parameter has no automatic effect.
 
 ## Entry points
 

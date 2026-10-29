@@ -139,11 +139,13 @@ class QueryBehaviorTest {
 		assertEquals(4, this.users.count(spec("legacy", "active>true")));
 	}
 
-	/** Records the historical distinction between wildcard and equality case handling. */
+	/**
+	 * Equality and patterns fold case; membership retains its separate legacy behavior.
+	 */
 	@Test
-	void insensitivePatternsFoldCaseButEqualityDoesNot() throws Exception {
+	void insensitiveEqualityAndPatternsFoldCaseButMembershipDoesNot() throws Exception {
 		assertEquals(List.of("Ada"), names(spec("insensitive", "userFirstName:*ADA*")));
-		assertEquals(List.of(), names(spec("insensitive", "userFirstName:ADA")));
+		assertEquals(List.of("Ada"), names(spec("insensitive", "userFirstName:ADA")));
 		assertEquals(List.of("Ada"), names(spec("insensitive", "userFirstName:Ada")));
 		assertEquals(0, this.users.count(spec("insensitive", "userFirstName IN [ADA]")));
 	}
