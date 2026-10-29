@@ -8,6 +8,7 @@
 	</parent>
 	<artifactId>pembana-search-core</artifactId>
 	<name>Pembana Search Core</name>
+	<description>Immutable query model and expression parser for Pembana Search, independent of Spring and persistence frameworks.</description>
 	<dependencies>
 		<dependency>
 			<groupId>org.antlr</groupId>

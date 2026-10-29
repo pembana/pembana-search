@@ -8,6 +8,7 @@
 	</parent>
 	<artifactId>pembana-search-data-jpa</artifactId>
 	<name>Pembana Search Data JPA</name>
+	<description>Spring Data JPA translation and typed query strategies for Pembana Search.</description>
 	<dependencies>
 		<dependency>
 			<groupId>com.pembana</groupId>

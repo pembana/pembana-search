@@ -7,6 +7,10 @@ The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring S
 
 ### Added
 
+- Opt-in multi-module local Maven staging and manual JReleaser publication for
+  Central snapshots/releases, with reusable compatibility CI, dry-run mode and
+  documented signing credentials.
+
 - Immutable global/per-property case-sensitivity choices with property precedence.
 - GET/form option binding and explicit JSON search binding through `@SearchRequestBody`.
 - Strict option/envelope validation, application Jackson 3 mapper integration and

@@ -14,7 +14,7 @@
 | [Development](development.md) | Contributors: JDKs, databases, CI artifacts, coverage, signing, NVD and troubleshooting |
 | [Spring Checkstyle](checkstyle/README.md) | Build-time style enforcement, formatting, compatibility exceptions and verification |
 | [Migration](migration.md) | Coordinate/package changes and intentional incompatibilities |
-| [Releasing](releasing.md) | Spring-style version progression and the unpublished release checklist |
+| [Releasing](releasing.md) | JReleaser staging, signing, snapshots/releases, workflow secrets and version progression |
 | [Identity verification](identity/README.md) | Evidence for the mechanical rename and packaged artifacts |
 | [Upstream author provenance](provenance/upstream-authors.md) | Per-file author credits, supporting Git commits, identity handling and exceptions |
 

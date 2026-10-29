@@ -26,6 +26,12 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
+	<developers>
+		<developer>
+			<id>ghillert</id>
+			<name>Gunnar Hillert</name>
+		</developer>
+	</developers>
 	<issueManagement>
 		<system>GitHub</system>
 		<url>https://github.com/pembana/pembana-search/issues</url>
@@ -44,8 +50,9 @@
 		<maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
 		<nullability-maven-plugin.version>0.5.1</nullability-maven-plugin.version>
 		<jspecify.version>1.0.1</jspecify.version>
-		<!-- Publishing awaits Pembana release configuration. -->
+		<!-- Remote publication is opt-in through the publication profile and JReleaser. -->
 		<maven.deploy.skip>true</maven.deploy.skip>
+		<jreleaser-maven-plugin.version>1.22.0</jreleaser-maven-plugin.version>
 		<jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
 		<dependency-check-maven.version>13.0.0</dependency-check-maven.version>
 		<antl4.version>4.13.1</antl4.version>
@@ -348,6 +355,76 @@
 			</testResource>
 		</testResources>
 	</build>
+	<profiles>
+		<profile>
+			<id>publication</id>
+			<properties>
+				<maven.deploy.skip>false</maven.deploy.skip>
+				<!-- JReleaser signs the staged artifacts once, before upload. -->
+				<gpg.skip>true</gpg.skip>
+				<altDeploymentRepository>local::file:${maven.multiModuleProjectDirectory}/target/staging-deploy</altDeploymentRepository>
+			</properties>
+			<build>
+				<defaultGoal>deploy</defaultGoal>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-deploy-plugin</artifactId>
+						<version>3.1.4</version>
+						<configuration>
+							<deployAtEnd>true</deployAtEnd>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.jreleaser</groupId>
+						<artifactId>jreleaser-maven-plugin</artifactId>
+						<version>${jreleaser-maven-plugin.version}</version>
+						<inherited>false</inherited>
+						<configuration>
+							<jreleaser>
+								<signing>
+									<active>ALWAYS</active>
+									<pgp>
+										<active>ALWAYS</active>
+										<armored>true</armored>
+										<mode>MEMORY</mode>
+									</pgp>
+								</signing>
+								<deploy>
+									<maven>
+										<mavenCentral>
+											<sonatype>
+												<active>RELEASE</active>
+												<url>https://central.sonatype.com/api/v1/publisher</url>
+												<stagingRepositories>target/staging-deploy</stagingRepositories>
+											</sonatype>
+										</mavenCentral>
+										<nexus2>
+											<snapshot-deploy>
+												<active>SNAPSHOT</active>
+												<snapshotUrl>https://central.sonatype.com/repository/maven-snapshots/</snapshotUrl>
+												<applyMavenCentralRules>true</applyMavenCentralRules>
+												<snapshotSupported>true</snapshotSupported>
+												<closeRepository>true</closeRepository>
+												<releaseRepository>true</releaseRepository>
+												<stagingRepositories>target/staging-deploy</stagingRepositories>
+											</snapshot-deploy>
+										</nexus2>
+									</maven>
+								</deploy>
+								<release>
+									<github>
+										<owner>pembana</owner>
+										<name>pembana-search</name>
+									</github>
+								</release>
+							</jreleaser>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 	<scm>
 		<connection>scm:git:https://github.com/pembana/pembana-search.git</connection>
 		<developerConnection>scm:git:git@github.com:pembana/pembana-search.git</developerConnection>

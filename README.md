@@ -17,6 +17,7 @@ Build/install the reactor locally, then choose the integration you need:
 | `pembana-search-spring-boot-starter` | Optional Boot/MVC binding with an overridable resolver |
 
 `pembana-search` is now the parent/aggregator POM. The API is evolving toward 1.0.
+See the [release process](docs/releasing.md) for local staging and manual JReleaser publication.
 
 ## Compatibility
 
