@@ -26,6 +26,7 @@ import com.fasterxml.jackson.databind.util.StdDateFormat;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Predicate;
+import org.jspecify.annotations.Nullable;
 
 import com.pembana.search.SearchOperation;
 
@@ -49,8 +50,8 @@ public final class DateStrategy implements ParsingStrategy {
 
 	/** {@inheritDoc} */
 	@Override
-	public Predicate buildPredicate(CriteriaBuilder builder, Path<?> path, String fieldName, SearchOperation ops,
-			Object value) {
+	public @Nullable Predicate buildPredicate(CriteriaBuilder builder, Path<?> path, String fieldName,
+			@Nullable SearchOperation ops, @Nullable Object value) {
 		if (ops == null) {
 			return ParsingStrategy.super.buildPredicate(builder, path, fieldName, null, value);
 		}
@@ -65,8 +66,8 @@ public final class DateStrategy implements ParsingStrategy {
 
 	/** {@inheritDoc} */
 	@Override
-	public Object parse(String value, Class<?> fieldClass) throws Exception {
-		if (SearchOperation.NULL.equals(value)) {
+	public Object parse(@Nullable String value, Class<?> fieldClass) throws Exception {
+		if (value != null && SearchOperation.NULL.equals(value)) {
 			return value;
 		}
 		return this.standardDateFormat.parse(value);

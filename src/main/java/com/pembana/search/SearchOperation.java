@@ -19,6 +19,8 @@
  */
 package com.pembana.search;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * Legacy predicate operations and parser symbols; the grammar determines accepted
  * expression syntax.
@@ -100,7 +102,7 @@ public enum SearchOperation {
 	 * @param input operator token
 	 * @return mapped operation, or null for an unsupported token
 	 */
-	public static SearchOperation getSimpleOperation(String input) {
+	public static @Nullable SearchOperation getSimpleOperation(String input) {
 		return switch (input) {
 			case ":" -> EQUALS;
 			case "!" -> NOT_EQUALS;
@@ -191,7 +193,7 @@ public enum SearchOperation {
 		 * @param input operator token
 		 * @return mapped operation, or null
 		 */
-		public SearchOperation getSimpleOperation(String input) {
+		public @Nullable SearchOperation getSimpleOperation(String input) {
 			return SearchOperation.getSimpleOperation(input);
 		}
 

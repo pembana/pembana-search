@@ -27,6 +27,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Predicate;
+import org.jspecify.annotations.Nullable;
 
 import com.pembana.search.SearchOperation;
 import com.pembana.search.annotation.SearchSpec;
@@ -88,7 +89,7 @@ public final class StringStrategy implements ParsingStrategy {
 
 	/** {@inheritDoc} */
 	@Override
-	public boolean equals(Object other) {
+	public boolean equals(@Nullable Object other) {
 		return this == other || other instanceof StringStrategy strategy
 				&& Objects.equals(this.searchSpecAnnotation, strategy.searchSpecAnnotation);
 	}
@@ -107,8 +108,8 @@ public final class StringStrategy implements ParsingStrategy {
 
 	/** {@inheritDoc} */
 	@Override
-	public Predicate buildPredicate(CriteriaBuilder builder, Path<?> path, String fieldName, SearchOperation ops,
-			Object value) {
+	public @Nullable Predicate buildPredicate(CriteriaBuilder builder, Path<?> path, String fieldName,
+			@Nullable SearchOperation ops, @Nullable Object value) {
 		if (!(value instanceof List<?>)) {
 			String casedValue = String.valueOf(value);
 			Expression<String> casedField = path.get(fieldName);

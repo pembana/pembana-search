@@ -20,7 +20,7 @@
  *
  * @author Gunnar Hillert
  */
-@NullUnmarked
+@NullMarked
 package com.pembana.search;
 
-import org.jspecify.annotations.NullUnmarked;
+import org.jspecify.annotations.NullMarked;

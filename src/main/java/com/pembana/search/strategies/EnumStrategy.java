@@ -19,6 +19,8 @@
  */
 package com.pembana.search.strategies;
 
+import org.jspecify.annotations.Nullable;
+
 import com.pembana.search.SearchOperation;
 
 /**
@@ -39,7 +41,7 @@ public final class EnumStrategy implements ParsingStrategy {
 
 	/** {@inheritDoc} */
 	@Override
-	public Object parse(String value, Class<?> fieldClass) throws Exception {
+	public @Nullable Object parse(@Nullable String value, Class<?> fieldClass) throws Exception {
 		if (SearchOperation.NULL.equals(value)) {
 			return value;
 		}

@@ -22,6 +22,7 @@ package com.pembana.search.strategies;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Predicate;
+import org.jspecify.annotations.Nullable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -42,8 +43,8 @@ public final class CollectionStrategy implements ParsingStrategy {
 
 	/** {@inheritDoc} */
 	@Override
-	public Predicate buildPredicate(CriteriaBuilder builder, Path<?> path, String fieldName, SearchOperation ops,
-			Object value) {
+	public Predicate buildPredicate(CriteriaBuilder builder, Path<?> path, String fieldName,
+			@Nullable SearchOperation ops, @Nullable Object value) {
 		if (ops == SearchOperation.IS && SearchOperation.EMPTY.equals(value)) {
 			return builder.isEmpty(path.get(fieldName));
 		}

@@ -19,6 +19,8 @@
  */
 package com.pembana.search;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * Search criteria with the original outer-asterisk operation mapping.
  *
@@ -33,19 +35,20 @@ public final class SearchCriteria {
 
 	private String key;
 
-	private final Object value;
+	private final @Nullable Object value;
 
-	private SearchOperation operation;
+	private @Nullable SearchOperation operation;
 
 	/**
 	 * Maps outer wildcard markers to the corresponding legacy string operation.
 	 * @param key entity attribute path
-	 * @param op requested operation
+	 * @param op requested operation, or null to contribute no predicate
 	 * @param prefix optional leading wildcard marker
-	 * @param value unconverted scalar or list
+	 * @param value unconverted scalar or list, possibly null
 	 * @param suffix optional trailing wildcard marker
 	 */
-	public SearchCriteria(String key, SearchOperation op, String prefix, Object value, String suffix) {
+	public SearchCriteria(String key, @Nullable SearchOperation op, @Nullable String prefix, @Nullable Object value,
+			@Nullable String suffix) {
 		this.key = key;
 		this.value = value;
 		boolean starts = prefix != null && prefix.contains(SearchOperation.ZERO_OR_MORE_REGEX);
@@ -64,10 +67,10 @@ public final class SearchCriteria {
 	/**
 	 * Creates a criterion without wildcard markers.
 	 * @param key entity attribute path
-	 * @param op requested operation
-	 * @param value unconverted scalar or list
+	 * @param op requested operation, or null to contribute no predicate
+	 * @param value unconverted scalar or list, possibly null
 	 */
-	public SearchCriteria(String key, SearchOperation op, Object value) {
+	public SearchCriteria(String key, @Nullable SearchOperation op, @Nullable Object value) {
 		this(key, op, null, value, null);
 	}
 
@@ -89,25 +92,25 @@ public final class SearchCriteria {
 
 	/**
 	 * Returns the criterion's value.
-	 * @return the criterion's value
+	 * @return the criterion's value, possibly null
 	 */
-	public Object getValue() {
+	public @Nullable Object getValue() {
 		return this.value;
 	}
 
 	/**
 	 * Returns the criterion's operation.
-	 * @return the criterion's operation
+	 * @return the criterion's operation, or null if unset
 	 */
-	public SearchOperation getOperation() {
+	public @Nullable SearchOperation getOperation() {
 		return this.operation;
 	}
 
 	/**
 	 * Supplies replacement legacy operation.
-	 * @param operation replacement legacy operation
+	 * @param operation replacement legacy operation, or null to contribute no predicate
 	 */
-	public void setOperation(SearchOperation operation) {
+	public void setOperation(@Nullable SearchOperation operation) {
 		this.operation = operation;
 	}
 

@@ -23,6 +23,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import org.jspecify.annotations.Nullable;
 import org.springframework.data.jpa.domain.Specification;
 
 /**
@@ -41,7 +42,8 @@ public final class NullSpecification<T> implements Specification<T> {
 
 	/** {@inheritDoc} */
 	@Override
-	public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+	public @Nullable Predicate toPredicate(Root<T> root, @Nullable CriteriaQuery<?> query,
+			CriteriaBuilder criteriaBuilder) {
 		return null;
 	}
 

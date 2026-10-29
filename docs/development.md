@@ -41,23 +41,38 @@ newer. The plugin enables `-XDaddTypeAnnotationsToSymbol=true` so javac reads
 JSpecify type-use annotations from dependencies correctly. Oracle JDK 21 does
 not support that flag. CI already uses current Temurin 21.
 
-All five handwritten production packages explicitly declare `@NullUnmarked`,
-matching Pembana's incremental adoption convention. `InvalidSearchQueryException`,
-`QueryErrorCode`, and `StrictQueryValidation` opt into checking with `@NullMarked`;
-their nullable values use `@Nullable`. Other legacy classes are not yet checked
-for nullable dereferences. This preserves their existing contracts, including
-the resolver returning null for an absent query. Generated ANTLR sources and
-test sources are excluded from nullability checking by the plugin defaults.
+All five handwritten production packages declare `@NullMarked`, including their
+nested types. Intentional nulls use `@Nullable`: absent/empty MVC searches and
+unsupported legacy operations can still produce no specification or predicate,
+scalar converters retain their strategy-specific null behavior, and the `NULL`
+query token remains distinct from a Java null reference. Nullable Spring MVC/JPA
+and ANTLR callback parameters are declared explicitly. Membership items retain
+their original scalar conversion, including a null item becoming the string
+`"null"` before conversion. Generated ANTLR sources and test sources are excluded
+from nullability checking by the plugin defaults; handwritten production code
+has no unmarked packages or nullability suppressions.
 
 Add `@NullMarked` to new handwritten production types and use JSpecify
-`@Nullable` for intentional nulls. When marking an existing type, verify its
-callers and behavior before changing annotations or implementation. Keep the
+`@Nullable` for intentional nulls. Verify callers and behavior before changing
+nullability contracts or implementation. Keep the
 plugin's default error severity and explicit marking requirement. Error Prone
 and NullAway remain compiler tooling; only JSpecify is a project dependency.
 
 The [plugin documentation](https://github.com/making/nullability-maven-plugin/tree/0.5.1)
 describes configuration and compiler requirements. `-Dnullability.skip=true`
 disables the extension for diagnosis; normal verification and CI must run it.
+
+The full production migration was verified on H2 and Testcontainers PostgreSQL
+with Java 17, 21 and 25 test runtimes, building with Temurin 21.0.10: all 153 tests
+and packaged Java caller checks passed in every combination, with zero failures,
+errors, skips or Checkstyle violations. Coverage and strict Javadoc gates passed.
+The five null-contract regressions also passed against the preceding revision
+`9771bd6` with only those tests selected and the full-suite coverage gate skipped.
+JVM field/method descriptors are unchanged and all compiled classes target Java
+17 (major version 61); nullability annotations and the explicit nullable wildcard
+bound update type metadata for callers. Grammar, original tests, fixtures,
+dependency versions and matching rules remain unchanged. Native verification
+evidence is retained locally under ignored `build/nullmarked/`.
 
 ## PostgreSQL profile
 
@@ -79,13 +94,14 @@ fails the PostgreSQL run; tests are not skipped or redirected to H2.
 Pushes to any branch or tag, pull requests to `main`, and manual workflow dispatch
 run Java 17/21/25 runtimes × H2/PostgreSQL, always building on JDK 21. Surefire's
 `jvm` option selects the test runtime independently of Maven. Every job runs the
-complete 148-method suite and coverage, then a Java caller against the packaged
+complete 153-method suite and coverage, then a Java caller against the packaged
 JAR using that same runtime in a separate JVM. Dependencies, effective
 POMs, environment/build logs, Surefire XML, and coverage reports are uploaded
 for 30 days, including evidence from failed jobs. No deployment is configured.
 
 The original 113 methods now reside in `PembanaSearchCompatibilityTest`.
-The eight prior integration checks and 27 Stage 4 tests are supplemental. Frozen
+The eight prior integration checks, 27 Stage 4 tests and five nullability contract
+tests are supplemental. Frozen
 inventories use the old class name; the identity mapping is in the
 [migration guide](migration.md). Preserve method names/queries/assertions rather
 than updating historical hashes to make a comparison appear equivalent.

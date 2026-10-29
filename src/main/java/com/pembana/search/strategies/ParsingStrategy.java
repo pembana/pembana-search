@@ -27,11 +27,13 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Predicate;
+import org.jspecify.annotations.Nullable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -55,28 +57,31 @@ public interface ParsingStrategy {
 
 	/**
 	 * Converts a scalar using the strategy's inherited format.
-	 * @param value raw value, including special NULL handling where supported
+	 * @param value raw value, possibly null; the NULL token remains a distinct string
 	 * @param fieldClass entity attribute type
-	 * @return converted value
-	 * @throws Exception if conversion fails
+	 * @return converted value, or null for strategies that preserve null input
+	 * @throws Exception if conversion fails, including null input for strategies that
+	 * require a scalar
 	 */
-	default Object parse(String value, Class<?> fieldClass) throws Exception {
+	default @Nullable Object parse(@Nullable String value, Class<?> fieldClass) throws Exception {
 		return value;
 	}
 
 	/**
-	 * Converts every membership item through scalar conversion.
+	 * Converts every membership item through scalar conversion. A null item is converted
+	 * through the literal string {@code "null"}, retaining the legacy behavior.
 	 * @param value raw membership values, or null
 	 * @param fieldClass entity attribute type
 	 * @return converted values, or null
 	 * @throws Exception if an item cannot be converted
 	 */
-	default Object parse(List<?> value, Class<?> fieldClass) throws Exception {
+	default @Nullable Object parse(@Nullable List<? extends @Nullable Object> value, Class<?> fieldClass)
+			throws Exception {
 		if (value == null) {
 			return null;
 		}
-		List<Object> parsed = new ArrayList<>();
-		for (Object item : value) {
+		List<@Nullable Object> parsed = new ArrayList<>();
+		for (var item : value) {
 			parsed.add(parse(String.valueOf(item), fieldClass));
 		}
 		return parsed;
@@ -87,18 +92,18 @@ public interface ParsingStrategy {
 	 * @param builder criteria builder
 	 * @param path owning path
 	 * @param fieldName local attribute name
-	 * @param ops requested operation
-	 * @param value converted value
+	 * @param ops requested operation, or null to contribute no predicate
+	 * @param value converted value, possibly null; membership requires a non-null list
 	 * @return predicate, or null for an unsupported legacy operation
 	 */
-	default Predicate buildPredicate(CriteriaBuilder builder, Path<?> path, String fieldName, SearchOperation ops,
-			Object value) {
+	default @Nullable Predicate buildPredicate(CriteriaBuilder builder, Path<?> path, String fieldName,
+			@Nullable SearchOperation ops, @Nullable Object value) {
 		if (ops == null) {
 			return null;
 		}
 		return switch (ops) {
-			case IN_ARRAY -> getInClause(builder, path, fieldName, value);
-			case NOT_IN_ARRAY -> builder.not(getInClause(builder, path, fieldName, value));
+			case IN_ARRAY -> getInClause(builder, path, fieldName, Objects.requireNonNull(value));
+			case NOT_IN_ARRAY -> builder.not(getInClause(builder, path, fieldName, Objects.requireNonNull(value)));
 			case IS, IS_NOT -> {
 				if (!SearchOperation.NULL.equals(value)) {
 					throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
@@ -130,7 +135,7 @@ public interface ParsingStrategy {
 	default CriteriaBuilder.In<Object> getInClause(CriteriaBuilder builder, Path<?> path, String fieldName,
 			Object value) {
 		CriteriaBuilder.In<Object> clause = builder.in(path.get(fieldName));
-		for (Object item : (List<?>) value) {
+		for (var item : (List<? extends @Nullable Object>) value) {
 			clause.value(item);
 		}
 		return clause;

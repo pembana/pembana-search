@@ -27,6 +27,7 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import org.jspecify.annotations.Nullable;
 import org.springframework.data.jpa.domain.Specification;
 
 import com.pembana.search.annotation.SearchSpec;
@@ -65,7 +66,7 @@ public final class SpecificationImpl<T> implements Specification<T> {
 
 	/** {@inheritDoc} */
 	@Override
-	public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
+	public @Nullable Predicate toPredicate(Root<T> root, @Nullable CriteriaQuery<?> query, CriteriaBuilder builder) {
 		String[] nestedKey = this.criteria.getKey().split("\\.", -1);
 		Path<?> nestedRoot = root;
 		String criteriaKey = nestedKey[nestedKey.length - 1];
@@ -90,7 +91,7 @@ public final class SpecificationImpl<T> implements Specification<T> {
 		}
 		ParsingStrategy strategy = ParsingStrategy.getStrategy(fieldClass, this.searchSpecAnnotation,
 				isCollectionField);
-		Object value = parseValue(strategy, fieldClass, criteriaKey, this.criteria.getValue());
+		@Nullable Object value = parseValue(strategy, fieldClass, criteriaKey, this.criteria.getValue());
 		return strategy.buildPredicate(builder, nestedRoot, criteriaKey, this.criteria.getOperation(), value);
 	}
 
@@ -104,7 +105,8 @@ public final class SpecificationImpl<T> implements Specification<T> {
 		}
 	}
 
-	private Object parseValue(ParsingStrategy strategy, Class<?> fieldClass, String criteriaKey, Object value) {
+	private @Nullable Object parseValue(ParsingStrategy strategy, Class<?> fieldClass, String criteriaKey,
+			@Nullable Object value) {
 		try {
 			return (value instanceof List<?> list) ? strategy.parse(list, fieldClass)
 					: strategy.parse((value == null) ? null : value.toString(), fieldClass);

@@ -19,6 +19,8 @@
  */
 package com.pembana.search.strategies;
 
+import org.jspecify.annotations.Nullable;
+
 import com.pembana.search.SearchOperation;
 
 /**
@@ -37,7 +39,7 @@ public final class BooleanStrategy implements ParsingStrategy {
 
 	/** {@inheritDoc} */
 	@Override
-	public Object parse(String value, Class<?> fieldClass) {
+	public @Nullable Object parse(@Nullable String value, Class<?> fieldClass) {
 		if (SearchOperation.NULL.equals(value)) {
 			return value;
 		}

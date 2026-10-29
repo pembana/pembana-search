@@ -25,6 +25,7 @@ import java.util.List;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Collects parser diagnostics in the original format.
@@ -46,8 +47,8 @@ public class SyntaxErrorListener extends BaseErrorListener {
 
 	/** {@inheritDoc} */
 	@Override
-	public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine,
-			String msg, RecognitionException e) {
+	public void syntaxError(Recognizer<?, ?> recognizer, @Nullable Object offendingSymbol, int line,
+			int charPositionInLine, String msg, @Nullable RecognitionException e) {
 		if (this.messages.isEmpty()) {
 			this.firstLine = line;
 			this.firstColumn = charPositionInLine;

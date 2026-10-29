@@ -19,6 +19,9 @@
  */
 package com.pembana.search.configuration;
 
+import java.util.Objects;
+
+import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
@@ -56,16 +59,23 @@ public final class SearchSpecificationResolver implements HandlerMethodArgumentR
 				&& parameter.hasParameterAnnotation(SearchSpec.class);
 	}
 
-	/** {@inheritDoc} */
+	/**
+	 * {@inheritDoc}
+	 * @return the parsed specification, or null for an absent or empty search parameter
+	 * @throws NullPointerException if called directly with a parameter lacking
+	 * {@link SearchSpec}; MVC checks {@link #supportsParameter} before resolution
+	 */
 	@Override
-	public Specification<?> resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
-			NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-		SearchSpec def = parameter.getParameterAnnotation(SearchSpec.class);
+	public @Nullable Specification<?> resolveArgument(MethodParameter parameter,
+			@Nullable ModelAndViewContainer mavContainer, NativeWebRequest webRequest,
+			@Nullable WebDataBinderFactory binderFactory) throws Exception {
+		SearchSpec def = Objects.requireNonNull(parameter.getParameterAnnotation(SearchSpec.class));
 		return buildSpecification(parameter.getGenericParameterType().getClass(),
 				webRequest.getParameter(def.searchParam()), def);
 	}
 
-	private <T> Specification<T> buildSpecification(Class<T> specClass, String search, SearchSpec annotation) {
+	private <T> @Nullable Specification<T> buildSpecification(Class<T> specClass, @Nullable String search,
+			SearchSpec annotation) {
 		logger.debug("Building specification for class {}", specClass);
 		logger.debug("Search value found is {}", search);
 		if (search == null || search.isEmpty()) {

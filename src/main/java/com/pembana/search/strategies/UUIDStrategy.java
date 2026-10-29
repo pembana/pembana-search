@@ -21,6 +21,8 @@ package com.pembana.search.strategies;
 
 import java.util.UUID;
 
+import org.jspecify.annotations.Nullable;
+
 import com.pembana.search.SearchOperation;
 
 /**
@@ -40,8 +42,8 @@ public final class UUIDStrategy implements ParsingStrategy {
 
 	/** {@inheritDoc} */
 	@Override
-	public Object parse(String value, Class<?> fieldClass) {
-		if (SearchOperation.NULL.equals(value)) {
+	public Object parse(@Nullable String value, Class<?> fieldClass) {
+		if (value != null && SearchOperation.NULL.equals(value)) {
 			return value;
 		}
 		return UUID.fromString(value);
