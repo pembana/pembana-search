@@ -1,5 +1,9 @@
 # Pembana Search
 
+[![Maven CI](https://github.com/pembana/pembana-search/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/pembana/pembana-search/actions/workflows/maven.yml)
+[![Development version](https://img.shields.io/badge/version-1.0.0--SNAPSHOT-blue)](pom.xml)
+[![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-green)](LICENSE)
+
 Advanced search expressions for Spring Data JPA, with optional Spring MVC query
 binding, field restrictions, input limits, and structured validation errors.
 
