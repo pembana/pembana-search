@@ -1,0 +1,45 @@
+/*
+ * Copyright 2026 Pembana Search contributors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.pembana.search.core;
+
+/**
+ * Explicit rejection of user input by a trusted extension. Other extension failures
+ * propagate.
+ *
+ * @author Gunnar Hillert
+ */
+public final class InvalidSearchValueException extends IllegalArgumentException {
+
+	private static final long serialVersionUID = 1L;
+
+	private final String reason;
+
+	/**
+	 * Rejects invalid input with a consumer-provided safe explanation.
+	 * @param message explanation suitable for a client
+	 */
+	public InvalidSearchValueException(String message) {
+		super(message);
+		this.reason = java.util.Objects.requireNonNull(message);
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public String getMessage() {
+		return this.reason;
+	}
+
+}

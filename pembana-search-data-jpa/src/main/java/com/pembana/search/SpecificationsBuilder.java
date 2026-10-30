@@ -209,6 +209,56 @@ public final class SpecificationsBuilder<U> {
 	}
 
 	/**
+	 * Replaces STANDARD input using explicitly selected extensions and no profile.
+	 * @param input expression
+	 * @param extensions immutable consumer registrations
+	 * @return this builder
+	 */
+	public SpecificationsBuilder<U> withExtendedSearch(String input, QueryExtensions extensions) {
+		this.specs = new ExtendedQueryTranslator<U>(this.settings, this.searchOptions, extensions, null).parse(input);
+		return this;
+	}
+
+	/**
+	 * Replaces STANDARD input using a profile and explicitly selected extensions.
+	 * @param input expression
+	 * @param profile per-query profile
+	 * @param extensions immutable consumer registrations
+	 * @return this builder
+	 */
+	public SpecificationsBuilder<U> withExtendedSearch(String input, SearchProfile profile,
+			QueryExtensions extensions) {
+		this.specs = new ExtendedQueryTranslator<U>(this.settings, this.searchOptions, extensions, profile)
+			.parse(input);
+		return this;
+	}
+
+	/**
+	 * Replaces a canonical programmatic query using explicitly selected extensions.
+	 * @param query immutable query
+	 * @param extensions immutable consumer registrations
+	 * @return this builder
+	 */
+	public SpecificationsBuilder<U> withExtendedQuery(Query query, QueryExtensions extensions) {
+		this.specs = new ExtendedQueryTranslator<U>(this.settings, this.searchOptions, extensions, null)
+			.translate(query);
+		return this;
+	}
+
+	/**
+	 * Replaces a public-name programmatic query using a profile and extensions.
+	 * @param query immutable query
+	 * @param profile per-query profile
+	 * @param extensions immutable consumer registrations
+	 * @return this builder
+	 */
+	public SpecificationsBuilder<U> withExtendedQuery(Query query, SearchProfile profile, QueryExtensions extensions) {
+		this.specs = new ExtendedQueryTranslator<U>(this.settings, this.searchOptions, extensions, profile)
+			.translate(query);
+		return this;
+	}
+
+	/**
 	 * Returns the current specification; JPA field/type checks happen on predicate
 	 * construction.
 	 * @return the current specification, never null

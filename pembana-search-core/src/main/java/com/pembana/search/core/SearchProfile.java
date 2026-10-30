@@ -222,6 +222,56 @@ public final class SearchProfile {
 		return result;
 	}
 
+	/**
+	 * Verifies a transformation's canonical target against the selected profile.
+	 * @param path canonical target
+	 * @param operation requested target operation
+	 * @param policy consumer canonical restrictions
+	 */
+	public void verifyTarget(String path, ProfileOperation operation, ParserOptions policy) {
+		policy.verifyField(path);
+		if (this.fields.values()
+			.stream()
+			.noneMatch((field) -> field.path().equals(path) && field.operations().contains(operation))) {
+			throw new QueryParseException(DiagnosticCode.FIELD_NOT_ALLOWED, path,
+					"Transformed target is not permitted by profile " + this.name + ": " + path);
+		}
+	}
+
+	/**
+	 * Normalizes request keys before extension transformation; original query usage must
+	 * still be validated.
+	 * @param request public-name options
+	 * @return canonical request options without applying profile defaults
+	 */
+	public SearchOptions canonicalOptions(SearchOptions request) {
+		return new SearchOptions(request.caseSensitivity(), normalize(request.fieldCaseSensitivity()));
+	}
+
+	/**
+	 * Applies profile defaults to canonical transformation targets, omitting choices for
+	 * other branches.
+	 * @param query canonical target query
+	 * @param request previously validated canonical request options
+	 * @return effective target options
+	 */
+	public SearchOptions targetOptions(Query query, SearchOptions request) {
+		Set<String> used = new HashSet<>();
+		collect(query, used);
+		Map<String, CaseSensitivity> choices = new HashMap<>();
+		for (String path : used) {
+			CaseSensitivity choice = request.fieldCaseSensitivity().getOrDefault(path, CaseSensitivity.INHERIT);
+			if (choice == CaseSensitivity.INHERIT && request.caseSensitivity() == CaseSensitivity.INHERIT) {
+				choice = this.defaults.fieldCaseSensitivity().getOrDefault(path, CaseSensitivity.INHERIT);
+			}
+			if (choice != CaseSensitivity.INHERIT) {
+				choices.put(path, choice);
+			}
+		}
+		return new SearchOptions((request.caseSensitivity() == CaseSensitivity.INHERIT)
+				? this.defaults.caseSensitivity() : request.caseSensitivity(), choices);
+	}
+
 	private static void collect(Query query, Set<String> fields) {
 		if (query instanceof Comparison comparison) {
 			fields.add(comparison.field());

@@ -122,3 +122,13 @@ defaults. Additive builder and translator overloads select profiles per query.
 Existing calls apply no profile. Canonical access restrictions still apply after
 resolution. See [field profiles](reference/profiles.md) for examples, precedence,
 diagnostics and the current entity-path-only support boundary.
+
+## Explicit converters and predicate extensions
+
+New immutable `QueryExtensions` registrations provide field/exact-type conversion,
+virtual/ordinary predicate factories and grouped criterion transformations. Select
+them through distinctly named `withExtendedSearch` and `withExtendedQuery` methods;
+existing constructors, overloads and default translation remain unchanged.
+Profile source and transformed-target permissions apply before callbacks. See
+[extension APIs](reference/extensions.md) for ordering, explicit declines, finite
+expansion limits, matching choices, diagnostics and the standalone consumer example.

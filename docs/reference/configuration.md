@@ -103,3 +103,10 @@ HTTP binding retain their current behavior.
 SIMPLE fields and case defaults. Select a profile with `withSearch(input, profile)`,
 `withInput(input, mode, profile)`, or `withQuery(query, profile)`. Existing overloads
 apply no profile, including after an earlier profiled call.
+
+## Explicit query extensions
+
+[Query extensions](extensions.md) add consumer-scoped converters, predicate
+factories and grouped transformations. Select a registry with
+`withExtendedSearch` or `withExtendedQuery`, optionally alongside a profile.
+Ordinary methods retain their current behavior.

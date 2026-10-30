@@ -111,5 +111,7 @@ request-local, and JPA query objects are created only during predicate execution
 Mandatory tenant/publication constraints remain caller-owned and should enclose
 the complete user search, for example `tenantScope.and(userSearch)`.
 
-This increment supports entity-path mappings. Custom converters, virtual-field
-factories and query transformations are subsequent extension work.
+Profiles support ordinary entity-path mappings and logical fields backed by
+explicitly selected [query extensions](extensions.md). Registered virtual-field
+factories and transformations still require profile permissions; transformed
+canonical targets must be exposed by the same profile.

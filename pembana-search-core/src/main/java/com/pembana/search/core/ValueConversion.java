@@ -1,0 +1,40 @@
+/*
+ * Copyright 2026 Pembana Search contributors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.pembana.search.core;
+
+import java.util.Set;
+
+/**
+ * Immutable conversion contract, including its target Java type and allowed operations.
+ *
+ * @param type exact attribute type (primitive types are supported)
+ * @param operations allowed operations for this registered conversion
+ * @param converter trusted, thread-safe scalar converter
+ * @author Gunnar Hillert
+ */
+public record ValueConversion(Class<?> type, Set<ProfileOperation> operations, ValueConverter converter) {
+	/**
+	 * Copies permissions and requires a concrete type and converter.
+	 * @param type exact attribute type
+	 * @param operations permitted operations
+	 * @param converter scalar conversion callback
+	 */
+	public ValueConversion {
+		java.util.Objects.requireNonNull(type);
+		operations = Set.copyOf(operations);
+		java.util.Objects.requireNonNull(converter);
+	}
+}

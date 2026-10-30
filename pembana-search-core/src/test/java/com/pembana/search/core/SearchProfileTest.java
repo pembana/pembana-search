@@ -157,6 +157,66 @@ class SearchProfileTest {
 	}
 
 	/**
+	 * Transformation targets require exposed canonical operations and retain canonical
+	 * request/default precedence.
+	 */
+	@Test
+	void extensionTargetsAndOptions() {
+		var profile = profile();
+		profile.verifyTarget("title", ProfileOperation.EQUALS, ParserOptions.defaults());
+		assertThrows(QueryParseException.class,
+				() -> profile.verifyTarget("hidden", ProfileOperation.EQUALS, ParserOptions.defaults()));
+		assertThrows(QueryParseException.class, () -> profile.verifyTarget("title", ProfileOperation.EQUALS,
+				new ParserOptions(false, List.of("title"), List.of(), 0, 0)));
+		var query = new Comparison("title", ComparisonOperator.EQUALS, "Ada");
+		var canonical = profile
+			.canonicalOptions(new SearchOptions(CaseSensitivity.INHERIT, Map.of("label", CaseSensitivity.SENSITIVE)));
+		assertEquals(CaseSensitivity.SENSITIVE, canonical.fieldCaseSensitivity().get("title"));
+		assertEquals(CaseSensitivity.SENSITIVE, profile.targetOptions(query, canonical).resolve("title"));
+		assertEquals(CaseSensitivity.INSENSITIVE,
+				profile.targetOptions(query, SearchOptions.defaults()).resolve("title"));
+		assertEquals(CaseSensitivity.SENSITIVE,
+				profile.targetOptions(query, new SearchOptions(CaseSensitivity.SENSITIVE, Map.of())).resolve("title"));
+		var fieldDefaults = new SearchProfile("defaults",
+				Map.of("name", new SearchField("title", Set.of(ProfileOperation.EQUALS))), Map.of(), List.of(),
+				new SearchOptions(CaseSensitivity.INHERIT, Map.of("name", CaseSensitivity.SENSITIVE)));
+		assertEquals(CaseSensitivity.SENSITIVE,
+				fieldDefaults.targetOptions(query, SearchOptions.defaults()).resolve("title"));
+		assertThrows(QueryParseException.class,
+				() -> fieldDefaults.verifyTarget("title", ProfileOperation.CONTAINS, ParserOptions.defaults()));
+	}
+
+	/**
+	 * Conversion and transformation callbacks work without a JPA or Spring dependency.
+	 */
+	@Test
+	void frameworkIndependentCallbacks() {
+		var permissions = java.util.EnumSet.of(ProfileOperation.EQUALS);
+		var conversion = new ValueConversion(Long.class, permissions, (text) -> {
+			if (text.equals("CAT-2")) {
+				return java.util.Optional.of(2L);
+			}
+			if (text.equals("bad")) {
+				throw new InvalidSearchValueException("Invalid catalog code");
+			}
+			return java.util.Optional.empty();
+		});
+		permissions.clear();
+		assertEquals(Set.of(ProfileOperation.EQUALS), conversion.operations());
+		assertEquals(Long.class, conversion.type());
+		assertEquals(java.util.Optional.of(2L), conversion.converter().convert("CAT-2"));
+		assertEquals(java.util.Optional.empty(), conversion.converter().convert("2"));
+		assertEquals("Invalid catalog code",
+				assertThrows(InvalidSearchValueException.class, () -> conversion.converter().convert("bad"))
+					.getMessage());
+		CriterionTransformer transform = (criterion) -> java.util.Optional
+			.of(criterion.or(new Comparison("note", ComparisonOperator.EQUALS, "Ada")));
+		Query original = new Comparison("title", ComparisonOperator.EQUALS, "Ada");
+		assertEquals(java.util.Optional.of(original.or(new Comparison("note", ComparisonOperator.EQUALS, "Ada"))),
+				transform.transform(original));
+	}
+
+	/**
 	 * Defensive copies and parallel resolution keep consumers isolated without request
 	 * state.
 	 */
