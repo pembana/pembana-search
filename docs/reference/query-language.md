@@ -182,9 +182,11 @@ cases do not establish arbitrary join/pagination correctness.
 
 `author.name:Writer OR title:Orphan` on Book retains the implicit inner join:
 a Book with null author is excluded even if its title matches the other branch.
-That regression test records the limitation; no left-join/EXISTS rewrite is
-introduced. To-many path navigation, all association topologies, aliases,
-field/operator registries, extension points, ordinary-text word matching, internal
-glob syntax, literal SQL escaping, and comprehensive collation behavior remain
-separate changes. The inherited
-empty `run()` test still provides no behavioral assertion.
+That regression test records the default limitation. An explicitly selected
+[optional-to-one policy](optional-to-one.md) now uses left joins for supported
+to-one paths; existing unconfigured queries retain their implicit navigation.
+[Field profiles](profiles.md), [query extensions](extensions.md), and
+[plain-text search](plain-text.md) are also explicitly selected APIs. To-many child
+navigation, further association topologies, and comprehensive collation behavior
+remain separate work. The inherited empty `run()` test still provides no
+behavioral assertion.

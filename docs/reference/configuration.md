@@ -110,3 +110,10 @@ apply no profile, including after an earlier profiled call.
 factories and grouped transformations. Select a registry with
 `withExtendedSearch` or `withExtendedQuery`, optionally alongside a profile.
 Ordinary methods retain their current behavior.
+
+## Optional to-one relations
+
+[Optional to-one handling](optional-to-one.md) keeps records with missing relations
+available for other matching OR branches. Select
+`QueryExtensions.builder().optionalToOne(true).build()` with `withExtendedSearch`
+or `withExtendedQuery` for an individual query. The default remains disabled.

@@ -325,5 +325,7 @@ suite's H2 and PostgreSQL profiles, including checks that the user query stays
 inside the required scope.
 
 Extensions currently apply to `STANDARD` and programmatic queries. `SIMPLE` uses
-its root-String pattern adapter. Association policies for joins and collection
-matching are a separate feature.
+its root-String pattern adapter. For optional `@ManyToOne` and `@OneToOne` relations,
+see [optional to-one handling](optional-to-one.md). Select it per query with
+`optionalToOne(true)` on the same extension builder. Collection matching policies
+remain a separate feature.

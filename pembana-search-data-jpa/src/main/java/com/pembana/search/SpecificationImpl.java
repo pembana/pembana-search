@@ -57,6 +57,9 @@ public final class SpecificationImpl<T> implements Specification<T> {
 	/** Retained immutable case choices for this criterion. */
 	private final SearchOptions searchOptions;
 
+	/** Whether this query explicitly selects left joins for traversed to-one paths. */
+	private final boolean optionalToOne;
+
 	/**
 	 * Creates a legacy criterion specification; parsed field restrictions belong to the
 	 * visitor.
@@ -74,6 +77,12 @@ public final class SpecificationImpl<T> implements Specification<T> {
 	 * @param searchOptions request-wide and per-property choices
 	 */
 	SpecificationImpl(SearchCriteria criteria, SearchSpec searchSpecAnnotation, SearchOptions searchOptions) {
+		this(criteria, searchSpecAnnotation, searchOptions, false);
+	}
+
+	SpecificationImpl(SearchCriteria criteria, SearchSpec searchSpecAnnotation, SearchOptions searchOptions,
+			boolean optionalToOne) {
+		this.optionalToOne = optionalToOne;
 		this.searchOptions = searchOptions;
 		this.criteria = criteria;
 		this.searchSpecAnnotation = searchSpecAnnotation;
@@ -88,8 +97,13 @@ public final class SpecificationImpl<T> implements Specification<T> {
 		Class<?> fieldClass;
 		boolean isCollectionField;
 		try {
-			for (int i = 0; i < nestedKey.length - 1; i++) {
-				nestedRoot = nestedRoot.get(nestedKey[i]);
+			if (this.optionalToOne) {
+				nestedRoot = ToOnePaths.owner(root, this.criteria.getKey());
+			}
+			else {
+				for (int i = 0; i < nestedKey.length - 1; i++) {
+					nestedRoot = nestedRoot.get(nestedKey[i]);
+				}
 			}
 			Path<?> attribute = nestedRoot.get(criteriaKey);
 			fieldClass = attribute.getJavaType();

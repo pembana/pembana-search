@@ -36,11 +36,14 @@ public final class QueryExtensions {
 
 	final Map<String, CriterionTransformer> transformations;
 
+	final boolean optionalToOne;
+
 	final int maxExpansionNodes;
 
 	final int maxExpansionDepth;
 
 	private QueryExtensions(Builder builder) {
+		this.optionalToOne = builder.optionalToOne;
 		this.types = Map.copyOf(builder.types);
 		this.fields = Map.copyOf(builder.fields);
 		this.factories = Map.copyOf(builder.factories);
@@ -58,7 +61,7 @@ public final class QueryExtensions {
 	}
 
 	boolean isEmpty() {
-		return this.types.isEmpty() && this.fields.isEmpty() && this.factories.isEmpty()
+		return !this.optionalToOne && this.types.isEmpty() && this.fields.isEmpty() && this.factories.isEmpty()
 				&& this.transformations.isEmpty();
 	}
 
@@ -77,11 +80,24 @@ public final class QueryExtensions {
 
 		private final Map<String, CriterionTransformer> transformations = new HashMap<>();
 
+		private boolean optionalToOne;
+
 		private int maxExpansionNodes = 1024;
 
 		private int maxExpansionDepth = 64;
 
 		private Builder() {
+		}
+
+		/**
+		 * Keeps missing to-one relations eligible for other matching OR branches.
+		 * @param enabled true to use left joins for traversed to-one paths; false retains
+		 * legacy navigation
+		 * @return this builder
+		 */
+		public Builder optionalToOne(boolean enabled) {
+			this.optionalToOne = enabled;
+			return this;
 		}
 
 		/**

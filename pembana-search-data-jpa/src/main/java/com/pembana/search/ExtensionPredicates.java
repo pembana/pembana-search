@@ -47,7 +47,7 @@ final class ExtensionPredicates {
 
 	static <T> @Nullable Predicate build(SearchCriteria criterion, SearchSpec settings, SearchOptions options,
 			QueryExtensions extensions, Root<T> root, @Nullable CriteriaQuery<?> query, CriteriaBuilder builder) {
-		var fallback = new SpecificationImpl<T>(criterion, settings, options);
+		var fallback = new SpecificationImpl<T>(criterion, settings, options, extensions.optionalToOne);
 		String field = criterion.getKey();
 		PredicateRegistration factory = extensions.factories.get(field);
 		Class<?> type;
@@ -56,7 +56,7 @@ final class ExtensionPredicates {
 		}
 		else {
 			try {
-				type = path(root, field).getJavaType();
+				type = path(root, field, extensions.optionalToOne).getJavaType();
 			}
 			catch (IllegalArgumentException | IllegalStateException exception) {
 				return fallback.toPredicate(root, query, builder);
@@ -130,15 +130,20 @@ final class ExtensionPredicates {
 			if (!handled) {
 				return fallback.toPredicate(root, query, builder);
 			}
-			Path<?> attribute = path(root, field);
+			Path<?> attribute = path(root, field, extensions.optionalToOne);
 			if (boxed(attribute.getJavaType()) != boxed(type)) {
 				throw new IllegalStateException("Converted value type does not match fallback attribute " + field);
 			}
 			if (type == String.class) {
 				String[] parts = field.split("\\.");
 				Path<?> owner = root;
-				for (int i = 0; i < parts.length - 1; i++) {
-					owner = owner.get(parts[i]);
+				if (extensions.optionalToOne) {
+					owner = ToOnePaths.owner(root, field);
+				}
+				else {
+					for (int i = 0; i < parts.length - 1; i++) {
+						owner = owner.get(parts[i]);
+					}
 				}
 				return ParsingStrategy.getStrategy(type, settings, false, options.resolve(field))
 					.buildPredicate(builder, owner, parts[parts.length - 1], criterion.getOperation(), value);
@@ -211,7 +216,10 @@ final class ExtensionPredicates {
 		}
 	}
 
-	private static Path<?> path(Root<?> root, String field) {
+	private static Path<?> path(Root<?> root, String field, boolean optionalToOne) {
+		if (optionalToOne) {
+			return ToOnePaths.resolve(root, field);
+		}
 		Path<?> current = root;
 		for (String part : field.split("\\.")) {
 			current = current.get(part);

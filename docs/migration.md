@@ -132,3 +132,14 @@ existing constructors, overloads and default translation remain unchanged.
 Profile source and transformed-target permissions apply before callbacks. See
 [extension APIs](reference/extensions.md) for ordering, explicit declines, finite
 expansion limits, matching choices, diagnostics and the standalone consumer example.
+
+## Opt-in optional to-one handling
+
+`QueryExtensions.Builder.optionalToOne(true)` selects left joins for traversed
+ManyToOne/OneToOne paths in an individual extended query. Missing relations can
+then satisfy other OR branches. Existing entry points, default/disabled registries,
+validation and matching settings retain their behavior. `ToOnePaths.resolve`
+provides the same explicit path resolution for custom factories. See
+[optional to-one handling](reference/optional-to-one.md) for null behavior,
+supported mapping shapes, per-query activation and limitations. Collection
+traversal and to-one navigation after embedded attributes are not added.
