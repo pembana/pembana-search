@@ -1,0 +1,61 @@
+/*
+ * Copyright 2026 Pembana Search contributors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.pembana.search.strategies;
+
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.Path;
+import jakarta.persistence.criteria.Predicate;
+import org.jspecify.annotations.Nullable;
+
+import com.pembana.search.SearchOperation;
+
+/**
+ * Converts signed 64-bit values exactly and builds numeric comparisons.
+ *
+ * @author Gunnar Hillert
+ */
+public final class LongStrategy implements ParsingStrategy {
+
+	/** Creates an exact Long converter. */
+	public LongStrategy() {
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public @Nullable Predicate buildPredicate(CriteriaBuilder builder, Path<?> path, String fieldName,
+			@Nullable SearchOperation ops, @Nullable Object value) {
+		if (ops == null) {
+			return ParsingStrategy.super.buildPredicate(builder, path, fieldName, null, value);
+		}
+		return switch (ops) {
+			case GREATER_THAN -> builder.greaterThan(path.get(fieldName), (Long) value);
+			case LESS_THAN -> builder.lessThan(path.get(fieldName), (Long) value);
+			case GREATER_THAN_EQUALS -> builder.greaterThanOrEqualTo(path.get(fieldName), (Long) value);
+			case LESS_THAN_EQUALS -> builder.lessThanOrEqualTo(path.get(fieldName), (Long) value);
+			default -> ParsingStrategy.super.buildPredicate(builder, path, fieldName, ops, value);
+		};
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public @Nullable Object parse(@Nullable String value, Class<?> fieldClass) throws Exception {
+		if (SearchOperation.NULL.equals(value)) {
+			return value;
+		}
+		return (value == null) ? null : Long.valueOf(value);
+	}
+
+}

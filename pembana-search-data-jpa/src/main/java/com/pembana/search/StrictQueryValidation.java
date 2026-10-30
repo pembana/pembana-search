@@ -36,9 +36,9 @@ import org.jspecify.annotations.Nullable;
 @NullMarked
 final class StrictQueryValidation {
 
-	private static final Set<Class<?>> ORDERED_TYPES = Set.of(Integer.class, int.class, Double.class, double.class,
-			Float.class, float.class, Date.class, Duration.class, LocalDate.class, LocalTime.class, LocalDateTime.class,
-			Instant.class, String.class);
+	private static final Set<Class<?>> ORDERED_TYPES = Set.of(Long.class, long.class, Integer.class, int.class,
+			Double.class, double.class, Float.class, float.class, Date.class, Duration.class, LocalDate.class,
+			LocalTime.class, LocalDateTime.class, Instant.class, String.class);
 
 	/** Prevents construction of the stateless validator. */
 	private StrictQueryValidation() {

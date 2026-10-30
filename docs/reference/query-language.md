@@ -64,7 +64,7 @@ non-ASCII case handling, accent sensitivity and backslash behavior can still
 depend on the database. See [case sensitivity](case-sensitivity.md) for the
 implemented GET/JSON options, inheritance, validation, null semantics and form UX.
 
-Supported conversion strategies cover String, Integer/int, Float/float,
+Supported conversion strategies cover String, Integer/int, Long/long, Float/float,
 Double/double, Boolean/boolean, Date, Duration, LocalDate, LocalTime,
 LocalDateTime, Instant, UUID, and enums, including public and private nested enum
 types. Java time values use their existing parsers; Date retains Jackson 2

@@ -17,6 +17,7 @@ package com.pembana.search;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import jakarta.persistence.Access;
@@ -42,6 +43,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.pembana.search.annotation.SearchSpec;
+import com.pembana.search.core.CaseSensitivity;
+import com.pembana.search.core.Comparison;
+import com.pembana.search.core.ComparisonOperator;
+import com.pembana.search.core.SearchOptions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -88,8 +93,78 @@ public class JpaAttributeRegressionTest {
 			sample.privateState = (id == 1) ? PrivateState.ACTIVE : (id == 2) ? PrivateState.INACTIVE : null;
 			this.entityManager.persist(sample);
 		}
+		for (long value : List.of(Long.MIN_VALUE, 9007199254740992L, 9007199254740993L, Long.MAX_VALUE)) {
+			LongSample sample = new LongSample();
+			sample.id = value;
+			sample.number = (value == Long.MIN_VALUE) ? null : value;
+			this.entityManager.persist(sample);
+		}
 		this.entityManager.flush();
 		this.entityManager.clear();
+	}
+
+	/**
+	 * Both validation modes preserve exact primitive and boxed Long values and numeric
+	 * order.
+	 */
+	@Test
+	void exactLongComparisons() {
+		for (boolean strict : List.of(false, true)) {
+			assertEquals(List.of(Long.MIN_VALUE), ids(LongSample.class, "id:-9223372036854775808", strict));
+			assertEquals(List.of(Long.MAX_VALUE), ids(LongSample.class, "number:9223372036854775807", strict));
+			assertEquals(List.of(9007199254740993L), ids(LongSample.class, "id:9007199254740993", strict));
+			assertEquals(List.of(9007199254740992L, 9007199254740993L),
+					ids(LongSample.class, "id BETWEEN 9007199254740992 AND 9007199254740993", strict));
+			assertEquals(List.of(Long.MIN_VALUE, Long.MAX_VALUE),
+					ids(LongSample.class, "id NOT BETWEEN 9007199254740992 AND 9007199254740993", strict));
+			assertEquals(List.of(Long.MIN_VALUE, Long.MAX_VALUE),
+					ids(LongSample.class, "id IN [-9223372036854775808,9223372036854775807]", strict));
+			assertEquals(List.of(9007199254740992L, 9007199254740993L),
+					ids(LongSample.class, "id NOT IN [-9223372036854775808,9223372036854775807]", strict));
+			assertEquals(List.of(Long.MAX_VALUE), ids(LongSample.class, "id>9007199254740993", strict));
+			assertEquals(List.of(Long.MIN_VALUE), ids(LongSample.class, "id<9007199254740992", strict));
+			assertEquals(List.of(Long.MIN_VALUE), ids(LongSample.class, "number IS NULL", strict));
+			assertEquals(List.of(9007199254740992L, 9007199254740993L, Long.MAX_VALUE),
+					ids(LongSample.class, "number IS NOT NULL", strict));
+			assertEquals(List.of(Long.MIN_VALUE, 9007199254740992L, Long.MAX_VALUE),
+					ids(LongSample.class, "id!9007199254740993", strict));
+		}
+	}
+
+	/**
+	 * Overflow and malformed scalar, list, and range values fail before provider
+	 * coercion.
+	 */
+	@Test
+	void invalidLongValues() {
+		for (boolean strict : List.of(false, true)) {
+			for (String expression : List.of("id:9223372036854775808", "id:-9223372036854775809", "id:abc", "id:1.5",
+					"id IN [1,9223372036854775808]", "id BETWEEN 1 AND 9223372036854775808")) {
+				var error = assertThrows(InvalidSearchQueryException.class,
+						() -> ids(LongSample.class, expression, strict));
+				assertEquals(QueryErrorCode.INVALID_VALUE, error.getErrorCode());
+				assertEquals("id", error.getField());
+			}
+		}
+	}
+
+	/**
+	 * Programmatic Long predicates preserve precision under global insensitive text
+	 * options.
+	 */
+	@Test
+	void programmaticLongIgnoresTextCase() throws Exception {
+		SearchSpec settings = Objects
+			.requireNonNull(JpaAttributeRegressionTest.class.getDeclaredMethod("strictPolicy", Specification.class)
+				.getParameters()[0].getAnnotation(SearchSpec.class));
+		var options = new SearchOptions(CaseSensitivity.INSENSITIVE, Map.of());
+		var criterion = new Comparison("number", ComparisonOperator.EQUALS, "9007199254740993");
+		var specification = new JpaQueryTranslator<LongSample>(settings, options).translate(criterion);
+		var builder = this.entityManager.getCriteriaBuilder();
+		var query = builder.createQuery(Long.class);
+		var root = query.from(LongSample.class);
+		query.select(root.get("id")).where(Objects.requireNonNull(specification.toPredicate(root, query, builder)));
+		assertEquals(List.of(9007199254740993L), this.entityManager.createQuery(query).getResultList());
 	}
 
 	/** Direct field access retains empty and nonempty collection semantics. */
@@ -233,6 +308,26 @@ public class JpaAttributeRegressionTest {
 	 * @param query annotation target
 	 */
 	private static void legacyPolicy(@SearchSpec Specification<?> query) {
+	}
+
+	/**
+	 * Numeric fixture includes primitive identifiers and a nullable boxed value.
+	 *
+	 * @author Gunnar Hillert
+	 */
+	@Entity(name = "RegressionLong")
+	@Table(name = "regression_long")
+	public static class LongSample {
+
+		@Id
+		public long id;
+
+		public @Nullable Long number;
+
+		/** Creates a numeric fixture for JPA. */
+		public LongSample() {
+		}
+
 	}
 
 	/**

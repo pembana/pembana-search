@@ -92,3 +92,13 @@ current branding or installation advice.
 3. Verify application queries and mandatory scope composition on its own schema.
 4. Review strict validation choices separately; the rename does not turn it on.
 5. Keep version/namespace adoption separate from future matching/model changes.
+
+## Built-in Long conversion
+
+Long and primitive long fields now use exact signed 64-bit decimal conversion by
+default for equality, inequality, membership, ordering, and inclusive ranges.
+Explicit null checks remain supported. Strict validation accepts these types.
+Malformed and overflowing values produce `INVALID_VALUE` errors. Global text case
+options do not affect numeric conversion. This bug fix intentionally replaces the
+previous string fallback and strict unsupported-type rejection for Long fields;
+no registration or feature switch is needed. Public signatures are unchanged.

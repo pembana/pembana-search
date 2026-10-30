@@ -165,6 +165,9 @@ public interface ParsingStrategy {
 		if (fieldClass == Float.class || fieldClass == float.class) {
 			return new FloatStrategy();
 		}
+		if (fieldClass == Long.class || fieldClass == long.class) {
+			return new LongStrategy();
+		}
 		if (fieldClass == Integer.class || fieldClass == int.class) {
 			return new IntStrategy();
 		}
