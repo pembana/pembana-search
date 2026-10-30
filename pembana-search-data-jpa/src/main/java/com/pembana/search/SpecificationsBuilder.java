@@ -23,12 +23,15 @@ import org.jspecify.annotations.Nullable;
 import org.springframework.data.jpa.domain.Specification;
 
 import com.pembana.search.annotation.SearchSpec;
+import com.pembana.search.core.ExpressionParser;
+import com.pembana.search.core.ParserOptions;
 import com.pembana.search.core.PlainTextQuery;
 import com.pembana.search.core.Query;
 import com.pembana.search.core.QueryParseException;
 import com.pembana.search.core.SearchConfiguration;
 import com.pembana.search.core.SearchMode;
 import com.pembana.search.core.SearchOptions;
+import com.pembana.search.core.SearchProfile;
 
 /**
  * Builds JPA specifications from advanced expressions using explicit annotation settings.
@@ -126,6 +129,60 @@ public final class SpecificationsBuilder<U> {
 		catch (QueryParseException exception) {
 			throw JpaQueryTranslator.diagnostic(exception);
 		}
+	}
+
+	/**
+	 * Replaces input using a profile selected for this query only; later calls without a
+	 * profile use the ordinary field policy.
+	 * @param input raw input
+	 * @param mode per-query mode or INHERIT
+	 * @param profile immutable field policy
+	 * @return this builder
+	 */
+	public SpecificationsBuilder<U> withInput(@Nullable String input, SearchMode mode, SearchProfile profile) {
+		java.util.Objects.requireNonNull(mode);
+		if (((mode == SearchMode.INHERIT) ? this.configuration.defaultMode() : mode) == SearchMode.STANDARD) {
+			return withSearch(java.util.Objects.requireNonNull(input), profile);
+		}
+		try {
+			var text = profile.composeText(input, this.configuration, JpaQueryTranslator.parserOptions(this.settings));
+			this.specs = PlainTextSpecifications.translate(text, profile.textOptions(text, this.searchOptions));
+			return this;
+		}
+		catch (QueryParseException exception) {
+			throw JpaQueryTranslator.diagnostic(exception);
+		}
+	}
+
+	/**
+	 * Parses public names before applying canonical access restrictions and profile
+	 * permissions.
+	 * @param search STANDARD expression
+	 * @param profile immutable policy for this query
+	 * @return this builder
+	 */
+	public SpecificationsBuilder<U> withSearch(String search, SearchProfile profile) {
+		var policy = JpaQueryTranslator.parserOptions(this.settings);
+		var syntax = new ParserOptions(policy.strictValidation(), java.util.List.of(), java.util.List.of(),
+				policy.maxQueryLength(), policy.maxNestingDepth());
+		try {
+			this.specs = this.translator.translate(new ExpressionParser(syntax).parse(search), profile);
+			return this;
+		}
+		catch (QueryParseException exception) {
+			throw JpaQueryTranslator.diagnostic(exception);
+		}
+	}
+
+	/**
+	 * Resolves a programmatic public-name query through a per-query profile.
+	 * @param query immutable query
+	 * @param profile selected field policy
+	 * @return this builder
+	 */
+	public SpecificationsBuilder<U> withQuery(Query query, SearchProfile profile) {
+		this.specs = this.translator.translate(query, profile);
+		return this;
 	}
 
 	/**

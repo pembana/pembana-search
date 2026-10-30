@@ -96,3 +96,10 @@ See [plain-text search](plain-text.md) for consumer defaults, per-query
 `STANDARD`/`SIMPLE`/`INHERIT` selection, root String fields, case choices,
 limits, and reusable memory/JPA/JDBC pattern adapters. Existing entry points and
 HTTP binding retain their current behavior.
+
+## Per-query field profiles
+
+[Field profiles](profiles.md) provide opt-in public aliases, allowed operations,
+SIMPLE fields and case defaults. Select a profile with `withSearch(input, profile)`,
+`withInput(input, mode, profile)`, or `withQuery(query, profile)`. Existing overloads
+apply no profile, including after an earlier profiled call.

@@ -113,3 +113,12 @@ a consumer default; `withInput` selects or overrides it per query using `INHERIT
 constructors, query records/enums, `withSearch`, `withQuery`, and HTTP binding
 retain their contracts. See [plain-text mode](reference/plain-text.md) for
 activation, deactivation, matching rules, and current root-String-only support.
+
+## Opt-in field profiles
+
+New immutable `SearchProfile`, `SearchField`, and `ProfileOperation` types provide
+public names, alias resolution, operator permissions, SIMPLE fields and matching
+defaults. Additive builder and translator overloads select profiles per query.
+Existing calls apply no profile. Canonical access restrictions still apply after
+resolution. See [field profiles](reference/profiles.md) for examples, precedence,
+diagnostics and the current entity-path-only support boundary.

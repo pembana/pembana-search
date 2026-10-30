@@ -30,6 +30,7 @@ import com.pembana.search.core.ParserOptions;
 import com.pembana.search.core.Query;
 import com.pembana.search.core.QueryParseException;
 import com.pembana.search.core.SearchOptions;
+import com.pembana.search.core.SearchProfile;
 
 /**
  * Translates immutable query trees through the characterized JPA conversion strategies.
@@ -76,6 +77,23 @@ public final class JpaQueryTranslator<T> {
 		try {
 			this.searchOptions.validate(query);
 			return translateNode(query);
+		}
+		catch (QueryParseException exception) {
+			throw diagnostic(exception);
+		}
+	}
+
+	/**
+	 * Translates using a profile selected for this query only.
+	 * @param query public-name query
+	 * @param profile immutable field policy
+	 * @return canonical specification with profile matching defaults
+	 */
+	public Specification<T> translate(Query query, SearchProfile profile) {
+		try {
+			Query resolved = profile.resolve(query, this.options);
+			return new JpaQueryTranslator<T>(this.settings, profile.optionsFor(resolved, this.searchOptions))
+				.translate(resolved);
 		}
 		catch (QueryParseException exception) {
 			throw diagnostic(exception);

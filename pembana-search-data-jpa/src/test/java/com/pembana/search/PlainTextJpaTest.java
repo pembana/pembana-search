@@ -15,6 +15,7 @@
  */
 package com.pembana.search;
 
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -34,10 +35,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pembana.search.annotation.SearchSpec;
 import com.pembana.search.core.CaseSensitivity;
+import com.pembana.search.core.Comparison;
+import com.pembana.search.core.ComparisonOperator;
 import com.pembana.search.core.PlainTextQuery;
+import com.pembana.search.core.ProfileOperation;
 import com.pembana.search.core.SearchConfiguration;
+import com.pembana.search.core.SearchField;
 import com.pembana.search.core.SearchMode;
 import com.pembana.search.core.SearchOptions;
+import com.pembana.search.core.SearchProfile;
 import com.pembana.search.core.TextPattern;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -157,6 +163,74 @@ public class PlainTextJpaTest {
 					new PlainTextQuery(List.of(field), List.of(new TextPattern("x", false))), SearchOptions.defaults());
 			assertThrows(InvalidSearchQueryException.class, () -> ids(invalid, 0, 10));
 		}
+	}
+
+	/**
+	 * Profiles apply equally to expression, programmatic and SIMPLE queries, and do not
+	 * persist between calls.
+	 */
+	@Test
+	void perQueryProfiles() throws Exception {
+		var profile = new SearchProfile("public",
+				Map.of("name", new SearchField("title", EnumSet.allOf(ProfileOperation.class))),
+				Map.of("label", "name"), List.of("name"), new SearchOptions(CaseSensitivity.INSENSITIVE, Map.of()));
+		var builder = configured(SearchMode.STANDARD, SearchOptions.defaults());
+		assertEquals(List.of(1L), ids(builder.withInput("label:sabal", SearchMode.INHERIT, profile).build(), 0, 10));
+		assertEquals(List.of(1L), ids(
+				builder.withQuery(new Comparison("name", ComparisonOperator.EQUALS, "sabal"), profile).build(), 0, 10));
+		assertEquals(List.of(1L, 2L), ids(builder.withInput("sabal", SearchMode.SIMPLE, profile).build(), 0, 10));
+		assertEquals(List.of(3L), ids(builder.withSearch("title:Orphan").build(), 0, 10));
+		assertThrows(InvalidSearchQueryException.class, () -> builder.withSearch("title:Orphan", profile));
+		assertThrows(InvalidSearchQueryException.class, () -> builder.withSearch("note:minor", profile));
+		assertThrows(InvalidSearchQueryException.class, () -> builder.withSearch("broken", profile));
+		var admin = new SearchProfile("admin",
+				Map.of("description", new SearchField("note", EnumSet.allOf(ProfileOperation.class))), Map.of(),
+				List.of("description"), SearchOptions.defaults());
+		assertEquals(List.of(1L), ids(builder.withInput("minor", SearchMode.SIMPLE, admin).build(), 0, 10));
+		assertEquals(List.of(1L, 2L, 3L, 4L, 5L),
+				ids(builder.withInput(null, SearchMode.SIMPLE, profile).build(), 0, 10));
+		assertEquals(List.of(),
+				ids(configured(SearchMode.STANDARD, new SearchOptions(CaseSensitivity.SENSITIVE, Map.of()))
+					.withSearch("name:sabal", profile)
+					.build(), 0, 10));
+		assertEquals(List.of(1L),
+				ids(configured(SearchMode.STANDARD,
+						new SearchOptions(CaseSensitivity.SENSITIVE, Map.of("label", CaseSensitivity.INSENSITIVE)))
+					.withSearch("name:sabal", profile)
+					.build(), 0, 10));
+		assertThrows(InvalidSearchQueryException.class,
+				() -> configured(SearchMode.STANDARD,
+						new SearchOptions(CaseSensitivity.INHERIT,
+								Map.of("label", CaseSensitivity.SENSITIVE, "name", CaseSensitivity.INSENSITIVE)))
+					.withSearch("name:Sabal", profile));
+	}
+
+	/**
+	 * Canonical deny rules survive aliasing, and numeric fields retain type checks under
+	 * profile defaults.
+	 */
+	@Test
+	void profileCanonicalPermissions() throws Exception {
+		var profile = new SearchProfile("numeric",
+				Map.of("key", new SearchField("id", EnumSet.allOf(ProfileOperation.class))), Map.of(), List.of(),
+				new SearchOptions(CaseSensitivity.INSENSITIVE, Map.of()));
+		assertEquals(List.of(2L, 3L),
+				ids(configured(SearchMode.STANDARD, SearchOptions.defaults()).withSearch("key BETWEEN 2 AND 3", profile)
+					.build(), 0, 10));
+		var invalid = configured(SearchMode.STANDARD,
+				new SearchOptions(CaseSensitivity.INHERIT, Map.of("key", CaseSensitivity.INSENSITIVE)))
+			.withSearch("key:1", profile)
+			.build();
+		assertThrows(InvalidSearchQueryException.class, () -> ids(invalid, 0, 10));
+		SearchSpec policy = Objects.requireNonNull(
+				PlainTextJpaTest.class.getDeclaredMethod("restrictedPolicy", Specification.class).getParameters()[0]
+					.getAnnotation(SearchSpec.class));
+		assertThrows(InvalidSearchQueryException.class,
+				() -> new SpecificationsBuilder<TextRow>(policy).withSearch("key:1", profile));
+	}
+
+	private static void restrictedPolicy(
+			@SearchSpec(allowedFields = { "id" }, blackListedFields = { "id" }) Specification<?> query) {
 	}
 
 	private SearchConfiguration config(SearchMode mode) {
