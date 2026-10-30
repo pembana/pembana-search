@@ -102,3 +102,14 @@ Malformed and overflowing values produce `INVALID_VALUE` errors. Global text cas
 options do not affect numeric conversion. This bug fix intentionally replaces the
 previous string fallback and strict unsupported-type rejection for Long fields;
 no registration or feature switch is needed. Public signatures are unchanged.
+
+## Opt-in plain-text search
+
+New `SearchConfiguration`, `SearchMode`, `PlainTextQuery`, and `TextPattern` types
+provide explicit plain-text composition. `SpecificationsBuilder.configured` sets
+a consumer default; `withInput` selects or overrides it per query using `INHERIT`,
+`STANDARD` (the original expression syntax and library default), or `SIMPLE`
+(plain-text word and star-pattern matching). Existing
+constructors, query records/enums, `withSearch`, `withQuery`, and HTTP binding
+retain their contracts. See [plain-text mode](reference/plain-text.md) for
+activation, deactivation, matching rules, and current root-String-only support.

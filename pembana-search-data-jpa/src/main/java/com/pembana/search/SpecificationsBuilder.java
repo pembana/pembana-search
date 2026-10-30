@@ -19,10 +19,15 @@
  */
 package com.pembana.search;
 
+import org.jspecify.annotations.Nullable;
 import org.springframework.data.jpa.domain.Specification;
 
 import com.pembana.search.annotation.SearchSpec;
+import com.pembana.search.core.PlainTextQuery;
 import com.pembana.search.core.Query;
+import com.pembana.search.core.QueryParseException;
+import com.pembana.search.core.SearchConfiguration;
+import com.pembana.search.core.SearchMode;
 import com.pembana.search.core.SearchOptions;
 
 /**
@@ -43,6 +48,12 @@ public final class SpecificationsBuilder<U> {
 
 	private final JpaQueryTranslator<U> translator;
 
+	private final SearchConfiguration configuration;
+
+	private final SearchSpec settings;
+
+	private final SearchOptions searchOptions;
+
 	/**
 	 * Creates an unconfigured builder whose specification contributes no predicate.
 	 * @param searchSpecAnnotation matching, field-access and validation settings
@@ -58,8 +69,63 @@ public final class SpecificationsBuilder<U> {
 	 * @param searchOptions request-wide and per-property choices
 	 */
 	public SpecificationsBuilder(SearchSpec searchSpecAnnotation, SearchOptions searchOptions) {
+		this(searchSpecAnnotation, searchOptions, SearchConfiguration.defaults());
+	}
+
+	private SpecificationsBuilder(SearchSpec searchSpecAnnotation, SearchOptions searchOptions,
+			SearchConfiguration configuration) {
+		this.configuration = java.util.Objects.requireNonNull(configuration);
+		this.settings = searchSpecAnnotation;
+		this.searchOptions = searchOptions;
 		this.parser = new CriteriaParser<>(searchSpecAnnotation, searchOptions);
 		this.translator = new JpaQueryTranslator<>(searchSpecAnnotation, searchOptions);
+	}
+
+	/**
+	 * Creates a builder with an explicit consumer default. Existing constructors keep
+	 * STANDARD mode.
+	 * @param <T> entity type
+	 * @param settings existing validation and access policy
+	 * @param options explicit case options
+	 * @param configuration immutable consumer default and eligible text fields
+	 * @return configured builder
+	 */
+	public static <T> SpecificationsBuilder<T> configured(SearchSpec settings, SearchOptions options,
+			SearchConfiguration configuration) {
+		return new SpecificationsBuilder<>(settings, options, configuration);
+	}
+
+	/**
+	 * Replaces the current query using the consumer default interpretation.
+	 * @param input raw input; null is neutral only in SIMPLE mode
+	 * @return this builder
+	 */
+	public SpecificationsBuilder<U> withInput(@Nullable String input) {
+		return withInput(input, SearchMode.INHERIT);
+	}
+
+	/**
+	 * Replaces the current query with a per-query mode override. Parse failures never
+	 * fall back.
+	 * @param input raw input
+	 * @param mode explicit interpretation or INHERIT
+	 * @return this builder
+	 */
+	public SpecificationsBuilder<U> withInput(@Nullable String input, SearchMode mode) {
+		java.util.Objects.requireNonNull(mode);
+		SearchMode selected = (mode == SearchMode.INHERIT) ? this.configuration.defaultMode() : mode;
+		if (selected == SearchMode.STANDARD) {
+			return withSearch(java.util.Objects.requireNonNull(input));
+		}
+		try {
+			var text = PlainTextQuery.compose(input, this.configuration,
+					JpaQueryTranslator.parserOptions(this.settings));
+			this.specs = PlainTextSpecifications.translate(text, this.searchOptions);
+			return this;
+		}
+		catch (QueryParseException exception) {
+			throw JpaQueryTranslator.diagnostic(exception);
+		}
 	}
 
 	/**
