@@ -87,15 +87,14 @@ final class ScalarElements {
 		Expression<String> folded = insensitive ? builder.lower(original) : original;
 		if (value instanceof List<?> list) {
 			var clause = builder
-				.in((Expression<Object>) (Expression<?>) ((choice == CaseSensitivity.INSENSITIVE) ? folded : original));
+				.in((Expression<Object>) (Expression<?>) folded);
 			for (Object item : list) {
 				clause.value(
-						(choice == CaseSensitivity.INSENSITIVE) ? String.valueOf(item).toLowerCase(Locale.ROOT) : item);
+						insensitive ? String.valueOf(item).toLowerCase(Locale.ROOT) : item);
 			}
 			return (operation == SearchOperation.IN_ARRAY) ? clause : builder.not(clause);
 		}
 		String text = insensitive ? String.valueOf(value).toLowerCase(Locale.ROOT) : String.valueOf(value);
-		Expression<String> less = (choice == CaseSensitivity.INHERIT) ? original : folded;
 		return switch (operation) {
 			case EQUALS -> builder.equal(folded, text);
 			case NOT_EQUALS -> builder.notEqual(folded, text);
@@ -107,8 +106,8 @@ final class ScalarElements {
 			case DOESNT_CONTAIN -> builder.notLike(folded, "%" + text + "%");
 			case GREATER_THAN -> builder.greaterThan(folded, text);
 			case GREATER_THAN_EQUALS -> builder.greaterThanOrEqualTo(folded, text);
-			case LESS_THAN -> builder.lessThan(less, text);
-			case LESS_THAN_EQUALS -> builder.lessThanOrEqualTo(less, text);
+			case LESS_THAN -> builder.lessThan(folded, text);
+			case LESS_THAN_EQUALS -> builder.lessThanOrEqualTo(folded, text);
 			default -> throw CollectionPaths.unsupported(criterion.getKey(), "Unsupported String element operation");
 		};
 	}

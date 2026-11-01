@@ -73,7 +73,30 @@ class CaseInsensitiveEqualityTest {
 	 * Selects folding.
 	 * @param unused annotation target
 	 */
-	private void insensitive(@SearchSpec(caseSensitiveFlag = false) Specification<Users> unused) {
+	private void insensitive(@SearchSpec(caseSensitiveFlag = false, strictValidation = false) Specification<Users> unused) {
+	}
+
+	/** The annotation fallback folds membership, ordering and both range bounds. */
+	@Test
+	void annotationCasePolicyCoversMembershipAndOrdering() throws Exception {
+		for (String policy : List.of("insensitive", "strictInsensitive")) {
+			assertEquals(List.of("ADA", "Ada"), names(spec(policy, "userFirstName IN [aDa]")));
+			assertEquals(List.of("Beta", "Gamma"), names(spec(policy, "userFirstName NOT IN [aDa]")));
+			assertEquals(List.of("Beta", "Gamma"), names(spec(policy, "userFirstName>ADA")));
+			assertEquals(List.of("ADA", "Ada", "Beta", "Gamma"), names(spec(policy, "userFirstName>:ADA")));
+			assertEquals(List.of("ADA", "Ada"), names(spec(policy, "userFirstName<BETA")));
+			assertEquals(List.of("ADA", "Ada"), names(spec(policy, "userFirstName<:ADA")));
+			assertEquals(List.of("ADA", "Ada", "Beta"), names(spec(policy, "userFirstName BETWEEN ADA AND BETA")));
+			assertEquals(List.of("Gamma"), names(spec(policy, "userFirstName NOT BETWEEN ADA AND BETA")));
+			assertEquals(List.of("Gamma"), names(spec(policy, "userLastName IS NULL")));
+			assertEquals(List.of("ADA"), names(spec(policy, "userLastName NOT IN [ONE]")));
+		}
+		Specification<Users> originalOrdering = (root, query, builder) -> builder.lessThan(root.get("userFirstName"),
+				"beta");
+		assertEquals(names(originalOrdering), names(spec("sensitive", "userFirstName<beta")));
+		var membership = new com.pembana.search.core.Membership("userFirstName", false, List.of("aDa"));
+		assertEquals(List.of("ADA", "Ada"),
+				names(new JpaQueryTranslator<Users>(settings("insensitive")).translate(membership)));
 	}
 
 	/**

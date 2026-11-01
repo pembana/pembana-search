@@ -200,7 +200,7 @@ public interface ParsingStrategy {
 	 * @param fieldClass attribute type
 	 * @param annotation configured matching settings
 	 * @param collection whether collection-valued
-	 * @param caseSensitivity resolved request choice, or INHERIT for legacy behavior
+	 * @param caseSensitivity resolved request choice, or INHERIT for the annotation fallback
 	 * @return selected strategy
 	 */
 	static ParsingStrategy getStrategy(Class<?> fieldClass, SearchSpec annotation, boolean collection,

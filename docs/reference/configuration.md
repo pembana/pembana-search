@@ -8,7 +8,7 @@ and is retained at runtime. MVC applies it only to `Specification` parameters.
 | Member | Default | Contract |
 | --- | --- | --- |
 | `searchParam` | `"search"` | HTTP query parameter name |
-| `caseSensitiveFlag` | `true` | False folds string equality, inequality and patterns; membership/ordering have documented limits |
+| `caseSensitiveFlag` | `true` | False folds all String comparisons, including membership, ordering and ranges |
 | `blackListedFields` | `{}` | Exactly denied entity paths; wins over allowlists |
 | `strictValidation` | `true` | Typed/path/operator validation and actionable rejections; false selects permissive compatibility behavior |
 | `allowedFields` | `{}` | Nonempty exact allowlist for parsed and programmatic queries |

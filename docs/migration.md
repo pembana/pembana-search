@@ -129,13 +129,43 @@ For a worked example, see [combining conditions](reference/query-language.md#com
 `caseSensitiveFlag=false` now applies to string equality and inequality, as it
 already did to patterns. For `Ada`, `name:ADA` now matches and `name!ADA` no longer
 matches. This intentionally changes false-flag queries; the original true default,
-membership, ordering, typed conversion and null-check operations are unchanged.
+typed conversion and null-check operations are unchanged. Membership and ordering
+were corrected subsequently as described [below](#consistent-case-sensitivity-for-membership-and-ordering).
 Use `true` when retaining exact comparison is required, subject to the database's
 collation. First-class global/per-property request options now exist as a separate opt-in
 policy; omitting them keeps the annotation behavior. JSON search binding requires
 `@SearchRequestBody`, preserving existing POST body handling.
 See [case sensitivity](reference/case-sensitivity.md) for current behavior and the
 implemented binding and recommended UI design. Historical baseline reports remain frozen.
+
+## Consistent case sensitivity for membership and ordering
+
+`@SearchSpec(caseSensitiveFlag=false)` now ignores case consistently for all
+String comparisons. This corrects inherited behavior in earlier snapshots:
+
+| Search on a stored name `Ada` | Earlier false-flag behavior | Current false-flag behavior |
+| --- | --- | --- |
+| `name IN [ADA]` | Does not match | Matches |
+| `name NOT IN [ADA]` | Matches | Does not match |
+| `name<ada` | Could match because only the input was folded | Does not match: both sides are `ada` |
+| `name BETWEEN A AND A` | Could match because the upper bound used the original field | Does not match |
+
+Review searches that inherit a false annotation flag and use membership,
+less-than comparisons, or ranges. The change applies with either validation
+setting, to parsed expressions and Java query objects, and to supported
+collection elements. Earlier explicit `insensitive` options already folded
+consistently; those results are unchanged.
+
+The true annotation default still skips folding. To request case-sensitive
+matching for one String property while other properties ignore case, use
+`fieldCaseSensitivity[name]=sensitive` in GET requests, or the corresponding
+`fieldCaseSensitivity` JSON property. A global `caseSensitivity=sensitive` applies
+to all String properties. These choices override the annotation flag. They do
+not reproduce the earlier inconsistent less-than behavior.
+
+SQL null handling, empty membership, non-String conversions and pattern syntax
+are unchanged. Database collation still affects comparison behavior. See the
+[case guide](reference/case-sensitivity.md) for examples and request formats.
 
 ## JPA collection metadata and nested enum corrections
 

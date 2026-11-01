@@ -304,8 +304,7 @@ public class CollectionPolicyTest {
 	}
 
 	/**
-	 * String element matching preserves literal values, patterns and legacy versus
-	 * explicit case options.
+	 * String element matching follows the annotation fallback and explicit case options.
 	 */
 	@Test
 	void scalarElementCaseAndPatterns() throws Exception {
@@ -319,9 +318,17 @@ public class CollectionPolicyTest {
 				ids(new SpecificationsBuilder<Parent>(settings("legacyInsensitive"))
 					.withExtendedSearch("labels:RED", enabled())
 					.build()));
-		assertEquals(List.of(),
+		assertEquals(List.of(2L, 4L, 6L, 7L),
 				ids(new SpecificationsBuilder<Parent>(settings("legacyInsensitive"))
 					.withExtendedSearch("labels IN [RED]", enabled())
+					.build()));
+		assertEquals(List.of(3L, 4L, 6L),
+				ids(new SpecificationsBuilder<Parent>(settings("legacyInsensitive"))
+					.withExtendedSearch("labels<RED", enabled())
+					.build()));
+		assertEquals(List.of(2L, 3L, 4L, 6L, 7L),
+				ids(new SpecificationsBuilder<Parent>(settings("legacyInsensitive"))
+					.withExtendedSearch("labels BETWEEN BLUE AND RED", enabled())
 					.build()));
 		assertEquals(List.of(2L, 3L, 4L, 6L, 7L), search("labels BETWEEN a AND z"));
 		assertEquals(List.of(1L, 2L, 3L, 4L, 5L, 6L, 7L), search("labels NOT IN []"));

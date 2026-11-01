@@ -20,8 +20,7 @@ Effective policy resolves in this order:
 | `inherit` or omitted | `CaseSensitivity.INHERIT` | Use the next level of policy |
 
 A property set to `inherit` uses an explicit global choice. If both levels inherit,
-existing annotation behavior applies, including its legacy membership/ordering
-rules. Options never select matching behavior by changing a query's capitalization.
+the annotation flag applies consistently to all String comparisons. Options never select matching behavior by changing a query's capitalization.
 Every occurrence of a property uses the same choice across AND/OR groups, ranges
 and negation. Other properties retain the resolved global/fallback policy.
 
@@ -175,12 +174,19 @@ patterns, membership/negated membership and all four ordering operators. Inclusi
 ranges and NOT BETWEEN expansion resolve the same property policy at both bounds.
 String equality never adds implicit wildcards.
 
-When both option levels inherit, the annotation's existing behavior is preserved:
-false folds equality, inequality and patterns, but membership uses original
-field/items and less-than ordering retains its original-field/folded-value
-asymmetry. Use an explicit `insensitive` request/property choice to opt into
-consistent membership/ordering. The underlying grammar and existing query model
-are unchanged; no new expression operators or field-name decorations are added.
+When both option levels inherit, `caseSensitiveFlag=false` folds all String
+comparisons consistently, including membership and ordering. You do not need to
+send request options to get that behavior. The default flag remains true.
+
+For example, if a stored name is `Ada`, the false flag makes `name IN [ADA]`
+match and `name NOT IN [ADA]` exclude it. `name<:ADA` also matches because both
+sides are compared as `ada`. `name BETWEEN ADA AND BETA` includes both `Ada` and
+`Beta`. These are text comparisons, not numerical or locale-aware sorting.
+
+Earlier snapshots left membership case-sensitive and folded only one side of
+less-than comparisons when inheriting a false annotation flag. This correction
+can change results; see [migration advice](../migration.md#consistent-case-sensitivity-for-membership-and-ordering).
+The grammar and query model are unchanged.
 
 SQL nulls are distinct from literal `"null"` text. Inequality/NOT IN retain SQL
 null semantics; use `IS NULL` or an OR with it when null rows should match. Empty

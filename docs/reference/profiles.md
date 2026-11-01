@@ -106,7 +106,7 @@ fallback for STANDARD (or the insensitive preset fallback for SIMPLE). An
 `INHERIT` value advances to the next applicable choice. Explicit property choices
 require String attributes, including profile property defaults. Global choices
 continue to ignore numeric and other non-String attributes. Unresolved STANDARD
-`INHERIT` remains intact to preserve legacy case behavior.
+`INHERIT` uses the annotation fallback consistently across String operations.
 
 Profiles can be reused concurrently by independent consumers. Builders remain
 request-local, and JPA query objects are created only during predicate execution.

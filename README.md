@@ -129,7 +129,7 @@ not replace authorization. Limits are configurable; see the
 [defaults and compatibility guide](docs/migration.md#strict-validation-and-input-limits-by-default).
 
 The [query reference](docs/reference/query-language.md) documents important legacy
-limits, including remaining case-operator asymmetry, SQL LIKE metacharacters, and implicit
+limits, including SQL LIKE metacharacters and implicit
 association joins. Strict validation does not silently change matching semantics.
 For related records, opt in per query to [optional to-one handling](docs/reference/optional-to-one.md)
 and [collection handling](docs/reference/collections.md), including optional relations
@@ -137,7 +137,8 @@ inside collection children.
 
 For case-insensitive equality and patterns, set `@SearchSpec(caseSensitiveFlag = false)`.
 For example, `name:ADA` then matches `Ada`, and `name!ADA` excludes it. The default
-remains `true`; membership still has separate case behavior. See
+remains `true`. The false flag also applies to membership and ordering: `name IN [ADA]`
+matches `Ada`. Explicit per-field or global case choices override the flag. See
 [case sensitivity](docs/reference/case-sensitivity.md) for global/per-property request options, GET/JSON binding, validation and the
 recommended form defaults.
 

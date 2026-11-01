@@ -53,13 +53,16 @@ inequality and wildcard predicates fold the field using SQL `lower` and the
 input using Java `Locale.ROOT`. Thus both `name:ADA` and `name:*ADA*` can match
 `Ada`; `name!ADA` excludes it. Strict validation does not change that choice.
 
-When request options are omitted or inherit the annotation flag, membership uses
-the original field/items. Greater-than comparisons retain the folded field/value,
-while less-than comparisons retain the original field with a folded value. These
-legacy asymmetries remain the default. An explicit `insensitive` global or
-per-property choice consistently folds equality, patterns, membership and all
-ordering/range comparisons; `sensitive` skips folding. Property choices take
-precedence over the global choice, then the annotation fallback.
+The same case policy applies to equality, patterns, `IN`, `NOT IN`, all four
+ordering operators, and both bounds of `BETWEEN` and `NOT BETWEEN`. For example,
+with `caseSensitiveFlag=false`, both `name:ADA` and `name IN [ADA]` match `Ada`,
+and `name BETWEEN ADA AND BETA` includes `Ada` and `Beta`.
+
+Property choices take precedence over the global request choice, then the
+annotation fallback. Explicit `sensitive` skips folding even when the annotation
+flag is false; `insensitive` folds even when it is true. Omitting request options
+uses the annotation consistently. See the [migration note](../migration.md#consistent-case-sensitivity-for-membership-and-ordering)
+for the change from earlier snapshots.
 
 GET/form binding uses `caseSensitivity` and `fieldCaseSensitivity[property]`;
 JSON search binding is explicitly enabled with `@SearchRequestBody`. SQL collation,

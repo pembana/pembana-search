@@ -63,12 +63,12 @@ class CaseOptionsJpaTest {
 		this.users.save(new Users().withUserFirstName("Gamma").withUserLastName(null).withUserAddress("B"));
 	}
 
-	/** Existing no-options defaults remain case-sensitive. */
+	/** The true default retains case; a false annotation flag also folds membership. */
 	@Test
 	void defaultsRemainUnchanged() {
 		assertEquals(List.of(), names("userFirstName:ada", SearchOptions.defaults(), true));
 		assertEquals(List.of("Ada"), names("userFirstName:Ada", SearchOptions.defaults(), true));
-		assertEquals(List.of(), names("userFirstName IN [ada]", SearchOptions.defaults(), false));
+		assertEquals(List.of("ADA", "Ada"), names("userFirstName IN [ada]", SearchOptions.defaults(), false));
 	}
 
 	/** Explicit global choices override both true and false configured fallback flags. */

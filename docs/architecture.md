@@ -45,8 +45,8 @@ rule. Programmatic trees preserve their explicitly constructed grouping. See
 
 `SearchOptions` and `CaseSensitivity` live in core and are separate from tree
 values/grouping. JPA resolves per-property choices before global choices and the
-annotation fallback. Explicit choices consistently cover String membership and
-ordering; inherited defaults preserve the existing compatibility policy.
+annotation fallback. Explicit choices and the annotation fallback consistently cover String
+equality, patterns, membership, ordering and ranges.
 
 Scalar and membership values remain unconverted text until the JPA adapter
 resolves an entity attribute's type. This avoids pretending that an unconfigured

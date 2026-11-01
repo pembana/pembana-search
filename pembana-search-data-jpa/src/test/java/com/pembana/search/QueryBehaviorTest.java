@@ -145,14 +145,14 @@ class QueryBehaviorTest {
 	}
 
 	/**
-	 * Equality and patterns fold case; membership retains its separate legacy behavior.
+	 * Equality, patterns and membership fold case consistently.
 	 */
 	@Test
-	void insensitiveEqualityAndPatternsFoldCaseButMembershipDoesNot() throws Exception {
+	void insensitiveEqualityPatternsAndMembershipFoldCase() throws Exception {
 		assertEquals(List.of("Ada"), names(spec("insensitive", "userFirstName:*ADA*")));
 		assertEquals(List.of("Ada"), names(spec("insensitive", "userFirstName:ADA")));
 		assertEquals(List.of("Ada"), names(spec("insensitive", "userFirstName:Ada")));
-		assertEquals(0, this.users.count(spec("insensitive", "userFirstName IN [ADA]")));
+		assertEquals(1, this.users.count(spec("insensitive", "userFirstName IN [ADA]")));
 	}
 
 	/**

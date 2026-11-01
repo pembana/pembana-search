@@ -46,10 +46,10 @@ public @interface SearchSpec {
 	String searchParam() default "search";
 
 	/**
-	 * Returns whether string equality, inequality and patterns retain case. False folds
-	 * the field with SQL lower and the input with Locale.ROOT. Membership and ordering
-	 * retain their separately documented behavior; this flag is not accent folding.
-	 * @return true for case-sensitive string equality and patterns (the default)
+	 * Returns whether String comparisons retain case. False folds the field with SQL
+	 * lower and the input with Locale.ROOT for equality, patterns, membership, ordering
+	 * and ranges. Explicit request choices override this flag; it is not accent folding.
+	 * @return true to retain case in String comparisons (the default)
 	 */
 	boolean caseSensitiveFlag() default true;
 

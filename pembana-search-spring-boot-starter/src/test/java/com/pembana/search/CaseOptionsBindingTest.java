@@ -184,11 +184,15 @@ class CaseOptionsBindingTest {
 	}
 
 	/**
-	 * Explicit options also bind to membership and retain legacy behavior when omitted.
+	 * Membership inherits the annotation flag, with explicit sensitive choices winning.
 	 */
 	@Test
 	void membershipUsesRequestPolicy() throws Exception {
 		mvc().perform(get("/case-search-insensitive").param("search", "userFirstName IN [ada]"))
+			.andExpect(status().isOk())
+			.andExpect(content().string("ADA,Ada"));
+		mvc().perform(get("/case-search-insensitive").param("search", "userFirstName IN [ada]")
+			.param("caseSensitivity", "sensitive"))
 			.andExpect(status().isOk())
 			.andExpect(content().string(""));
 		mvc()

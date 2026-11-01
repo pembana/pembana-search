@@ -34,7 +34,7 @@ import com.pembana.search.annotation.SearchSpec;
 import com.pembana.search.core.CaseSensitivity;
 
 /**
- * Converts String values using the configured case policy for equality and patterns.
+ * Converts String values using the configured case policy for all string comparisons.
  *
  * @author Michael Mollard
  * @author Luc Boussant-roux
@@ -60,7 +60,7 @@ public final class StringStrategy implements ParsingStrategy {
 	/**
 	 * Supplies an explicit case choice without mutating the annotation fallback.
 	 * @param searchSpecAnnotation configured matching settings
-	 * @param caseSensitivity request choice, or INHERIT for existing semantics
+	 * @param caseSensitivity request choice, or INHERIT for the annotation fallback
 	 */
 	public StringStrategy(SearchSpec searchSpecAnnotation, CaseSensitivity caseSensitivity) {
 		this.caseSensitivity = caseSensitivity;
@@ -150,17 +150,12 @@ public final class StringStrategy implements ParsingStrategy {
 				case DOESNT_CONTAIN -> builder.notLike(casedField, "%" + casedValue + "%");
 				case GREATER_THAN -> builder.greaterThan(casedField, casedValue);
 				case GREATER_THAN_EQUALS -> builder.greaterThanOrEqualTo(casedField, casedValue);
-				// Preserve the existing ordering behavior; it is separate from equality.
-				case LESS_THAN -> builder.lessThan(
-						(this.caseSensitivity == CaseSensitivity.INHERIT) ? path.get(fieldName) : casedField,
-						casedValue);
-				case LESS_THAN_EQUALS -> builder.lessThanOrEqualTo(
-						(this.caseSensitivity == CaseSensitivity.INHERIT) ? path.get(fieldName) : casedField,
-						casedValue);
+				case LESS_THAN -> builder.lessThan(casedField, casedValue);
+				case LESS_THAN_EQUALS -> builder.lessThanOrEqualTo(casedField, casedValue);
 				default -> ParsingStrategy.super.buildPredicate(builder, path, fieldName, ops, value);
 			};
 		}
-		if (this.caseSensitivity == CaseSensitivity.INSENSITIVE
+		if (!caseSensitive()
 				&& (ops == SearchOperation.IN_ARRAY || ops == SearchOperation.NOT_IN_ARRAY)) {
 			CriteriaBuilder.In<Object> clause = builder.in(builder.lower(path.<String>get(fieldName)));
 			for (var item : (List<?>) value) {

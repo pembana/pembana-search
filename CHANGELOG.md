@@ -32,6 +32,12 @@ The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring S
 
 ### Fixed
 
+- Apply `caseSensitiveFlag=false` consistently to String membership, ordering
+  and ranges, including basic collection elements. Explicit request choices
+  continue to override the annotation; the true default is unchanged. Earlier
+  inherited false-flag queries may return different results. See the
+  [migration note](docs/migration.md#consistent-case-sensitivity-for-membership-and-ordering).
+
 - Correct an inherited Boolean precedence bug: `AND` now binds more tightly than
   `OR`. Mixed expressions without parentheses may return different results.
   Write `(A OR B) AND C` to preserve the earlier meaning of `A OR B AND C`.
@@ -43,7 +49,8 @@ The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring S
   nested types, while retaining exact names and structured invalid-value errors.
 
 - String equality and inequality now honor `caseSensitiveFlag=false`, folding
-  both field and input. The true default and membership behavior are unchanged.
+  both field and input. The true default is unchanged; the subsequent membership
+  and ordering correction is described above.
 - Documented the intentional false-flag behavior change, null/collation limits,
   recommended case-insensitive form defaults and proposed per-field controls.
 
