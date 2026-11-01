@@ -23,6 +23,7 @@ import org.jspecify.annotations.Nullable;
 import org.springframework.data.jpa.domain.Specification;
 
 import com.pembana.search.annotation.SearchSpec;
+import com.pembana.search.core.AssociationQuery;
 import com.pembana.search.core.ExpressionParser;
 import com.pembana.search.core.ParserOptions;
 import com.pembana.search.core.PlainTextQuery;
@@ -254,6 +255,32 @@ public final class SpecificationsBuilder<U> {
 	 */
 	public SpecificationsBuilder<U> withExtendedQuery(Query query, SearchProfile profile, QueryExtensions extensions) {
 		this.specs = new ExtendedQueryTranslator<U>(this.settings, this.searchOptions, extensions, profile)
+			.translate(query);
+		return this;
+	}
+
+	/**
+	 * Selects explicit same-child scopes or ranges with a per-query collection registry.
+	 * @param query immutable association query
+	 * @param extensions registry with collections enabled
+	 * @return this builder
+	 */
+	public SpecificationsBuilder<U> withAssociationQuery(AssociationQuery query, QueryExtensions extensions) {
+		this.specs = new AssociationQueryTranslator<U>(this.settings, this.searchOptions, extensions, null)
+			.translate(query);
+		return this;
+	}
+
+	/**
+	 * Selects a profile and explicit association query for this call only.
+	 * @param query association query using public names
+	 * @param profile selected profile
+	 * @param extensions registry with collections enabled
+	 * @return this builder
+	 */
+	public SpecificationsBuilder<U> withAssociationQuery(AssociationQuery query, SearchProfile profile,
+			QueryExtensions extensions) {
+		this.specs = new AssociationQueryTranslator<U>(this.settings, this.searchOptions, extensions, profile)
 			.translate(query);
 		return this;
 	}

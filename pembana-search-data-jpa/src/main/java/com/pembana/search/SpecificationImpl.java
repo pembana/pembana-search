@@ -116,6 +116,18 @@ public final class SpecificationImpl<T> implements Specification<T> {
 			throw new InvalidSearchQueryException(QueryErrorCode.UNKNOWN_FIELD, this.criteria.getKey(),
 					"Unknown field " + this.criteria.getKey());
 		}
+		return render(builder, nestedRoot, criteriaKey, fieldClass, isCollectionField);
+	}
+
+	@Nullable Predicate buildResolved(Path<?> owner, String localField, CriteriaBuilder builder) {
+		Path<?> attribute = owner.get(localField);
+		Class<?> type = attribute.getJavaType();
+		boolean collection = attribute.getModel() instanceof PluralAttribute<?, ?, ?> || type.isArray();
+		return render(builder, owner, localField, type, collection);
+	}
+
+	private @Nullable Predicate render(CriteriaBuilder builder, Path<?> nestedRoot, String criteriaKey,
+			Class<?> fieldClass, boolean isCollectionField) {
 		if (this.searchSpecAnnotation.strictValidation()) {
 			StrictQueryValidation.validate(fieldClass, isCollectionField, this.criteria.getKey(),
 					this.criteria.getOperation(), this.criteria.getValue());

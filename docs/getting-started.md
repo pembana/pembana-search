@@ -111,6 +111,12 @@ A request might be:
 curl --get --data-urlencode 'filter=name:Ada* AND active:true' http://localhost:8080/users
 ```
 
+When mixing conditions, `AND` binds more tightly than `OR`. For example,
+`name:Ada OR name:Beta AND active:true` includes anyone named Ada, plus active
+users named Beta. Write `(name:Ada OR name:Beta) AND active:true` to require an
+active record for either name. See [combining conditions](reference/query-language.md#combining-conditions-with-and-or-and-parentheses)
+for a table of matching records and migration advice.
+
 Boot discovers the MVC resolver from the library's auto-configuration imports;
 no `@ComponentScan` of library packages is needed. `@RepositoryRestResource` is
 not required. The example assumes `User` is an application-supplied JPA entity.

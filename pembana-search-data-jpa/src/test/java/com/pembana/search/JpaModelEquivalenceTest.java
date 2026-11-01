@@ -113,7 +113,8 @@ class JpaModelEquivalenceTest {
 		QueryVisitorImpl<Users> visitor = new QueryVisitorImpl<>(SETTINGS);
 		for (String expression : List.of("userFirstName:Ada", "(userFirstName:Ada)",
 				"userFirstName:Ada OR userFirstName:Beta", "active IS NULL", "userFirstName IN ['Ada']",
-				"userChildrenNumber BETWEEN 1 AND 4")) {
+				"userChildrenNumber BETWEEN 1 AND 4", "userFirstName:Ada OR userFirstName:Beta AND active:true",
+				"(userFirstName:Ada OR userFirstName:Beta) AND active:true")) {
 			QueryParser parser = new QueryParser(
 					new CommonTokenStream(new QueryLexer(CharStreams.fromString(expression))));
 			QueryParser.InputContext input = parser.input();

@@ -38,8 +38,10 @@ and `Negation` are records. Strings, enums, recursively immutable child nodes
 and defensively copied lists prevent later mutation. `and`, `or` and `not`
 compose trees directly. Membership preserves item ordering and empty-list
 semantics. Ranges normalize into inclusive comparison pairs; NOT BETWEEN negates
-the whole pair. Grouping and the existing grammar's Boolean precedence are
-preserved, rather than applying a new precedence rule.
+the whole pair. Parsed expressions give `AND` higher precedence than `OR`;
+parentheses override that grouping. This corrects the inherited equal-precedence
+rule. Programmatic trees preserve their explicitly constructed grouping. See
+[query grouping](reference/query-language.md#combining-conditions-with-and-or-and-parentheses).
 
 `SearchOptions` and `CaseSensitivity` live in core and are separate from tree
 values/grouping. JPA resolves per-property choices before global choices and the
@@ -65,8 +67,26 @@ strategies and `QueryVisitorImpl` remain available in the JPA module. The visito
 is a compatibility facade over the shared core visitor and JPA translator;
 there is no second matching implementation. `withQuery` replaces the current
 specification just as `withSearch` does, without string concatenation or reparsing.
-Mandatory authorization scopes, entity aliases, joins, transactions and pagination
-remain consumer responsibilities; this split adds no improved matching policy.
+Mandatory authorization scopes, entity aliases, transactions and pagination
+remain consumer responsibilities. Explicitly selected policies can improve
+association matching as described below.
+
+## Opt-in association translation
+
+`QueryExtensions` selects optional-to-one and collection policies per call. The
+collection path uses the additive core `AssociationQuery` model and
+`AssociationExpressionParser` to retain range provenance and explicit same-child
+scopes. It leaves the sealed `Query` variants and ordinary parser normalization
+unchanged. `AssociationQuery.query()` projects leaves for shared permission and
+case validation; execution preserves the original scope structure.
+
+Collection leaves use correlated `EXISTS` / `NOT EXISTS` subqueries, keeping child
+joins out of the outer result and count query. Explicit scopes share one child
+within that execution; separate leaves create independent subqueries. Traversed
+to-one paths inside these scopes use left joins. Criteria roots, joins and
+subqueries are created afresh for each execution and are never stored in the
+immutable registry. See [collection handling](reference/collections.md) for
+semantics, extension integration and supported mapping limits.
 
 ## Optional starter and test boundaries
 

@@ -145,9 +145,8 @@ including required links after an optional parent.
 A collection may be the final field of an explicit emptiness check. For
 `author.books IS EMPTY`, a missing author has no matching books and satisfies the
 emptiness check; `IS NOT EMPTY` requires books. This does not enable traversal into
-collection children. Paths such as `author.books.title` are rejected with
-`UNSUPPORTED_OPERATION`. Collection existence and same-child policies will be
-handled separately.
+collection children. Paths such as `author.books.title` require the separate
+[collection policy](collections.md), selected with `collections(true)`.
 
 To-one navigation after an embedded attribute, such as
 `author.contact.region.name` where `contact` is embedded and `region` is an

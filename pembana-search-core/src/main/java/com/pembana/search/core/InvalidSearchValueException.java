@@ -25,6 +25,7 @@ public final class InvalidSearchValueException extends IllegalArgumentException 
 
 	private static final long serialVersionUID = 1L;
 
+	/** Safe, non-null explanation supplied by the application. */
 	private final String reason;
 
 	/**

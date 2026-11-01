@@ -24,6 +24,7 @@ import org.jspecify.annotations.Nullable;
 import org.springframework.data.jpa.domain.Specification;
 
 import com.pembana.search.annotation.SearchSpec;
+import com.pembana.search.core.AssociationExpressionParser;
 import com.pembana.search.core.BooleanOperator;
 import com.pembana.search.core.Comparison;
 import com.pembana.search.core.CriterionTransformer;
@@ -57,6 +58,8 @@ public final class ExtendedQueryTranslator<T> {
 
 	private final ParserOptions policy;
 
+	private final @Nullable CollectionScope<T> scope;
+
 	/**
 	 * Creates an isolated translator with explicit registrations and an optional profile.
 	 * @param settings existing matching and validation policy
@@ -66,6 +69,12 @@ public final class ExtendedQueryTranslator<T> {
 	 */
 	public ExtendedQueryTranslator(SearchSpec settings, SearchOptions options, QueryExtensions extensions,
 			@Nullable SearchProfile profile) {
+		this(settings, options, extensions, profile, null);
+	}
+
+	ExtendedQueryTranslator(SearchSpec settings, SearchOptions options, QueryExtensions extensions,
+			@Nullable SearchProfile profile, @Nullable CollectionScope<T> scope) {
+		this.scope = scope;
 		this.settings = settings;
 		this.options = options;
 		this.extensions = extensions;
@@ -86,6 +95,10 @@ public final class ExtendedQueryTranslator<T> {
 			ParserOptions syntax = (this.profile == null) ? this.policy
 					: new ParserOptions(this.policy.strictValidation(), List.of(), List.of(),
 							this.policy.maxQueryLength(), this.policy.maxNestingDepth());
+			if (this.extensions.collections && this.scope == null) {
+				return new AssociationQueryTranslator<T>(this.settings, this.options, this.extensions, this.profile)
+					.translate(new AssociationExpressionParser(syntax).parse(input));
+			}
 			return translate(new ExpressionParser(syntax).parse(input));
 		}
 		catch (QueryParseException exception) {
@@ -109,6 +122,15 @@ public final class ExtendedQueryTranslator<T> {
 			SearchOptions request = (this.profile == null) ? this.options : this.profile.canonicalOptions(this.options);
 			request.validate(canonical);
 			return node(canonical, request, new Budget(), new HashSet<>(), 0);
+		}
+		catch (QueryParseException exception) {
+			throw JpaQueryTranslator.diagnostic(exception);
+		}
+	}
+
+	Specification<T> translateCanonical(Query query, SearchOptions request, Budget budget) {
+		try {
+			return node(query, request, budget, new HashSet<>(), 0);
 		}
 		catch (QueryParseException exception) {
 			throw JpaQueryTranslator.diagnostic(exception);
@@ -177,7 +199,7 @@ public final class ExtendedQueryTranslator<T> {
 			}
 		}
 		return (root, queryContext, builder) -> ExtensionPredicates.build(criterion, this.settings, effective,
-				this.extensions, root, queryContext, builder);
+				this.extensions, root, queryContext, builder, this.scope);
 	}
 
 	private void collect(Query query, Set<String> fields) {
@@ -206,7 +228,7 @@ public final class ExtendedQueryTranslator<T> {
 		}
 	}
 
-	private static final class Budget {
+	static final class Budget {
 
 		private int nodes;
 

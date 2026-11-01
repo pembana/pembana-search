@@ -165,11 +165,15 @@ class QueryBehaviorTest {
 		assertEquals(0, this.users.count(spec("legacy", "userFirstName:'A*a'")));
 	}
 
-	/** Locks the grammar's equal-precedence left-associative Boolean composition. */
+	/** AND binds more tightly than OR in both validation modes; parentheses override it. */
 	@Test
-	void booleanOperatorsSharePrecedenceAndParenthesesOverrideIt() throws Exception {
-		assertEquals(0,
-				this.users.count(spec("legacy", "userFirstName:Ada OR userFirstName:Beta AND userFirstName:Gamma")));
+	void andBindsMoreTightlyThanOrAndParenthesesOverrideIt() throws Exception {
+		for (String policy : List.of("legacy", "strict")) {
+			assertEquals(List.of("Ada"),
+					names(spec(policy, "userFirstName:Ada OR userFirstName:Beta AND userFirstName:Gamma")));
+			assertEquals(0, this.users.count(
+					spec(policy, "(userFirstName:Ada OR userFirstName:Beta) AND userFirstName:Gamma")));
+		}
 		assertEquals(List.of("Ada"),
 				names(spec("legacy", "userFirstName:Ada OR (userFirstName:Beta AND userFirstName:Gamma)")));
 	}

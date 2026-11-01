@@ -327,5 +327,6 @@ inside the required scope.
 Extensions currently apply to `STANDARD` and programmatic queries. `SIMPLE` uses
 its root-String pattern adapter. For optional `@ManyToOne` and `@OneToOne` relations,
 see [optional to-one handling](optional-to-one.md). Select it per query with
-`optionalToOne(true)` on the same extension builder. Collection matching policies
-remain a separate feature.
+`optionalToOne(true)` on the same extension builder. For entity and element
+collections, select [collection handling](collections.md) with `collections(true)`.
+That guide also explains same-child groups, ranges, and factories inside collections.

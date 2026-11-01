@@ -32,8 +32,9 @@ Existing Java JPA/MVC imports remain available through their respective modules.
 
 `CriteriaParser` now parses an immutable core tree before JPA translation. The
 same translator accepts programmatic trees without concatenating query strings.
-Matching defaults, conversion rules, original grammar, negative cases and error
-metadata remain unchanged. No corrected/simple-search matching policy is enabled.
+The module split preserved conversion rules, grammar, negative cases and error
+metadata. The subsequent [Boolean precedence correction](#boolean-operator-precedence-correction)
+changes mixed expressions without parentheses. Plain-text search remains opt-in.
 The one moved HTTP characterization method and all retained scenario identities
 are mapped in the [module report](modules/README.md).
 
@@ -51,6 +52,38 @@ are mapped in the [module report](modules/README.md).
 This identity change introduces no new matching policy, grammar, framework
 upgrade, module split or application migration. The inherited operator quirks
 and association limitations are documented in the [query reference](reference/query-language.md).
+
+## Boolean operator precedence correction
+
+Pembana fixes an inherited operator-precedence inconsistency: `AND` now binds
+more tightly than `OR`. Previously, both operators had equal precedence and
+grouped left to right. This can change which records an existing search returns.
+
+| Expression | Earlier grouping | Current grouping |
+| --- | --- | --- |
+| `A OR B AND C` | `(A OR B) AND C` | `A OR (B AND C)` |
+| `A AND B OR C` | `(A AND B) OR C` | `(A AND B) OR C` |
+
+Here, `A`, `B`, and `C` stand for complete conditions such as `name:Ada`.
+For example, `name:Ada OR name:Beta AND active:true` now includes inactive Ada
+records. To keep the earlier behavior, write:
+
+```text
+(name:Ada OR name:Beta) AND active:true
+```
+
+Review saved searches and application-generated expressions that mix `AND` and
+`OR` without parentheses. Add parentheses around the groups you intend, then
+check the results using your own data. Fully parenthesized expressions retain
+their grouping; Java query objects also retain the structure you construct.
+
+The correction applies to ordinary and collection expressions and to HTTP
+binding, whether strict validation is enabled or disabled. There is no switch
+for the earlier precedence. `BETWEEN` and `NOT BETWEEN` remain range conditions;
+their internal `AND` is unchanged. The original grammar and test outcomes remain
+recorded in the frozen historical reports.
+
+For a worked example, see [combining conditions](reference/query-language.md#combining-conditions-with-and-or-and-parentheses).
 
 ## Case-insensitive string equality correction
 
@@ -142,4 +175,18 @@ validation and matching settings retain their behavior. `ToOnePaths.resolve`
 provides the same explicit path resolution for custom factories. See
 [optional to-one handling](reference/optional-to-one.md) for null behavior,
 supported mapping shapes, per-query activation and limitations. Collection
-traversal and to-one navigation after embedded attributes are not added.
+traversal requires the separate collection policy described below. To-one navigation
+after embedded attributes remains unsupported.
+
+## Opt-in collection handling
+
+Select `QueryExtensions.Builder.collections(true)` per query to search collection
+contents with correlated existence or absence checks. Existing unconfigured queries
+keep their behavior. Optional to-one paths before and inside a collection use left
+joins; unrelated to-one paths still need `optionalToOne(true)`.
+
+Separate conditions may match different children. `AssociationQuery.any` explicitly
+requires one child to satisfy a group; parsed `BETWEEN` bounds also use one child.
+The existing sealed `Query` variants and parser API remain unchanged. See
+[collection handling](reference/collections.md) for examples, null and negative
+semantics, supported mappings, extension callbacks, and current topology limits.

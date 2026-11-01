@@ -1,7 +1,9 @@
 # Query behavior and validation
 
 This guide describes the current advanced-expression API. Unconfigured
-`@SearchSpec` and `SpecificationsBuilder` retain the inherited matching policy.
+`@SearchSpec` and `SpecificationsBuilder` use the matching rules described below.
+Boolean precedence corrects an inherited inconsistency: `AND` now binds more
+tightly than `OR`, including when strict validation is disabled.
 Strict validation changes rejection behavior only when explicitly enabled.
 Neither mode introduces ordinary-text word search, fuzzy matching, aliases, or
 automatic wildcard expansion for equality.
@@ -24,9 +26,9 @@ automatic wildcard expansion for equality.
 | `books IS EMPTY`, `IS NOT EMPTY` | Collection emptiness/existence checks |
 | `author.name:Writer` | Entity-path navigation; implicit joins can affect OR results |
 
-Operators and keywords are case-sensitive. `AND` and `OR` share precedence and
-associate left to right: `A OR B AND C` means `(A OR B) AND C`. Parentheses
-override that order. Use explicit grouping rather than assuming SQL precedence.
+Operators and keywords are case-sensitive: write `AND` and `OR` in uppercase.
+`AND` binds more tightly than `OR`; parentheses let you choose a different grouping.
+See [combining conditions](#combining-conditions-with-and-or-and-parentheses) below.
 Membership and ranges use the same field conversions as scalar comparisons.
 An empty `IN []` matches no rows; empty `NOT IN []` matches all rows in the tested
 Hibernate/H2/PostgreSQL baseline, including rows with null field values.
@@ -73,6 +75,54 @@ case-sensitive constant names for equality and membership. Invalid constants
 produce `INVALID_VALUE`; text case options do not alter enum conversion. Types
 without a strategy fall back to string handling in compatibility mode. Null checks
 are distinct from equality to a string such as `'NULL'`.
+
+## Combining conditions with AND, OR, and parentheses
+
+Use `AND` when **both conditions must match**. Use `OR` when **either condition
+may match**; a record also matches if both are true.
+
+Suppose your entity has `name` and `active` attributes. This search:
+
+```text
+name:Ada OR name:Beta AND active:true
+```
+
+means the same as:
+
+```text
+name:Ada OR (name:Beta AND active:true)
+```
+
+The two conditions joined by `AND` form a group. The search finds anyone named
+Ada, whether active or inactive, and anyone named Beta who is active.
+To require an active record for either name, add parentheses:
+
+```text
+(name:Ada OR name:Beta) AND active:true
+```
+
+| Record | Without parentheses | With parentheses around the names |
+| --- | --- | --- |
+| Ada, active | Matches | Matches |
+| Ada, inactive | Matches | Does not match |
+| Beta, active | Matches | Matches |
+| Beta, inactive | Does not match | Does not match |
+
+Parentheses control how conditions are grouped, not the order in which a database
+executes them. Nested parentheses work too. Repeated `AND` operators or repeated
+`OR` operators group left to right. The `AND` inside `age BETWEEN 18 AND 65`
+belongs to that one range condition.
+
+These rules apply to all advanced expressions, including HTTP requests and
+collection searches, with strict validation enabled or disabled. Java query
+objects retain the grouping you construct: `a.or(b).and(c)` explicitly means
+`(a OR b) AND c`. Plain-text `SIMPLE` mode has its own word-matching rules and
+does not interpret `AND` or `OR` as operators.
+
+**Compatibility:** Spring Search and earlier Pembana development snapshots gave
+`AND` and `OR` equal precedence. Mixed expressions without parentheses can now
+return different results. To keep the earlier meaning of `A OR B AND C`, write
+`(A OR B) AND C`. See the [migration guide](../migration.md#boolean-operator-precedence-correction).
 
 ## Optional validation and field policy
 
@@ -177,8 +227,10 @@ Scalar queries have explicit sorting, two pages, and consistent counts on both
 databases. `IS EMPTY` and `IS NOT EMPTY` also support inherited collections,
 getter-mapped properties with differently named backing fields, and dotted paths
 to those collections. Detection uses JPA plural-attribute metadata, independently
-of strict validation. Scalar operators on collections remain unsupported. These
-cases do not establish arbitrary join/pagination correctness.
+of strict validation. Searches within collection contents require the opt-in
+[collection policy](collections.md). It uses correlated subqueries for positive and
+negative conditions, with explicit same-child scopes and range handling. These
+tested mappings do not establish arbitrary join/pagination correctness.
 
 `author.name:Writer OR title:Orphan` on Book retains the implicit inner join:
 a Book with null author is excluded even if its title matches the other branch.
@@ -186,7 +238,7 @@ That regression test records the default limitation. An explicitly selected
 [optional-to-one policy](optional-to-one.md) now uses left joins for supported
 to-one paths; existing unconfigured queries retain their implicit navigation.
 [Field profiles](profiles.md), [query extensions](extensions.md), and
-[plain-text search](plain-text.md) are also explicitly selected APIs. To-many child
-navigation, further association topologies, and comprehensive collation behavior
-remain separate work. The inherited empty `run()` test still provides no
-behavioral assertion.
+[plain-text search](plain-text.md) are also explicitly selected APIs. Nested
+collections, maps, association navigation after embedded properties, and
+comprehensive collation behavior remain outside the supported collection policy.
+The inherited empty `run()` test still provides no behavioral assertion.

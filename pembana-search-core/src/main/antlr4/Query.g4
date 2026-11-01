@@ -10,7 +10,8 @@ input
    ;
 
 query
-   : left=query logicalOp=(AND | OR) right=query #opQuery
+   : left=query logicalOp=AND right=query #opQuery
+   | left=query logicalOp=OR right=query #opQuery
    | LPAREN query RPAREN #priorityQuery
    | criteria #atomQuery
    ;

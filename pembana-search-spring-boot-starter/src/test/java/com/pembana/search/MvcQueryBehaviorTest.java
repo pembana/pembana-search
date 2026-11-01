@@ -78,6 +78,14 @@ class MvcQueryBehaviorTest {
 		mvc.perform(get("/query").param("filter", "userFirstName:Ada"))
 			.andExpect(status().isOk())
 			.andExpect(content().string("1"));
+		mvc.perform(get("/query").param("filter",
+				"userFirstName:Ada OR userFirstName:Beta AND userFirstName:Gamma"))
+			.andExpect(status().isOk())
+			.andExpect(content().string("1"));
+		mvc.perform(get("/query").param("filter",
+				"(userFirstName:Ada OR userFirstName:Beta) AND userFirstName:Gamma"))
+			.andExpect(status().isOk())
+			.andExpect(content().string("0"));
 		mvc.perform(get("/query")).andExpect(status().isOk()).andExpect(content().string("4"));
 		mvc.perform(get("/query").param("filter", "userLastName:One"))
 			.andExpect(status().isBadRequest())

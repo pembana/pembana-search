@@ -31,7 +31,7 @@ import com.pembana.search.grammar.QueryBaseVisitor;
 import com.pembana.search.grammar.QueryParser;
 
 /**
- * Translates the generated parse tree using the inherited advanced-expression semantics.
+ * Translates the generated parse tree, preserving its AND-before-OR grouping.
  *
  * @param <T> entity type represented by the generated specification
  * @author Thibault F

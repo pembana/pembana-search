@@ -153,15 +153,25 @@ class CoreQueryTest {
 		assertEquals(text, this.parser.parse("name BETWEEN 'Ada' AND 'Zoe'"));
 	}
 
-	/** Retains grouping, operand order and the original grammar's Boolean precedence. */
+	/** AND binds more tightly than OR; parentheses and explicit trees retain grouping. */
 	@Test
 	void booleanComposition() {
 		Query a = new Comparison("a", ComparisonOperator.EQUALS, "1");
 		Query b = new Comparison("b", ComparisonOperator.EQUALS, "2");
 		Query c = new Comparison("c", ComparisonOperator.EQUALS, "3");
-		assertEquals(a.or(b).and(c), this.parser.parse("a:1 OR b:2 AND c:3"));
+		assertEquals(a.or(b.and(c)), this.parser.parse("a:1 OR b:2 AND c:3"));
 		assertEquals(a.or(b.and(c)), this.parser.parse("a:1 OR (b:2 AND c:3)"));
 		assertEquals(a.and(b).or(c), this.parser.parse("a:1 AND b:2 OR c:3"));
+		assertEquals(a.or(b).and(c), this.parser.parse("(a:1 OR b:2) AND c:3"));
+		assertEquals(a.or(b.and(c)).or(a), this.parser.parse("a:1 OR b:2 AND c:3 OR a:1"));
+		assertEquals(a.and(b).and(c), this.parser.parse("a:1 AND b:2 AND c:3"));
+		assertEquals(a.or(b).or(c), this.parser.parse("a:1 OR b:2 OR c:3"));
+		Query range = new Comparison("age", ComparisonOperator.GREATER_THAN_EQUALS, "1")
+			.and(new Comparison("age", ComparisonOperator.LESS_THAN_EQUALS, "3"));
+		assertEquals(a.or(range.and(c)), this.parser.parse("a:1 OR age BETWEEN 1 AND 3 AND c:3"));
+		assertEquals(a.or(range.not().and(c)), this.parser.parse("a:1 OR age NOT BETWEEN 1 AND 3 AND c:3"));
+		var strict = new ExpressionParser(new ParserOptions(true, List.of(), List.of(), 0, 0));
+		assertEquals(a.or(b.and(c)), strict.parse("a:1 OR b:2 AND c:3"));
 	}
 
 	/** Retains spaces, punctuation and legacy quote unescaping in scalar values. */

@@ -27,7 +27,7 @@ import com.pembana.search.grammar.QueryParser;
 import com.pembana.search.listeners.SyntaxErrorListener;
 
 /**
- * Parses expressions using the unchanged lexer, parser and visitor sequence.
+ * Parses advanced expressions with AND binding more tightly than OR.
  *
  * @author Thibault F
  * @author Michael Mollard
@@ -62,6 +62,10 @@ public final class ExpressionParser {
 	 * @throws QueryParseException if syntax or configured input checks fail
 	 */
 	public Query parse(String searchParam) {
+		return this.visitor.visit(parseTree(searchParam));
+	}
+
+	QueryParser.InputContext parseTree(String searchParam) {
 		if (this.settings.maxQueryLength() > 0 && searchParam.length() > this.settings.maxQueryLength()) {
 			throw new QueryParseException(DiagnosticCode.QUERY_LIMIT_EXCEEDED, null,
 					"Search query exceeds maximum length of " + this.settings.maxQueryLength());
@@ -94,7 +98,7 @@ public final class ExpressionParser {
 			throw new QueryParseException(DiagnosticCode.SYNTAX_ERROR, null, "Invalid search query: " + listener,
 					listener.getFirstLine(), listener.getFirstColumn());
 		}
-		return this.visitor.visit(input);
+		return input;
 	}
 
 }

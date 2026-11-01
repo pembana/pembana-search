@@ -6,6 +6,8 @@
 | --- | --- |
 | [Getting started](getting-started.md) | Application developers: install, MVC binding, direct JPA and consumer scopes |
 | [Query reference](reference/query-language.md) | Grammar, typed operators, matching quirks, validation, errors and association limits |
+| [Collection handling](reference/collections.md) | Per-query collection searches, same-child conditions, ranges, and optional child relations |
+| [Optional to-one handling](reference/optional-to-one.md) | Keep matching records when a related record is missing |
 | [Case sensitivity](reference/case-sensitivity.md) | Global/property options, GET/JSON binding, compatibility, validation and form UX |
 | [Configuration/API reference](reference/configuration.md) | Annotation defaults, public entry points, auto-configuration and dependencies |
 | [Architecture](architecture.md) | Core model, JPA translation, optional starter and dependency boundaries |

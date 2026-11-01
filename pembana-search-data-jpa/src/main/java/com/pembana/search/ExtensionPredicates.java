@@ -47,8 +47,49 @@ final class ExtensionPredicates {
 
 	static <T> @Nullable Predicate build(SearchCriteria criterion, SearchSpec settings, SearchOptions options,
 			QueryExtensions extensions, Root<T> root, @Nullable CriteriaQuery<?> query, CriteriaBuilder builder) {
-		var fallback = new SpecificationImpl<T>(criterion, settings, options, extensions.optionalToOne);
+		return build(criterion, settings, options, extensions, root, query, builder, null);
+	}
+
+	static <T> @Nullable Predicate build(SearchCriteria criterion, SearchSpec settings, SearchOptions options,
+			QueryExtensions extensions, Root<T> root, @Nullable CriteriaQuery<?> query, CriteriaBuilder builder,
+			@Nullable CollectionScope<T> scope) {
 		String field = criterion.getKey();
+		if (scope != null && !field.equals(scope.plan.collection())
+				&& !field.startsWith(scope.plan.collection() + ".")) {
+			throw new InvalidSearchQueryException(QueryErrorCode.FIELD_NOT_ALLOWED, field,
+					"Condition is outside the selected child scope");
+		}
+		if (scope == null && extensions.collections) {
+			CollectionPaths.Plan plan = CollectionPaths.plan(root, field, extensions.factories.containsKey(field));
+			if (plan != null) {
+				boolean wholeEmpty = field.equals(plan.collection())
+						&& SearchOperation.EMPTY.equals(criterion.getValue())
+						&& (criterion.getOperation() == SearchOperation.IS
+								|| criterion.getOperation() == SearchOperation.IS_NOT);
+				if (wholeEmpty && extensions.factories.containsKey(field)) {
+					// Whole-collection factories retain their ordinary parent context.
+					return scalar(criterion, settings, options, extensions, root, query, builder, null, true);
+				}
+				return CollectionPredicates.leaf(criterion, settings, options, extensions, root, query, builder, plan);
+			}
+		}
+		return scalar(criterion, settings, options, extensions, root, query, builder, scope, extensions.optionalToOne);
+	}
+
+	private static <T> @Nullable Predicate scalar(SearchCriteria criterion, SearchSpec settings, SearchOptions options,
+			QueryExtensions extensions, Root<T> root, @Nullable CriteriaQuery<?> query, CriteriaBuilder builder,
+			@Nullable CollectionScope<T> scope, boolean optionalToOne) {
+		String field = criterion.getKey();
+		Fallback<T> fallback = (r, q, cb) -> {
+			var ordinary = new SpecificationImpl<T>(criterion, settings, options, optionalToOne);
+			if (scope == null) {
+				return ordinary.toPredicate(r, q, cb);
+			}
+			var resolved = scope.resolve(field);
+			Path<?> owner = resolved.owner();
+			return (owner == null) ? ScalarElements.build(criterion, settings, options, resolved.expression(), cb)
+					: ordinary.buildResolved(owner, java.util.Objects.requireNonNull(resolved.localField()), cb);
+		};
 		PredicateRegistration factory = extensions.factories.get(field);
 		Class<?> type;
 		if (factory != null) {
@@ -56,16 +97,16 @@ final class ExtensionPredicates {
 		}
 		else {
 			try {
-				type = path(root, field, extensions.optionalToOne).getJavaType();
+				type = path(root, field, optionalToOne, scope).getJavaType();
 			}
 			catch (IllegalArgumentException | IllegalStateException exception) {
-				return fallback.toPredicate(root, query, builder);
+				return fallback.build(root, query, builder);
 			}
 		}
 		ValueConversion specific = extensions.fields.get(field);
 		ValueConversion general = extensions.types.get(type);
 		if (specific == null && general == null && factory == null) {
-			return fallback.toPredicate(root, query, builder);
+			return fallback.build(root, query, builder);
 		}
 		ProfileOperation operation = operation(criterion.getOperation());
 
@@ -99,7 +140,7 @@ final class ExtensionPredicates {
 				}
 			}
 			if (!handled && factory == null) {
-				return fallback.toPredicate(root, query, builder);
+				return fallback.build(root, query, builder);
 			}
 			if (options.hasFieldOverride(field) && type != String.class) {
 				throw new InvalidSearchQueryException(QueryErrorCode.INVALID_SEARCH_OPTIONS, field,
@@ -120,24 +161,36 @@ final class ExtensionPredicates {
 			}
 			if (factory != null) {
 				Optional<Predicate> predicate = factory.factory()
-					.create(new PredicateContext(root, query, builder, field, operation, value, type,
-							(type == String.class) ? options.resolve(field) : CaseSensitivity.INHERIT,
+					.create(new PredicateContext(root, (scope == null) ? query : null, builder, field, operation, value,
+							type, (type == String.class) ? options.resolve(field) : CaseSensitivity.INHERIT,
 							settings.caseSensitiveFlag()));
 				if (predicate.isPresent()) {
 					return predicate.get();
 				}
 			}
 			if (!handled) {
-				return fallback.toPredicate(root, query, builder);
+				return fallback.build(root, query, builder);
 			}
-			Path<?> attribute = path(root, field, extensions.optionalToOne);
+			Path<?> attribute = path(root, field, optionalToOne, scope);
 			if (boxed(attribute.getJavaType()) != boxed(type)) {
 				throw new IllegalStateException("Converted value type does not match fallback attribute " + field);
 			}
 			if (type == String.class) {
 				String[] parts = field.split("\\.");
 				Path<?> owner = root;
-				if (extensions.optionalToOne) {
+				if (scope != null) {
+					var resolved = scope.resolve(field);
+					Path<?> scopedOwner = resolved.owner();
+					if (scopedOwner == null) {
+						return ScalarElements.render(criterion, settings, options, attribute,
+								java.util.Objects.requireNonNull(value), builder);
+					}
+					owner = scopedOwner;
+					return ParsingStrategy.getStrategy(type, settings, false, options.resolve(field))
+						.buildPredicate(builder, owner, java.util.Objects.requireNonNull(resolved.localField()),
+								criterion.getOperation(), value);
+				}
+				if (optionalToOne) {
 					owner = ToOnePaths.owner(root, field);
 				}
 				else {
@@ -216,7 +269,10 @@ final class ExtensionPredicates {
 		}
 	}
 
-	private static Path<?> path(Root<?> root, String field, boolean optionalToOne) {
+	private static Path<?> path(Root<?> root, String field, boolean optionalToOne, @Nullable CollectionScope<?> scope) {
+		if (scope != null) {
+			return scope.resolve(field).expression();
+		}
 		if (optionalToOne) {
 			return ToOnePaths.resolve(root, field);
 		}
@@ -228,8 +284,8 @@ final class ExtensionPredicates {
 	}
 
 	@SuppressWarnings("unchecked")
-	private static Predicate typed(CriteriaBuilder builder, Path<?> path, ProfileOperation operation,
-			@Nullable Object value, String field) {
+	static Predicate typed(CriteriaBuilder builder, Path<?> path, ProfileOperation operation, @Nullable Object value,
+			String field) {
 		if (operation == ProfileOperation.IN || operation == ProfileOperation.NOT_IN) {
 			var clause = builder.in((Expression<Object>) path);
 			for (Object item : (List<?>) java.util.Objects.requireNonNull(value)) {
@@ -257,6 +313,13 @@ final class ExtensionPredicates {
 			default -> throw new InvalidSearchQueryException(QueryErrorCode.UNSUPPORTED_OPERATION, field,
 					"Unsupported typed operation for " + field);
 		};
+	}
+
+	@FunctionalInterface
+	private interface Fallback<T> {
+
+		@Nullable Predicate build(Root<T> root, @Nullable CriteriaQuery<?> query, CriteriaBuilder builder);
+
 	}
 
 }

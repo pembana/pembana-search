@@ -106,11 +106,16 @@ public List<User> findUsers(@SearchSpec Specification<User> search) {
 
 For example, the `search` parameter can contain
 `name:Ada* AND active:true`. URL-encode expressions when sending HTTP requests.
+When combining conditions, `AND` binds more tightly than `OR`. Use parentheses
+such as `(name:Ada OR name:Beta) AND active:true` to require an active record for
+either name. See [query grouping](docs/reference/query-language.md#combining-conditions-with-and-or-and-parentheses)
+for a worked example and the change from earlier snapshots.
 Boot discovers the resolver automatically; scanning the library package is not
 required. Consumer authorization/tenant restrictions must be composed outside
 user-controlled Boolean expressions.
 
-Default matching preserves the upstream advanced-expression behavior. Opt in to
+Advanced expressions use the documented matching rules, including corrected
+`AND`-before-`OR` grouping. Opt in to
 stricter validation explicitly:
 
 ```java
@@ -124,6 +129,9 @@ Specification<User> search
 The [query reference](docs/reference/query-language.md) documents important legacy
 limits, including remaining case-operator asymmetry, SQL LIKE metacharacters, and implicit
 association joins. Strict validation does not silently change matching semantics.
+For related records, opt in per query to [optional to-one handling](docs/reference/optional-to-one.md)
+and [collection handling](docs/reference/collections.md), including optional relations
+inside collection children.
 
 For case-insensitive equality and patterns, set `@SearchSpec(caseSensitiveFlag = false)`.
 For example, `name:ADA` then matches `Ada`, and `name!ADA` excludes it. The default

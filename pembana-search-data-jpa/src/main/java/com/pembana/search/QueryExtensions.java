@@ -38,11 +38,14 @@ public final class QueryExtensions {
 
 	final boolean optionalToOne;
 
+	final boolean collections;
+
 	final int maxExpansionNodes;
 
 	final int maxExpansionDepth;
 
 	private QueryExtensions(Builder builder) {
+		this.collections = builder.collections;
 		this.optionalToOne = builder.optionalToOne;
 		this.types = Map.copyOf(builder.types);
 		this.fields = Map.copyOf(builder.fields);
@@ -61,8 +64,8 @@ public final class QueryExtensions {
 	}
 
 	boolean isEmpty() {
-		return !this.optionalToOne && this.types.isEmpty() && this.fields.isEmpty() && this.factories.isEmpty()
-				&& this.transformations.isEmpty();
+		return !this.collections && !this.optionalToOne && this.types.isEmpty() && this.fields.isEmpty()
+				&& this.factories.isEmpty() && this.transformations.isEmpty();
 	}
 
 	/**
@@ -82,6 +85,8 @@ public final class QueryExtensions {
 
 		private boolean optionalToOne;
 
+		private boolean collections;
+
 		private int maxExpansionNodes = 1024;
 
 		private int maxExpansionDepth = 64;
@@ -97,6 +102,17 @@ public final class QueryExtensions {
 		 */
 		public Builder optionalToOne(boolean enabled) {
 			this.optionalToOne = enabled;
+			return this;
+		}
+
+		/**
+		 * Selects correlated collection existence/absence and optional to-one links
+		 * inside children.
+		 * @param enabled true to enable collection traversal for this registry
+		 * @return this builder
+		 */
+		public Builder collections(boolean enabled) {
+			this.collections = enabled;
 			return this;
 		}
 

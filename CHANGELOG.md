@@ -32,6 +32,11 @@ The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring S
 
 ### Fixed
 
+- Correct an inherited Boolean precedence bug: `AND` now binds more tightly than
+  `OR`. Mixed expressions without parentheses may return different results.
+  Write `(A OR B) AND C` to preserve the earlier meaning of `A OR B AND C`.
+  See the [migration guide](docs/migration.md#boolean-operator-precedence-correction).
+
 - Resolve collection attributes through JPA metadata so inherited and getter-mapped
   collections support emptiness queries, including dotted association paths.
 - Convert nested enum values through the resolved enum class, including private
@@ -57,7 +62,9 @@ The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring S
 ### Compatibility
 
 - Import and coordinate changes require consumer migration; there are no old-package shims.
-- Query matching defaults remain inherited. Stricter input rejection is opt-in.
+- Boolean precedence now follows `AND` before `OR`; explicit parentheses retain
+  control of grouping. Other matching corrections are described above. Stricter
+  input rejection remains opt-in.
 - The deprecated upstream default-package `SyntaxErrorListener` alias is removed;
   use `com.pembana.search.listeners.SyntaxErrorListener` when needed.
-- This is a single artifact. The planned core/JPA/starter split is not implemented yet.
+- The parent POM aggregates separate core, JPA, and optional Boot starter artifacts.

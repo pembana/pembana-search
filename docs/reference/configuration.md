@@ -25,7 +25,8 @@ For examples, migration implications and the current limits of field/global
 controls, see [case sensitivity](case-sensitivity.md). The annotation supplies the configured fallback. Requests can override it through
 `caseSensitivity` and `fieldCaseSensitivity[property]`; JSON search bodies opt in
 with `com.pembana.search.configuration.SearchRequestBody`. See that guide for
-precedence, strict validation and the unchanged no-options compatibility behavior.
+precedence, strict validation and no-options compatibility behavior. All advanced
+expressions use `AND` before `OR`; see [query grouping](query-language.md#combining-conditions-with-and-or-and-parentheses).
 
 ## Entry points
 
@@ -117,3 +118,13 @@ Ordinary methods retain their current behavior.
 available for other matching OR branches. Select
 `QueryExtensions.builder().optionalToOne(true).build()` with `withExtendedSearch`
 or `withExtendedQuery` for an individual query. The default remains disabled.
+
+## Collection contents
+
+[Collection handling](collections.md) finds records by matching entity children or
+elements, including optional to-one relations inside a collection. Select it per
+query with `QueryExtensions.builder().collections(true).build()` and
+`withExtendedSearch` or `withExtendedQuery`. It is disabled by default. Use
+`withAssociationQuery` and `AssociationQuery.any` when several conditions must
+match the same child. Profiles and optional-to-one handling can be selected on the
+same call.
