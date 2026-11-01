@@ -30,7 +30,8 @@ import com.pembana.search.annotation.SearchSpec;
 
 /**
  * Test-only factories: preserve Kotlin setOf and annotation-instance semantics without
- * Kotlin.
+ * Kotlin. The manual annotation deliberately selects permissive, unlimited settings
+ * for the inherited compatibility corpus.
  *
  * @author Gunnar Hillert
  */

@@ -47,11 +47,11 @@ public record ParserOptions(boolean strictValidation, List<String> blackListedFi
 	}
 
 	/**
-	 * Returns the characterized legacy parser policy.
+	 * Returns strict parsing with a 4096-character and 16-level grouping limit.
 	 * @return default policy
 	 */
 	public static ParserOptions defaults() {
-		return new ParserOptions(false, List.of(), List.of(), 0, 0);
+		return new ParserOptions(true, List.of(), List.of(), 4096, 16);
 	}
 
 	/**

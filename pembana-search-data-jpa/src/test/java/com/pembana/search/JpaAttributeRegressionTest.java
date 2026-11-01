@@ -307,7 +307,7 @@ public class JpaAttributeRegressionTest {
 	 * Defines the unchanged compatibility policy.
 	 * @param query annotation target
 	 */
-	private static void legacyPolicy(@SearchSpec Specification<?> query) {
+	private static void legacyPolicy(@SearchSpec(strictValidation = false) Specification<?> query) {
 	}
 
 	/**

@@ -56,11 +56,12 @@ class QueryBehaviorTest {
 	EntityManager entityManager;
 
 	/** Defines the unchanged matching policy through a real annotation instance. */
-	private void legacy(@SearchSpec Specification<Users> query) {
+	private void legacy(@SearchSpec(strictValidation = false, maxQueryLength = 0, maxNestingDepth = 0)
+			Specification<Users> query) {
 	}
 
 	/** Enables validation without changing matching. */
-	private void strict(@SearchSpec(strictValidation = true) Specification<Users> query) {
+	private void strict(@SearchSpec Specification<Users> query) {
 	}
 
 	/** Captures the legacy case-insensitive policy. */
@@ -110,7 +111,11 @@ class QueryBehaviorTest {
 
 	/** Checks the annotation defaults as well as the manual compatibility factory. */
 	@Test
-	void defaultsRemainLegacyAndAnnotationFactoryKeepsItsContract() throws Exception {
+	void explicitLegacyAnnotationFactoryKeepsItsContract() throws Exception {
+		SearchSpec defaults = settings("strict");
+		assertEquals(true, defaults.strictValidation());
+		assertEquals(4096, defaults.maxQueryLength());
+		assertEquals(16, defaults.maxNestingDepth());
 		SearchSpec actual = settings("legacy");
 		SearchSpec manual = SearchTestFixtures.searchSpec("search", true, new String[0]);
 		assertEquals(actual, manual);

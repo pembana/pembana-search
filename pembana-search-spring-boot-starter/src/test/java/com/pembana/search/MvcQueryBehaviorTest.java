@@ -94,6 +94,15 @@ class MvcQueryBehaviorTest {
 		mvc.perform(get("/query").param("filter", "userFirstName:"))
 			.andExpect(status().isBadRequest())
 			.andExpect(jsonPath("$.code").value("SYNTAX_ERROR"));
+		mvc.perform(get("/query").param("filter", "active:banana"))
+			.andExpect(status().isBadRequest())
+			.andExpect(jsonPath("$.code").value("INVALID_VALUE"));
+		mvc.perform(get("/query").param("filter", "userFirstName:" + "x".repeat(4096)))
+			.andExpect(status().isBadRequest())
+			.andExpect(jsonPath("$.code").value("QUERY_LIMIT_EXCEEDED"));
+		mvc.perform(get("/query").param("filter", "(".repeat(17) + "userFirstName:Ada" + ")".repeat(17)))
+			.andExpect(status().isBadRequest())
+			.andExpect(jsonPath("$.code").value("QUERY_LIMIT_EXCEEDED"));
 	}
 
 	/**
@@ -119,8 +128,8 @@ class MvcQueryBehaviorTest {
 		 * @return matching row count as text
 		 */
 		@GetMapping("/query")
-		String search(@SearchSpec(searchParam = "filter", strictValidation = true,
-				allowedFields = "userFirstName") @Nullable Specification<Users> search) {
+		String search(@SearchSpec(searchParam = "filter",
+				allowedFields = { "userFirstName", "active" }) @Nullable Specification<Users> search) {
 			return String.valueOf((search == null) ? this.repository.count() : this.repository.count(search));
 		}
 

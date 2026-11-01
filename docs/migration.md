@@ -53,6 +53,45 @@ This identity change introduces no new matching policy, grammar, framework
 upgrade, module split or application migration. The inherited operator quirks
 and association limitations are documented in the [query reference](reference/query-language.md).
 
+## Strict validation and input limits by default
+
+A basic `@SearchSpec` now enables strict validation, permits up to 4,096 input
+characters, and permits up to 16 nested levels of parentheses. Core-only parsing
+with `new ExpressionParser()` or `ParserOptions.defaults()` uses the same defaults.
+Earlier snapshots used permissive validation and unlimited length and nesting.
+
+This changes how invalid and oversized requests behave. For example,
+`active:banana` now reports `INVALID_VALUE` instead of searching for `false`.
+Unknown fields and unsupported operations produce structured query errors.
+Expressions exceeding a limit report `QUERY_LIMIT_EXCEEDED`. Applications retain
+control of how HTTP error bodies are rendered.
+
+Start by checking saved searches and tests against these defaults. Correct invalid
+values and choose larger limits if valid searches need them. For example:
+
+```java
+@SearchSpec(allowedFields = {"name", "active"},
+            maxQueryLength = 8192, maxNestingDepth = 32)
+Specification<User> search
+```
+
+To explicitly retain the earlier permissive, unlimited input policy:
+
+```java
+@SearchSpec(strictValidation = false, maxQueryLength = 0, maxNestingDepth = 0)
+Specification<User> search
+```
+
+For core-only compatibility, pass
+`new ParserOptions(false, List.of(), List.of(), 0, 0)` to `ExpressionParser`.
+Disabling strict validation and disabling each limit are independent choices.
+Neither changes the corrected `AND`-before-`OR` grouping.
+
+Searchable fields remain application-defined. An empty allowlist imposes no field
+restriction; use an allowlist or field profile for public endpoints. Input limits
+bound parsing work, not SQL execution time. Keep tenant and authorization
+restrictions outside the complete user-controlled expression.
+
 ## Boolean operator precedence correction
 
 Pembana fixes an inherited operator-precedence inconsistency: `AND` now binds

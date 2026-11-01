@@ -220,6 +220,14 @@ class CoreQueryTest {
 	 */
 	@Test
 	void complexityLimits() {
+		assertEquals(new ParserOptions(true, List.of(), List.of(), 4096, 16), ParserOptions.defaults());
+		String boundary = "name:'" + "x".repeat(4089) + "'";
+		this.parser.parse(boundary);
+		assertEquals(DiagnosticCode.QUERY_LIMIT_EXCEEDED,
+				assertThrows(QueryParseException.class, () -> this.parser.parse(boundary + " ")).getErrorCode());
+		this.parser.parse("(".repeat(16) + "a:1" + ")".repeat(16));
+		assertEquals(DiagnosticCode.QUERY_LIMIT_EXCEEDED, assertThrows(QueryParseException.class,
+				() -> this.parser.parse("(".repeat(17) + "a:1" + ")".repeat(17))).getErrorCode());
 		assertThrows(IllegalArgumentException.class, () -> new ParserOptions(false, List.of(), List.of(), -1, 0));
 		assertThrows(IllegalArgumentException.class, () -> new ParserOptions(false, List.of(), List.of(), 0, -1));
 		var sized = new ExpressionParser(new ParserOptions(false, List.of(), List.of(), 3, 0));
@@ -248,16 +256,16 @@ class CoreQueryTest {
 		assertThrows(QueryParseException.class, () -> this.parser.parse(""));
 	}
 
-	/** Empty scalar failures remain explicit only when strict validation is requested. */
+	/** Empty scalars are rejected by default; compatibility behavior remains explicit. */
 	@Test
 	void emptyScalars() {
-		assertThrows(NullPointerException.class, () -> this.parser.parse("name:''"));
-		var strict = new ExpressionParser(new ParserOptions(true, List.of(), List.of(), 0, 0));
-		var error = assertThrows(QueryParseException.class, () -> strict.parse("name:''"));
+		var legacy = new ExpressionParser(new ParserOptions(false, List.of(), List.of(), 0, 0));
+		assertThrows(NullPointerException.class, () -> legacy.parse("name:''"));
+		var error = assertThrows(QueryParseException.class, () -> this.parser.parse("name:''"));
 		assertEquals(DiagnosticCode.INVALID_VALUE, error.getErrorCode());
 		assertEquals("name", error.getField());
 		assertFalse(error.getReason().isEmpty());
-		assertEquals(this.parser.parse("name:Ada"), strict.parse("name:Ada"));
+		assertEquals(this.parser.parse("name:Ada"), legacy.parse("name:Ada"));
 	}
 
 	/**

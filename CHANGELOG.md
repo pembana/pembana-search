@@ -49,6 +49,13 @@ The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring S
 
 ### Changed
 
+- Enable strict validation by default in `@SearchSpec` and core parser defaults,
+  with limits of 4,096 characters and 16 nesting levels. Invalid and oversized
+  expressions now fail explicitly. Configure larger limits when needed; select
+  `strictValidation=false` and zero limits explicitly for legacy input handling.
+  Searchable-field restrictions remain application-defined. See
+  [migration advice](docs/migration.md#strict-validation-and-input-limits-by-default).
+
 - Spring Boot baseline is 4.1.1; Kotlin tooling has been removed.
 - Maven and style tools build on JDK 21 while compiler release targeting and
   consumer compatibility remain Java 17; CI tests runtimes 17, 21, and 25.
@@ -64,7 +71,7 @@ The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring S
 - Import and coordinate changes require consumer migration; there are no old-package shims.
 - Boolean precedence now follows `AND` before `OR`; explicit parentheses retain
   control of grouping. Other matching corrections are described above. Stricter
-  input rejection remains opt-in.
+  input rejection is now the default; compatibility behavior requires explicit configuration.
 - The deprecated upstream default-package `SyntaxErrorListener` alias is removed;
   use `com.pembana.search.listeners.SyntaxErrorListener` when needed.
 - The parent POM aggregates separate core, JPA, and optional Boot starter artifacts.

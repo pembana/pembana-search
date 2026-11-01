@@ -389,7 +389,8 @@ public class OptionalToOneTest {
 	private static void strict(@SearchSpec(strictValidation = true) Specification<?> query) {
 	}
 
-	private static void legacy(@SearchSpec Specification<?> query) {
+	private static void legacy(@SearchSpec(strictValidation = false, maxQueryLength = 0, maxNestingDepth = 0)
+			Specification<?> query) {
 	}
 
 	private static void allowed(@SearchSpec(allowedFields = { "author.name", "title" }) Specification<?> query) {

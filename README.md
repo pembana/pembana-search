@@ -114,17 +114,19 @@ Boot discovers the resolver automatically; scanning the library package is not
 required. Consumer authorization/tenant restrictions must be composed outside
 user-controlled Boolean expressions.
 
-Advanced expressions use the documented matching rules, including corrected
-`AND`-before-`OR` grouping. Opt in to
-stricter validation explicitly:
+Advanced expressions use `AND` before `OR`. By default, invalid fields, values,
+and operations are rejected; expressions are limited to 4,096 characters and
+16 levels of parentheses. Choose which fields your endpoint exposes:
 
 ```java
-@SearchSpec(strictValidation = true,
-            allowedFields = {"name", "active"},
-            maxQueryLength = 4096,
-            maxNestingDepth = 16)
+@SearchSpec(allowedFields = {"name", "active"})
 Specification<User> search
 ```
+
+An empty allowlist does not restrict searchable fields. For public endpoints,
+list the fields you intend to expose or select a field profile. Validation does
+not replace authorization. Limits are configurable; see the
+[defaults and compatibility guide](docs/migration.md#strict-validation-and-input-limits-by-default).
 
 The [query reference](docs/reference/query-language.md) documents important legacy
 limits, including remaining case-operator asymmetry, SQL LIKE metacharacters, and implicit

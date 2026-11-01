@@ -4,7 +4,8 @@ This guide describes the current advanced-expression API. Unconfigured
 `@SearchSpec` and `SpecificationsBuilder` use the matching rules described below.
 Boolean precedence corrects an inherited inconsistency: `AND` now binds more
 tightly than `OR`, including when strict validation is disabled.
-Strict validation changes rejection behavior only when explicitly enabled.
+Strict validation is enabled by default. Expressions are limited to 4,096
+characters and 16 levels of parentheses unless configured otherwise.
 Neither mode introduces ordinary-text word search, fuzzy matching, aliases, or
 automatic wildcard expansion for equality.
 
@@ -124,7 +125,7 @@ does not interpret `AND` or `OR` as operators.
 return different results. To keep the earlier meaning of `A OR B AND C`, write
 `(A OR B) AND C`. See the [migration guide](../migration.md#boolean-operator-precedence-correction).
 
-## Optional validation and field policy
+## Default validation, limits, and field policy
 
 ```java
 @GetMapping("/users")
@@ -140,16 +141,32 @@ public List<User> users(
 }
 ```
 
-These limits are an application example, not library defaults. The settings are
-independent; allowlists and limits can be used without strict type validation.
+The example spells out the defaults so you can see what applies. Usually you
+only need `@SearchSpec(allowedFields = {"userFirstName", "active", "updatedDateAt"})`.
+An empty allowlist leaves searchable paths unrestricted; the library cannot know
+which fields your application intends to expose. For a public endpoint, choose
+an explicit allowlist or a [field profile](profiles.md).
+
+For example, `active:banana` is rejected with `INVALID_VALUE`, rather than
+silently searching for inactive records. An expression over 4,096 characters or
+with more than 16 nested pairs of parentheses is rejected with
+`QUERY_LIMIT_EXCEEDED`. Limits are inclusive: exactly 4,096 characters or exactly
+16 levels are allowed if the expression is otherwise valid.
+
+You can raise the limits for an endpoint, for example
+`@SearchSpec(maxQueryLength = 8192, maxNestingDepth = 32)`. Setting either limit
+to `0` disables that limit. `strictValidation = false` selects permissive
+compatibility behavior; it does not disable the limits. These settings are
+independent. See [migration advice](../migration.md#strict-validation-and-input-limits-by-default)
+before opting out.
 
 | Setting | Default | Effect when configured |
 | --- | --- | --- |
-| `strictValidation` | `false` | Reject unknown paths, unsupported field types/operators, invalid Booleans, empty scalar strings, and any lexer diagnostics |
+| `strictValidation` | `true` | Reject unknown paths, unsupported field types/operators, invalid Booleans, empty scalar strings, and any lexer diagnostics |
 | `allowedFields` | `{}` | Non-empty lists permit exact entity paths only, across every expression branch |
 | `blackListedFields` | `{}` | Exact forbidden paths, taking priority over the allowlist |
-| `maxQueryLength` | `0` (unlimited) | Inclusive maximum Java UTF-16 string length before lexing |
-| `maxNestingDepth` | `0` (unlimited) | Inclusive maximum parenthesis depth, checked on tokens before recursive parsing |
+| `maxQueryLength` | `4096` | Inclusive maximum Java UTF-16 string length before lexing |
+| `maxNestingDepth` | `16` | Inclusive maximum parenthesis depth, checked on tokens before recursive parsing |
 
 Negative limits are consumer configuration errors (`IllegalArgumentException`),
 not bad user queries. Parentheses inside quoted strings do not count toward
@@ -177,7 +194,7 @@ It retains the existing conversion strategies, matching, joins, and null handlin
 Conversion and field checks occur when JPA constructs a predicate; syntax,
 limits, and field-list checks occur while building the specification.
 
-In compatibility mode, invalid Boolean text still becomes `false`; Boolean
+If you explicitly set `strictValidation = false`, invalid Boolean text still becomes `false`; Boolean
 ordering can contribute no predicate; unknown paths still surface provider
 errors; and an empty quoted scalar still raises the inherited null-pointer
 failure. Strict mode turns these cases into explicit query errors instead of

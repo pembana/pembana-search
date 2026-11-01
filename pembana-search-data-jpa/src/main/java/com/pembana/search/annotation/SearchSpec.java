@@ -61,11 +61,11 @@ public @interface SearchSpec {
 
 	/**
 	 * Returns whether to reject lexical errors, unknown fields and unsupported typed
-	 * operations.
+	 * operations. Enabled by default.
 	 * @return whether to reject lexical errors, unknown fields and unsupported typed
 	 * operations
 	 */
-	boolean strictValidation() default false;
+	boolean strictValidation() default true;
 
 	/**
 	 * Returns exact searchable paths; an empty list preserves unrestricted legacy access.
@@ -74,15 +74,15 @@ public @interface SearchSpec {
 	String[] allowedFields() default {};
 
 	/**
-	 * Returns maximum expression characters, or zero for the legacy unlimited behavior.
+	 * Returns maximum expression characters, or zero to explicitly disable this limit.
 	 * @return maximum expression characters, or zero for the legacy unlimited behavior
 	 */
-	int maxQueryLength() default 0;
+	int maxQueryLength() default 4096;
 
 	/**
-	 * Returns maximum parenthesis depth, or zero for the legacy unlimited behavior.
+	 * Returns maximum parenthesis depth, or zero to explicitly disable this limit.
 	 * @return maximum parenthesis depth, or zero for the legacy unlimited behavior
 	 */
-	int maxNestingDepth() default 0;
+	int maxNestingDepth() default 16;
 
 }

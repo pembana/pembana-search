@@ -97,13 +97,19 @@ class UserController {
      * @return matching users
      */
     @GetMapping("/users")
-    List<User> users(@SearchSpec(searchParam = "filter", strictValidation = true,
-            allowedFields = {"name", "active"}, maxQueryLength = 4096, maxNestingDepth = 16)
+    List<User> users(@SearchSpec(searchParam = "filter", allowedFields = {"name", "active"})
             Specification<User> search) {
         return search == null ? repository.findAll() : repository.findAll(search);
     }
 }
 ```
+
+The annotation rejects invalid input by default and limits expressions to 4,096
+characters and 16 levels of parentheses. `allowedFields` selects the attributes
+this endpoint makes searchable. An empty list imposes no field restriction, so
+choose fields deliberately for public endpoints. These settings do not add tenant
+or authorization restrictions. See [validation and limits](reference/query-language.md#default-validation-limits-and-field-policy)
+for overrides and examples.
 
 A request might be:
 

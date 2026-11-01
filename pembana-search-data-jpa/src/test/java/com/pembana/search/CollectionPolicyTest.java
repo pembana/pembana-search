@@ -677,10 +677,11 @@ public class CollectionPolicyTest {
 	private static void strict(@SearchSpec(strictValidation = true) Specification<?> query) {
 	}
 
-	private static void legacy(@SearchSpec Specification<?> query) {
+	private static void legacy(@SearchSpec(strictValidation = false, maxQueryLength = 0, maxNestingDepth = 0)
+			Specification<?> query) {
 	}
 
-	private static void legacyInsensitive(@SearchSpec(caseSensitiveFlag = false) Specification<?> query) {
+	private static void legacyInsensitive(@SearchSpec(caseSensitiveFlag = false, strictValidation = false) Specification<?> query) {
 	}
 
 	private static void denied(@SearchSpec(blackListedFields = "children.color") Specification<?> query) {

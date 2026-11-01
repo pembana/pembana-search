@@ -37,7 +37,7 @@ import com.pembana.search.listeners.SyntaxErrorListener;
  */
 public final class ExpressionParser {
 
-	/** Creates a parser using the characterized legacy policy. */
+	/** Creates a parser with strict validation and bounded expression size and grouping. */
 	public ExpressionParser() {
 		this(ParserOptions.defaults());
 	}

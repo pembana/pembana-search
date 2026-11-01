@@ -54,8 +54,10 @@ parser knows an application's schema. Programmatic operators are explicit:
 `STARTS_WITH` with `"Ada"` corresponds to parsed `name:Ada*`. A literal value
 containing `*` is not implicitly reparsed or treated as an operator.
 
-`ParserOptions` copies field allow/deny lists and retains the default unlimited
-expression-size/nesting policy. Core failures expose `DiagnosticCode`, reason,
+`ParserOptions` copies field allow/deny lists and defaults to strict validation,
+a 4,096-character input limit and 16 levels of parentheses, matching `@SearchSpec`.
+Explicit zero limits select unlimited input or grouping; strict validation can be
+disabled separately for compatibility. Core failures expose `DiagnosticCode`, reason,
 optional field and source location through `QueryParseException`, with no HTTP
 status dependency. The JPA facade maps these to the established
 `InvalidSearchQueryException` code, reason and ProblemDetail location properties.
