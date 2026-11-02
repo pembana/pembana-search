@@ -37,6 +37,7 @@ import tools.jackson.databind.json.JsonMapper;
 
 import com.pembana.search.configuration.ResolverConf;
 import com.pembana.search.configuration.SearchSpecificationResolver;
+import com.pembana.search.core.SearchProfile;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -49,6 +50,31 @@ import static org.mockito.Mockito.mock;
  * @author Gunnar Hillert
  */
 class ResolverAutoConfigurationTest {
+
+	/** Profile selection uses the profile name, independently of its Spring bean name. */
+	@Test
+	void applicationProfilesAreRegistered() throws Exception {
+		MethodParameter parameter = new MethodParameter(
+				HttpSearchProfileTest.Endpoint.class.getDeclaredMethod("get", Specification.class), 0);
+		new WebApplicationContextRunner().withConfiguration(AutoConfigurations.of(ResolverConf.class))
+			.withBean("differentBeanName", SearchProfile.class,
+					() -> HttpSearchProfileTest.profile("public", "userFirstName"))
+			.run((context) -> {
+				var request = new MockHttpServletRequest();
+				request.addParameter("q", "label:Ada");
+				assertThat(context.getBean(SearchSpecificationResolver.class)
+					.resolveArgument(parameter, null, new ServletWebRequest(request), null)).isNotNull();
+			});
+	}
+
+	/** Ambiguous profile names fail configuration rather than selecting by bean order. */
+	@Test
+	void duplicateProfileNamesFailStartup() {
+		new WebApplicationContextRunner().withConfiguration(AutoConfigurations.of(ResolverConf.class))
+			.withBean("first", SearchProfile.class, () -> HttpSearchProfileTest.profile("public", "userFirstName"))
+			.withBean("second", SearchProfile.class, () -> HttpSearchProfileTest.profile("public", "userLastName"))
+			.run((context) -> assertThat(context).hasFailed());
+	}
 
 	/**
 	 * A consumer's named resolver replaces the default without duplicate registration.

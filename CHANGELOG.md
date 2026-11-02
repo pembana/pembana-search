@@ -7,6 +7,11 @@ The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring S
 
 ### Added
 
+- HTTP field-profile selection with `@SearchSpec(profile = "name")`. Boot registers
+  `SearchProfile` beans by their profile names; GET/form and JSON binding share
+  aliases, operation permissions and case defaults. Duplicate names and unknown
+  selections report configuration errors. Ordinary binding remains the default.
+
 - Opt-in `security` Maven profile with one reactor-wide aggregate Dependency-Check
   report, plus nightly/manual scans with a versioned, persistent database cache.
 

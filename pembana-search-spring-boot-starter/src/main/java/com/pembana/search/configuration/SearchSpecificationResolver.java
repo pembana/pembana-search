@@ -19,6 +19,10 @@
  */
 package com.pembana.search.configuration;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
@@ -37,6 +41,7 @@ import com.pembana.search.QueryErrorCode;
 import com.pembana.search.SpecificationsBuilder;
 import com.pembana.search.annotation.SearchSpec;
 import com.pembana.search.core.SearchOptions;
+import com.pembana.search.core.SearchProfile;
 
 /**
  * Resolves annotated Spring MVC search parameters without imposing consumer authorization
@@ -57,12 +62,31 @@ public final class SearchSpecificationResolver implements HandlerMethodArgumentR
 
 	private final SearchRequestReader requestReader;
 
+	private final Map<String, SearchProfile> profiles;
+
 	/**
 	 * Creates request binding using the application's Jackson 3 mapper constraints.
 	 * @param mapper configured JSON mapper
 	 */
 	public SearchSpecificationResolver(JsonMapper mapper) {
+		this(mapper, List.of());
+	}
+
+	/**
+	 * Creates binding with immutable named profiles selected by endpoint annotations.
+	 * @param mapper configured JSON mapper
+	 * @param profiles application profiles with unique SearchProfile names
+	 * @throws IllegalArgumentException if multiple profiles have the same name
+	 */
+	public SearchSpecificationResolver(JsonMapper mapper, Collection<SearchProfile> profiles) {
 		this.requestReader = new SearchRequestReader(mapper);
+		Map<String, SearchProfile> registered = new HashMap<>();
+		for (SearchProfile profile : profiles) {
+			if (registered.putIfAbsent(profile.name(), profile) != null) {
+				throw new IllegalArgumentException("Duplicate search profile name: " + profile.name());
+			}
+		}
+		this.profiles = Map.copyOf(registered);
 	}
 
 	private static final Logger logger = LoggerFactory.getLogger(SearchSpecificationResolver.class);
@@ -85,13 +109,18 @@ public final class SearchSpecificationResolver implements HandlerMethodArgumentR
 			@Nullable ModelAndViewContainer mavContainer, NativeWebRequest webRequest,
 			@Nullable WebDataBinderFactory binderFactory) throws Exception {
 		SearchSpec def = Objects.requireNonNull(parameter.getParameterAnnotation(SearchSpec.class));
+		SearchProfile profile = this.profiles.get(def.profile());
+		if (!def.profile().isEmpty() && profile == null) {
+			throw new IllegalStateException("Unknown search profile: " + def.profile());
+		}
 		SearchRequestReader.BoundSearch bound = this.requestReader.read(webRequest, def.searchParam(),
 				parameter.hasParameterAnnotation(SearchRequestBody.class));
-		return buildSpecification(parameter.getGenericParameterType().getClass(), bound.search(), def, bound.options());
+		return buildSpecification(parameter.getGenericParameterType().getClass(), bound.search(), def, bound.options(),
+				profile);
 	}
 
 	private <T> @Nullable Specification<T> buildSpecification(Class<T> specClass, @Nullable String search,
-			SearchSpec annotation, SearchOptions options) {
+			SearchSpec annotation, SearchOptions options, @Nullable SearchProfile profile) {
 		logger.debug("Building specification for class {}", specClass);
 		logger.debug("Search value found is {}", search);
 		if (search == null || search.isEmpty()) {
@@ -101,7 +130,8 @@ public final class SearchSpecificationResolver implements HandlerMethodArgumentR
 			}
 			return null;
 		}
-		return new SpecificationsBuilder<T>(annotation, options).withSearch(search).build();
+		var builder = new SpecificationsBuilder<T>(annotation, options);
+		return ((profile == null) ? builder.withSearch(search) : builder.withSearch(search, profile)).build();
 	}
 
 }

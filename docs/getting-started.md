@@ -129,6 +129,14 @@ not required. The example assumes `User` is an application-supplied JPA entity.
 The endpoint is illustrative; configure authentication and caller restrictions
 as appropriate to the application.
 
+## Reuse a public search contract
+
+If several endpoints need the same public field names and allowed operations,
+register a `SearchProfile` bean and choose it with `@SearchSpec(profile = "public-catalogue")`.
+For example, public `name` can map to your entity's `title` attribute while direct
+`title` searches remain forbidden. The profile applies to GET/form and opt-in
+JSON binding. Follow the [step-by-step profile example](reference/profiles.md#use-a-profile-in-an-http-endpoint).
+
 ## Direct JPA usage without MVC
 
 `SpecificationsBuilder` needs a `SearchSpec` policy. A normal Java annotation can

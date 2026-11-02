@@ -30,8 +30,8 @@ import com.pembana.search.annotation.SearchSpec;
 
 /**
  * Test-only factories: preserve Kotlin setOf and annotation-instance semantics without
- * Kotlin. The manual annotation deliberately selects permissive, unlimited settings
- * for the inherited compatibility corpus.
+ * Kotlin. The manual annotation deliberately selects permissive, unlimited settings for
+ * the inherited compatibility corpus.
  *
  * @author Gunnar Hillert
  */
@@ -49,6 +49,11 @@ final class SearchTestFixtures {
 	static SearchSpec searchSpec(String searchParam, boolean caseSensitiveFlag, String[] blackListedFields) {
 		String[] fields = blackListedFields.clone();
 		return new SearchSpec() {
+			@Override
+			public String profile() {
+				return "";
+			}
+
 			@Override
 			public String searchParam() {
 				return searchParam;
@@ -98,8 +103,8 @@ final class SearchTestFixtures {
 				return other instanceof SearchSpec spec && searchParam.equals(spec.searchParam())
 						&& caseSensitiveFlag == spec.caseSensitiveFlag()
 						&& Arrays.equals(fields, spec.blackListedFields()) && !spec.strictValidation()
-						&& spec.allowedFields().length == 0 && spec.maxQueryLength() == 0
-						&& spec.maxNestingDepth() == 0;
+						&& spec.allowedFields().length == 0 && spec.maxQueryLength() == 0 && spec.maxNestingDepth() == 0
+						&& spec.profile().isEmpty();
 			}
 
 			@Override
@@ -109,7 +114,8 @@ final class SearchTestFixtures {
 						+ ((127 * "blackListedFields".hashCode()) ^ Arrays.hashCode(fields))
 						+ ((127 * "strictValidation".hashCode()) ^ Boolean.hashCode(false))
 						+ ((127 * "allowedFields".hashCode()) ^ Arrays.hashCode(new String[0]))
-						+ (127 * "maxQueryLength".hashCode()) + (127 * "maxNestingDepth".hashCode());
+						+ (127 * "maxQueryLength".hashCode()) + (127 * "maxNestingDepth".hashCode())
+						+ (127 * "profile".hashCode());
 			}
 
 			@Override

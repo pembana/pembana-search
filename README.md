@@ -19,6 +19,11 @@ Build/install the reactor locally, then choose the integration you need:
 `pembana-search` is now the parent/aggregator POM. The API is evolving toward 1.0.
 See the [release process](docs/releasing.md) for local staging and manual JReleaser publication.
 
+HTTP endpoints can also share a named [field profile](docs/reference/profiles.md#use-a-profile-in-an-http-endpoint):
+register a `SearchProfile` bean, then select it with `@SearchSpec(profile = "public-catalogue")`.
+Profiles define public field names, aliases, allowed operations and case defaults.
+GET/form and opt-in JSON searches use the same endpoint-selected policy.
+
 ## Compatibility
 
 | Component | Verified baseline |

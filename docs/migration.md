@@ -177,6 +177,19 @@ Valid queries that previously failed now execute; enum names remain case-sensiti
 invalid constants retain `INVALID_VALUE`, and unsupported collection operators
 remain rejected. No matching defaults or public API signatures change.
 
+## HTTP field-profile selection
+
+`@SearchSpec` now has `profile`, defaulting to an empty string. Existing annotation
+usages retain ordinary canonical field handling. Registering profile beans alone
+does not apply them to endpoints. Select a registered `SearchProfile.name()` in
+the annotation to enable its public fields, aliases and permissions for GET/form
+or JSON binding. See the [HTTP profile walkthrough](reference/profiles.md#use-a-profile-in-an-http-endpoint).
+
+Applications manually implementing the `SearchSpec` annotation interface must
+implement `profile()` and include it in annotation equality/hash calculations.
+Return `""` to retain ordinary behavior. Custom resolvers can pass their registered
+profiles to the new `(JsonMapper, Collection<SearchProfile>)` constructor.
+
 ## Historical evidence
 
 Frozen Stage 0–4 reports retain old coordinates, class names, hashes, and upstream

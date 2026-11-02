@@ -183,8 +183,8 @@ discovery endpoints. These lists apply to parsed expressions; constructing
 arbitrary Specifications directly remains the consumer's responsibility. Lists
 supplied through annotation attributes have Java's
 normal annotation semantics. Applications manually implementing `SearchSpec`
-must implement the four new members and include them in annotation equality and
-hashing; normal annotation usages keep their existing defaults.
+must implement all members, including `profile()`, and include them in annotation
+equality and hashing; normal annotation usages keep their existing defaults.
 
 Strict validation permits equality/inequality/membership for supported scalar
 types; ordering/ranges for strings, the supported numeric types, and temporal

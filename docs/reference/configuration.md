@@ -8,6 +8,7 @@ and is retained at runtime. MVC applies it only to `Specification` parameters.
 | Member | Default | Contract |
 | --- | --- | --- |
 | `searchParam` | `"search"` | HTTP query parameter name |
+| `profile` | `""` | HTTP profile name registered by the application; empty retains canonical field handling |
 | `caseSensitiveFlag` | `true` | False folds all String comparisons, including membership, ordering and ranges |
 | `blackListedFields` | `{}` | Exactly denied entity paths; wins over allowlists |
 | `strictValidation` | `true` | Typed/path/operator validation and actionable rejections; false selects permissive compatibility behavior |
@@ -27,6 +28,11 @@ controls, see [case sensitivity](case-sensitivity.md). The annotation supplies t
 with `com.pembana.search.configuration.SearchRequestBody`. See that guide for
 precedence, strict validation and no-options compatibility behavior. All advanced
 expressions use `AND` before `OR`; see [query grouping](query-language.md#combining-conditions-with-and-or-and-parentheses).
+
+Register `SearchProfile` beans and select one with `@SearchSpec(profile = "public-catalogue")`.
+Lookup uses `SearchProfile.name()`, not the bean name. GET/form and opt-in JSON
+binding share the selected profile. See the [beginner walkthrough](profiles.md#use-a-profile-in-an-http-endpoint)
+for registration, examples, canonical field restrictions and configuration errors.
 
 ## Entry points
 

@@ -35,6 +35,8 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import tools.jackson.databind.json.JsonMapper;
 
+import com.pembana.search.core.SearchProfile;
+
 /**
  * Registers the search argument resolver for servlet applications with Spring MVC
  * available.
@@ -79,11 +81,23 @@ public class ResolverConf implements WebMvcConfigurer {
 	 * @param mappers provider of the application mapper
 	 * @return configured default search resolver
 	 */
-	@Bean(RESOLVER_BEAN_NAME)
-	@ConditionalOnMissingBean(name = RESOLVER_BEAN_NAME)
 	public SearchSpecificationResolver configuredSearchSpecificationResolver(ObjectProvider<JsonMapper> mappers) {
 		JsonMapper mapper = mappers.getIfAvailable();
 		return (mapper == null) ? searchSpecificationResolver() : new SearchSpecificationResolver(mapper);
+	}
+
+	/**
+	 * Registers application profile beans by their profile names for HTTP binding.
+	 * @param mappers provider of the application mapper
+	 * @param profiles provider of application-owned field profiles
+	 * @return resolver with the registered profiles
+	 */
+	@Bean(RESOLVER_BEAN_NAME)
+	@ConditionalOnMissingBean(name = RESOLVER_BEAN_NAME)
+	public SearchSpecificationResolver profiledSearchSpecificationResolver(ObjectProvider<JsonMapper> mappers,
+			ObjectProvider<SearchProfile> profiles) {
+		return new SearchSpecificationResolver(mappers.getIfAvailable(() -> JsonMapper.builder().build()),
+				profiles.stream().toList());
 	}
 
 	/** {@inheritDoc} */

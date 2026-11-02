@@ -2,8 +2,9 @@
 
 `SearchProfile` is an immutable, named policy selected explicitly for one query.
 It defines public field names, canonical entity targets, permitted operations,
-optional default SIMPLE fields, and case defaults. No profile is selected by
-existing constructors, annotations, configuration, or classpath discovery.
+optional default SIMPLE fields, and case defaults. Select a profile explicitly
+through the Java API or an HTTP endpoint annotation. Registering a profile alone
+does not apply it to any query.
 
 ```java
 var publicProfile = new SearchProfile(
@@ -44,8 +45,151 @@ retained as the default for later calls. Calling an existing overload without a
 profile deactivates profile resolution; its input must use the ordinary canonical
 field syntax. An unknown alias is rejected, with no fallback to another profile.
 Direct adapter users can call `JpaQueryTranslator.translate(query, profile)`.
-HTTP profile selection remains application-owned; no request parameter or annotation
-member is added.
+HTTP endpoints can select registered profiles with `@SearchSpec(profile = "public-catalogue")`.
+See the [HTTP walkthrough](#use-a-profile-in-an-http-endpoint).
+
+## Use a profile in an HTTP endpoint
+
+A profile is your endpoint's list of public search fields and allowed operations.
+For example, your entity may store a book's name in `title`, while API users
+search for `name`. A profile connects those two names and can reject fields or
+operations you do not want to expose.
+
+### 1. Register a reusable profile
+
+With the Spring Boot starter, declare a `SearchProfile` bean in your application:
+
+```java
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import com.pembana.search.core.CaseSensitivity;
+import com.pembana.search.core.ProfileOperation;
+import com.pembana.search.core.SearchField;
+import com.pembana.search.core.SearchOptions;
+import com.pembana.search.core.SearchProfile;
+
+@Configuration
+class BookSearchConfiguration {
+    @Bean
+    SearchProfile bookSearchProfile() {
+        return new SearchProfile(
+            "public-catalogue",
+            Map.of("name", new SearchField("title", Set.of(
+                ProfileOperation.EQUALS, ProfileOperation.CONTAINS))),
+            Map.of("label", "name"),
+            List.of(),
+            new SearchOptions(CaseSensitivity.INSENSITIVE, Map.of()));
+    }
+}
+```
+
+Here, `name` is the public field, `title` is the entity property, and `label` is
+another public name for the same field. The profile allows equality and contains
+searches and defaults to ignoring case. The empty list supplies no plain-text
+fields; HTTP profile binding continues to use advanced expressions.
+
+The registration key is **`public-catalogue`**, the first constructor argument.
+It is not the Spring bean method name `bookSearchProfile`. Multiple endpoints
+can share a profile; multiple profiles must have unique profile names.
+
+### 2. Select the profile on an endpoint
+
+Your controller can use the profile without manually building specifications:
+
+```java
+import java.util.List;
+import org.jspecify.annotations.Nullable;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.web.bind.annotation.GetMapping;
+import com.pembana.search.annotation.SearchSpec;
+
+@GetMapping("/books")
+List<Book> books(
+        @SearchSpec(profile = "public-catalogue") @Nullable Specification<Book> search) {
+    return search == null ? repository.findAll() : repository.findAll(search);
+}
+```
+
+This method belongs inside your application's controller. `Book` is your entity
+with a String `title` property. `repository` is your application-owned repository
+implementing `JpaRepository<Book, Long>` and `JpaSpecificationExecutor<Book>`.
+The null check handles an omitted or exactly empty search. If you apply mandatory
+restrictions such as a tenant scope, combine them around the complete user search.
+
+### 3. Try some searches
+
+```sh
+curl --get --data-urlencode 'search=name:ADA' http://localhost:8080/books
+curl --get --data-urlencode 'search=label:*ada*' http://localhost:8080/books
+```
+
+| Search | Result |
+| --- | --- |
+| `name:ADA` | Compares `title`, ignoring case. |
+| `label:*ada*` | Searches for `ada` anywhere in `title`, ignoring case. |
+| `title:Ada` | Rejected: the canonical entity name was not exposed publicly. |
+| `name>Ada` | Rejected: this profile does not permit ordering. |
+| `missing:Ada` | Rejected: the public field is not registered. |
+
+Permission failures use `FIELD_NOT_ALLOWED`. To request sensitive matching for
+one search, send `fieldCaseSensitivity[name]=sensitive`; option keys use public
+names or aliases. Explicit request choices override profile defaults.
+
+### GET, forms, and JSON use the same profile
+
+`searchParam` still changes the query/form parameter name, for example
+`@SearchSpec(profile = "public-catalogue", searchParam = "q")` reads `q=name:Ada`.
+Form endpoints use the same annotation on their `Specification` parameter.
+For JSON, add `@SearchRequestBody` from `com.pembana.search.configuration`:
+
+```java
+@PostMapping("/books/search")
+List<Book> searchBooks(
+        @SearchRequestBody @SearchSpec(profile = "public-catalogue")
+        @Nullable Specification<Book> search) {
+    return search == null ? repository.findAll() : repository.findAll(search);
+}
+```
+
+Import `PostMapping` from `org.springframework.web.bind.annotation` for this method.
+The JSON envelope always uses `search`, independently of `searchParam`:
+
+```json
+{
+  "search": "label:ADA",
+  "fieldCaseSensitivity": {"label": "sensitive"}
+}
+```
+
+The server selects the profile in the annotation. There is no client-selectable
+profile parameter or JSON member. Each endpoint keeps its own profile; a selected
+profile does not affect other endpoints. An annotation with an empty `profile`
+(the default) keeps ordinary canonical-field handling, even when profile beans
+are registered.
+
+### Configuration, restrictions, and custom resolvers
+
+Duplicate profile names fail resolver creation during Boot startup. A missing or
+misspelled selected profile reports an application configuration error when that
+endpoint is resolved, including when no search was supplied. It never falls back
+to unrestricted search. This is a server configuration problem, not an invalid
+user search. Correct the bean registration or annotation name.
+
+Existing `allowedFields` and `blackListedFields` still use **canonical** paths
+such as `title`; the profile's public names are resolved first. Profile operation
+permissions, strict validation, input limits, and case-option validation all
+continue to apply. A profile does not enable collection policies or query
+extensions, and this feature does not add HTTP selection of SIMPLE mode.
+
+Outside Boot, or when creating your own resolver, supply profiles explicitly:
+`new SearchSpecificationResolver(mapper, List.of(publicProfile))`. Existing
+no-argument and mapper-only constructors register no profiles. A replacement
+resolver bean owns its own profile integration. Direct Java builders continue
+to select profiles using their existing overloads; the annotation's `profile`
+member is interpreted by HTTP binding only.
 
 ## Fields, aliases and permissions
 

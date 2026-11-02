@@ -46,6 +46,12 @@ public @interface SearchSpec {
 	String searchParam() default "search";
 
 	/**
+	 * Selects a server-registered HTTP field profile by its SearchProfile name.
+	 * @return profile name, or empty for ordinary canonical field handling
+	 */
+	String profile() default "";
+
+	/**
 	 * Returns whether String comparisons retain case. False folds the field with SQL
 	 * lower and the input with Locale.ROOT for equality, patterns, membership, ordering
 	 * and ranges. Explicit request choices override this flag; it is not accent folding.

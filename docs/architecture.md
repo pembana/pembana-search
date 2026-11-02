@@ -108,6 +108,12 @@ coverage gates. See [module verification](modules/README.md).
 
 ## Request binding
 
+The starter collects application `SearchProfile` beans into an immutable lookup
+by profile name. `@SearchSpec(profile = "name")` selects that profile before request
+binding, then delegates to the existing profile-aware builder. The lookup stores
+no mutable JPA state. Unknown selections are configuration errors; an empty
+selection preserves ordinary field handling. See the [HTTP profile guide](reference/profiles.md#use-a-profile-in-an-http-endpoint).
+
 `@SearchSpec` retains query/form binding. `@SearchRequestBody` explicitly selects
 a strict JSON envelope, preserving existing endpoints that own unrelated
 `@RequestBody` payloads. The starter translates both transports into immutable
