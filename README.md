@@ -28,10 +28,10 @@ GET/form and opt-in JSON searches use the same endpoint-selected policy.
 
 | Component | Verified baseline |
 | --- | --- |
-| Spring Boot | 4.1.1 |
+| Spring Boot | 4.1.2 |
 | Build JDK | 21 (Maven, Checkstyle, compiler, and Javadoc) |
 | Consumer/test runtimes | 17, 21, 25; compiled with `--release 17` |
-| H2 | 2.4.240; default test database, no Docker required |
+| H2 | 2.5.252; default test database, no Docker required |
 | PostgreSQL | 18.1 through Testcontainers 2.0.5; Docker required for that profile |
 
 Boot 3 and other framework/database combinations are not currently advertised

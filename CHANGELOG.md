@@ -68,6 +68,10 @@ The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring S
 
 ### Changed
 
+- Update Spring Boot to 4.1.2 and ANTLR runtime/generator to 4.13.2.
+  Upgrade H2 to 2.5.252, Jackson 2/3 BOMs to 2.22.4/3.2.4 and JUnit to 6.1.3.
+  Update Checkstyle, JReleaser and Maven dependency, GPG, deploy and versions plugins.
+
 - Enable strict validation by default in `@SearchSpec` and core parser defaults,
   with limits of 4,096 characters and 16 nesting levels. Invalid and oversized
   expressions now fail explicitly. Configure larger limits when needed; select
@@ -75,7 +79,7 @@ The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring S
   Searchable-field restrictions remain application-defined. See
   [migration advice](docs/migration.md#strict-validation-and-input-limits-by-default).
 
-- Spring Boot baseline is 4.1.1; Kotlin tooling has been removed.
+- Spring Boot baseline is 4.1.2; Kotlin tooling has been removed.
 - Maven and style tools build on JDK 21 while compiler release targeting and
   consumer compatibility remain Java 17; CI tests runtimes 17, 21, and 25.
 - `com.pembana.search:pembana-search:1.0.0-SNAPSHOT` is the parent/aggregator; applications

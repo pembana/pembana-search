@@ -1,6 +1,6 @@
 # Spring JavaFormat Checkstyle and build JDK
 
-Maven uses `spring-javaformat-checkstyle` **0.0.48** with Checkstyle **14.1.0**
+Maven uses `spring-javaformat-checkstyle` **0.0.48** with Checkstyle **14.4.0**
 and Maven Checkstyle Plugin **3.6.0**. These are plugin dependencies, not library
 runtime dependencies. The `check` goal is bound to `validate`, so local builds
 and GitHub Actions fail on style violations before compilation.

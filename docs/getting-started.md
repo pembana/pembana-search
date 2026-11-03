@@ -21,7 +21,7 @@ Choose `com.pembana.search:pembana-search-spring-boot-starter:1.0.0-SNAPSHOT` fo
 JPA/MVC integration, `pembana-search-data-jpa` for direct JPA, or
 `pembana-search-core` for model/parsing only. The starter brings Boot's JPA and
 MVC starters; the application supplies its database driver, model and security
-policy. Align Spring/Hibernate through Boot 4.1.1 dependency management. See the
+policy. Align Spring/Hibernate through Boot 4.1.2 dependency management. See the
 artifact table in the [README](../README.md).
 
 ### Consume a published snapshot

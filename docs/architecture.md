@@ -6,7 +6,7 @@ Maven runs on OpenJDK 21.0.8+ and emits Java 17 bytecode.
 
 | Artifact (`com.pembana.search`, version `1.0.0-SNAPSHOT`) | Dependencies and responsibility |
 | --- | --- |
-| `pembana-search-core` | ANTLR 4.13.1 and JSpecify; immutable models, expression parsing, parser policy and diagnostics |
+| `pembana-search-core` | ANTLR 4.13.2 and JSpecify; immutable models, expression parsing, parser policy and diagnostics |
 | `pembana-search-data-jpa` | Core, Spring Data JPA, Jakarta Persistence, Spring Web and Jackson 2; specification translation and inherited conversion strategies |
 | `pembana-search-spring-boot-starter` | JPA module and Boot JPA/MVC starters; optional request binding and auto-configuration |
 

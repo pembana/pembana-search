@@ -30,6 +30,24 @@ test executable (replace the example path with the installed runtime):
 Checkstyle runs during `validate` before compilation; see the
 [Spring Checkstyle guide](checkstyle/README.md) for formatting and compatibility rules.
 
+## Dependency versions
+
+Spring Boot 4.1.2 manages the Spring, Hibernate and PostgreSQL JDBC versions.
+The parent POM explicitly selects newer stable H2 2.5.252, Jackson 2.22.4/3.2.4
+BOMs and JUnit 6.1.3 through Boot's version properties. Keep the Jackson and
+JUnit families aligned through their BOMs rather than overriding individual
+artifacts. Reassess these overrides when upgrading Spring Boot.
+
+ANTLR's generator and runtime share version 4.13.2. Checkstyle is 14.4.0;
+JReleaser is 1.27.0. Dependency updates must pass the Java 17/21/25 and
+H2/PostgreSQL compatibility checks described here.
+
+The 2026-11-03 dependency refresh passed all 312 tests on each of the six
+Java 17/21/25 × H2/PostgreSQL combinations, with no failures, errors or skips.
+Maven ran on Temurin 21.0.10. All packaged-JAR caller checks, coverage gates,
+Checkstyle and Javadoc checks passed. JReleaser 1.27.0 configuration validation
+also passed; signing and remote publication were not exercised.
+
 ## Nullability checks
 
 Like Pembana, the build uses `am.ik.maven:nullability-maven-plugin:0.5.1` as a

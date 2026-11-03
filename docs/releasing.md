@@ -3,7 +3,7 @@
 Current development version: `1.0.0-SNAPSHOT`, group `com.pembana.search`.
 The release process follows `image-filters-4j`: Maven stages artifacts locally,
 then JReleaser signs and deploys the staging repository. JReleaser is pinned to
-**1.22.0**, matching that project, with its current `signing.pgp` configuration.
+**1.27.0**, using the `signing.pgp` configuration.
 
 ## Artifacts and destinations
 
@@ -148,7 +148,7 @@ on a release-preparation branch:
 
 ```sh
 ./mvnw --batch-mode --no-transfer-progress \
-  org.codehaus.mojo:versions-maven-plugin:2.20.1:set \
+  org.codehaus.mojo:versions-maven-plugin:2.23.0:set \
   -DnewVersion=1.0.0-M1 -DgenerateBackupPoms=false
 ```
 
