@@ -20,6 +20,21 @@ Update fully qualified names in reflection, explicit imports, auto-configuration
 exclusions and tooling. The Boot imports resource now names the Pembana class.
 Normal Boot discovery does not require consumer component scanning.
 
+## Adopted compatibility baseline
+
+The feature handoff accepts revision `e870eeb5f73e93ae5ec487787c879fd0d1e5232c`
+as the compatibility baseline. Its added `SearchSpec.profile()` member,
+AND-before-OR grouping, strict validation and input-limit defaults, consistent
+inherited case handling, and built-in exact Long conversion are accepted migration
+changes. Consumers using earlier snapshots must apply the migration guidance
+below; unchanged pre-transition handwritten annotation binaries are not supported.
+Subsequent additions preserve this adopted API and behavior unless explicitly
+selected. No restoration of earlier matching inconsistencies is required.
+
+See [search acceptance verification](search-acceptance.md) for the current source,
+binary, database/runtime, and JDBC parity checks. Historical reports describe their
+own pinned revisions and do not establish acceptance of later changes.
+
 ## Migrating the single snapshot to modules
 
 The earlier `com.pembana:pembana-search:1.0.0-SNAPSHOT` JAR becomes the
@@ -27,7 +42,7 @@ parent/aggregator POM. Replace that application dependency with
 `pembana-search-spring-boot-starter` for Boot MVC/JPA integration, or
 `pembana-search-data-jpa` for direct JPA. Use `pembana-search-core` alone for
 Spring-independent parsing/model construction. All retain group `com.pembana`
-and version `1.0.0-SNAPSHOT`; nothing is published and there is no relocation JAR.
+and version `1.0.0-SNAPSHOT`; there is no relocation JAR.
 Existing Java JPA/MVC imports remain available through their respective modules.
 
 `CriteriaParser` now parses an immutable core tree before JPA translation. The
@@ -227,7 +242,7 @@ a consumer default; `withInput` selects or overrides it per query using `INHERIT
 (plain-text word and star-pattern matching). Existing
 constructors, query records/enums, `withSearch`, `withQuery`, and HTTP binding
 retain their contracts. See [plain-text mode](reference/plain-text.md) for
-activation, deactivation, matching rules, and current root-String-only support.
+activation, deactivation, matching rules, and supported nested/collection String paths.
 
 ## Opt-in field profiles
 

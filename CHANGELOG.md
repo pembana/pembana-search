@@ -7,6 +7,12 @@ The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring S
 
 ### Added
 
+- SIMPLE search supports configured nested String paths and collection String
+  fields, using left joins and correlated existence predicates with the documented
+  association limits.
+- JDBC/in-memory/JPA matching parity tests and a pinned-baseline source/binary
+  consumer check in CI. See [search acceptance](docs/search-acceptance.md).
+
 - HTTP field-profile selection with `@SearchSpec(profile = "name")`. Boot registers
   `SearchProfile` beans by their profile names; GET/form and JSON binding share
   aliases, operation permissions and case defaults. Duplicate names and unknown
@@ -22,7 +28,8 @@ The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring S
 - Immutable global/per-property case-sensitivity choices with property precedence.
 - GET/form option binding and explicit JSON search binding through `@SearchRequestBody`.
 - Strict option/envelope validation, application Jackson 3 mapper integration and
-  opt-in consistent String membership/ordering without changing inherited defaults.
+  consistent String membership/ordering with the accepted inherited-policy changes
+  described below.
 
 - Independent core, JPA and optional Boot starter modules.
 - Immutable query trees shared by parsing and programmatic construction.

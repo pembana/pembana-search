@@ -223,8 +223,10 @@ outside the complete user expression, as in the JSON example above.
 
 Existing endpoints need no change to preserve query/form binding. JSON search
 endpoints opt in with `@SearchRequestBody`. A false annotation flag continues to
-honor the earlier equality/inequality correction; first-class explicit options
-add consistent membership/ordering without rewriting historical baseline behavior.
-No artifacts are published and the version remains `1.0.0-SNAPSHOT`.
+honor the earlier equality/inequality correction; explicit options and the adopted annotation fallback
+both apply consistently to membership and ordering. The earlier inherited
+behavior changed as documented in the migration guide.
+The source version remains `1.0.0-SNAPSHOT`; publication of a particular revision
+is separate from local verification.
 See [options verification](../case-options/README.md) and the earlier
 [equality-fix report](../case-sensitivity/README.md) for acceptance evidence.

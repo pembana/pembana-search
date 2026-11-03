@@ -118,3 +118,11 @@ try (PreparedStatement statement = connection.prepareStatement(
 This is a pattern adapter, not a general SQL compiler. Existing advanced patterns
 retain their historical outer-star and SQL-metacharacter interpretation. New
 pattern semantics never rewrite an existing `Comparison(EQUALS, value)`.
+
+The executable consumer example is
+[`PlainTextJdbcConsumer`](../../pembana-search-data-jpa/src/test/java/com/pembana/search/samples/PlainTextJdbcConsumer.java).
+`PlainTextJpaTest.jdbcJpaAndMemoryParity` compares its bound JDBC queries with
+JPA results and in-memory matching on H2 and PostgreSQL, in both case modes.
+The corpus includes literal SQL punctuation, neutral input, nulls, empty strings,
+word grouping, anchored/repeated stars, newlines, and Latin accented text. These
+checks do not establish equivalence for every Unicode character or collation.

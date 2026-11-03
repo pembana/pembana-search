@@ -15,6 +15,8 @@
 | [Module verification](modules/README.md) | Retained scenario mapping, new equivalence tests and module acceptance evidence |
 | [Development](development.md) | Contributors: JDKs, databases, CI artifacts, coverage, signing, NVD and troubleshooting |
 | [Spring Checkstyle](checkstyle/README.md) | Build-time style enforcement, formatting, compatibility exceptions and verification |
+| [Search acceptance](search-acceptance.md) | Adopted baseline, source/binary checks, JDBC parity, and runtime/database evidence |
+| [Feature requirements](requirements/pembana-search/README.md) | Accepted compatibility contract and TEXT/FIELDS/ASSOC delivery boundaries |
 | [Migration](migration.md) | Coordinate/package changes and intentional incompatibilities |
 | [Releasing](releasing.md) | JReleaser staging, signing, snapshots/releases, workflow secrets and version progression |
 | [Identity verification](identity/README.md) | Evidence for the mechanical rename and packaged artifacts |

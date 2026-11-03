@@ -114,3 +114,61 @@ jobs:
             pembana-search-data-jpa/target/java-caller-classpath.txt
           if-no-files-found: error
           retention-days: 30
+
+  api-compatibility:
+    name: Adopted source and binary API
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Check out the adopted API baseline
+        uses: actions/checkout@v5
+        with:
+          ref: e870eeb5f73e93ae5ec487787c879fd0d1e5232c
+          path: build/api-compatibility/baseline
+
+      - uses: actions/setup-java@v5
+        with:
+          java-version: '21'
+          distribution: temurin
+          cache: maven
+
+      - name: Package baseline and candidate without installing snapshots
+        run: |
+          set -o pipefail
+          git rev-parse HEAD > build/api-compatibility/candidate-revision.txt
+          git -C build/api-compatibility/baseline rev-parse HEAD > build/api-compatibility/baseline-revision.txt
+          ./mvnw -B -ntp -Dgpg.skip=true -DskipTests package 2>&1 | tee build/api-compatibility/candidate-build.log
+          (cd build/api-compatibility/baseline && ./mvnw -B -ntp -Dgpg.skip=true -DskipTests package) 2>&1 | tee build/api-compatibility/baseline-build.log
+
+      - name: Compile unchanged source and execute unchanged baseline bytecode
+        run: |
+          set -o pipefail
+          api_baseline="$GITHUB_WORKSPACE/build/api-compatibility/baseline"
+          api_evidence="$GITHUB_WORKSPACE/build/api-compatibility"
+          api_source="pembana-search-data-jpa/src/test/java/com/pembana/search/ApiCompatibilityTest.java"
+          api_dependencies=$(tr ':' '\n' < pembana-search-data-jpa/target/java-caller-classpath.txt | grep -v '/com/pembana/' | paste -sd: -)
+          api_baseline_cp="$api_baseline/pembana-search-core/target/pembana-search-core-1.0.0-SNAPSHOT.jar:$api_baseline/pembana-search-data-jpa/target/pembana-search-data-jpa-1.0.0-SNAPSHOT.jar:$api_dependencies"
+          api_candidate_cp="$GITHUB_WORKSPACE/pembana-search-core/target/pembana-search-core-1.0.0-SNAPSHOT.jar:$GITHUB_WORKSPACE/pembana-search-data-jpa/target/pembana-search-data-jpa-1.0.0-SNAPSHOT.jar:$api_dependencies"
+          mkdir -p "$api_evidence/baseline-classes" "$api_evidence/candidate-classes"
+          javac --release 17 -proc:none -cp "$api_baseline_cp" -d "$api_evidence/baseline-classes" "$api_source" 2>&1 | tee "$api_evidence/baseline-compile.log"
+          java -cp "$api_evidence/baseline-classes:$api_baseline_cp" com.pembana.search.ApiCompatibilityTest 2>&1 | tee "$api_evidence/baseline-run.log"
+          java -cp "$api_evidence/baseline-classes:$api_candidate_cp" com.pembana.search.ApiCompatibilityTest 2>&1 | tee "$api_evidence/binary-run.log"
+          javac --release 17 -proc:none -cp "$api_candidate_cp" -d "$api_evidence/candidate-classes" "$api_source" 2>&1 | tee "$api_evidence/source-compile.log"
+          java -cp "$api_evidence/candidate-classes:$api_candidate_cp" com.pembana.search.ApiCompatibilityTest 2>&1 | tee "$api_evidence/source-run.log"
+
+      - name: Preserve API compatibility evidence
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: api-compatibility-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            build/api-compatibility/*.log
+            build/api-compatibility/*-revision.txt
+            build/api-compatibility/*-classes/
+          if-no-files-found: error
+          retention-days: 30

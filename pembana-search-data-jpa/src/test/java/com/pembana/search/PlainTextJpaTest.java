@@ -15,6 +15,7 @@
  */
 package com.pembana.search;
 
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.hibernate.Session;
 import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,6 +47,7 @@ import com.pembana.search.core.SearchMode;
 import com.pembana.search.core.SearchOptions;
 import com.pembana.search.core.SearchProfile;
 import com.pembana.search.core.TextPattern;
+import com.pembana.search.samples.PlainTextJdbcConsumer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -105,6 +108,43 @@ public class PlainTextJpaTest {
 				ids(configured(SearchMode.SIMPLE, SearchOptions.defaults()).withInput("minor sabal").build(), 0, 10));
 		assertEquals(List.of(1L, 2L, 3L, 4L),
 				ids(configured(SearchMode.SIMPLE, SearchOptions.defaults()).withInput("*").build(), 0, 10));
+	}
+
+	/** JDBC, JPA and memory agree on the same literal, glob, case and null corpus. */
+	@Test
+	void jdbcJpaAndMemoryParity() throws Exception {
+		for (String value : List.of("Érable", "Sab\nal")) {
+			var row = new TextRow();
+			row.id = value.equals("Érable") ? 6L : 7L;
+			row.title = value;
+			this.entityManager.persist(row);
+		}
+		this.entityManager.flush();
+		var rows = this.entityManager.createQuery("from PlainTextRow order by id", TextRow.class).getResultList();
+		List<@Nullable String> inputs = Arrays.asList(null, "", " \t ", "aba", "*aba*", "aba*", "*bal", "sab*al",
+				"minor sabal", "sabal minor", "sabal absent", "sab* min*", "100%", "a_b", "a.b+", "!", "\\", "'quote'",
+				"*", "**", "SABAL", "ér*", "missing", "' OR 1=1 --");
+		for (boolean sensitive : List.of(false, true)) {
+			var options = new SearchOptions(sensitive ? CaseSensitivity.SENSITIVE : CaseSensitivity.INSENSITIVE,
+					Map.of());
+			for (@Nullable
+			String input : inputs) {
+				var text = PlainTextQuery.compose(input, config(SearchMode.SIMPLE),
+						com.pembana.search.core.ParserOptions.defaults());
+				var expected = rows.stream()
+					.filter((row) -> text.patterns()
+						.stream()
+						.allMatch((pattern) -> pattern.matches(row.title, sensitive)
+								|| pattern.matches(row.note, sensitive)))
+					.map((row) -> row.id)
+					.toList();
+				assertEquals(expected, ids(configured(SearchMode.SIMPLE, options).withInput(input).build(), 0, 20),
+						"JPA: " + input + ", sensitive=" + sensitive);
+				var jdbc = this.entityManager.unwrap(Session.class)
+					.doReturningWork((connection) -> PlainTextJdbcConsumer.ids(connection, text.patterns(), sensitive));
+				assertEquals(expected, jdbc, "JDBC: " + input + ", sensitive=" + sensitive);
+			}
+		}
 	}
 
 	/**
