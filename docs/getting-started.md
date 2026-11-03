@@ -17,7 +17,7 @@ repository using its Maven wrapper:
 The library targets Java 17 and is tested on Java 17, 21, and 25 runtimes. Build
 tools, including Checkstyle, run on Java 21; consumers do not need those tools.
 
-Choose `com.pembana:pembana-search-spring-boot-starter:1.0.0-SNAPSHOT` for Boot
+Choose `com.pembana.search:pembana-search-spring-boot-starter:1.0.0-SNAPSHOT` for Boot
 JPA/MVC integration, `pembana-search-data-jpa` for direct JPA, or
 `pembana-search-core` for model/parsing only. The starter brings Boot's JPA and
 MVC starters; the application supplies its database driver, model and security
@@ -44,7 +44,7 @@ Then select the integration dependency, for example:
 
 ```xml
 <dependency>
-    <groupId>com.pembana</groupId>
+    <groupId>com.pembana.search</groupId>
     <artifactId>pembana-search-spring-boot-starter</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 </dependency>

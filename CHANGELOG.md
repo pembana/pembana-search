@@ -78,7 +78,7 @@ The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring S
 - Spring Boot baseline is 4.1.1; Kotlin tooling has been removed.
 - Maven and style tools build on JDK 21 while compiler release targeting and
   consumer compatibility remain Java 17; CI tests runtimes 17, 21, and 25.
-- `com.pembana:pembana-search:1.0.0-SNAPSHOT` is the parent/aggregator; applications
+- `com.pembana.search:pembana-search:1.0.0-SNAPSHOT` is the parent/aggregator; applications
   select the core, JPA or Boot starter artifact at the same version.
 - Java packages use `com.pembana.search`, with `annotation` replacing `anotation`.
 - Test application/corpus names use Pembana Search; historical identities are mapped.

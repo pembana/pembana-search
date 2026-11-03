@@ -1,6 +1,6 @@
 # Versioning and Maven publication
 
-Current development version: `1.0.0-SNAPSHOT`, group `com.pembana`.
+Current development version: `1.0.0-SNAPSHOT`, group `com.pembana.search`.
 The release process follows `image-filters-4j`: Maven stages artifacts locally,
 then JReleaser signs and deploys the staging repository. JReleaser is pinned to
 **1.22.0**, matching that project, with its current `signing.pgp` configuration.
@@ -35,7 +35,7 @@ releases, commits or documentation sites. Use `jreleaser:deploy`, not
 
 Before the first actual publication:
 
-1. Verify ownership of `com.pembana` in the Sonatype Central Portal and create a
+1. Verify ownership of `com.pembana.search` in the Sonatype Central Portal and create a
    publishing user token with access to that namespace.
 2. Create the GitHub environment **`maven-central`**. Configure its permitted
    release branches and any desired required reviewers in repository settings.

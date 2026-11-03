@@ -6,7 +6,7 @@ namespace/publishing-account registration is claimed.
 
 | Previous import/build identity | Current identity |
 | --- | --- |
-| `com.sipios:spring-search:0.3.0` | `com.pembana:pembana-search-data-jpa:1.0.0-SNAPSHOT`, or `pembana-search-spring-boot-starter` for MVC |
+| `com.sipios:spring-search:0.3.0` | `com.pembana.search:pembana-search-data-jpa:1.0.0-SNAPSHOT`, or `pembana-search-spring-boot-starter` for MVC |
 | `com.sipios.springsearch.*` | `com.pembana.search.*` |
 | `com.sipios.springsearch.anotation.SearchSpec` | `com.pembana.search.annotation.SearchSpec` |
 | `SpringSearchApplication` test fixture | `PembanaSearchTestApplication` |
@@ -41,7 +41,7 @@ The earlier `com.pembana:pembana-search:1.0.0-SNAPSHOT` JAR becomes the
 parent/aggregator POM. Replace that application dependency with
 `pembana-search-spring-boot-starter` for Boot MVC/JPA integration, or
 `pembana-search-data-jpa` for direct JPA. Use `pembana-search-core` alone for
-Spring-independent parsing/model construction. All retain group `com.pembana`
+Spring-independent parsing/model construction. All now use group `com.pembana.search`
 and version `1.0.0-SNAPSHOT`; there is no relocation JAR.
 Existing Java JPA/MVC imports remain available through their respective modules.
 

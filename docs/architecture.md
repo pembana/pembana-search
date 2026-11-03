@@ -4,7 +4,7 @@ Pembana Search has three library modules under a parent/aggregator POM. All
 handwritten production and test packages use JSpecify nullability checking.
 Maven runs on OpenJDK 21.0.8+ and emits Java 17 bytecode.
 
-| Artifact (`com.pembana`, version `1.0.0-SNAPSHOT`) | Dependencies and responsibility |
+| Artifact (`com.pembana.search`, version `1.0.0-SNAPSHOT`) | Dependencies and responsibility |
 | --- | --- |
 | `pembana-search-core` | ANTLR 4.13.1 and JSpecify; immutable models, expression parsing, parser policy and diagnostics |
 | `pembana-search-data-jpa` | Core, Spring Data JPA, Jakarta Persistence, Spring Web and Jackson 2; specification translation and inherited conversion strategies |

@@ -10,7 +10,7 @@ binding, field restrictions, input limits, and structured validation errors.
 **Development version:** `1.0.0-SNAPSHOT`. No artifact has been published.
 Build/install the reactor locally, then choose the integration you need:
 
-| Artifact (`com.pembana`) | Responsibility |
+| Artifact (`com.pembana.search`) | Responsibility |
 | --- | --- |
 | `pembana-search-core` | Immutable query model and expression parser; no Spring or persistence dependencies |
 | `pembana-search-data-jpa` | Model-to-specification translation and retained Java JPA entry points |
@@ -78,7 +78,7 @@ starter dependency in either case:
 
 ```xml
 <dependency>
-    <groupId>com.pembana</groupId>
+    <groupId>com.pembana.search</groupId>
     <artifactId>pembana-search-spring-boot-starter</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 </dependency>
