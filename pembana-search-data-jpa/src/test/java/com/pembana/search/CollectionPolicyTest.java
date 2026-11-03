@@ -61,7 +61,9 @@ import com.pembana.search.core.ComparisonOperator;
 import com.pembana.search.core.InvalidSearchValueException;
 import com.pembana.search.core.ProfileOperation;
 import com.pembana.search.core.Query;
+import com.pembana.search.core.SearchConfiguration;
 import com.pembana.search.core.SearchField;
+import com.pembana.search.core.SearchMode;
 import com.pembana.search.core.SearchOptions;
 import com.pembana.search.core.SearchProfile;
 import com.pembana.search.core.ValueConversion;
@@ -148,6 +150,101 @@ public class CollectionPolicyTest {
 		this.entityManager.clear();
 	}
 
+	/** SIMPLE words may match different children, fields and collections. */
+	@Test
+	void simpleCollections() throws Exception {
+		assertEquals(List.of(4L, 6L, 7L), ids(simple("red large", "children.color", "children.size")));
+		assertEquals(List.of(4L, 6L), ids(simple("red blue", "labels")));
+		assertEquals(List.of(), ids(simple("red*blue", "labels")));
+		assertEquals(List.of(1L, 2L, 3L, 4L, 6L, 7L), ids(simple("red", "title", "peer.labels", "children.color")));
+		assertEquals(List.of(1L), ids(simple("Orphan", "title", "children.owner.name", "labels")));
+		assertEquals(List.of(4L, 6L, 7L), ids(simple("bob", "children.owner.supervisor.name")));
+		assertEquals(List.of(3L), ids(simple("Checked", "children.detail.label")));
+		for (String field : List.of("features.color", "children.extra.color", "tags.name", "terms")) {
+			assertEquals(List.of(2L, 4L, 6L, 7L), ids(simple("r*d", field)));
+		}
+		assertEquals(List.of(2L, 3L, 4L, 6L, 7L), ids(simple("*", "labels")));
+		assertEquals(List.of(1L, 2L, 3L, 4L, 5L, 6L, 7L), ids(simple(null, "unknown.path")));
+		var parent = this.entityManager.find(Parent.class, 1L);
+		parent.labels.add("100% a_b !");
+		parent.labels.add("red large");
+		this.entityManager.flush();
+		assertEquals(List.of(1L), ids(simple("100% a_b !", "labels")));
+		assertEquals(List.of(1L), ids(simple("red*large", "labels")));
+	}
+
+	/** Profile aliases and case overrides work for nested collection targets. */
+	@Test
+	void simpleCollectionProfiles() throws Exception {
+		var profile = new SearchProfile("simple", Map.of("color", new SearchField("children.color", ALL)),
+				Map.of("alias", "color"), List.of("alias"), new SearchOptions(CaseSensitivity.SENSITIVE, Map.of()));
+		var configured = SpecificationsBuilder.<Parent>configured(settings("strict"), SearchOptions.defaults(),
+				SearchConfiguration.defaults());
+		assertEquals(List.of(), ids(configured.withInput("RED", SearchMode.SIMPLE, profile).build()));
+		var insensitive = SpecificationsBuilder.<Parent>configured(settings("strict"),
+				new SearchOptions(CaseSensitivity.INHERIT, Map.of("alias", CaseSensitivity.INSENSITIVE)),
+				SearchConfiguration.defaults());
+		assertEquals(List.of(2L, 4L, 6L, 7L), ids(insensitive.withInput("RED", SearchMode.SIMPLE, profile).build()));
+		var denied = SpecificationsBuilder.<Parent>configured(settings("denied"), SearchOptions.defaults(),
+				SearchConfiguration.defaults());
+		assertEquals(QueryErrorCode.FIELD_NOT_ALLOWED, assertThrows(InvalidSearchQueryException.class,
+				() -> denied.withInput("red", SearchMode.SIMPLE, profile))
+			.getErrorCode());
+	}
+
+	/**
+	 * Collection matches do not multiply outer rows, including counts and sorted pages.
+	 */
+	@Test
+	void simpleCollectionPages() throws Exception {
+		var specification = simple("red", "children.color");
+		assertEquals(List.of(2L, 4L, 6L, 7L), ids(specification));
+		var cb = this.entityManager.getCriteriaBuilder();
+		var count = cb.createQuery(Long.class);
+		var root = count.from(Parent.class);
+		count.select(cb.count(root)).where(Objects.requireNonNull(specification.toPredicate(root, count, cb)));
+		assertEquals(4L, this.entityManager.createQuery(count).getSingleResult());
+		var page = cb.createQuery(Long.class);
+		var pageRoot = page.from(Parent.class);
+		page.select(pageRoot.get("id"))
+			.where(Objects.requireNonNull(specification.toPredicate(pageRoot, page, cb)))
+			.orderBy(cb.asc(pageRoot.get("id")));
+		assertEquals(List.of(2L, 4L), this.entityManager.createQuery(page).setMaxResults(2).getResultList());
+		assertEquals(List.of(6L, 7L),
+				this.entityManager.createQuery(page).setFirstResult(2).setMaxResults(2).getResultList());
+		Specification<Parent> tenant = (r, q, b) -> b.equal(r.get("tenant"), "A");
+		assertEquals(List.of(2L, 6L, 7L), ids(tenant.and(specification)));
+	}
+
+	/** Unsupported paths and non-String targets expose full canonical diagnostics. */
+	@Test
+	void simpleCollectionFailures() throws Exception {
+		for (String field : List.of("children.missing", "peer.missing", "missing")) {
+			var error = assertThrows(InvalidSearchQueryException.class, () -> ids(simple("x", field)));
+			assertEquals(QueryErrorCode.UNKNOWN_FIELD, error.getErrorCode());
+			assertEquals(field, error.getField());
+		}
+		for (String field : List.of("scores", "children.price", "children", "active")) {
+			var error = assertThrows(InvalidSearchQueryException.class, () -> ids(simple("x", field)));
+			assertEquals(QueryErrorCode.UNSUPPORTED_FIELD_TYPE, error.getErrorCode());
+			assertEquals(field, error.getField());
+		}
+		for (String field : List.of("notes", "children.attributes", "children.parent.labels",
+				"children.extra.owner.name")) {
+			var error = assertThrows(InvalidSearchQueryException.class, () -> ids(simple("x", field)));
+			assertEquals(QueryErrorCode.UNSUPPORTED_OPERATION, error.getErrorCode());
+			assertEquals(field, error.getField());
+		}
+	}
+
+	private Specification<Parent> simple(@Nullable String input, String... fields) throws Exception {
+		return SpecificationsBuilder
+			.<Parent>configured(settings("strict"), SearchOptions.defaults(),
+					new SearchConfiguration(SearchMode.SIMPLE, List.of(fields), 1024))
+			.withInput(input)
+			.build();
+	}
+
 	private Owner owner(long id, @Nullable String name) {
 		var owner = new Owner();
 		owner.id = id;
@@ -214,10 +311,8 @@ public class CollectionPolicyTest {
 	 */
 	@Test
 	void sameChildScopesAndNegation() throws Exception {
-		assertEquals(List.of(1L, 4L, 6L, 7L),
-				search("title:Orphan OR children.color:red AND children.size:large"));
-		assertEquals(List.of(4L, 6L, 7L),
-				search("(title:Orphan OR children.color:red) AND children.size:large"));
+		assertEquals(List.of(1L, 4L, 6L, 7L), search("title:Orphan OR children.color:red AND children.size:large"));
+		assertEquals(List.of(4L, 6L, 7L), search("(title:Orphan OR children.color:red) AND children.size:large"));
 		Query both = new Comparison("children.color", ComparisonOperator.EQUALS, "red")
 			.and(new Comparison("children.size", ComparisonOperator.EQUALS, "large"));
 		assertEquals(List.of(4L, 6L, 7L), search("children.color:red AND children.size:large"));
@@ -684,11 +779,12 @@ public class CollectionPolicyTest {
 	private static void strict(@SearchSpec(strictValidation = true) Specification<?> query) {
 	}
 
-	private static void legacy(@SearchSpec(strictValidation = false, maxQueryLength = 0, maxNestingDepth = 0)
-			Specification<?> query) {
+	private static void legacy(
+			@SearchSpec(strictValidation = false, maxQueryLength = 0, maxNestingDepth = 0) Specification<?> query) {
 	}
 
-	private static void legacyInsensitive(@SearchSpec(caseSensitiveFlag = false, strictValidation = false) Specification<?> query) {
+	private static void legacyInsensitive(
+			@SearchSpec(caseSensitiveFlag = false, strictValidation = false) Specification<?> query) {
 	}
 
 	private static void denied(@SearchSpec(blackListedFields = "children.color") Specification<?> query) {

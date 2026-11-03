@@ -53,10 +53,12 @@ import com.pembana.search.annotation.SearchSpec;
 import com.pembana.search.core.CaseSensitivity;
 import com.pembana.search.core.Comparison;
 import com.pembana.search.core.ComparisonOperator;
+import com.pembana.search.core.PlainTextQuery;
 import com.pembana.search.core.ProfileOperation;
 import com.pembana.search.core.SearchField;
 import com.pembana.search.core.SearchOptions;
 import com.pembana.search.core.SearchProfile;
+import com.pembana.search.core.TextPattern;
 import com.pembana.search.core.ValueConversion;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -86,6 +88,7 @@ public class OptionalToOneTest {
 		var press = new Publisher();
 		press.id = 1L;
 		press.name = "Press";
+		press.parent = press;
 		this.entityManager.persist(press);
 		var writer = author(1L, "Writer", press, press, "Paris");
 		var other = author(2L, "Other", null, press, "London");
@@ -126,6 +129,37 @@ public class OptionalToOneTest {
 		}
 		this.entityManager.flush();
 		this.entityManager.clear();
+	}
+
+	/**
+	 * SIMPLE scalar paths preserve missing relations and use mapped property metadata.
+	 */
+	@Test
+	void simpleNestedStrings() {
+		for (String field : List.of("author.publisher.name", "author.publisher.parent.name")) {
+			assertEquals(List.of(1L, 5L, 6L), ids(simple("press", field)));
+			assertEquals(List.of(2L, 4L), ids(simple("Orphan", "title", field)));
+		}
+		assertEquals(List.of(1L, 3L, 5L, 6L), ids(simple("press", "author.imprint.name")));
+		assertEquals(List.of(1L, 6L), ids(simple("writer paris", "author.name", "author.contact.city")));
+		assertEquals(List.of(1L), ids(simple("root", "extra.caption")));
+		assertEquals(List.of(1L, 6L), ids(simple("writer", "alternativeAuthor.name")));
+		assertEquals(List.of(1L, 6L), ids(simple("writer", "inheritedAuthor.name")));
+		assertEquals(List.of(1L), ids(simple("Owned", "cover.label")));
+		assertEquals(List.of(1L), ids(simple("Reviewed", "review.label")));
+		var error = assertThrows(InvalidSearchQueryException.class,
+				() -> ids(simple("x", "author.contact.region.name")));
+		assertEquals(QueryErrorCode.UNSUPPORTED_OPERATION, error.getErrorCode());
+		assertEquals("author.contact.region.name", error.getField());
+		var embedded = assertThrows(InvalidSearchQueryException.class, () -> ids(simple("x", "extra.labels")));
+		assertEquals(QueryErrorCode.UNSUPPORTED_OPERATION, embedded.getErrorCode());
+		assertEquals("extra.labels", embedded.getField());
+	}
+
+	private Specification<Book> simple(String input, String... fields) {
+		var patterns = java.util.Arrays.stream(input.split(" ")).map((word) -> new TextPattern(word, false)).toList();
+		return PlainTextSpecifications.translate(new PlainTextQuery(List.of(fields), patterns),
+				SearchOptions.defaults());
 	}
 
 	private Author author(long id, @Nullable String name, @Nullable Publisher publisher, Publisher imprint,
@@ -389,8 +423,8 @@ public class OptionalToOneTest {
 	private static void strict(@SearchSpec(strictValidation = true) Specification<?> query) {
 	}
 
-	private static void legacy(@SearchSpec(strictValidation = false, maxQueryLength = 0, maxNestingDepth = 0)
-			Specification<?> query) {
+	private static void legacy(
+			@SearchSpec(strictValidation = false, maxQueryLength = 0, maxNestingDepth = 0) Specification<?> query) {
 	}
 
 	private static void allowed(@SearchSpec(allowedFields = { "author.name", "title" }) Specification<?> query) {
@@ -429,6 +463,9 @@ public class OptionalToOneTest {
 	@Entity(name = "OptionalPublisher")
 	@Table(name = "optional_publisher")
 	public static class Publisher extends Named {
+
+		@ManyToOne
+		public @Nullable Publisher parent;
 
 		/** Creates a publisher for JPA. */
 		public Publisher() {
@@ -511,6 +548,9 @@ public class OptionalToOneTest {
 	public static class Extra {
 
 		public String caption = "";
+
+		@ElementCollection
+		public Set<String> labels = new HashSet<>();
 
 		/** Creates embedded root data. */
 		public Extra() {

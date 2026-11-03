@@ -100,7 +100,7 @@ Javadoc JARs contain `META-INF/LICENSE`, `META-INF/LICENSE.txt` and `META-INF/NO
 ## Explicit plain-text mode
 
 See [plain-text search](plain-text.md) for consumer defaults, per-query
-`STANDARD`/`SIMPLE`/`INHERIT` selection, root String fields, case choices,
+`STANDARD`/`SIMPLE`/`INHERIT` selection, String paths and collection elements, case choices,
 limits, and reusable memory/JPA/JDBC pattern adapters. Existing entry points and
 HTTP binding retain their current behavior.
 

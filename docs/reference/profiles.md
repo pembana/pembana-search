@@ -222,11 +222,14 @@ operations on those nodes and leave Boolean structure intact.
 SIMPLE word queries require `CONTAINS`; star patterns require `GLOB`. Nonempty
 profile text fields replace the consumer's configured SIMPLE fields. An empty
 profile list uses the consumer's configured fields, interpreted as public names
-through the same profile. SIMPLE targets must remain root String attributes;
+through the same profile. SIMPLE targets may be supported nested String paths or
+collection String elements;
 STANDARD paths retain the existing association behavior unless the query also
 selects [optional to-one handling](optional-to-one.md) or
-[collection handling](collections.md). Selecting a profile alone
-does not enable new joins or collection semantics.
+[collection handling](collections.md). For STANDARD queries, selecting a profile
+alone
+does not enable new joins or collection semantics. See [plain-text search](plain-text.md)
+for SIMPLE path support and collection word matching.
 
 Unknown public names and profile-disallowed operations use `FIELD_NOT_ALLOWED`,
 with the public field and profile name in the reason. Existing canonical access

@@ -16,17 +16,22 @@
 package com.pembana.search;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 
 import com.pembana.search.core.CaseSensitivity;
 import com.pembana.search.core.PlainTextQuery;
 import com.pembana.search.core.SearchOptions;
+import com.pembana.search.core.TextPattern;
 
 /**
- * Translates composed text on root String properties before counting or pagination.
+ * Translates composed text on String paths and collection elements before counting or
+ * pagination.
  *
  * @author Gunnar Hillert
  */
@@ -54,33 +59,57 @@ public final class PlainTextSpecifications {
 			if (text.patterns().isEmpty()) {
 				return null;
 			}
+			var scalars = new LinkedHashMap<String, Expression<String>>();
+			var collections = new LinkedHashMap<String, CollectionPaths.Plan>();
 			for (String field : text.fields()) {
-				if (field.contains(".")) {
-					throw new IllegalArgumentException("Plain text supports root String properties only");
+				var plan = CollectionPaths.plan(root, field, false);
+				if (plan == null) {
+					scalars.put(field, string(ToOnePaths.resolve(root, field), field));
 				}
-				try {
-					if (root.get(field).getJavaType() != String.class) {
-						throw new InvalidSearchQueryException(QueryErrorCode.UNSUPPORTED_FIELD_TYPE, field,
-								"Plain text requires a String property: " + field);
-					}
-				}
-				catch (IllegalArgumentException exception) {
-					throw new InvalidSearchQueryException(QueryErrorCode.UNKNOWN_FIELD, field,
-							"Unknown field " + field);
+				else {
+					collections.put(field, plan);
 				}
 			}
 			var words = new ArrayList<Predicate>();
 			for (var pattern : text.patterns()) {
 				var fields = new ArrayList<Predicate>();
-				for (String field : text.fields()) {
-					boolean sensitive = options.resolve(field) == CaseSensitivity.SENSITIVE;
-					Expression<String> value = root.get(field);
-					fields.add(builder.like(sensitive ? value : builder.lower(value), pattern.sqlLike(sensitive), '!'));
+				for (var scalar : scalars.entrySet()) {
+					fields.add(match(scalar.getValue(), pattern, options, scalar.getKey(), builder));
+				}
+				for (var collection : collections.entrySet()) {
+					String field = collection.getKey();
+					if (query == null) {
+						throw CollectionPaths.unsupported(field, "Collection matching requires a query context");
+					}
+					try {
+						var scope = new CollectionScope<>(root, query, collection.getValue());
+						var value = string(scope.resolve(field).expression(), field);
+						scope.query.select(builder.literal(1)).where(match(value, pattern, options, field, builder));
+						fields.add(builder.exists(scope.query));
+					}
+					catch (InvalidSearchQueryException exception) {
+						throw new InvalidSearchQueryException(exception.getErrorCode(), field,
+								"Cannot search " + field + ": " + exception.getReason());
+					}
 				}
 				words.add(builder.or(fields.toArray(Predicate[]::new)));
 			}
 			return builder.and(words.toArray(Predicate[]::new));
 		};
+	}
+
+	private static Expression<String> string(Path<?> path, String field) {
+		if (path.getJavaType() != String.class) {
+			throw new InvalidSearchQueryException(QueryErrorCode.UNSUPPORTED_FIELD_TYPE, field,
+					"Plain text requires a String property or element: " + field);
+		}
+		return path.as(String.class);
+	}
+
+	private static Predicate match(Expression<String> value, TextPattern pattern, SearchOptions options, String field,
+			CriteriaBuilder builder) {
+		boolean sensitive = options.resolve(field) == CaseSensitivity.SENSITIVE;
+		return builder.like(sensitive ? value : builder.lower(value), pattern.sqlLike(sensitive), '!');
 	}
 
 }

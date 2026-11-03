@@ -104,8 +104,8 @@ builder.withExtendedQuery(query, publicProfile, optionalRelations).build();
 ```
 
 The `withExtendedSearch` methods always parse `STANDARD` syntax. `SIMPLE` search
-continues to use its root String fields; this policy does not add related fields
-to SIMPLE search. See [search modes](plain-text.md) and
+already uses left joins for its supported to-one paths, without this policy. See
+[search modes](plain-text.md) and
 [query extensions](extensions.md) for those APIs.
 
 ## How missing values behave

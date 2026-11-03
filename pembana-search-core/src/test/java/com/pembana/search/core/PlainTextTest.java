@@ -81,8 +81,14 @@ class PlainTextTest {
 		assertThrows(IllegalArgumentException.class, () -> new SearchConfiguration(SearchMode.STANDARD, List.of(), 0));
 		assertThrows(IllegalArgumentException.class,
 				() -> new SearchConfiguration(SearchMode.SIMPLE, List.of("title", "title"), 1));
-		assertThrows(IllegalArgumentException.class,
-				() -> new SearchConfiguration(SearchMode.SIMPLE, List.of("author.name"), 1));
+		var nested = new SearchConfiguration(SearchMode.SIMPLE, List.of("author.name", "children.label"), 4);
+		assertEquals(nested.textFields(), PlainTextQuery.compose("a b", nested, ParserOptions.defaults()).fields());
+		assertThrows(QueryParseException.class,
+				() -> PlainTextQuery.compose("a b c", nested, ParserOptions.defaults()));
+		for (String field : List.of(".name", "author.", "author..name", "author.bad_name", "author.0name")) {
+			assertThrows(IllegalArgumentException.class,
+					() -> new SearchConfiguration(SearchMode.SIMPLE, List.of(field), 1));
+		}
 	}
 
 }

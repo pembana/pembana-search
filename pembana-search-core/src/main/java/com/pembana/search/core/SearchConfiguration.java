@@ -22,7 +22,7 @@ import java.util.List;
  * needed.
  *
  * @param defaultMode concrete mode used by inherited requests
- * @param textFields root String properties eligible for plain text
+ * @param textFields String property paths eligible for plain text
  * @param maxTextPredicates maximum words times fields, positive to bound generated work
  * @author Gunnar Hillert
  */
@@ -30,7 +30,7 @@ public record SearchConfiguration(SearchMode defaultMode, List<String> textField
 	/**
 	 * Copies fields and rejects unsupported configuration before executing queries.
 	 * @param defaultMode concrete default mode
-	 * @param textFields root property names
+	 * @param textFields property paths
 	 * @param maxTextPredicates positive generated predicate budget
 	 */
 	public SearchConfiguration {
@@ -39,9 +39,9 @@ public record SearchConfiguration(SearchMode defaultMode, List<String> textField
 		if (defaultMode == SearchMode.INHERIT || maxTextPredicates <= 0) {
 			throw new IllegalArgumentException("A concrete default mode and positive predicate budget are required");
 		}
-		if (textFields.stream().distinct().count() != textFields.size()
-				|| textFields.stream().anyMatch((field) -> !field.matches("[A-Za-z][A-Za-z0-9]*"))) {
-			throw new IllegalArgumentException("Text fields must be unique root property names");
+		if (textFields.stream().distinct().count() != textFields.size() || textFields.stream()
+			.anyMatch((field) -> !field.matches("[A-Za-z][A-Za-z0-9]*(?:\\.[A-Za-z][A-Za-z0-9]*)*"))) {
+			throw new IllegalArgumentException("Text fields must be unique property paths");
 		}
 	}
 

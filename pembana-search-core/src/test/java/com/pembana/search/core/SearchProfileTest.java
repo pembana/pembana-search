@@ -131,6 +131,41 @@ class SearchProfileTest {
 	}
 
 	/**
+	 * Nested SIMPLE targets retain alias permissions, canonical policy and case options.
+	 */
+	@Test
+	void nestedTextProfiles() {
+		var profile = new SearchProfile("nested",
+				Map.of("writer", new SearchField("author.name", Set.of(ProfileOperation.CONTAINS))),
+				Map.of("alias", "writer"), List.of("alias"),
+				new SearchOptions(CaseSensitivity.INHERIT, Map.of("writer", CaseSensitivity.SENSITIVE)));
+		var text = profile.composeText("Alice", SearchConfiguration.defaults(), ParserOptions.defaults());
+		assertEquals(List.of("author.name"), text.fields());
+		assertEquals(CaseSensitivity.SENSITIVE,
+				profile.textOptions(text, SearchOptions.defaults()).resolve("author.name"));
+		assertEquals(CaseSensitivity.INSENSITIVE,
+				profile
+					.textOptions(text,
+							new SearchOptions(CaseSensitivity.INHERIT, Map.of("alias", CaseSensitivity.INSENSITIVE)))
+					.resolve("author.name"));
+		assertThrows(QueryParseException.class,
+				() -> profile.composeText("*", SearchConfiguration.defaults(), ParserOptions.defaults()));
+		assertThrows(QueryParseException.class, () -> profile.composeText("Alice", SearchConfiguration.defaults(),
+				new ParserOptions(false, List.of("author.name"), List.of("author.name"), 0, 0)));
+		assertThrows(IllegalArgumentException.class,
+				() -> new SearchProfile("duplicate", Map.of("writer", new SearchField("author.name", Set.of())),
+						Map.of("alias", "writer"), List.of("writer", "alias"), SearchOptions.defaults()));
+		var fallback = new SearchProfile("fallback",
+				Map.of("writer", new SearchField("children.name", Set.of(ProfileOperation.CONTAINS))), Map.of(),
+				List.of(), SearchOptions.defaults());
+		assertEquals(List.of("children.name"),
+				fallback
+					.composeText("Alice", new SearchConfiguration(SearchMode.SIMPLE, List.of("writer"), 1),
+							ParserOptions.defaults())
+					.fields());
+	}
+
+	/**
 	 * Invalid links, duplicate public names and incompatible text defaults fail during
 	 * construction.
 	 */
@@ -149,9 +184,7 @@ class SearchProfileTest {
 				Map.of("bad_name", new SearchField("title", Set.of())), Map.of(), List.of(), SearchOptions.defaults()));
 		assertThrows(IllegalArgumentException.class, () -> new SearchProfile("bad", fields, Map.of("alias", "name"),
 				List.of("name", "alias"), SearchOptions.defaults()));
-		assertThrows(IllegalArgumentException.class,
-				() -> new SearchProfile("bad", Map.of("name", new SearchField("author.name", Set.of())), Map.of(),
-						List.of("name"), SearchOptions.defaults()));
+
 		assertThrows(IllegalArgumentException.class,
 				() -> new SearchProfile("bad", fields, Map.of(), List.of("missing"), SearchOptions.defaults()));
 	}

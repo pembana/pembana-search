@@ -272,3 +272,14 @@ requires one child to satisfy a group; parsed `BETWEEN` bounds also use one chil
 The existing sealed `Query` variants and parser API remain unchanged. See
 [collection handling](reference/collections.md) for examples, null and negative
 semantics, supported mappings, extension callbacks, and current topology limits.
+
+### SIMPLE nested and collection fields
+
+SIMPLE eligible fields can now include supported dotted String paths, collection
+child String fields, and String element collections. Existing root field
+configurations retain their matching behavior. Configure these paths through
+`SearchConfiguration` or profile text defaults; no additional extension toggle is
+needed. To-one links use left joins, and collection matches use correlated
+`EXISTS` predicates. Words may match different collection elements; star patterns
+must match one value. See [plain-text search](reference/plain-text.md) for path
+limits, diagnostics, and examples.

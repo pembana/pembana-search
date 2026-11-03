@@ -80,8 +80,8 @@ public final class SearchProfile {
 		Set<String> targets = new HashSet<>();
 		for (String field : this.textFields) {
 			String path = field(field).path();
-			if (path.contains(".") || !targets.add(path)) {
-				throw new IllegalArgumentException("SIMPLE defaults require unique root fields");
+			if (!targets.add(path)) {
+				throw new IllegalArgumentException("SIMPLE defaults require unique canonical fields");
 			}
 		}
 		this.defaults = new SearchOptions(defaults.caseSensitivity(), normalize(defaults.fieldCaseSensitivity()));

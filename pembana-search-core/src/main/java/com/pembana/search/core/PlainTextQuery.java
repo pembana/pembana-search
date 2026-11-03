@@ -23,7 +23,7 @@ import org.jspecify.annotations.Nullable;
  * Framework-independent composition: AND patterns, OR fields for each pattern. Empty
  * patterns explicitly mean no text restriction. Existing Query variants are unchanged.
  *
- * @param fields eligible root fields
+ * @param fields eligible String paths
  * @param patterns all required patterns
  * @author Gunnar Hillert
  */

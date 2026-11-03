@@ -46,7 +46,8 @@ builder.withExtendedQuery(query, publicProfile, collectionSearch).build();
 ```
 
 These methods accept `STANDARD` expressions or programmatic `Query` objects.
-They do not add collection fields to `SIMPLE` search. If your endpoint exposes a
+`SIMPLE` search supports configured collection String fields directly, without
+this toggle; see [plain-text search](plain-text.md). If your endpoint exposes a
 request toggle, application code chooses when to pass the registry; the library
 does not add an HTTP parameter.
 
