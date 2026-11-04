@@ -55,7 +55,7 @@ GitHub Actions suffice. Publishing and release credentials are configured in a
 separate release milestone; no automatic push, tag, PR, or deployment is part
 of a local build. See the [release checklist](docs/releasing.md).
 
-## ## Maintain a linear commit history
+## Maintain a linear commit history
 
 The project uses fast-forward merges exclusively on `main`. Before opening a pull request, **rebase your branch onto the latest `main`** and check that the commits in your branch form a straight line.
 
@@ -102,3 +102,7 @@ and upstream license attribution.
 ## Git Commit Messages
 
 Follow Chris Beams’ [guidelines for writing Git commit messages](https://chris.beams.io/posts/git-commit).
+
+For dependency upgrades, list each updated dependency or build plugin by name
+and include its old and new versions in the commit message body, for example
+`Spring Boot starter parent: 4.1.1 -> 4.1.2`. Include the validation performed.
