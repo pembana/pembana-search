@@ -10,63 +10,6 @@ Upstream artifact: com.sipios:spring-search:0.3.0
 Copyright (c) 2019-present Woody Rousseau and other contributors
 
 Inherited material remains subject to the MIT copyright and permission notice
-retained in LICENSE.txt. Translating inherited code into Java will not remove
-that attribution. The Apache contributor patent grant is not a new grant from
-authors who contributed solely under MIT.
-
-At Stage 0, modifications comprise import housekeeping, the added Apache license,
-this attribution notice, baseline documentation and Maven-based CI, replacement
-of test CI, and removal of the inherited publishing workflow. Production sources,
-grammar, Kotlin tests, fixtures, Maven dependencies, and database settings have
-not been changed. See docs/baseline/README.md for provenance and verification.
-
-Stage 1 translates inherited production Kotlin code to Java, adapts annotation
-construction in the retained Kotlin tests, confines Kotlin dependencies/tooling
-to the test harness, and adds Java caller/MVC verification. The grammar, original
-test scenarios/fixtures, and dependency versions are retained. See
-docs/history/stage1/README.md for mechanical language-boundary adaptations and evidence.
-
-Stage 2 translates the inherited test corpus and fixtures to Java, retaining all
-113 scenarios and upstream attribution, and removes the Kotlin test toolchain.
-Production sources and behavior remain unchanged; see docs/history/stage2/README.md.
-
-Stage 3 upgrades framework integration to Spring Boot 4.1.1, updates resolver
-auto-configuration discovery, and adds PostgreSQL and Java 17/21/25 compatibility
-verification. Query implementation, grammar, and original scenarios/fixtures
-remain unchanged. New test classes carry 2026 Apache License 2.0 headers. See
-docs/history/stage3/README.md for dependency changes, results, and scope.
-
-Stage 4 adds query-behavior documentation, cross-database characterization tests,
-opt-in validation/field restrictions/limits, and structured query diagnostics.
-Compatibility defaults and inherited matching strategies remain unchanged. New
-classes carry 2026 Apache License 2.0 headers and author/Javadoc documentation.
-See docs/history/stage4/README.md for scope, intentional opt-in rejections, and evidence.
-
-The identity housekeeping milestone renames the project to Pembana Search under
-com.pembana:pembana-search:1.0.0-SNAPSHOT and Java packages com.pembana.search.
-The annotation package spelling is corrected; the unused deprecated default-package
-listener alias is removed. Current documentation and Maven metadata now describe
-Pembana Search, and packaged binary/source/Javadoc artifacts retain these notices.
-Historical reports and upstream notices keep their original names and identities.
-Query behavior, grammar, framework dependencies and tests remain equivalent under
-the documented class-name mapping. No publication is configured or performed.
-
-The style/build milestone adds Spring JavaFormat Checkstyle enforcement and
-mechanical Java formatting. Builds use JDK 21 while targeting Java 17 and testing
-consumer runtimes 17, 21, and 25. Converted Java files credit Spring Search
-contributors alongside the fork contributor; existing copyright and MIT notices
-remain intact. Query values, assertions, and production instructions are retained.
-
-The module milestone introduces independent core, JPA and optional Boot starter
-artifacts and a shared immutable query model. Core parsing/visitor extraction
-retains the inherited MIT notices and verified upstream author credits; new model
-and adapter contributions carry 2026 Apache License 2.0 headers. Matching defaults,
-grammar and the original scenario corpus remain characterized and retained. The
-root artifact is now a parent POM. See docs/modules/README.md for boundaries and
-verification; no artifacts are published.
-
-The request-options milestone adds immutable global/per-property case choices,
-explicit JSON and GET/form binding, validation and opt-in String matching
-consistency. Inherited annotation defaults and no-options behavior are retained;
-new contributions retain 2026 Apache License 2.0 headers. See
-docs/case-options/README.md for scope and verification.
+retained in LICENSE.txt. The Java translation retains that attribution.
+The Apache contributor patent grant is not a new grant from authors who
+contributed solely under MIT.
