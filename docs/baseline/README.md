@@ -1,7 +1,7 @@
 # Stage 0: upstream compatibility baseline
 
 Status: **passed locally on 2026-10-28**. This is the historical record captured
-before the Java port; see the [Stage 1 report](../stage1/README.md) for current
+before the Java port; see the [Stage 1 report](../history/stage1/README.md) for current
 implementation and verification. This milestone establishes AC-01; it does not establish the later Java,
 framework, PostgreSQL, or matching-policy acceptance criteria.
 

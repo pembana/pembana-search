@@ -24,23 +24,23 @@ Stage 1 translates inherited production Kotlin code to Java, adapts annotation
 construction in the retained Kotlin tests, confines Kotlin dependencies/tooling
 to the test harness, and adds Java caller/MVC verification. The grammar, original
 test scenarios/fixtures, and dependency versions are retained. See
-docs/stage1/README.md for mechanical language-boundary adaptations and evidence.
+docs/history/stage1/README.md for mechanical language-boundary adaptations and evidence.
 
 Stage 2 translates the inherited test corpus and fixtures to Java, retaining all
 113 scenarios and upstream attribution, and removes the Kotlin test toolchain.
-Production sources and behavior remain unchanged; see docs/stage2/README.md.
+Production sources and behavior remain unchanged; see docs/history/stage2/README.md.
 
 Stage 3 upgrades framework integration to Spring Boot 4.1.1, updates resolver
 auto-configuration discovery, and adds PostgreSQL and Java 17/21/25 compatibility
 verification. Query implementation, grammar, and original scenarios/fixtures
 remain unchanged. New test classes carry 2026 Apache License 2.0 headers. See
-docs/stage3/README.md for dependency changes, results, and scope.
+docs/history/stage3/README.md for dependency changes, results, and scope.
 
 Stage 4 adds query-behavior documentation, cross-database characterization tests,
 opt-in validation/field restrictions/limits, and structured query diagnostics.
 Compatibility defaults and inherited matching strategies remain unchanged. New
 classes carry 2026 Apache License 2.0 headers and author/Javadoc documentation.
-See docs/stage4/README.md for scope, intentional opt-in rejections, and evidence.
+See docs/history/stage4/README.md for scope, intentional opt-in rejections, and evidence.
 
 The identity housekeeping milestone renames the project to Pembana Search under
 com.pembana:pembana-search:1.0.0-SNAPSHOT and Java packages com.pembana.search.

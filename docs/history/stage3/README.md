@@ -2,7 +2,7 @@
 
 Historical report for revision `15eec77`: native PostgreSQL and the CI service
 container described here have since been replaced by
-[Testcontainers testing](../testcontainers/README.md). Use that report's commands
+[Testcontainers testing](../../testcontainers/README.md). Use that report's commands
 with the current checkout.
 
 Status: **passed locally on 2026-10-28**. Spring Boot 4.1.1 passes the unchanged
@@ -64,7 +64,7 @@ three and the five new checks above.
 | 25.0.3, Temurin | PostgreSQL 18.1 | 113 / 113 / 113 | 121 | 0 / 0 / 0 |
 
 Surefire identities and outcomes for every original method match the pre-upgrade
-run and the [canonical inventory](../baseline/scenarios.json), with no missing or
+run and the [canonical inventory](../../baseline/scenarios.json), with no missing or
 unexpected original methods. The empty `run()` method remains a context smoke
 test without a behavioral assertion. The earlier reports' coverage gaps remain;
 passing the corpus establishes equivalence for those scenarios, not every

@@ -1,7 +1,13 @@
 # Contributing to Pembana Search
 
+## Code of Conduct
+
+Please read the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## Fork the Repository
+
 Use issues and pull requests at https://github.com/pembana/pembana-search.
-Read the [Code of Conduct](CODE_OF_CONDUCT.md) and [development guide](docs/development.md).
+Please also read the [development guide](docs/development.md).
 
 1. Branch from `main`; use a descriptive branch name (`codex/` for agent work).
 2. Keep behavior changes separate from mechanical renames and framework upgrades.
@@ -49,10 +55,50 @@ GitHub Actions suffice. Publishing and release credentials are configured in a
 separate release milestone; no automatic push, tag, PR, or deployment is part
 of a local build. See the [release checklist](docs/releasing.md).
 
-Spring JavaFormat Checkstyle 0.0.48 runs during Maven `validate` on production and
-test Java sources. Run `./mvnw validate` from the reactor root for a quick style check, and use
+## ## Maintain a linear commit history
+
+The project uses fast-forward merges exclusively on `main`. Before opening a pull request, **rebase your branch onto the latest `main`** and check that the commits in your branch form a straight line.
+
+To inspect the commit graph, run
+
+```sh
+git log --graph --pretty=oneline
+```
+
+If you often use this command, you can create a global `git logg` alias.
+
+```sh
+git config --global alias.logg 'log --graph --pretty=oneline'
+```
+
+In a linear history, each commit appears on the same vertical line.
+
+```text
+* 1dcf61772cdd2ed0362753db77ab28a868b8318d fix!: apply case sensitivity consistently to string comparisons
+* 3bd4c450d91d903a871177d0e0fcbdf65f194bb9 feat!: enable strict validation and query limits by default
+* 42e1099d27e09a57a8d48d4d24b435fddb1a5cc3 fix: correct Boolean operator precedence for queries
+* a19532968259b759374e6c968f605b5064ac11c6 feat: add opt-in optional to-one association handling
+* a7c86eb8fb785f82fa7b448bf1ec75adcc584bf8 feat: add opt-in converters and predicate extensions
+* 246067ae76fe1c865c67f611faeb483bd54ced44 feat: add opt-in per-query field profiles
+* 2249385187621fe89f5e2be42ade6a6613a345c3 feat: add opt-in simple search with per-query modes
+* 2c8d3bc0f3978efbff4e90b13888d3409c87fd78 feat: implement exact Long value handling and validation
+```
+
+If the graph shows a merge commit among the commits you plan to submit, rebase your branch onto `main` and check the graph again.
+
+## Code Style
+
+The project uses the [Spring Framework](https://github.com/spring-projects/spring-framework/blob/main/CONTRIBUTING.md#source-code-style)
+style guide. The Spring JavaFormat Checkstyle Maven plugin enforces formatting and style rules.
+
+The Maven Checkstyle Plugin runs during Maven `validate` on production and test Java sources. Run `./mvnw validate` from
+the reactor root for a quick style check and use
 `./mvnw io.spring.javaformat:spring-javaformat-maven-plugin:0.0.48:apply` for
 mechanical formatting. Review the diff: formatting does not fix every import,
 qualification, or semantic-style rule. The [style guide](docs/checkstyle/README.md)
 explains the narrow compatibility exceptions; retain original assertion semantics
 and upstream license attribution.
+
+## Git Commit Messages
+
+Follow Chris Beams’ [guidelines for writing Git commit messages](https://chris.beams.io/posts/git-commit).

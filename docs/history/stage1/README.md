@@ -5,7 +5,7 @@ documents the subsequent Java test port and removal of Kotlin tooling.
 
 Status: **passed locally on 2026-10-28** with JDK 17. No framework upgrade,
 package rename, module split, new matching policy, or artifact publication is part
-of this change. Stage 0 evidence remains in [the baseline report](../baseline/README.md).
+of this change. Stage 0 evidence remains in [the baseline report](../../baseline/README.md).
 
 ## What changed
 
@@ -76,7 +76,7 @@ The pinned Kotlin revision is `c4b404dc6cf22b540d3e7f6211e557f5d83b6c61`.
 | Full verification build exit code | 0 | 0 |
 
 The original scenario names and outcomes match both the pinned run and the
-[committed inventory](../baseline/scenarios.json). Declared dependency versions,
+[committed inventory](../../baseline/scenarios.json). Declared dependency versions,
 property versions, and resolved version coordinates also match. Scope changes
 for the three Kotlin dependencies are recorded separately.
 

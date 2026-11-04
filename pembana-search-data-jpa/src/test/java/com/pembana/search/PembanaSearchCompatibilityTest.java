@@ -43,7 +43,7 @@ import static com.pembana.search.SearchTestFixtures.searchSpec;
 import static com.pembana.search.SearchTestFixtures.setOf;
 
 /**
- * One Java method for each original Kotlin scenario; see docs/stage2/scenarios.json.
+ * One Java method for each original Kotlin scenario; see docs/history/stage2/scenarios.json.
  *
  * @author Thibault F
  * @author Michael Mollard

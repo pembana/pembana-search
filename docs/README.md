@@ -24,17 +24,3 @@
 
 The root [README](../README.md) is the short Java quickstart. Generated API HTML
 is in each module’s `target/reports/apidocs/` after packaging; a Javadoc JAR is attached to the build.
-
-## Historical evidence
-
-The following reports are frozen records of earlier commits. Their coordinates,
-class names, JDK/framework versions, commands, and hashes describe those commits;
-use the guides above with the current checkout.
-
-- [Upstream baseline and canonical 113-scenario inventory](baseline/README.md)
-- [Stage 1: production Java port](stage1/README.md)
-- [Stage 2: Java tests and Kotlin removal](stage2/README.md)
-- [Stage 3: framework/database modernization](stage3/README.md)
-- [Testcontainers transition](testcontainers/README.md)
-- [Stage 4: query characterization and validation](stage4/README.md)
-- [Archived upstream documentation](upstream/index.md)
