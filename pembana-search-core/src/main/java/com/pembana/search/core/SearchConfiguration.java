@@ -40,7 +40,7 @@ public record SearchConfiguration(SearchMode defaultMode, List<String> textField
 			throw new IllegalArgumentException("A concrete default mode and positive predicate budget are required");
 		}
 		if (textFields.stream().distinct().count() != textFields.size() || textFields.stream()
-			.anyMatch((field) -> !field.matches("[A-Za-z][A-Za-z0-9]*(?:\\.[A-Za-z][A-Za-z0-9]*)*"))) {
+			.anyMatch((field) -> !field.matches("[A-Za-z][A-Za-z0-9]*+(?:\\.[A-Za-z][A-Za-z0-9]*+)*+"))) {
 			throw new IllegalArgumentException("Text fields must be unique property paths");
 		}
 	}

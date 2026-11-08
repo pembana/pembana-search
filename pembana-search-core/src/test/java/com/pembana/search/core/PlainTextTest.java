@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -89,6 +90,35 @@ class PlainTextTest {
 			assertThrows(IllegalArgumentException.class,
 					() -> new SearchConfiguration(SearchMode.SIMPLE, List.of(field), 1));
 		}
+	}
+
+	/** Unicode separators and whitespace controls trim while other controls stay literal. */
+	@Test
+	void trimsUnicodeWhitespace() {
+		var config = new SearchConfiguration(SearchMode.SIMPLE, List.of("title"), 2);
+		var policy = ParserOptions.defaults();
+		assertEquals(List.of(new TextPattern("first", false), new TextPattern("second", false)),
+				PlainTextQuery.compose("\u0085\u00A0first\u202Fsecond\u2028\r", config, policy).patterns());
+		assertEquals(List.of(new TextPattern("\u001Cfirst*\u001F", true)),
+				PlainTextQuery.compose("\u2029\u001Cfirst*\u001F\u2007", config, policy).patterns());
+	}
+
+	/** A long interior whitespace run stays part of the glob and is processed promptly. */
+	@Test
+	@Timeout(5)
+	void preservesLongInteriorWhitespaceInGlob() {
+		var config = new SearchConfiguration(SearchMode.SIMPLE, List.of("title"), 1);
+		var unlimited = new ParserOptions(false, List.of(), List.of(), 0, 0);
+		String glob = "first*" + " ".repeat(100_000) + "second";
+		assertEquals(List.of(new TextPattern(glob, true)),
+				PlainTextQuery.compose(" " + glob + " ", config, unlimited).patterns());
+	}
+
+	/** Text fields accept deep paths whose segments all start with letters. */
+	@Test
+	void acceptsDeepTextFieldPath() {
+		String field = "a1.".repeat(10_000) + "b2";
+		assertEquals(List.of(field), new SearchConfiguration(SearchMode.SIMPLE, List.of(field), 1).textFields());
 	}
 
 }

@@ -168,7 +168,7 @@ public sealed interface AssociationQuery permits AssociationQuery.Filter, Associ
 		 * @param condition child condition
 		 */
 		public Scope {
-			if (!collection.matches("[A-Za-z0-9]+(?:\\.[A-Za-z0-9]+)*")) {
+			if (!collection.matches("[A-Za-z0-9]++(?:\\.[A-Za-z0-9]++)*+")) {
 				throw new IllegalArgumentException("Invalid collection scope: " + collection);
 			}
 			java.util.Objects.requireNonNull(condition);

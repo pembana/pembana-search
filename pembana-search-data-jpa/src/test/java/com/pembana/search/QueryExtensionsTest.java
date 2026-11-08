@@ -453,6 +453,15 @@ public class QueryExtensionsTest {
 				() -> ids(builder().withExtendedSearch("missing:x", unknown).build()));
 	}
 
+	/** Extension registrations accept deep paths, including numeric segments. */
+	@Test
+	void acceptsDeepExtensionFieldPath() {
+		String path = "child.2.".repeat(5_000) + "leaf";
+		var conversion = idsConversion();
+		var extensions = QueryExtensions.builder().forField(path, conversion).build();
+		assertEquals(conversion, extensions.fields.get(path));
+	}
+
 	/**
 	 * The standalone example runs against generic fixture attributes and cannot escape
 	 * the required scope.

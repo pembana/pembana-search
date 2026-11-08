@@ -189,6 +189,13 @@ class SearchProfileTest {
 				() -> new SearchProfile("bad", fields, Map.of(), List.of("missing"), SearchOptions.defaults()));
 	}
 
+	/** Canonical profile paths can contain many segments, including numeric ones. */
+	@Test
+	void acceptsDeepCanonicalFieldPath() {
+		String path = "child.2.".repeat(5_000) + "leaf";
+		assertEquals(path, new SearchField(path, Set.of()).path());
+	}
+
 	/**
 	 * Transformation targets require exposed canonical operations and retain canonical
 	 * request/default precedence.

@@ -80,4 +80,13 @@ class AssociationQueryTest {
 		assertThrows(IllegalArgumentException.class, () -> AssociationQuery.any("children..bad", scope));
 	}
 
+	/** A deep canonical path can contain numeric segments without exhausting the stack. */
+	@Test
+	void acceptsDeepCollectionScopePath() {
+		String path = "child.2.".repeat(5_000) + "leaf";
+		var condition = AssociationQuery.where(new Comparison("title", ComparisonOperator.EQUALS, "Orphan"));
+		var scope = assertInstanceOf(AssociationQuery.Scope.class, AssociationQuery.any(path, condition));
+		assertEquals(path, scope.collection());
+	}
+
 }

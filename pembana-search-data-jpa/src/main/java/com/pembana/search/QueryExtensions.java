@@ -193,7 +193,7 @@ public final class QueryExtensions {
 		}
 
 		private static void verify(String field) {
-			if (!field.matches("[A-Za-z0-9]+(?:\\.[A-Za-z0-9]+)*")) {
+			if (!field.matches("[A-Za-z0-9]++(?:\\.[A-Za-z0-9]++)*+")) {
 				throw new IllegalArgumentException("Invalid extension field: " + field);
 			}
 		}

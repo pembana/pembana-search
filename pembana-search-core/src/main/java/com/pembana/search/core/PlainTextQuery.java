@@ -55,7 +55,7 @@ public record PlainTextQuery(List<String> fields, List<TextPattern> patterns) {
 			throw new QueryParseException(DiagnosticCode.QUERY_LIMIT_EXCEEDED, null,
 					"Plain text exceeds maximum length");
 		}
-		String trimmed = (text == null) ? "" : text.replaceAll("(?U)^\\s+|\\s+$", "");
+		String trimmed = (text == null) ? "" : trimWhitespace(text);
 		if (trimmed.isEmpty()) {
 			return new PlainTextQuery(configuration.textFields(), List.of());
 		}
@@ -69,5 +69,22 @@ public record PlainTextQuery(List<String> fields, List<TextPattern> patterns) {
 		}
 		configuration.textFields().forEach(policy::verifyField);
 		return new PlainTextQuery(configuration.textFields(), patterns);
+	}
+
+	private static String trimWhitespace(String text) {
+		int start = 0;
+		int end = text.length();
+		while (start < end && isUnicodeWhitespace(text.charAt(start))) {
+			start++;
+		}
+		while (end > start && isUnicodeWhitespace(text.charAt(end - 1))) {
+			end--;
+		}
+		return text.substring(start, end);
+	}
+
+	private static boolean isUnicodeWhitespace(char character) {
+		// Unicode White_Space adds these controls to the separator categories.
+		return (character >= '\t' && character <= '\r') || character == '\u0085' || Character.isSpaceChar(character);
 	}
 }

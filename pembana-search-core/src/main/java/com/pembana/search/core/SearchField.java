@@ -31,7 +31,7 @@ public record SearchField(String path, Set<ProfileOperation> operations) {
 	 * @param operations allowed operations; empty denies all operations
 	 */
 	public SearchField {
-		if (!path.matches("[A-Za-z0-9]+(?:\\.[A-Za-z0-9]+)*")) {
+		if (!path.matches("[A-Za-z0-9]++(?:\\.[A-Za-z0-9]++)*+")) {
 			throw new IllegalArgumentException("Invalid canonical field path: " + path);
 		}
 		operations = Set.copyOf(operations);
