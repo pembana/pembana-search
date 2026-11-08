@@ -153,7 +153,8 @@ final class ExtensionPredicates {
 			else {
 				List<Object> parsed = new ArrayList<>();
 				for (int i = 0; i < values.size(); i++) {
-					Object item = converted.get(i).isPresent() ? converted.get(i).get()
+					Optional<Object> convertedValue = converted.get(i);
+					Object item = convertedValue.isPresent() ? convertedValue.get()
 							: builtin(String.valueOf(values.get(i)), type, settings, options, field);
 					parsed.add(item);
 				}

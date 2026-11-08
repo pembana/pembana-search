@@ -28,6 +28,7 @@ import com.pembana.search.strategies.StringStrategy;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.given;
@@ -48,9 +49,9 @@ class CaseStrategyOptionsTest {
 		for (CaseSensitivity choice : CaseSensitivity.values()) {
 			var strategy = new StringStrategy(settings, choice);
 			var copy = strategy.copy(settings);
+			assertNotSame(strategy, copy);
 			assertEquals(strategy, copy);
 			assertEquals(strategy.hashCode(), copy.hashCode());
-			assertEquals(strategy, strategy);
 			assertFalse(strategy.equals(null));
 			assertFalse(strategy.equals(new Object()));
 			assertSame(settings, copy.component1());
