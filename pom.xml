@@ -10,7 +10,7 @@
 	<groupId>com.pembana.search</groupId>
 	<artifactId>pembana-search</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0.0-M2</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>Pembana Search</name>
 	<description>Immutable search query models, expression parsing, Spring Data JPA translation, and optional Spring Boot MVC integration.</description>
 	<url>https://github.com/pembana/pembana-search</url>
