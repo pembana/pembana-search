@@ -1,0 +1,31 @@
+name: Check out prepared release
+description: Restore the signed release commit and snapshot commit from this run.
+inputs:
+  artifact-id:
+    description: ID of the prepared release artifact
+    required: true
+  tag:
+    description: Signed release tag
+    required: true
+  revision:
+    description: Expected release commit
+    required: true
+runs:
+  using: composite
+  steps:
+    - uses: actions/download-artifact@v7
+      with:
+        artifact-ids: ${{ inputs.artifact-id }}
+        path: ${{ runner.temp }}/prepared-release
+
+    - name: Restore the release refs
+      shell: bash
+      env:
+        RELEASE_TAG: ${{ inputs.tag }}
+        RELEASE_REVISION: ${{ inputs.revision }}
+      run: |
+        tag_ref="refs/tags/$RELEASE_TAG"
+        git fetch --no-tags "$RUNNER_TEMP/prepared-release/release.bundle" \
+          "$tag_ref:$tag_ref" refs/heads/release-next:refs/heads/release-next
+        test "$(git rev-parse "$tag_ref^{commit}")" = "$RELEASE_REVISION"
+        git switch --detach "$RELEASE_REVISION"

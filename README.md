@@ -1,14 +1,15 @@
 # Pembana Search
 
 [![Maven CI](https://github.com/pembana/pembana-search/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/pembana/pembana-search/actions/workflows/maven.yml)
-[![Development version](https://img.shields.io/badge/version-1.0.0--SNAPSHOT-blue)](pom.xml)
+[![Maven Central](https://img.shields.io/maven-central/v/com.pembana.search/pembana-search-core)](https://central.sonatype.com/artifact/com.pembana.search/pembana-search-core)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-green)](LICENSE)
 
 Advanced search expressions for Spring Data JPA, with optional Spring MVC query
 binding, field restrictions, input limits, and structured validation errors.
 
-**Development version:** `1.0.0-SNAPSHOT`. No artifact has been published.
-Build/install the reactor locally, then choose the integration you need:
+The [POM](pom.xml) records the development version. See
+[GitHub Releases](https://github.com/pembana/pembana-search/releases) for
+published versions. Choose the integration you need:
 
 | Artifact (`com.pembana.search`) | Responsibility |
 | --- | --- |
@@ -17,7 +18,7 @@ Build/install the reactor locally, then choose the integration you need:
 | `pembana-search-spring-boot-starter` | Optional Boot/MVC binding with an overridable resolver |
 
 `pembana-search` is now the parent/aggregator POM. The API is evolving toward 1.0.
-See the [release process](docs/releasing.md) for local staging and manual JReleaser publication.
+See the [release guide](docs/releasing.md) for snapshot publication and signed releases.
 
 HTTP endpoints can also share a named [field profile](docs/reference/profiles.md#use-a-profile-in-an-http-endpoint):
 register a `SearchProfile` bean, then select it with `@SearchSpec(profile = "public-catalogue")`.
@@ -59,8 +60,9 @@ guide](docs/development.md#dependency-check-and-nvd) for local use and nightly C
 
 ## Add to a Spring Boot application
 
-After the first snapshot is published, add the public snapshot repository to your
-application POM (no download credentials are required):
+Use a published release version to resolve the dependency from Maven Central.
+To use a published development snapshot, add the public snapshot repository to
+your application POM:
 
 ```xml
 <repositories>
@@ -73,8 +75,8 @@ application POM (no download credentials are required):
 </repositories>
 ```
 
-Until that publication, install locally using the build command above. Add the
-starter dependency in either case:
+For a local development build, install the reactor using the build command above.
+Add the starter dependency with your chosen version. This example uses a snapshot:
 
 ```xml
 <dependency>

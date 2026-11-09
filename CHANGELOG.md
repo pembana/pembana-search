@@ -1,100 +1,78 @@
 # Pembana Search changelog
 
-This is Pembana Search's independent version history. No version is released yet.
 The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring Search.
 
-## 1.0.0-SNAPSHOT — unreleased
+## Unreleased
 
-### Added
+Pembana Search brings Spring Search’s JPA query language to Java and Spring Boot 4.
+The parser, JPA integration, and optional Boot starter are available as separate modules.
 
-- SIMPLE search supports configured nested String paths and collection String
-  fields, using left joins and correlated existence predicates with the documented
-  association limits.
-- JDBC/in-memory/JPA matching parity tests and a pinned-baseline source/binary
-  consumer check in CI. See [search acceptance](docs/search-acceptance.md).
+### ⚠️ Upgrading
 
-- HTTP field-profile selection with `@SearchSpec(profile = "name")`. Boot registers
-  `SearchProfile` beans by their profile names; GET/form and JSON binding share
-  aliases, operation permissions and case defaults. Duplicate names and unknown
-  selections report configuration errors. Ordinary binding remains the default.
+- Use the `com.pembana.search` Maven group and Java packages. Choose the core,
+  JPA, or Boot starter artifact for your application. The parent POM aggregates
+  the modules. Update imports from `anotation` to `annotation` and use
+  `com.pembana.search.listeners.SyntaxErrorListener` if you used the upstream
+  default-package alias. [Module and coordinate migration](docs/migration.md#migrating-the-single-snapshot-to-modules)
+- Strict validation now rejects invalid and oversized expressions by default,
+  with limits of 4,096 characters and 16 nesting levels. For legacy input handling,
+  explicitly set `strictValidation=false` and both limits to zero.
+  [Validation migration](docs/migration.md#strict-validation-and-input-limits-by-default)
+- Mixed Boolean expressions now evaluate `AND` before `OR`. Add parentheses
+  where your application relies on the previous grouping.
+  [Boolean precedence migration](docs/migration.md#boolean-operator-precedence-correction)
+- `caseSensitiveFlag=false` now applies consistently to string comparisons.
+  Earlier case-insensitive queries can return different results.
+  [Case sensitivity migration](docs/migration.md#consistent-case-sensitivity-for-membership-and-ordering)
+- Build with JDK 21 and use Java 17 or later at runtime. The Boot starter targets
+  Spring Boot 4.1.2 and uses the application’s Jackson 3 mapper for JSON binding.
+  [Compatibility and setup](docs/getting-started.md)
 
-- Opt-in `security` Maven profile with one reactor-wide aggregate Dependency-Check
-  report, plus nightly/manual scans with a versioned, persistent database cache.
+### ⭐ New Features
 
-- Opt-in multi-module local Maven staging and manual JReleaser publication for
-  Central snapshots/releases, with reusable compatibility CI, dry-run mode and
-  documented signing credentials.
+- SIMPLE search supports nested string fields and collections of strings.
+  [88c893c](https://github.com/pembana/pembana-search/commit/88c893c)
+- Select a named profile with `@SearchSpec` to share aliases, operation permissions,
+  and case defaults across GET and JSON requests.
+  [e870eeb](https://github.com/pembana/pembana-search/commit/e870eeb)
+- Bind JSON search requests explicitly with `@SearchRequestBody`.
+  [HTTP field profiles](docs/reference/profiles.md#use-a-profile-in-an-http-endpoint)
+- Parse expressions or construct immutable query trees directly. Apply field
+  allowlists and per-query field policies to either form.
+  [19353b9](https://github.com/pembana/pembana-search/commit/19353b9)
+- Configure case sensitivity globally or per property.
+  [ed25d2e](https://github.com/pembana/pembana-search/commit/ed25d2e)
+- Match Java `Long` fields with exact conversion and overflow validation.
+  [2c8d3bc](https://github.com/pembana/pembana-search/commit/2c8d3bc)
+- Customize value conversion and predicate strategies, including opt-in support
+  for optional to-one associations.
+  [Extension and association guide](docs/migration.md#explicit-converters-and-predicate-extensions)
 
-- Immutable global/per-property case-sensitivity choices with property precedence.
-- GET/form option binding and explicit JSON search binding through `@SearchRequestBody`.
-- Strict option/envelope validation, application Jackson 3 mapper integration and
-  consistent String membership/ordering with the accepted inherited-policy changes
-  described below.
+### 🐞 Bug Fixes
 
-- Independent core, JPA and optional Boot starter modules.
-- Immutable query trees shared by parsing and programmatic construction.
-- Field-policy enforcement for programmatic trees and a replaceable named MVC resolver.
-- Core equivalence/dependency-boundary and direct JPA model tests.
+- Resolve mapped collections for emptiness queries and convert nested enum values
+  against the resolved enum type. [2cdd0b3](https://github.com/pembana/pembana-search/commit/2cdd0b3)
+- Honor the case policy in equality, membership, ordering, and ranges, including
+  basic collection elements. [1dcf617](https://github.com/pembana/pembana-search/commit/1dcf617)
+- Bound regular-expression work during query trimming and path validation.
+  [d56e815](https://github.com/pembana/pembana-search/commit/d56e815)
 
-- Java implementation and tests preserving all 113 original scenarios.
-- H2 and Testcontainers PostgreSQL verification on Java 17, 21, and 25.
-- Opt-in strict validation, field allowlists, query limits, and structured errors.
-- Matching/association characterization tests and current Java documentation.
-- Spring JavaFormat Checkstyle 0.0.48 enforcement for handwritten production/test Java.
+### 📔 Documentation
 
-### Fixed
+- See the migration guide for package changes, matching behavior, and compatibility
+  options. [Migration guide](docs/migration.md)
+- Review the Java 17, 21, and 25 compatibility checks against H2 and PostgreSQL.
+  The checks cover the original 113 scenarios, JDBC and JPA matching parity, and
+  source and binary API compatibility. [Search acceptance](docs/search-acceptance.md)
+- See the release guide for signed Maven Central publication and the development
+  guide for opt-in dependency scans. [Release guide](docs/releasing.md) ·
+  [Dependency scanning](docs/development.md#dependency-check-and-nvd)
 
-- Apply `caseSensitiveFlag=false` consistently to String membership, ordering
-  and ranges, including basic collection elements. Explicit request choices
-  continue to override the annotation; the true default is unchanged. Earlier
-  inherited false-flag queries may return different results. See the
-  [migration note](docs/migration.md#consistent-case-sensitivity-for-membership-and-ordering).
+### 🔨 Dependency Upgrades
 
-- Correct an inherited Boolean precedence bug: `AND` now binds more tightly than
-  `OR`. Mixed expressions without parentheses may return different results.
-  Write `(A OR B) AND C` to preserve the earlier meaning of `A OR B AND C`.
-  See the [migration guide](docs/migration.md#boolean-operator-precedence-correction).
+- Spring Boot 4.1.2, ANTLR 4.13.2, H2 2.5.252, Jackson 2.22.4 and 3.2.4,
+  and JUnit 6.1.3. [991b235](https://github.com/pembana/pembana-search/commit/991b235)
 
-- Resolve collection attributes through JPA metadata so inherited and getter-mapped
-  collections support emptiness queries, including dotted association paths.
-- Convert nested enum values through the resolved enum class, including private
-  nested types, while retaining exact names and structured invalid-value errors.
+### ❤️ Contributors
 
-- String equality and inequality now honor `caseSensitiveFlag=false`, folding
-  both field and input. The true default is unchanged; the subsequent membership
-  and ordering correction is described above.
-- Documented the intentional false-flag behavior change, null/collation limits,
-  recommended case-insensitive form defaults and proposed per-field controls.
-
-### Changed
-
-- Update Spring Boot to 4.1.2 and ANTLR runtime/generator to 4.13.2.
-  Upgrade H2 to 2.5.252, Jackson 2/3 BOMs to 2.22.4/3.2.4 and JUnit to 6.1.3.
-  Update Checkstyle, JReleaser and Maven dependency, GPG, deploy and versions plugins.
-
-- Enable strict validation by default in `@SearchSpec` and core parser defaults,
-  with limits of 4,096 characters and 16 nesting levels. Invalid and oversized
-  expressions now fail explicitly. Configure larger limits when needed; select
-  `strictValidation=false` and zero limits explicitly for legacy input handling.
-  Searchable-field restrictions remain application-defined. See
-  [migration advice](docs/migration.md#strict-validation-and-input-limits-by-default).
-
-- Spring Boot baseline is 4.1.2; Kotlin tooling has been removed.
-- Maven and style tools build on JDK 21 while compiler release targeting and
-  consumer compatibility remain Java 17; CI tests runtimes 17, 21, and 25.
-- `com.pembana.search:pembana-search:1.0.0-SNAPSHOT` is the parent/aggregator; applications
-  select the core, JPA or Boot starter artifact at the same version.
-- Java packages use `com.pembana.search`, with `annotation` replacing `anotation`.
-- Test application/corpus names use Pembana Search; historical identities are mapped.
-- Upstream publishing defaults and obsolete release automation are removed;
-  deployment is disabled pending Pembana's release configuration.
-
-### Compatibility
-
-- Import and coordinate changes require consumer migration; there are no old-package shims.
-- Boolean precedence now follows `AND` before `OR`; explicit parentheses retain
-  control of grouping. Other matching corrections are described above. Stricter
-  input rejection is now the default; compatibility behavior requires explicit configuration.
-- The deprecated upstream default-package `SyntaxErrorListener` alias is removed;
-  use `com.pembana.search.listeners.SyntaxErrorListener` when needed.
-- The parent POM aggregates separate core, JPA, and optional Boot starter artifacts.
+- [Gunnar Hillert](https://github.com/ghillert)

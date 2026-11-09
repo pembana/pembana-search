@@ -3,8 +3,14 @@ name: Maven publication
 on:
   workflow_dispatch:
     inputs:
+      release-version:
+        description: 'Release version (for example 1.0.0-M2). Leave blank for artifact-only publication.'
+        type: string
+      next-snapshot-version:
+        description: 'Next development version (for example 1.0.0-SNAPSHOT).'
+        type: string
       dry-run:
-        description: 'Validate and sign locally without uploading to Maven Central'
+        description: 'Verify and sign without uploading to Maven Central or pushing Git refs'
         required: true
         default: true
         type: boolean
@@ -21,21 +27,106 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  prepare:
+    name: Prepare signed release and snapshot commits
+    if: inputs.release-version != '' || inputs.next-snapshot-version != ''
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment: release-git
+    outputs:
+      artifact-id: ${{ steps.artifact.outputs.artifact-id }}
+      tag: ${{ steps.prepare.outputs.tag }}
+      revision: ${{ steps.prepare.outputs.revision }}
+    steps:
+      - name: Require the main branch
+        run: test "$GITHUB_REF" = refs/heads/main
+
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-java@v5
+        with:
+          java-version: '21'
+          distribution: temurin
+          cache: maven
+
+      - name: Version the reactor, sign Git refs and render release notes
+        id: prepare
+        env:
+          RELEASE_VERSION: ${{ inputs.release-version }}
+          NEXT_SNAPSHOT: ${{ inputs.next-snapshot-version }}
+          RELEASE_GIT_NAME: ${{ vars.RELEASE_GIT_NAME }}
+          RELEASE_GIT_EMAIL: ${{ vars.RELEASE_GIT_EMAIL }}
+          RELEASE_GPG_FINGERPRINT: ${{ vars.RELEASE_GPG_FINGERPRINT }}
+          RELEASE_GPG_PRIVATE_KEY: ${{ secrets.RELEASE_GPG_PRIVATE_KEY }}
+          RELEASE_GPG_PASSPHRASE: ${{ secrets.RELEASE_GPG_PASSPHRASE }}
+        run: |
+          export GNUPGHOME
+          GNUPGHOME=$(mktemp -d)
+          trap 'gpgconf --kill gpg-agent; rm -rf "$GNUPGHOME"' EXIT
+          printf '%s' "${RELEASE_GPG_PRIVATE_KEY:?Missing release signing key}" | gpg --batch --import
+          unset RELEASE_GPG_PRIVATE_KEY
+          cat > "$GNUPGHOME/gpg" <<'GPG'
+          #!/usr/bin/env bash
+          exec gpg --batch --pinentry-mode loopback --passphrase-fd 3 "$@" 3<<<"${RELEASE_GPG_PASSPHRASE:-}"
+          GPG
+          chmod 700 "$GNUPGHOME/gpg"
+          git config user.name "${RELEASE_GIT_NAME:?Missing release signer name}"
+          git config user.email "${RELEASE_GIT_EMAIL:?Missing release signer email}"
+          git config user.signingkey "${RELEASE_GPG_FINGERPRINT:?Missing release signer fingerprint}"
+          git config gpg.program "$GNUPGHOME/gpg"
+
+          bash .github/release/prepare.sh "$RELEASE_VERSION" "$NEXT_SNAPSHOT" \
+            "$RUNNER_TEMP/prepared-release" "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
+          tag="v$RELEASE_VERSION"
+          revision=$(git rev-parse "refs/tags/$tag^{commit}")
+          printf 'tag=%s\nrevision=%s\n' "$tag" "$revision" >> "$GITHUB_OUTPUT"
+          {
+            printf 'Release `%s` at `%s`\n\n' "$tag" "$revision"
+            cat "$RUNNER_TEMP/prepared-release/release-notes.md"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v6
+        id: artifact
+        with:
+          name: prepared-release-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/prepared-release/
+          if-no-files-found: error
+          retention-days: 30
+
   compatibility:
     name: Verify release compatibility
+    needs: prepare
+    if: "!cancelled() && (needs.prepare.result == 'success' || needs.prepare.result == 'skipped')"
     uses: ./.github/workflows/maven.yml
+    with:
+      release-artifact-id: ${{ needs.prepare.outputs.artifact-id }}
+      release-tag: ${{ needs.prepare.outputs.tag }}
+      release-revision: ${{ needs.prepare.outputs.revision }}
 
   publication:
-    name: Stage and publish with JReleaser
-    needs: compatibility
+    name: Stage Maven artifacts with JReleaser
+    needs: [prepare, compatibility]
+    if: "!cancelled() && needs.compatibility.result == 'success'"
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     environment: maven-central
+    outputs:
+      deployment-id: ${{ steps.deployment.outputs.id }}
     steps:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
           persist-credentials: false
+
+      - uses: ./.github/actions/checkout-release
+        if: needs.prepare.result == 'success'
+        with:
+          artifact-id: ${{ needs.prepare.outputs.artifact-id }}
+          tag: ${{ needs.prepare.outputs.tag }}
+          revision: ${{ needs.prepare.outputs.revision }}
 
       - name: Set up build Java 21
         uses: actions/setup-java@v5
@@ -57,6 +148,7 @@ jobs:
       - name: Sign and deploy staged artifacts
         env:
           JRELEASER_DRY_RUN: ${{ inputs.dry-run }}
+          JRELEASER_MAVENCENTRAL_STAGE: ${{ needs.prepare.result == 'success' && 'UPLOAD' || 'FULL' }}
           JRELEASER_GITHUB_TOKEN: ${{ github.token }}
           JRELEASER_GPG_PASSPHRASE: ${{ secrets.JRELEASER_GPG_PASSPHRASE }}
           JRELEASER_GPG_PUBLIC_KEY: ${{ secrets.JRELEASER_GPG_PUBLIC_KEY }}
@@ -66,6 +158,30 @@ jobs:
           JRELEASER_NEXUS2_USERNAME: ${{ secrets.JRELEASER_NEXUS2_USERNAME }}
           JRELEASER_NEXUS2_PASSWORD: ${{ secrets.JRELEASER_NEXUS2_PASSWORD }}
         run: ./mvnw --batch-mode --no-transfer-progress -N -Ppublication jreleaser:deploy
+
+      - name: Record the Central deployment ID
+        id: deployment
+        if: needs.prepare.result == 'success' && !inputs.dry-run
+        run: |
+          id=$(sed -n 's/^deployMavenCentralSonatypeDeploymentId=//p' target/jreleaser/output.properties)
+          if [[ ! "$id" =~ ^[0-9a-fA-F]{8}(-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}$ ]]; then
+            echo "JReleaser did not report a Central deployment ID." >&2
+            exit 1
+          fi
+          printf 'id=%s\n' "$id" >> "$GITHUB_OUTPUT"
+          printf 'Central deployment ID: `%s`\n' "$id" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Collect the signed Central bundle
+        if: needs.prepare.result == 'success'
+        run: |
+          shopt -s nullglob
+          bundles=(target/jreleaser/deploy/mavenCentral/sonatype/*-bundle.zip)
+          test "${#bundles[@]}" -eq 1
+          unzip -Z1 "${bundles[0]}" > build/publication/bundle-contents.txt
+          test "$(grep -c '\.pom$' build/publication/bundle-contents.txt)" -eq 4
+          test "$(grep -c '\.jar$' build/publication/bundle-contents.txt)" -eq 10
+          test "$(grep -c '\.\(jar\|pom\)\.asc$' build/publication/bundle-contents.txt)" -eq 14
+          cp "${bundles[0]}" build/publication/central-bundle.zip
 
       - name: Preserve publication evidence even on failure
         if: always()
@@ -82,3 +198,145 @@ jobs:
             pembana-search-*/target/dependencies.txt
           if-no-files-found: error
           retention-days: 30
+
+  central-validation:
+    name: Confirm Central validation
+    needs: publication
+    if: needs.publication.outputs.deployment-id != ''
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    environment: maven-central
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - name: Require a validated deployment
+        env:
+          CENTRAL_USERNAME: ${{ secrets.JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME }}
+          CENTRAL_PASSWORD: ${{ secrets.JRELEASER_MAVENCENTRAL_SONATYPE_PASSWORD }}
+          DEPLOYMENT_ID: ${{ needs.publication.outputs.deployment-id }}
+        run: test "$(bash .github/release/central.sh "$DEPLOYMENT_ID")" = VALIDATED
+
+  push-release:
+    name: Push the signed tag and snapshot commits
+    needs: [prepare, central-validation]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    environment: release-git
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: ./.github/actions/checkout-release
+        with:
+          artifact-id: ${{ needs.prepare.outputs.artifact-id }}
+          tag: ${{ needs.prepare.outputs.tag }}
+          revision: ${{ needs.prepare.outputs.revision }}
+
+      - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3
+        id: app-token
+        with:
+          client-id: ${{ vars.RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+          permission-contents: write
+
+      - name: Atomically advance main and create the tag
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          RELEASE_TAG: ${{ needs.prepare.outputs.tag }}
+        run: |
+          gh auth setup-git --hostname "${GITHUB_SERVER_URL#https://}"
+          bash .github/release/push.sh "$GITHUB_SHA" "$RELEASE_TAG"
+
+  central-publish:
+    name: Publish the validated deployment with JReleaser
+    needs: [prepare, publication, push-release]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    environment: maven-central
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ needs.prepare.outputs.revision }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Check whether a publish request is needed
+        id: status
+        env:
+          CENTRAL_USERNAME: ${{ secrets.JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME }}
+          CENTRAL_PASSWORD: ${{ secrets.JRELEASER_MAVENCENTRAL_SONATYPE_PASSWORD }}
+          DEPLOYMENT_ID: ${{ needs.publication.outputs.deployment-id }}
+        run: |
+          state=$(bash .github/release/central.sh "$DEPLOYMENT_ID" --wait)
+          case "$state" in
+            VALIDATED|PUBLISHED) printf 'state=%s\n' "$state" >> "$GITHUB_OUTPUT" ;;
+            *) echo "Central deployment $DEPLOYMENT_ID cannot be published from $state." >&2; exit 1 ;;
+          esac
+
+      - uses: actions/setup-java@v5
+        if: steps.status.outputs.state == 'VALIDATED'
+        with:
+          java-version: '21'
+          distribution: temurin
+          cache: maven
+
+      - name: Publish the existing Central deployment
+        if: steps.status.outputs.state == 'VALIDATED'
+        env:
+          JRELEASER_MAVENCENTRAL_STAGE: PUBLISH
+          JRELEASER_MAVENCENTRAL_DEPLOYMENT_ID: ${{ needs.publication.outputs.deployment-id }}
+          JRELEASER_GITHUB_TOKEN: ${{ github.token }}
+          JRELEASER_GPG_PASSPHRASE: ${{ secrets.JRELEASER_GPG_PASSPHRASE }}
+          JRELEASER_GPG_PUBLIC_KEY: ${{ secrets.JRELEASER_GPG_PUBLIC_KEY }}
+          JRELEASER_GPG_SECRET_KEY: ${{ secrets.JRELEASER_GPG_SECRET_KEY }}
+          JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME: ${{ secrets.JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME }}
+          JRELEASER_MAVENCENTRAL_SONATYPE_PASSWORD: ${{ secrets.JRELEASER_MAVENCENTRAL_SONATYPE_PASSWORD }}
+        run: ./mvnw --batch-mode --no-transfer-progress -N -Ppublication jreleaser:deploy
+
+      - name: Confirm Central publication
+        if: steps.status.outputs.state == 'VALIDATED'
+        env:
+          CENTRAL_USERNAME: ${{ secrets.JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME }}
+          CENTRAL_PASSWORD: ${{ secrets.JRELEASER_MAVENCENTRAL_SONATYPE_PASSWORD }}
+          DEPLOYMENT_ID: ${{ needs.publication.outputs.deployment-id }}
+        run: test "$(bash .github/release/central.sh "$DEPLOYMENT_ID" --wait)" = PUBLISHED
+
+  github-release:
+    name: Publish the GitHub release notes
+    needs: [prepare, central-publish]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v7
+        with:
+          artifact-ids: ${{ needs.prepare.outputs.artifact-id }}
+          path: ${{ runner.temp }}/prepared-release
+
+      - name: Publish notes against the existing signed tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ needs.prepare.outputs.tag }}
+        run: |
+          notes="$RUNNER_TEMP/prepared-release/release-notes.md"
+          title="Pembana Search ${RELEASE_TAG#v}"
+          prerelease=false
+          flags=()
+          if [[ "$RELEASE_TAG" == *-* ]]; then
+            prerelease=true
+            flags+=(--prerelease)
+          fi
+          if existing=$(gh release view "$RELEASE_TAG" --json url,name,isDraft,isPrerelease,body); then
+            jq -e --arg title "$title" --argjson prerelease "$prerelease" --rawfile notes "$notes" \
+              '.name == $title and (.isDraft | not) and .isPrerelease == $prerelease
+               and (.body | sub("\n+$"; "")) == ($notes | sub("\n+$"; ""))' <<< "$existing" >/dev/null
+            url=$(jq -er .url <<< "$existing")
+          else
+            url=$(gh release create "$RELEASE_TAG" --verify-tag --title "$title" \
+              --notes-file "$notes" "${flags[@]}")
+          fi
+          printf '[Published GitHub release](%s)\n' "$url" >> "$GITHUB_STEP_SUMMARY"

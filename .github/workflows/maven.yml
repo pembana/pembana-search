@@ -6,6 +6,13 @@ on:
     branches: [main]
   workflow_dispatch:
   workflow_call:
+    inputs:
+      release-artifact-id:
+        type: string
+      release-tag:
+        type: string
+      release-revision:
+        type: string
 
 permissions:
   contents: read
@@ -25,6 +32,13 @@ jobs:
         shell: bash
     steps:
       - uses: actions/checkout@v5
+
+      - uses: ./.github/actions/checkout-release
+        if: inputs.release-artifact-id != ''
+        with:
+          artifact-id: ${{ inputs.release-artifact-id }}
+          tag: ${{ inputs.release-tag }}
+          revision: ${{ inputs.release-revision }}
 
       - name: Set up runtime Java ${{ matrix.java }}
         uses: actions/setup-java@v5
@@ -125,6 +139,13 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - uses: ./.github/actions/checkout-release
+        if: inputs.release-artifact-id != ''
+        with:
+          artifact-id: ${{ inputs.release-artifact-id }}
+          tag: ${{ inputs.release-tag }}
+          revision: ${{ inputs.release-revision }}
+
       - name: Check out the adopted API baseline
         uses: actions/checkout@v5
         with:
@@ -153,7 +174,8 @@ jobs:
           api_source="pembana-search-data-jpa/src/test/java/com/pembana/search/ApiCompatibilityTest.java"
           api_dependencies=$(tr ':' '\n' < pembana-search-data-jpa/target/java-caller-classpath.txt | grep -v '/com/pembana/' | paste -sd: -)
           api_baseline_cp="$api_baseline/pembana-search-core/target/pembana-search-core-1.0.0-SNAPSHOT.jar:$api_baseline/pembana-search-data-jpa/target/pembana-search-data-jpa-1.0.0-SNAPSHOT.jar:$api_dependencies"
-          api_candidate_cp="$GITHUB_WORKSPACE/pembana-search-core/target/pembana-search-core-1.0.0-SNAPSHOT.jar:$GITHUB_WORKSPACE/pembana-search-data-jpa/target/pembana-search-data-jpa-1.0.0-SNAPSHOT.jar:$api_dependencies"
+          candidate_version=$(./mvnw -B -ntp -q -N help:evaluate -Dexpression=project.version -DforceStdout -Dstyle.color=never)
+          api_candidate_cp="$GITHUB_WORKSPACE/pembana-search-core/target/pembana-search-core-$candidate_version.jar:$GITHUB_WORKSPACE/pembana-search-data-jpa/target/pembana-search-data-jpa-$candidate_version.jar:$api_dependencies"
           mkdir -p "$api_evidence/baseline-classes" "$api_evidence/candidate-classes"
           javac --release 17 -proc:none -cp "$api_baseline_cp" -d "$api_evidence/baseline-classes" "$api_source" 2>&1 | tee "$api_evidence/baseline-compile.log"
           java -cp "$api_evidence/baseline-classes:$api_baseline_cp" com.pembana.search.ApiCompatibilityTest 2>&1 | tee "$api_evidence/baseline-run.log"

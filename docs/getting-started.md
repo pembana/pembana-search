@@ -5,29 +5,31 @@ It is generic: consumers supply their entities, repositories, database, and
 mandatory authorization restrictions. There is no dependency on the Pembana
 application's model.
 
-## Build and consume the snapshot
+## Choose an artifact
 
-Before the first publication, select build JDK 21 and install from this
-repository using its Maven wrapper:
-
-```sh
-./mvnw -Dgpg.skip=true clean install
-```
-
-The library targets Java 17 and is tested on Java 17, 21, and 25 runtimes. Build
-tools, including Checkstyle, run on Java 21; consumers do not need those tools.
-
-Choose `com.pembana.search:pembana-search-spring-boot-starter:1.0.0-SNAPSHOT` for Boot
+Choose `com.pembana.search:pembana-search-spring-boot-starter` for Boot
 JPA/MVC integration, `pembana-search-data-jpa` for direct JPA, or
 `pembana-search-core` for model/parsing only. The starter brings Boot's JPA and
 MVC starters; the application supplies its database driver, model and security
 policy. Align Spring/Hibernate through Boot 4.1.2 dependency management. See the
 artifact table in the [README](../README.md).
 
+The library targets Java 17 and is tested on Java 17, 21, and 25 runtimes.
+Select a version from [GitHub Releases](https://github.com/pembana/pembana-search/releases)
+to resolve the artifact from Maven Central.
+
+### Build locally
+
+Select build JDK 21 and install the reactor using the Maven wrapper:
+
+```sh
+./mvnw -Dgpg.skip=true clean install
+```
+
 ### Consume a published snapshot
 
-After publication, add Sonatype's public snapshot repository to the **consumer
-application's POM**, alongside its dependencies:
+For a published snapshot, add Sonatype's public snapshot repository to the
+consumer application's POM alongside its dependencies:
 
 ```xml
 <repositories>
@@ -50,16 +52,9 @@ Then select the integration dependency, for example:
 </dependency>
 ```
 
-The same repository serves the core and direct JPA artifacts. No credentials are
-required to download public snapshots; publishing credentials belong only in the
-release environment. A successful local staging build does not publish a snapshot.
-Before the first remote publication, continue using the local installation above.
-
-Snapshot versions can receive newer timestamped builds. In your consumer project,
-use `./mvnw -U verify` (or `mvn -U verify` without a wrapper) to force Maven to
-check for updates. Configure the repository once, independently of the selected
-module. Release versions will use Maven Central without this snapshot repository.
-See the [release process](releasing.md) for publishing rather than consumption.
+The same repository serves the core and direct JPA artifacts. Snapshot versions
+can receive newer timestamped builds. In your consumer project, use
+`./mvnw -U verify` (or `mvn -U verify` without a wrapper) to check for updates.
 
 ## HTTP search
 

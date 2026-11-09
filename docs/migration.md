@@ -1,12 +1,11 @@
 # Migrating to Pembana Search
 
-This repository is a Java fork of Spring Search, not a drop-in binary replacement.
-Its initial release is still under development; no Maven Central availability or
-namespace/publishing-account registration is claimed.
+Pembana Search is a Java fork of Spring Search with new Maven coordinates and
+Java packages. See [Getting started](getting-started.md) for dependency setup.
 
 | Previous import/build identity | Current identity |
 | --- | --- |
-| `com.sipios:spring-search:0.3.0` | `com.pembana.search:pembana-search-data-jpa:1.0.0-SNAPSHOT`, or `pembana-search-spring-boot-starter` for MVC |
+| `com.sipios:spring-search:0.3.0` | `com.pembana.search:pembana-search-data-jpa`, or `pembana-search-spring-boot-starter` for MVC |
 | `com.sipios.springsearch.*` | `com.pembana.search.*` |
 | `com.sipios.springsearch.anotation.SearchSpec` | `com.pembana.search.annotation.SearchSpec` |
 | `SpringSearchApplication` test fixture | `PembanaSearchTestApplication` |
@@ -41,8 +40,8 @@ The earlier `com.pembana:pembana-search:1.0.0-SNAPSHOT` JAR becomes the
 parent/aggregator POM. Replace that application dependency with
 `pembana-search-spring-boot-starter` for Boot MVC/JPA integration, or
 `pembana-search-data-jpa` for direct JPA. Use `pembana-search-core` alone for
-Spring-independent parsing/model construction. All now use group `com.pembana.search`
-and version `1.0.0-SNAPSHOT`; there is no relocation JAR.
+Spring-independent parsing/model construction. All use group `com.pembana.search`
+and share the same version.
 Existing Java JPA/MVC imports remain available through their respective modules.
 
 `CriteriaParser` now parses an immutable core tree before JPA translation. The

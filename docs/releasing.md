@@ -1,6 +1,7 @@
 # Versioning and Maven publication
 
-Current development version: `1.0.0-SNAPSHOT`, group `com.pembana.search`.
+The root [POM](../pom.xml) records the current development version for group
+`com.pembana.search`.
 The release process follows `image-filters-4j`: Maven stages artifacts locally,
 then JReleaser signs and deploys the staging repository. JReleaser is pinned to
 **1.27.0**, using the `signing.pgp` configuration.
@@ -25,11 +26,9 @@ metadata from the parent.
 | `*-SNAPSHOT` | `nexus2.snapshot-deploy` | `https://central.sonatype.com/repository/maven-snapshots/` |
 | Release, milestone or RC | `mavenCentral.sonatype` | `https://central.sonatype.com/api/v1/publisher` |
 
-A snapshot is not a Maven Central release. The library version determines the
-active deployer; there is no workflow version override or automatic version bump.
-The process deploys Maven artifacts only: it does not create Git tags, GitHub
-releases, commits or documentation sites. Use `jreleaser:deploy`, not
-`jreleaser:full-release`, for this process.
+The library version determines the active deployer. In artifact-only mode the
+workflow reads the committed version. In full-release mode it first prepares a
+release commit with the requested version.
 
 ## Repository configuration
 
@@ -59,16 +58,35 @@ key to a Maven Central-supported keyserver, verify it is current, and retain the
 matching private key securely. Renewing a key locally also requires refreshing
 exported keys in GitHub secrets and local JReleaser settings.
 
-The workflow uses the built-in GitHub token with `contents: read` for repository
-metadata. It does not require a write-enabled personal access token. Signing
-secrets are exposed only to the JReleaser step. Git commit/tag signing and Maven
-artifact signing are separate; the `publication` profile disables Maven's GPG
-execution because JReleaser signs staged artifacts itself.
+Artifact-only publication uses the built-in GitHub token with `contents: read`
+for repository metadata. The `publication` profile disables Maven's GPG execution
+because JReleaser signs the artifacts.
 
-## GitHub Actions process
+For full releases, also create the `release-git` environment, restrict it to
+`main`, and configure the following variables and secrets:
+
+| Type | Name | Value |
+| --- | --- | --- |
+| Variable | `RELEASE_GIT_NAME` | Name of the release signing identity |
+| Variable | `RELEASE_GIT_EMAIL` | Verified GitHub email matching the GPG identity |
+| Variable | `RELEASE_GPG_FINGERPRINT` | Fingerprint of the release identity's Git signing key |
+| Secret | `RELEASE_GPG_PRIVATE_KEY` | ASCII-armored private Git signing key |
+| Secret | `RELEASE_GPG_PASSPHRASE` | Passphrase for the Git signing key, if set |
+| Variable | `RELEASE_APP_CLIENT_ID` | Client ID of the release GitHub App |
+| Secret | `RELEASE_APP_PRIVATE_KEY` | Private key of the release GitHub App |
+
+Register the Git signing public key with the release identity on GitHub. Use a
+separate key from the Maven artifact key. Install the GitHub App on this
+repository with Contents write permission. Check that the App can fast-forward
+`main` and create signed release tags under the repository rules, and protect
+published tags against updates and deletion. Keep any ruleset bypass limited
+to the release App and the applicable refs. The final job uses the built-in
+token with Contents write permission to post the GitHub release.
+
+## Artifact-only publication
 
 Open **Actions → Maven publication → Run workflow** on the intended revision.
-Leave **dry-run** enabled for the first run.
+Leave both version inputs blank and keep **dry-run** enabled for the first run.
 
 1. The workflow calls the existing Maven CI workflow, running H2 and PostgreSQL
    across Java 17, 21 and 25. Maven itself runs on Java 21 and targets Java 17.
@@ -140,32 +158,49 @@ After reviewing the staged revision and reports, this command **publishes**:
 Do not run it as part of routine development. No real publication is performed
 when adding or testing this configuration.
 
-## Spring-style release preparation
+## Full release
 
-Develop toward 1.0 using `1.0.0-SNAPSHOT`. Prepare milestones `1.0.0-M1`,
-`1.0.0-M2`, then `1.0.0-RC1` before `1.0.0`. For example, update the whole reactor
-on a release-preparation branch:
+1. Prepare the `## Unreleased` section in [CHANGELOG.md](../CHANGELOG.md) on
+   `main`. Start with a short summary. Use the level-three headings shown
+   in the changelog for upgrade instructions, features, fixes, documentation,
+   dependency upgrades, and verified contributors. Link entries to issues,
+   PRs, or commits when available. Use relative `docs/` links for repository
+   guides so the release notes can link to the tagged version.
+2. Dispatch **Maven publication** on `main` with both versions filled in.
+   For a milestone such as `1.0.0-M2`, use `1.0.0-SNAPSHOT` as the next
+   snapshot. For `1.0.0`, use `1.0.1-SNAPSHOT`. The current snapshot must
+   have the same base version as the release.
+3. Keep **dry-run** enabled for the first run. Review the Markdown in the
+   run summary or the `prepared-release-*` artifact, the recorded source
+   revision, the compatibility reports, and the dependency scan for that
+   revision. If `main` advances, review a new dry run before publishing.
+4. Dispatch the same inputs with **dry-run** unchecked. The workflow verifies
+   the exact signed release commit. JReleaser signs and uploads the bundle in
+   its `UPLOAD` stage. The workflow confirms validation, then atomically pushes
+   both commits and the signed `v<version>` tag. JReleaser runs its `PUBLISH`
+   stage with the same deployment ID. Once Central reports `PUBLISHED`, the
+   workflow posts the rendered Markdown against that tag. Milestones and release
+   candidates appear as GitHub prereleases.
 
-```sh
-./mvnw --batch-mode --no-transfer-progress \
-  org.codehaus.mojo:versions-maven-plugin:2.23.0:set \
-  -DnewVersion=1.0.0-M1 -DgenerateBackupPoms=false
-```
+### Recovering a full release
 
-Review the parent and child versions, update the README version badge/current
-version, changelog, migration notes and compatibility documentation, then create
-a signed commit. Complete the API review, consumer-example verification and
-vulnerability review before publishing. Verify packaged identity, attribution,
-and supported runtime/database scenarios with the existing CI reports.
+- Use **Re-run failed jobs** on the original run. Successful preparation and
+  upload jobs retain their artifact and deployment IDs. If Central already
+  accepted the publish request, the workflow waits for or recognizes
+  `PUBLISHED` and continues to GitHub.
+- If JReleaser fails during upload or times out waiting for validation, check
+  its log and Central Portal for the deployment before retrying. JReleaser logs
+  the ID on receipt and writes it to `output.properties` after validation. Drop
+  any unpublished orphan from the failed attempt before re-running the job.
+- If `main` advanced or the tag conflicts before the push, the atomic push
+  leaves both refs as they were. Review the conflict and discard the unused
+  Central deployment before starting a fresh release from the intended tip.
+- If validation reports `FAILED`, correct the reported issue before starting
+  a fresh release. If publication fails after the Git push, keep the signed
+  tag and inspect the original deployment in Central Portal using the recorded
+  ID. Use the original signed bundle if Central requires a replacement upload.
 
-Run the manual workflow first as a dry run, then publish the approved revision.
-After confirming publication, create any signed release tag and GitHub release
-as separate release work. Advance the reactor to the next development snapshot
-in a signed commit: after a milestone this may return to `1.0.0-SNAPSHOT`; after
-`1.0.0`, use `1.0.1-SNAPSHOT` for maintenance development. Do not rewrite history
-or reuse an already-published release version.
-
-## Configuration verification
+## Original publication configuration verification
 
 On 2026-10-29, local staging of `1.0.0-SNAPSHOT` passed all 232 H2 tests and the
 normal formatting, nullability, Javadoc and coverage checks. The shared staging
@@ -189,5 +224,7 @@ JReleaser snapshot output under ignored `target/jreleaser/`.
 ## References
 
 - [JReleaser Maven Central and snapshot publishing](https://jreleaser.org/guide/latest/examples/maven/maven-central.html)
+- [JReleaser staged deployments](https://jreleaser.org/guide/latest/reference/deploy/maven/maven-central.html#_staged_deployments)
 - [JReleaser Maven plugin and dry-run mode](https://jreleaser.org/guide/latest/tools/jreleaser-maven.html)
 - [PGP signing configuration](https://jreleaser.org/guide/latest/reference/signing.html)
+- [Central Portal deployment API](https://central.sonatype.org/publish/publish-portal-api/)
