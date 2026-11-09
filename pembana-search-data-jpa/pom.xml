@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.pembana.search</groupId>
 		<artifactId>pembana-search</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.0-M2</version>
 	</parent>
 	<artifactId>pembana-search-data-jpa</artifactId>
 	<name>Pembana Search Data JPA</name>

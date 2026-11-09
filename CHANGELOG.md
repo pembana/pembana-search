@@ -2,7 +2,7 @@
 
 The [archived upstream changelog](docs/upstream/CHANGELOG.md) describes Spring Search.
 
-## Unreleased
+## 1.0.0-M2
 
 Pembana Search brings Spring Search’s JPA query language to Java and Spring Boot 4.
 The parser, JPA integration, and optional Boot starter are available as separate modules.
