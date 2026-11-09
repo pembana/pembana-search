@@ -38,50 +38,35 @@ Before the first actual publication:
    publishing user token with access to that namespace.
 2. Create the GitHub environment **`maven-central`**. Configure its permitted
    release branches and any desired required reviewers in repository settings.
-3. Add the following environment secrets. Names deliberately retain the reference
-   project's GPG and snapshot credential conventions.
+3. Add the following five environment secrets for both snapshots and full releases.
 
 | Secret | Value |
 | --- | --- |
 | `JRELEASER_GPG_PUBLIC_KEY` | Current ASCII-armored public signing key, including current expiry metadata |
 | `JRELEASER_GPG_SECRET_KEY` | Matching ASCII-armored secret signing key |
 | `JRELEASER_GPG_PASSPHRASE` | Signing key passphrase |
-| `JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME` | Central Portal user-token username for releases |
-| `JRELEASER_MAVENCENTRAL_SONATYPE_PASSWORD` | Central Portal user-token password for releases |
-| `JRELEASER_NEXUS2_USERNAME` | Central snapshot repository user-token username |
-| `JRELEASER_NEXUS2_PASSWORD` | Central snapshot repository user-token password |
+| `JRELEASER_NEXUS2_USERNAME` | Central Portal publishing token username |
+| `JRELEASER_NEXUS2_PASSWORD` | Central Portal publishing token password |
 
-The same Portal token may be used for both credential pairs if authorized for
-both destinations. A release needs its active deployer's credentials; configure
-both pairs when publishing both snapshots and releases. Publish the public PGP
-key to a Maven Central-supported keyserver, verify it is current, and retain the
-matching private key securely. Renewing a key locally also requires refreshing
-exported keys in GitHub secrets and local JReleaser settings.
+The token must be authorized for the destinations you publish to. The workflow
+passes the same token to JReleaser's snapshot and release deployers. Publish
+the public PGP key to a Maven Central-supported keyserver and keep the GitHub
+secret exports current when the key is renewed.
 
 Artifact-only publication uses the built-in GitHub token with `contents: read`
 for repository metadata. The `publication` profile disables Maven's GPG execution
 because JReleaser signs the artifacts.
 
-For full releases, also create the `release-git` environment, restrict it to
-`main`, and configure the following variables and secrets:
+For full releases, the workflow also uses the artifact signing key to sign Git
+commits and tags. It takes the Git name and email from the key's primary user
+ID, which must be in `Name <email>` form. Register that public key with the
+GitHub account that has verified the email so GitHub can verify the signatures.
 
-| Type | Name | Value |
-| --- | --- | --- |
-| Variable | `RELEASE_GIT_NAME` | Name of the release signing identity |
-| Variable | `RELEASE_GIT_EMAIL` | Verified GitHub email matching the GPG identity |
-| Variable | `RELEASE_GPG_FINGERPRINT` | Fingerprint of the release identity's Git signing key |
-| Secret | `RELEASE_GPG_PRIVATE_KEY` | ASCII-armored private Git signing key |
-| Secret | `RELEASE_GPG_PASSPHRASE` | Passphrase for the Git signing key, if set |
-| Variable | `RELEASE_APP_CLIENT_ID` | Client ID of the release GitHub App |
-| Secret | `RELEASE_APP_PRIVATE_KEY` | Private key of the release GitHub App |
-
-Register the Git signing public key with the release identity on GitHub. Use a
-separate key from the Maven artifact key. Install the GitHub App on this
-repository with Contents write permission. Check that the App can fast-forward
-`main` and create signed release tags under the repository rules, and protect
-published tags against updates and deletion. Keep any ruleset bypass limited
-to the release App and the applicable refs. The final job uses the built-in
-token with Contents write permission to post the GitHub release.
+The push and GitHub release jobs use the built-in token with Contents write
+permission. The repository's branch and tag rules must allow the workflow to
+fast-forward `main` and create the release tag. Pushes made with this token
+skip push-triggered workflows. The publication workflow runs compatibility
+checks before the push.
 
 ## Artifact-only publication
 
@@ -135,7 +120,9 @@ The local Maven repository receives the normal `install` artifacts as part of
 this lifecycle.
 
 Provide the documented secrets through environment variables or your untracked
-JReleaser settings file, then run:
+JReleaser settings file. For local release deployment, supply the token as
+`JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME` and
+`JRELEASER_MAVENCENTRAL_SONATYPE_PASSWORD`. Then run the dry run.
 
 ```sh
 # Checks and prepares the upload, but does not perform remote deployment.

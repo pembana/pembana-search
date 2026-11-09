@@ -32,7 +32,7 @@ jobs:
     if: inputs.release-version != '' || inputs.next-snapshot-version != ''
     runs-on: ubuntu-24.04
     timeout-minutes: 15
-    environment: release-git
+    environment: maven-central
     outputs:
       artifact-id: ${{ steps.artifact.outputs.artifact-id }}
       tag: ${{ steps.prepare.outputs.tag }}
@@ -57,25 +57,38 @@ jobs:
         env:
           RELEASE_VERSION: ${{ inputs.release-version }}
           NEXT_SNAPSHOT: ${{ inputs.next-snapshot-version }}
-          RELEASE_GIT_NAME: ${{ vars.RELEASE_GIT_NAME }}
-          RELEASE_GIT_EMAIL: ${{ vars.RELEASE_GIT_EMAIL }}
-          RELEASE_GPG_FINGERPRINT: ${{ vars.RELEASE_GPG_FINGERPRINT }}
-          RELEASE_GPG_PRIVATE_KEY: ${{ secrets.RELEASE_GPG_PRIVATE_KEY }}
-          RELEASE_GPG_PASSPHRASE: ${{ secrets.RELEASE_GPG_PASSPHRASE }}
+          JRELEASER_GPG_SECRET_KEY: ${{ secrets.JRELEASER_GPG_SECRET_KEY }}
+          JRELEASER_GPG_PASSPHRASE: ${{ secrets.JRELEASER_GPG_PASSPHRASE }}
         run: |
+          : "${JRELEASER_GPG_SECRET_KEY:?Set the JRELEASER_GPG_SECRET_KEY secret}"
           export GNUPGHOME
           GNUPGHOME=$(mktemp -d)
           trap 'gpgconf --kill gpg-agent; rm -rf "$GNUPGHOME"' EXIT
-          printf '%s' "${RELEASE_GPG_PRIVATE_KEY:?Missing release signing key}" | gpg --batch --import
-          unset RELEASE_GPG_PRIVATE_KEY
+          printf '%s' "$JRELEASER_GPG_SECRET_KEY" | gpg --batch --import
+          unset JRELEASER_GPG_SECRET_KEY
+
+          key_info=$(gpg --batch --with-colons --fingerprint --list-secret-keys)
+          if [[ $(awk -F: '$1 == "sec" { count++ } END { print count + 0 }' <<< "$key_info") != 1 ]]; then
+            echo "JRELEASER_GPG_SECRET_KEY must contain one private key." >&2
+            exit 1
+          fi
+          fingerprint=$(awk -F: '$1 == "fpr" { print $10; exit }' <<< "$key_info")
+          uid=$(awk -F: '$1 == "uid" { print $10; exit }' <<< "$key_info")
+          printf -v identity '%b' "$uid"
+          uid_pattern='^(.+)[[:blank:]]+<([^<>[:space:]]+@[^<>[:space:]]+)>$'
+          if [[ ! $identity =~ $uid_pattern || -z $fingerprint ]]; then
+            echo "The signing key needs a primary user ID in the form Name <email>." >&2
+            exit 1
+          fi
+          git config user.name "${BASH_REMATCH[1]}"
+          git config user.email "${BASH_REMATCH[2]}"
+          git config user.signingkey "$fingerprint"
+
           cat > "$GNUPGHOME/gpg" <<'GPG'
           #!/usr/bin/env bash
-          exec gpg --batch --pinentry-mode loopback --passphrase-fd 3 "$@" 3<<<"${RELEASE_GPG_PASSPHRASE:-}"
+          exec gpg --batch --pinentry-mode loopback --passphrase-fd 3 "$@" 3<<<"${JRELEASER_GPG_PASSPHRASE:-}"
           GPG
           chmod 700 "$GNUPGHOME/gpg"
-          git config user.name "${RELEASE_GIT_NAME:?Missing release signer name}"
-          git config user.email "${RELEASE_GIT_EMAIL:?Missing release signer email}"
-          git config user.signingkey "${RELEASE_GPG_FINGERPRINT:?Missing release signer fingerprint}"
           git config gpg.program "$GNUPGHOME/gpg"
 
           bash .github/release/prepare.sh "$RELEASE_VERSION" "$NEXT_SNAPSHOT" \
@@ -153,8 +166,8 @@ jobs:
           JRELEASER_GPG_PASSPHRASE: ${{ secrets.JRELEASER_GPG_PASSPHRASE }}
           JRELEASER_GPG_PUBLIC_KEY: ${{ secrets.JRELEASER_GPG_PUBLIC_KEY }}
           JRELEASER_GPG_SECRET_KEY: ${{ secrets.JRELEASER_GPG_SECRET_KEY }}
-          JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME: ${{ secrets.JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME }}
-          JRELEASER_MAVENCENTRAL_SONATYPE_PASSWORD: ${{ secrets.JRELEASER_MAVENCENTRAL_SONATYPE_PASSWORD }}
+          JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME: ${{ secrets.JRELEASER_NEXUS2_USERNAME }}
+          JRELEASER_MAVENCENTRAL_SONATYPE_PASSWORD: ${{ secrets.JRELEASER_NEXUS2_PASSWORD }}
           JRELEASER_NEXUS2_USERNAME: ${{ secrets.JRELEASER_NEXUS2_USERNAME }}
           JRELEASER_NEXUS2_PASSWORD: ${{ secrets.JRELEASER_NEXUS2_PASSWORD }}
         run: ./mvnw --batch-mode --no-transfer-progress -N -Ppublication jreleaser:deploy
@@ -212,8 +225,8 @@ jobs:
           persist-credentials: false
       - name: Require a validated deployment
         env:
-          CENTRAL_USERNAME: ${{ secrets.JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME }}
-          CENTRAL_PASSWORD: ${{ secrets.JRELEASER_MAVENCENTRAL_SONATYPE_PASSWORD }}
+          CENTRAL_USERNAME: ${{ secrets.JRELEASER_NEXUS2_USERNAME }}
+          CENTRAL_PASSWORD: ${{ secrets.JRELEASER_NEXUS2_PASSWORD }}
           DEPLOYMENT_ID: ${{ needs.publication.outputs.deployment-id }}
         run: test "$(bash .github/release/central.sh "$DEPLOYMENT_ID")" = VALIDATED
 
@@ -222,7 +235,9 @@ jobs:
     needs: [prepare, central-validation]
     runs-on: ubuntu-24.04
     timeout-minutes: 5
-    environment: release-git
+    environment: maven-central
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v5
         with:
@@ -234,16 +249,9 @@ jobs:
           tag: ${{ needs.prepare.outputs.tag }}
           revision: ${{ needs.prepare.outputs.revision }}
 
-      - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3
-        id: app-token
-        with:
-          client-id: ${{ vars.RELEASE_APP_CLIENT_ID }}
-          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
-          permission-contents: write
-
       - name: Atomically advance main and create the tag
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ needs.prepare.outputs.tag }}
         run: |
           gh auth setup-git --hostname "${GITHUB_SERVER_URL#https://}"
@@ -265,8 +273,8 @@ jobs:
       - name: Check whether a publish request is needed
         id: status
         env:
-          CENTRAL_USERNAME: ${{ secrets.JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME }}
-          CENTRAL_PASSWORD: ${{ secrets.JRELEASER_MAVENCENTRAL_SONATYPE_PASSWORD }}
+          CENTRAL_USERNAME: ${{ secrets.JRELEASER_NEXUS2_USERNAME }}
+          CENTRAL_PASSWORD: ${{ secrets.JRELEASER_NEXUS2_PASSWORD }}
           DEPLOYMENT_ID: ${{ needs.publication.outputs.deployment-id }}
         run: |
           state=$(bash .github/release/central.sh "$DEPLOYMENT_ID" --wait)
@@ -291,15 +299,15 @@ jobs:
           JRELEASER_GPG_PASSPHRASE: ${{ secrets.JRELEASER_GPG_PASSPHRASE }}
           JRELEASER_GPG_PUBLIC_KEY: ${{ secrets.JRELEASER_GPG_PUBLIC_KEY }}
           JRELEASER_GPG_SECRET_KEY: ${{ secrets.JRELEASER_GPG_SECRET_KEY }}
-          JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME: ${{ secrets.JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME }}
-          JRELEASER_MAVENCENTRAL_SONATYPE_PASSWORD: ${{ secrets.JRELEASER_MAVENCENTRAL_SONATYPE_PASSWORD }}
+          JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME: ${{ secrets.JRELEASER_NEXUS2_USERNAME }}
+          JRELEASER_MAVENCENTRAL_SONATYPE_PASSWORD: ${{ secrets.JRELEASER_NEXUS2_PASSWORD }}
         run: ./mvnw --batch-mode --no-transfer-progress -N -Ppublication jreleaser:deploy
 
       - name: Confirm Central publication
         if: steps.status.outputs.state == 'VALIDATED'
         env:
-          CENTRAL_USERNAME: ${{ secrets.JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME }}
-          CENTRAL_PASSWORD: ${{ secrets.JRELEASER_MAVENCENTRAL_SONATYPE_PASSWORD }}
+          CENTRAL_USERNAME: ${{ secrets.JRELEASER_NEXUS2_USERNAME }}
+          CENTRAL_PASSWORD: ${{ secrets.JRELEASER_NEXUS2_PASSWORD }}
           DEPLOYMENT_ID: ${{ needs.publication.outputs.deployment-id }}
         run: test "$(bash .github/release/central.sh "$DEPLOYMENT_ID" --wait)" = PUBLISHED
 

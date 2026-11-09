@@ -20,7 +20,7 @@ version_pattern='(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)'
 
 base=$(git rev-parse HEAD)
 release_base=${release_version%%-*}
-if ! current_version=$(env -u RELEASE_GPG_PASSPHRASE ./mvnw -B -ntp -q -N help:evaluate \
+if ! current_version=$(env -u JRELEASER_GPG_PASSPHRASE ./mvnw -B -ntp -q -N help:evaluate \
     -Dexpression=project.version -DforceStdout -Dstyle.color=never); then
   fail "$current_version"
 fi
@@ -52,7 +52,7 @@ sed "s/^## Unreleased$/## $release_version/" CHANGELOG.md > "$output/changelog.m
 cp "$output/changelog.md" CHANGELOG.md
 
 set_version() {
-  env -u RELEASE_GPG_PASSPHRASE ./mvnw -B -ntp org.codehaus.mojo:versions-maven-plugin:2.23.0:set \
+  env -u JRELEASER_GPG_PASSPHRASE ./mvnw -B -ntp org.codehaus.mojo:versions-maven-plugin:2.23.0:set \
     "-DnewVersion=$1" -DgenerateBackupPoms=false
 }
 
