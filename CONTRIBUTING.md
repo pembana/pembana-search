@@ -1,4 +1,4 @@
-# Contributing to Pembana Search
+# Contributing to Pembana Search™
 
 ## Code of Conduct
 

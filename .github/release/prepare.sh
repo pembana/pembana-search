@@ -59,7 +59,7 @@ set_version() {
 set_version "$release_version"
 git add CHANGELOG.md pom.xml pembana-search-*/pom.xml
 git commit -S -m "chore(release): prepare $release_version"
-git tag -s "$tag" -m "Pembana Search $release_version"
+git tag -s "$tag" -m "Pembana Search™ $release_version"
 git verify-commit HEAD
 git verify-tag "$tag"
 

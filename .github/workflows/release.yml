@@ -331,7 +331,7 @@ jobs:
           RELEASE_TAG: ${{ needs.prepare.outputs.tag }}
         run: |
           notes="$RUNNER_TEMP/prepared-release/release-notes.md"
-          title="Pembana Search ${RELEASE_TAG#v}"
+          title="Pembana Search™ ${RELEASE_TAG#v}"
           prerelease=false
           flags=()
           if [[ "$RELEASE_TAG" == *-* ]]; then

@@ -1,6 +1,6 @@
 # Architecture
 
-Pembana Search has three library modules under a parent/aggregator POM. All
+Pembana Search™ has three library modules under a parent/aggregator POM. All
 handwritten production and test packages use JSpecify nullability checking.
 Maven runs on OpenJDK 21.0.8+ and emits Java 17 bytecode.
 

@@ -1,4 +1,4 @@
-# Pembana Search Association Query Policy Requirements
+# Pembana Search™ Association Query Policy Requirements
 
 Status: Implemented; see [library verification](../../search-acceptance.md). Publication remains separate.
 Date: 2026-11-03.

@@ -1,4 +1,4 @@
-# Pembana Search documentation
+# Pembana Search™ documentation
 
 ## Current guides
 

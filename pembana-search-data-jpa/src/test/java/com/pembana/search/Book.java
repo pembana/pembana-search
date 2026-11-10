@@ -31,7 +31,7 @@ import org.hibernate.proxy.HibernateProxy;
 import org.jspecify.annotations.Nullable;
 
 /**
- * Book fixture for Pembana Search database verification.
+ * Book fixture for Pembana Search™ database verification.
  *
  * @author vincentescoffier (upstream Git author)
  * @author Gunnar Hillert

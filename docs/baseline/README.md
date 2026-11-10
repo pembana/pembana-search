@@ -10,7 +10,7 @@ framework, PostgreSQL, or matching-policy acceptance criteria.
 The source baseline is Spring Search revision
 `c4b404dc6cf22b540d3e7f6211e557f5d83b6c61` from
 [theodo-fintech/spring-search](https://github.com/theodo-fintech/spring-search/tree/c4b404dc6cf22b540d3e7f6211e557f5d83b6c61),
-whose POM declares `com.sipios:spring-search:0.3.0`. Pembana's inspected application
+whose POM declares `com.sipios:spring-search:0.3.0`. Pembana™'s inspected application
 POM also declares that artifact version. Its newer Spring Boot version is not the
 framework baseline used for this comparison.
 

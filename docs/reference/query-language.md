@@ -123,7 +123,7 @@ objects retain the grouping you construct: `a.or(b).and(c)` explicitly means
 `(a OR b) AND c`. Plain-text `SIMPLE` mode has its own word-matching rules and
 does not interpret `AND` or `OR` as operators.
 
-**Compatibility:** Spring Search and earlier Pembana development snapshots gave
+**Compatibility:** Spring Search and earlier Pembana™ development snapshots gave
 `AND` and `OR` equal precedence. Mixed expressions without parentheses can now
 return different results. To keep the earlier meaning of `A OR B AND C`, write
 `(A OR B) AND C`. See the [migration guide](../migration.md#boolean-operator-precedence-correction).

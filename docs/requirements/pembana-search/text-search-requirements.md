@@ -1,4 +1,4 @@
-# Pembana Search Plain-Text Composition and Pattern Requirements
+# Pembana Search™ Plain-Text Composition and Pattern Requirements
 
 Status: Implemented; see [library verification](../../search-acceptance.md). Publication remains separate.
 Date: 2026-11-03.

@@ -1,4 +1,4 @@
-# Pembana Search Compatibility and Extension Requirements
+# Pembana Search™ Compatibility and Extension Requirements
 
 Status: Required contract for all feature increments.
 Date: 2026-11-02.

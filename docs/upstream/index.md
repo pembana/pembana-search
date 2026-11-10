@@ -6,6 +6,6 @@ provenance. Relative links, images, Kotlin examples, artifact versions and proje
 names describe that upstream checkout and may not resolve from this archive.
 They are not current installation or support instructions.
 
-Use the [current documentation index](../README.md) for Pembana Search.
+Use the [current documentation index](../README.md) for Pembana Search™.
 The upstream project remains https://github.com/theodo-fintech/spring-search;
 its MIT notice is preserved in the root LICENSE.txt and NOTICE.

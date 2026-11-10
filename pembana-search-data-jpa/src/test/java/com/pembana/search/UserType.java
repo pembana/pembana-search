@@ -20,7 +20,7 @@
 package com.pembana.search;
 
 /**
- * UserType fixture for Pembana Search database verification.
+ * UserType fixture for Pembana Search™ database verification.
  *
  * @author HamidReza Ireh
  * @author Gunnar Hillert

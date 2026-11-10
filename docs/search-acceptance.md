@@ -65,7 +65,7 @@ across 129 runtime classes; those classes all target Java 17 (class-file version
 61). Runtime JAR license payloads match the repository notices.
 
 The standalone adopted-source/binary checks pass on Java 17.0.20, 21.0.10, and
-25.0.3. Baseline and candidate classpaths explicitly exclude cached Pembana
+25.0.3. Baseline and candidate classpaths explicitly exclude cached Pembana™
 artifacts, so the comparison cannot silently fall back to an installed snapshot.
 The added `api-compatibility` CI job repeats the baseline/source/binary check on
 Java 21; the existing matrix job runs the full suite on all six combinations.

@@ -11,7 +11,7 @@
 	<artifactId>pembana-search</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>Pembana Search</name>
+	<name>Pembana Search™</name>
 	<description>Immutable search query models, expression parsing, Spring Data JPA translation, and optional Spring Boot MVC integration.</description>
 	<url>https://github.com/pembana/pembana-search</url>
 	<licenses>
@@ -280,8 +280,8 @@
 					<failOnWarnings>true</failOnWarnings>
 					<outputDirectory>${documentation.outputDirectory}</outputDirectory>
 					<author>true</author>
-					<doctitle>Pembana Search ${project.version}</doctitle>
-					<windowtitle>Pembana Search ${project.version}</windowtitle>
+					<doctitle>Pembana Search™ ${project.version}</doctitle>
+					<windowtitle>Pembana Search™ ${project.version}</windowtitle>
 					<bottom><![CDATA[Copyright &#169; 2026 Hillert, Inc. and contributors. Licensed under the <a href="{@docRoot}/META-INF/LICENSE">Apache License, Version 2.0</a>.<br>
 Includes Spring Search material &#169; 2019&ndash;present Woody Rousseau and other contributors, licensed under <a href="{@docRoot}/META-INF/LICENSE.txt">MIT</a>. See <a href="{@docRoot}/META-INF/NOTICE">notices</a>.]]></bottom>
 					<excludePackageNames>com.pembana.search.grammar</excludePackageNames>

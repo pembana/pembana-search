@@ -50,7 +50,7 @@ also passed; signing and remote publication were not exercised.
 
 ## Nullability checks
 
-Like Pembana, the build uses `am.ik.maven:nullability-maven-plugin:0.5.1` as a
+Like Pembana™, the build uses `am.ik.maven:nullability-maven-plugin:0.5.1` as a
 Maven extension with its `configure` goal, plus JSpecify 1.0.1 annotations.
 The plugin's `checking=tests` configuration runs Error Prone 2.50.0 and NullAway
 0.14.1 during both production and test compilation; nullability violations fail

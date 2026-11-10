@@ -1,6 +1,6 @@
-# Migrating to Pembana Search
+# Migrating to Pembana Search™
 
-Pembana Search is a Java fork of Spring Search with new Maven coordinates and
+Pembana Search™ is a Java fork of Spring Search with new Maven coordinates and
 Java packages. See [Getting started](getting-started.md) for dependency setup.
 
 | Previous import/build identity | Current identity |
@@ -16,7 +16,7 @@ Replace the dependency and imports together. There are no old-package aliases,
 relocation artifacts, or binary compatibility shims. Remove the old artifact
 from application dependencies to avoid retaining both annotation/resolver types.
 Update fully qualified names in reflection, explicit imports, auto-configuration
-exclusions and tooling. The Boot imports resource now names the Pembana class.
+exclusions and tooling. The Boot imports resource now names the Pembana™ class.
 Normal Boot discovery does not require consumer component scanning.
 
 ## Adopted compatibility baseline
@@ -108,7 +108,7 @@ restrictions outside the complete user-controlled expression.
 
 ## Boolean operator precedence correction
 
-Pembana fixes an inherited operator-precedence inconsistency: `AND` now binds
+Pembana™ fixes an inherited operator-precedence inconsistency: `AND` now binds
 more tightly than `OR`. Previously, both operators had equal precedence and
 grouped left to right. This can change which records an existing search returns.
 

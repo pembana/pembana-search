@@ -1,8 +1,8 @@
 # Getting started
 
-Pembana Search translates advanced expressions to Spring Data JPA Specifications.
+Pembana Search™ translates advanced expressions to Spring Data JPA Specifications.
 It is generic: consumers supply their entities, repositories, database, and
-mandatory authorization restrictions. There is no dependency on the Pembana
+mandatory authorization restrictions. There is no dependency on the Pembana™
 application's model.
 
 ## Choose an artifact

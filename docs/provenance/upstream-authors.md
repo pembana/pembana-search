@@ -2,7 +2,7 @@
 
 Verified on **2026-10-28** against the imported Spring Search revision
 `c4b404dc6cf22b540d3e7f6211e557f5d83b6c61` and its complete local Git ancestry.
-This attribution update starts from Pembana revision
+This attribution update starts from Pembana™ revision
 `8477fb68316e0d477ae8b9d43577de808adc97f6`.
 
 ## Attribution policy

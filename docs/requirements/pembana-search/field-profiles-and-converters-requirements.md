@@ -1,4 +1,4 @@
-# Pembana Search Field Profiles, Converters, and Predicate Extensions
+# Pembana Search™ Field Profiles, Converters, and Predicate Extensions
 
 Status: Implemented; see [library verification](../../search-acceptance.md). Publication remains separate.
 Date: 2026-11-02.

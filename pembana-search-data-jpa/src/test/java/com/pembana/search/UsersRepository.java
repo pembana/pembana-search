@@ -25,7 +25,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource(path = "users")
 /**
- * UsersRepository fixture for Pembana Search database verification.
+ * UsersRepository fixture for Pembana Search™ database verification.
  * @author Thibault F
  * @author Michael Mollard
  * @author Gunnar Hillert

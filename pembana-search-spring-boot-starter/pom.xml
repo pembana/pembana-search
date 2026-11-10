@@ -7,8 +7,8 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>pembana-search-spring-boot-starter</artifactId>
-	<name>Pembana Search Spring Boot Starter</name>
-	<description>Spring Boot auto-configuration and Spring MVC GET and JSON search binding for Pembana Search.</description>
+	<name>Pembana Search™ Spring Boot Starter</name>
+	<description>Spring Boot auto-configuration and Spring MVC GET and JSON search binding for Pembana Search™.</description>
 	<dependencies>
 		<dependency>
 			<groupId>com.pembana.search</groupId>

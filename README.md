@@ -1,4 +1,4 @@
-# Pembana Search
+# Pembana Search™
 
 [![Maven CI](https://github.com/pembana/pembana-search/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/pembana/pembana-search/actions/workflows/maven.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/com.pembana.search/pembana-search-core)](https://central.sonatype.com/artifact/com.pembana.search/pembana-search-core)
@@ -201,7 +201,7 @@ each module’s `target/reports/apidocs/` directory.
 
 ## License and provenance
 
-Pembana Search contributions and distribution use [Apache License 2.0](LICENSE).
+Pembana Search™ contributions and distribution use [Apache License 2.0](LICENSE).
 Inherited Spring Search material retains its [MIT license](LICENSE.txt) and
 [NOTICE](NOTICE). This fork derives from
 [theodo-fintech/spring-search](https://github.com/theodo-fintech/spring-search)

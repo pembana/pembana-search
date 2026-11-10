@@ -33,7 +33,7 @@ import jakarta.persistence.Table;
 import org.jspecify.annotations.Nullable;
 
 /**
- * Author fixture for Pembana Search database verification.
+ * Author fixture for Pembana Search™ database verification.
  *
  * @author vincentescoffier (upstream Git author)
  * @author Gunnar Hillert

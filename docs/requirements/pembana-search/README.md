@@ -1,9 +1,9 @@
-# Pembana Search Library Feature Handoff
+# Pembana Search™ Library Feature Handoff
 
 Status: Library implementation verified locally; publication remains separate. See [acceptance evidence](../../search-acceptance.md).
 Date: 2026-11-03.
 
-This directory is a self-contained handoff for the **Pembana Search library**.
+This directory is a self-contained handoff for the **Pembana Search™ library**.
 These requirements are now maintained in the library repository. Their normative
 references are self-contained; no application repository or entity model is needed
 to implement or verify the library contracts.

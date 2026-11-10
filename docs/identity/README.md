@@ -1,4 +1,4 @@
-# Pembana Search identity and documentation baseline
+# Pembana Search™ identity and documentation baseline
 
 This housekeeping milestone starts from signed revision
 `88a5d3d8123048178e1774ddc17d59e26f3f270a` and establishes
@@ -18,7 +18,7 @@ snapshot/milestone/RC/release progression. No release or publication is performe
   queries, inputs, fixtures, assertions and outcomes are retained.
 - Remove the unused, deprecated upstream default-package listener alias.
   No old-coordinate/package relocation or compatibility shim is provided.
-- Set Pembana project/SCM/issue metadata and explicit Apache/MIT POM license
+- Set Pembana™ project/SCM/issue metadata and explicit Apache/MIT POM license
   metadata. Retain both original license files and upstream attribution.
 - Remove inherited upstream OSSRH/release-plugin configuration, the automatic
   branch/push/PR version-bump script, and the unconfigured upstream Backstage
@@ -46,7 +46,7 @@ Javadoc. Maven fails on Javadoc errors and warnings on every supported JDK.
 
 Binary, source and Javadoc JARs each carry byte-identical root `LICENSE`,
 `LICENSE.txt` and `NOTICE` under `META-INF`. Embedded POM identity and Boot imports
-name Pembana types, with no old package or default-package listener shipped.
+name Pembana™ types, with no old package or default-package listener shipped.
 CI verifies notice contents and retains generated API documentation alongside
 native Maven evidence. It discovers the packaged JAR rather than hardcoding its version.
 
