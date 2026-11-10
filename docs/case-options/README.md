@@ -3,7 +3,7 @@
 This milestone adds explicit matching choices without changing the default
 `@SearchSpec(caseSensitiveFlag=true)` or the behavior of callers that omit options.
 The baseline revision is `163b6a7` (the earlier string equality/inequality fix).
-The version remains `1.0.0-SNAPSHOT`; no artifacts are published.
+This report covers local verification of `1.0.0-SNAPSHOT`.
 
 ## Implemented contract
 

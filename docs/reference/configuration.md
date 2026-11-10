@@ -92,8 +92,8 @@ unless strict validation is enabled.
 
 ## API documentation
 
-Package with Maven to generate `<module>/target/reports/apidocs/index.html` and the
-the per-module `*-1.0.0-SNAPSHOT-javadoc.jar` artifacts. Javadoc generation fails on errors;
+Package with Maven to generate `<module>/target/reports/apidocs/index.html` and
+each module's `<artifactId>-<version>-javadoc.jar`. Javadoc generation fails on errors;
 generated ANTLR API is excluded from the public reference. Binary, source and
 Javadoc JARs contain `META-INF/LICENSE`, `META-INF/LICENSE.txt` and `META-INF/NOTICE`.
 

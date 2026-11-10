@@ -63,5 +63,5 @@ does not promise accent removal or universally identical locale rules.
 Surefire XML, Checkstyle/coverage reports, the baseline failure run and caller
 output remain under ignored `build/case-equality/`. Existing CI runs the same
 matrix and retains module reports on failure; no GitHub run is claimed here.
-Maven artifact signing and NVD scanning are skipped for compatibility verification;
-Git commits remain signed. No artifacts are published.
+The compatibility verification used local builds with Maven artifact signing and
+NVD scanning disabled. Git commits remain signed.

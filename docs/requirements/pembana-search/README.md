@@ -1,6 +1,6 @@
 # Pembana Search™ Library Feature Handoff
 
-Status: Library implementation verified locally; publication remains separate. See [acceptance evidence](../../search-acceptance.md).
+Status: Library implementation verified locally. See [acceptance evidence](../../search-acceptance.md).
 Date: 2026-11-03.
 
 This directory is a self-contained handoff for the **Pembana Search™ library**.
@@ -30,7 +30,7 @@ are separate delivery concerns.
 
 | Package | Source work | Requirements document | Delivery |
 | --- | --- | --- | --- |
-| COMPAT | OPEN-08 and compatibility requirements for every package | [Compatibility and extension architecture](compatibility-and-extension-requirements.md) | Verified locally against the adopted baseline; publication remains separate. |
+| COMPAT | OPEN-08 and compatibility requirements for every package | [Compatibility and extension architecture](compatibility-and-extension-requirements.md) | Verified locally against the adopted baseline. |
 | TEXT | OPEN-01, OPEN-02; prior AC-19, AC-20 | [Plain-text composition and patterns](text-search-requirements.md) | Implemented, including nested-field support and JDBC parity verification. |
 | FIELDS | OPEN-03, OPEN-05, OPEN-06; prior AC-21, AC-23, AC-24 | [Field profiles, converters, and predicate extensions](field-profiles-and-converters-requirements.md) | Implemented; regression suites exercise activation, permissions, and isolation. |
 | ASSOC | OPEN-04; prior AC-22 | [Association query policies](association-query-requirements.md) | Implemented and verified on the supported generic association fixtures. |

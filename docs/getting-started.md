@@ -15,8 +15,20 @@ policy. Align Spring/Hibernate through Boot 4.1.2 dependency management. See the
 artifact table in the [README](../README.md).
 
 The library targets Java 17 and is tested on Java 17, 21, and 25 runtimes.
-Select a version from [GitHub Releases](https://github.com/pembana/pembana-search/releases)
-to resolve the artifact from Maven Central.
+
+### Use the published milestone
+
+Add the starter dependency from Maven Central. See the
+[1.0.0-M2 release notes](https://github.com/pembana/pembana-search/releases/tag/v1.0.0-M2)
+for changes and upgrade guidance.
+
+```xml
+<dependency>
+    <groupId>com.pembana.search</groupId>
+    <artifactId>pembana-search-spring-boot-starter</artifactId>
+    <version>1.0.0-M2</version>
+</dependency>
+```
 
 ### Build locally
 
@@ -28,8 +40,8 @@ Select build JDK 21 and install the reactor using the Maven wrapper:
 
 ### Consume a published snapshot
 
-For a published snapshot, add Sonatype's public snapshot repository to the
-consumer application's POM alongside its dependencies:
+To try a published development build, use version `1.0.0-SNAPSHOT` in the
+dependency above and add Sonatype's public snapshot repository to your POM:
 
 ```xml
 <repositories>
@@ -40,16 +52,6 @@ consumer application's POM alongside its dependencies:
         <snapshots><enabled>true</enabled></snapshots>
     </repository>
 </repositories>
-```
-
-Then select the integration dependency, for example:
-
-```xml
-<dependency>
-    <groupId>com.pembana.search</groupId>
-    <artifactId>pembana-search-spring-boot-starter</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-</dependency>
 ```
 
 The same repository serves the core and direct JPA artifacts. Snapshot versions

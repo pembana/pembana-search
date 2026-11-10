@@ -90,5 +90,5 @@ versions, counts, style results, bytecode targeting, dependency comparisons and
 evidence hashes. Native logs, reports and audit output remain under ignored
 `build/checkstyle/`. Checkstyle XML is retained in CI artifacts, including failed
 runs. CI is configured but has not run on GitHub for this local change.
-Maven artifact signing and the network vulnerability scan are skipped by these
-compatibility commands; Git commit signing remains separate. Nothing is published.
+These compatibility commands use local builds with Maven artifact signing and
+the network vulnerability scan disabled. Git commit signing remains separate.

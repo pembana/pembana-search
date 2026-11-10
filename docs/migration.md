@@ -215,8 +215,8 @@ current branding or installation advice.
 
 ## Consumer migration checks
 
-1. Before publication, build/install the snapshot locally. After publication,
-   configure the public snapshot repository described in [Getting started](getting-started.md#consume-a-published-snapshot).
+1. [Install `1.0.0-M2` from Maven Central](getting-started.md#use-the-published-milestone).
+   To test development changes, follow the [snapshot setup](getting-started.md#consume-a-published-snapshot).
 2. Update imports/coordinates and any explicit resolver registration or exclusions.
 3. Verify application queries and mandatory scope composition on its own schema.
 4. Review strict validation choices separately; the rename does not turn it on.

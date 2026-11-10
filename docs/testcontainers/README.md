@@ -72,5 +72,5 @@ in the earlier reports.
 unchanged-input fingerprints, and raw-evidence hashes. Full local evidence is
 under ignored `build/testcontainers/`. Local verification uses macOS ARM64 with
 OrbStack Docker 29.4.0; the GitHub workflow is configured but has not run for this
-commit. Maven artifact signing and Dependency-Check are skipped by the commands
-above; Git commit signing is separate. No artifacts are published.
+commit. The commands above use local builds with Maven artifact signing and
+Dependency-Check disabled. Git commit signing is separate.

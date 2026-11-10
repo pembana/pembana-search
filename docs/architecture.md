@@ -4,18 +4,18 @@ Pembana Search™ has three library modules under a parent/aggregator POM. All
 handwritten production and test packages use JSpecify nullability checking.
 Maven runs on OpenJDK 21.0.8+ and emits Java 17 bytecode.
 
-| Artifact (`com.pembana.search`, version `1.0.0-SNAPSHOT`) | Dependencies and responsibility |
+| Artifact (`com.pembana.search`) | Dependencies and responsibility |
 | --- | --- |
 | `pembana-search-core` | ANTLR 4.13.2 and JSpecify; immutable models, expression parsing, parser policy and diagnostics |
 | `pembana-search-data-jpa` | Core, Spring Data JPA, Jakarta Persistence, Spring Web and Jackson 2; specification translation and inherited conversion strategies |
 | `pembana-search-spring-boot-starter` | JPA module and Boot JPA/MVC starters; optional request binding and auto-configuration |
 
-The parent `pembana-search` is a POM, not a runtime JAR. No artifacts have been
-published. JPA providers and database drivers are not core dependencies. The JPA
-adapter retains Spring Web solely for compatible `ResponseStatusException` and
-ProblemDetail diagnostics; it has no MVC resolver or Boot dependency in its main
-graph. Jackson 2 remains for inherited Date conversion. Testcontainers, drivers
-and shared fixture JAR dependencies remain test-scoped.
+The parent `pembana-search` is an aggregator POM. JPA providers and database
+drivers are not core dependencies. The JPA adapter retains Spring Web solely for
+compatible `ResponseStatusException` and ProblemDetail diagnostics; it has no MVC
+resolver or Boot dependency in its main graph. Jackson 2 remains for inherited
+Date conversion. Testcontainers, drivers and shared fixture JAR dependencies
+remain test-scoped.
 
 ```mermaid
 flowchart TD

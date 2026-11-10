@@ -7,9 +7,9 @@
 Advanced search expressions for Spring Data JPA, with optional Spring MVC query
 binding, field restrictions, input limits, and structured validation errors.
 
-The [POM](pom.xml) records the development version. See
-[GitHub Releases](https://github.com/pembana/pembana-search/releases) for
-published versions. Choose the integration you need:
+The [1.0.0-M2 milestone](https://github.com/pembana/pembana-search/releases/tag/v1.0.0-M2)
+is available from Maven Central. The [POM](pom.xml) records the development version.
+Choose the integration you need:
 
 | Artifact (`com.pembana.search`) | Responsibility |
 | --- | --- |
@@ -60,34 +60,15 @@ guide](docs/development.md#dependency-check-and-nvd) for local use and nightly C
 
 ## Add to a Spring Boot application
 
-Use a published release version to resolve the dependency from Maven Central.
-To use a published development snapshot, add the public snapshot repository to
-your application POM:
-
-```xml
-<repositories>
-    <repository>
-        <id>central-snapshots</id>
-        <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-        <releases><enabled>false</enabled></releases>
-        <snapshots><enabled>true</enabled></snapshots>
-    </repository>
-</repositories>
-```
-
-For a local development build, install the reactor using the build command above.
-Add the starter dependency with your chosen version. This example uses a snapshot:
+Add the `1.0.0-M2` starter dependency from Maven Central:
 
 ```xml
 <dependency>
     <groupId>com.pembana.search</groupId>
     <artifactId>pembana-search-spring-boot-starter</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0-M2</version>
 </dependency>
 ```
-
-Snapshots are mutable; run `./mvnw -U verify` in your consumer project to check
-for a newer published build of the same snapshot version.
 
 The starter brings Boot JPA and MVC integration. Your application supplies its
 entities, database driver, configuration and security policy. For direct JPA
@@ -182,6 +163,11 @@ With the JPA module, pass the same tree to
 `new SpecificationsBuilder<User>(settings).withQuery(built).build()`.
 Programmatic values remain data; they are never concatenated into expressions.
 See [architecture](docs/architecture.md) and [module verification](docs/modules/README.md).
+
+## Development snapshots
+
+For development builds, follow the [snapshot setup](docs/getting-started.md#consume-a-published-snapshot)
+or [install the reactor locally](#build-locally).
 
 ## Documentation
 

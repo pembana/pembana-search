@@ -1,6 +1,6 @@
 # Pembana Search™ Field Profiles, Converters, and Predicate Extensions
 
-Status: Implemented; see [library verification](../../search-acceptance.md). Publication remains separate.
+Status: Implemented. See [library verification](../../search-acceptance.md).
 Date: 2026-11-02.
 Source work: OPEN-03, OPEN-05, OPEN-06; prior AC-21, AC-23, AC-24.
 
